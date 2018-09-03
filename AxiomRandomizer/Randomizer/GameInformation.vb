@@ -89,6 +89,98 @@
         DroneTeleport
         Key
     End Enum
+    Public Enum CreatureType
+        Snailborg
+        SpitbugNest
+        Spiru
+        Buoyg
+        SwarmilyParent
+        TrapClaw
+        Streeg
+        Yorchug
+        TrapClaw_Meta
+        Snailborg_Meta
+        MushroomPoof
+        LoopDiatom
+        LoopDiatom_Violet
+        Fungine
+        Furglot
+        BuhbullSpawner
+        Scorpiant
+        TubeWorm
+        Goolumn
+        Prongfish
+        Rugg
+        Rugg_Meta
+        Arachnoptopus
+        Quadropus
+        Mutant_Idle
+        Mutant_Sleeping
+        Mutant_Tongue
+        Pliaa
+        Gill
+        Blite
+        Spidler
+        Piston1
+        Piston2
+        Piston3
+        Drometon
+        Mogra
+        SmallMogra
+        FlynnStone
+        NrokSpawner
+        Seamk
+        Mutant_Strong
+        TrapClaw_Gamma
+        Oraca
+        Glugg
+        Blurst
+        TubePuff
+        RepairDrone
+        RepairDrone_egg
+        RepairDroneSpawner
+        Porcupine
+        SentryBot
+        Annihiwaiter
+        Potato
+        Zeborg
+        CortantSpawner
+        GrippingHands
+        Hugger
+        Daraga
+        TraceHallucination
+        Jorm
+        Jormite
+        NightRayTube
+        EyeCopter
+        Hoverling
+        Volg
+        SpaceBat
+        WillOWisp
+        DeformedTraceChrysalis
+        Hoverbug
+        Hookfish
+        Artichoker
+        Diskko
+        TieFlighter
+        SentryBot_Meta
+        DonaughtFactory
+        BreachAttractor
+        Elsenova
+        SpungusSporeSpawner
+        ElevatorEndCap
+        Athetos
+    End Enum
+    Public Enum BossType
+        SecurityWorm
+        SoldierBoss
+        SlugBoss
+        ScorpionBoss
+        MantaBoss
+        SpitBugBoss
+        SecurityWormAdvanced
+        Sentinel
+    End Enum
     Public Class Location
         Public Name As String
         Public Vanilla As ItemType

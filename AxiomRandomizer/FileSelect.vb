@@ -71,6 +71,10 @@ Public Class FileSelect
             Return False
         ElseIf Not Directory.Exists(GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\VanillaFiles") Then
             Return False
+        ElseIf My.Settings.ManualDecompilePending = True Then
+            PackUnpack.RemoveLeaderboard(GetFolderPath(SpecialFolder.ApplicationData) &
+                                         "\AxiomRandomizer\VanillaFiles\RandomAV.iL")
+            Return True
         Else
             Return True
         End If

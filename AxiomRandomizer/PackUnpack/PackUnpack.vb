@@ -40,9 +40,7 @@ Public Class PackUnpack
             Return False
         End If
         Process.Start(IldasmPath, Path.GetFileName(ExeFilePath) & " /out=" & UnpackFolder).WaitForExit()
-        'Threading.Thread.Sleep(250)
         If File.Exists(UnpackFolder) Then
-            'Threading.Thread.Sleep(500)
             If File.Exists(Path.GetDirectoryName(UnpackFolder) &
                        Path.DirectorySeparatorChar &
                        "OuterBeyond.EmbeddedContent.Content.zip") Then
@@ -66,10 +64,9 @@ Public Class PackUnpack
             End If
         Else
             If MessageBox.Show("Game Dump Unsuccessful." & vbNewLine &
-                            "Would you like to make a script file?",
+                            "Would you like to make a batch file?",
                             "Failed Dump", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-
-                Return True
+                Return DecompileBatch(ExeFilePath, IldasmPath, UnpackFolder)
             Else
                 File.Delete(Path.GetDirectoryName(Application.ExecutablePath) &
                                Path.DirectorySeparatorChar &
@@ -84,6 +81,8 @@ Public Class PackUnpack
             If lines(i) = "    IL_003d:  brtrue.s   IL_0042" Then
                 lines(i) = "    IL_003d:  br   IL_0042"
                 Exit For
+            ElseIf lines(i).Contains(""".sav""") Then
+                lines(i) = lines(i).Replace(""".sav""", """.save""")
             End If
             If i = lines.Length - 1 Then
                 MessageBox.Show("Error Removing Leaderboard Uploads")
@@ -187,4 +186,44 @@ Public Class PackUnpack
         End If
         My.Computer.FileSystem.CopyDirectory(UnpackFolder, WorkingPath, True)
     End Sub
+    Shared Function DecompileBatch(ExeFilePath, IldasmFilePath, DecompileLocation)
+        Dim BatchFile(22) As String
+        BatchFile(0) = "ildasm """ & ExeFilePath & """ /out=""" & DecompileLocation & """"
+        BatchFile(1) = ""
+        BatchFile(2) = "@echo off"
+        BatchFile(3) = "setlocal"
+        BatchFile(4) = "cd /d %~dp0"
+        BatchFile(5) = "Call :UnZipFile """ & Path.GetDirectoryName(DecompileLocation) &
+                                        Path.DirectorySeparatorChar & "OuterBeyond.EmbeddedContent.Content"" """ &
+                                        Path.GetDirectoryName(DecompileLocation) & Path.DirectorySeparatorChar &
+                                        "OuterBeyond.EmbeddedContent.Content.zip"""
+        BatchFile(6) = "exit /b"
+        BatchFile(7) = ""
+        BatchFile(8) = ":UnZipFile <ExtractTo> <newzipfile>"
+        BatchFile(9) = "set vbs=""%temp%\_.vbs"""
+        BatchFile(10) = "if exist %vbs% del /f /q %vbs%"
+        BatchFile(11) = ">%vbs%  echo Set fso = CreateObject(""Scripting.FileSystemObject"")"
+        BatchFile(12) = ">>%vbs% echo If NOT fso.FolderExists(%1) Then"
+        BatchFile(13) = ">>%vbs% echo fso.CreateFolder(%1)"
+        BatchFile(14) = ">>%vbs% echo End If"
+        BatchFile(15) = ">>%vbs% echo set objShell = CreateObject(""Shell.Application"")"
+        BatchFile(16) = ">>%vbs% echo set FilesInZip=objShell.NameSpace(%2).items"
+        BatchFile(17) = ">>%vbs% echo objShell.NameSpace(%1).CopyHere(FilesInZip)"
+        BatchFile(18) = ">>%vbs% echo Set fso = Nothing"
+        BatchFile(19) = ">>%vbs% echo Set objShell = Nothing"
+        BatchFile(20) = "cscript //nologo %vbs%"
+        BatchFile(21) = "if exist %vbs% del /f /q %vbs%"
+        BatchFile(22) = "START """ & Application.ExecutablePath & """"
+        Dim DecompileFile As String = Path.GetDirectoryName(IldasmFilePath) & Path.DirectorySeparatorChar & "Decompile.bat"
+        IO.File.WriteAllLines(DecompileFile, BatchFile)
+        If File.Exists(DecompileFile) Then
+            MessageBox.Show("Run Decompile.bat")
+            Process.Start(Path.GetDirectoryName(DecompileFile))
+            My.Settings.ManualDecompilePending = True
+            Application.Exit()
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 End Class

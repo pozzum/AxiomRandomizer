@@ -18,7 +18,7 @@ Public Class OnlineVersion
             If String.IsNullOrWhiteSpace(Response) Then
                 'do nothing
             End If
-            MessageBox.Show("Response Get")
+            'MessageBox.Show("Response Get")
             Const pattern As String = "Current Version: (?<version>\d.\d.\d.\d)"
             Dim TempMatch As Match = Regex.Match(Response, pattern)
             If TempMatch.Success Then
