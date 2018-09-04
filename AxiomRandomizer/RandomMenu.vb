@@ -73,6 +73,7 @@ Public Class RandomMenu
             PackUnpack.BuildFromAppdata(My.Settings.ExeFilePath)
             Randomizer.ExportLocations(My.Settings.ExeFilePath)
             CheckRandoExe()
+            MessageBox.Show("Build complete.")
         Else
             MessageBox.Show("Error With Tile Map")
         End If
@@ -99,7 +100,7 @@ Public Class RandomMenu
 
     Private Sub ButtonOpenBaseGame_Click(sender As Object, e As EventArgs) Handles ButtonOpenBaseGame.Click
         If File.Exists(My.Settings.ExeFilePath) Then
-            Process.Start(My.Settings.ExeFilePath)
+            Process.Start("""" & My.Settings.ExeFilePath & """")
             Me.Close()
         Else
             MessageBox.Show("File Not Found")
@@ -112,7 +113,7 @@ Public Class RandomMenu
             'Dim TempProcess As ProcessStartInfo = New ProcessStartInfo With {
             '.FileName = "CMD",
             '.Arguments = "/K ""H:\Steam\steamapps\common\Axiom Verge\RandomAV.bat"""}
-            Process.Start(Path.GetDirectoryName(My.Settings.RandoExePath))
+            Process.Start("""" & Path.GetDirectoryName(My.Settings.RandoExePath) & """")
             'Dim StartInfo As ProcessStartInfo = New ProcessStartInfo()
             'StartInfo.FileName = My.Settings.RandoExePath
             ' TempProcess.StartInfo = StartInfo

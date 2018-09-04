@@ -39,7 +39,7 @@ Public Class PackUnpack
             MessageBox.Show("Error Copying File")
             Return False
         End If
-        Process.Start(IldasmPath, Path.GetFileName(ExeFilePath) & " /out=" & UnpackFolder).WaitForExit()
+        Process.Start(IldasmPath, Path.GetFileName(ExeFilePath) & " /out=""" & UnpackFolder & """").WaitForExit()
         If File.Exists(UnpackFolder) Then
             If File.Exists(Path.GetDirectoryName(UnpackFolder) &
                        Path.DirectorySeparatorChar &
@@ -59,7 +59,7 @@ Public Class PackUnpack
                 File.Delete(Path.GetDirectoryName(Application.ExecutablePath) &
                                Path.DirectorySeparatorChar &
                                Path.GetFileName(ExeFilePath))
-                Process.Start(Path.GetDirectoryName(UnpackFolder))
+                Process.Start("""" & Path.GetDirectoryName(UnpackFolder) & """")
                 Return True
             End If
         Else
@@ -140,7 +140,7 @@ Public Class PackUnpack
         End If
         'MessageBox.Show(IlasmPath)
         'MessageBox.Show(WorkingPath & IlFileName)
-        Process.Start(IlasmPath, WorkingPath & IlFileName).WaitForExit()
+        Process.Start(IlasmPath, """" & WorkingPath & IlFileName & """").WaitForExit()
         My.Settings.RandoExePath = Path.GetDirectoryName(ExeFilePath) & Path.DirectorySeparatorChar & Path.GetFileNameWithoutExtension(IlFileName) & ".exe"
         'MessageBox.Show("Click OK when command dialog closes")
         If File.Exists(WorkingPath & Path.GetFileNameWithoutExtension(IlFileName) & ".exe") Then
@@ -218,7 +218,7 @@ Public Class PackUnpack
         IO.File.WriteAllLines(DecompileFile, BatchFile)
         If File.Exists(DecompileFile) Then
             MessageBox.Show("Run Decompile.bat")
-            Process.Start(Path.GetDirectoryName(DecompileFile))
+            Process.Start("""" & Path.GetDirectoryName(DecompileFile) & """")
             My.Settings.ManualDecompilePending = True
             Application.Exit()
             Return True

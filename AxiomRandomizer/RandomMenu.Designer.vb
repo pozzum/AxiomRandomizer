@@ -40,6 +40,8 @@ Partial Class RandomMenu
         Me.ButtonOpenRando = New System.Windows.Forms.Button()
         Me.LabelDonate = New System.Windows.Forms.Label()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.CheckBoxHideItems = New System.Windows.Forms.CheckBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'TextBoxSeed
@@ -126,7 +128,7 @@ Partial Class RandomMenu
         '
         'TextBoxExeLocation
         '
-        Me.TextBoxExeLocation.Location = New System.Drawing.Point(12, 173)
+        Me.TextBoxExeLocation.Location = New System.Drawing.Point(12, 219)
         Me.TextBoxExeLocation.Name = "TextBoxExeLocation"
         Me.TextBoxExeLocation.ReadOnly = True
         Me.TextBoxExeLocation.Size = New System.Drawing.Size(229, 20)
@@ -134,7 +136,7 @@ Partial Class RandomMenu
         '
         'ButtonBuild
         '
-        Me.ButtonBuild.Location = New System.Drawing.Point(12, 200)
+        Me.ButtonBuild.Location = New System.Drawing.Point(12, 246)
         Me.ButtonBuild.Name = "ButtonBuild"
         Me.ButtonBuild.Size = New System.Drawing.Size(125, 23)
         Me.ButtonBuild.TabIndex = 9
@@ -144,7 +146,7 @@ Partial Class RandomMenu
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 157)
+        Me.Label3.Location = New System.Drawing.Point(12, 203)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(72, 13)
         Me.Label3.TabIndex = 10
@@ -152,7 +154,7 @@ Partial Class RandomMenu
         '
         'ButtonFileSelect
         '
-        Me.ButtonFileSelect.Location = New System.Drawing.Point(247, 171)
+        Me.ButtonFileSelect.Location = New System.Drawing.Point(247, 217)
         Me.ButtonFileSelect.Name = "ButtonFileSelect"
         Me.ButtonFileSelect.Size = New System.Drawing.Size(25, 23)
         Me.ButtonFileSelect.TabIndex = 11
@@ -161,7 +163,7 @@ Partial Class RandomMenu
         '
         'ButtonSpoiler
         '
-        Me.ButtonSpoiler.Location = New System.Drawing.Point(147, 200)
+        Me.ButtonSpoiler.Location = New System.Drawing.Point(147, 246)
         Me.ButtonSpoiler.Name = "ButtonSpoiler"
         Me.ButtonSpoiler.Size = New System.Drawing.Size(125, 23)
         Me.ButtonSpoiler.TabIndex = 12
@@ -170,7 +172,7 @@ Partial Class RandomMenu
         '
         'ButtonOpenBaseGame
         '
-        Me.ButtonOpenBaseGame.Location = New System.Drawing.Point(147, 229)
+        Me.ButtonOpenBaseGame.Location = New System.Drawing.Point(147, 275)
         Me.ButtonOpenBaseGame.Name = "ButtonOpenBaseGame"
         Me.ButtonOpenBaseGame.Size = New System.Drawing.Size(125, 23)
         Me.ButtonOpenBaseGame.TabIndex = 14
@@ -179,7 +181,7 @@ Partial Class RandomMenu
         '
         'ButtonOpenRando
         '
-        Me.ButtonOpenRando.Location = New System.Drawing.Point(12, 229)
+        Me.ButtonOpenRando.Location = New System.Drawing.Point(12, 275)
         Me.ButtonOpenRando.Name = "ButtonOpenRando"
         Me.ButtonOpenRando.Size = New System.Drawing.Size(125, 23)
         Me.ButtonOpenRando.TabIndex = 15
@@ -189,7 +191,7 @@ Partial Class RandomMenu
         'LabelDonate
         '
         Me.LabelDonate.ForeColor = System.Drawing.SystemColors.AppWorkspace
-        Me.LabelDonate.Location = New System.Drawing.Point(155, 255)
+        Me.LabelDonate.Location = New System.Drawing.Point(155, 301)
         Me.LabelDonate.Name = "LabelDonate"
         Me.LabelDonate.Size = New System.Drawing.Size(117, 17)
         Me.LabelDonate.TabIndex = 16
@@ -197,11 +199,35 @@ Partial Class RandomMenu
         Me.LabelDonate.TextAlign = System.Drawing.ContentAlignment.BottomRight
         Me.ToolTip1.SetToolTip(Me.LabelDonate, "donations are appreciated :)")
         '
+        'CheckBoxHideItems
+        '
+        Me.CheckBoxHideItems.AutoSize = True
+        Me.CheckBoxHideItems.Enabled = False
+        Me.CheckBoxHideItems.Location = New System.Drawing.Point(12, 160)
+        Me.CheckBoxHideItems.Name = "CheckBoxHideItems"
+        Me.CheckBoxHideItems.Size = New System.Drawing.Size(76, 17)
+        Me.CheckBoxHideItems.TabIndex = 17
+        Me.CheckBoxHideItems.Text = "Hide Items"
+        Me.CheckBoxHideItems.UseVisualStyleBackColor = True
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Enabled = False
+        Me.CheckBox1.Location = New System.Drawing.Point(12, 183)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(125, 17)
+        Me.CheckBox1.TabIndex = 18
+        Me.CheckBox1.Text = "Randomize Monsters"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
         'RandomMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 281)
+        Me.ClientSize = New System.Drawing.Size(284, 331)
+        Me.Controls.Add(Me.CheckBox1)
+        Me.Controls.Add(Me.CheckBoxHideItems)
         Me.Controls.Add(Me.LabelDonate)
         Me.Controls.Add(Me.ButtonOpenRando)
         Me.Controls.Add(Me.ButtonOpenBaseGame)
@@ -246,4 +272,6 @@ Partial Class RandomMenu
     Friend WithEvents ButtonOpenRando As Button
     Friend WithEvents LabelDonate As Label
     Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents CheckBoxHideItems As CheckBox
+    Friend WithEvents CheckBox1 As CheckBox
 End Class

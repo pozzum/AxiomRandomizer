@@ -23,8 +23,8 @@ Public Class Randomizer
             ApplyWeights(Seed)
             PlaceItems()
         ElseIf Difficulty = DifficultySetting.Practice Then
-            LocationInformation = PracticeLocations.ResetLocations()
-            ItemPool = PracticeItems.ResetItemPool()
+            LocationInformation = PracticeLocations.ResetLocations() 'New List(Of Location) '
+            ItemPool = PracticeItems.ResetItemPool() 'New List(Of ItemDrop) '
             MessageBox.Show("Locations: " & LocationInformation.Count & vbNewLine &
                             "Items: " & ItemPool.Count)
             ApplyWeights(Seed)
@@ -51,7 +51,7 @@ Public Class Randomizer
         Next
         ItemPool.Sort(Function(x, y) x.Weight.CompareTo(y.Weight))
         ItemPool.Reverse()
-        MessageBox.Show("Weights Applied")
+        'MessageBox.Show("Weights Applied")
     End Sub
     Shared Function PlaceItems()
         'MessageBox.Show("Start")
@@ -78,13 +78,13 @@ Public Class Randomizer
                         LocationInformation(NextLocation).PlaceOrder = PlacementCount
                         LocationInformation(NextLocation).InGameItemID = ItemPool(i).GID + GetDefaultGID(LocationInformation(NextLocation).Region)
                         GivePowers(ItemPool(i).GivenPowers)
+                        LocationInformation(NextLocation).PowersAttained = PowerList
                         'MessageBox.Show(PlacementCount & vbNewLine &
                         'ItemPool(i).DropType.ToString & vbNewLine &
                         'LocationInformation(NextLocation).Name)
                         ItemPool(i).Placed = True
                         NextLocation = LocationTest
                         PlacementCount += 1
-                        'MessageBox.Show(i)
                         Exit For
                     End If
                 End If
@@ -166,16 +166,17 @@ Public Class Randomizer
                 CheckedLocation.GroupedPowers.Count = 0 Then
             Return True
         End If
-        For Each OptionPower As Powers In CheckedLocation.PowerOptions
-            If NewPowerList.Contains(OptionPower) Then
+        For i As Integer = 0 To CheckedLocation.PowerOptions.Count - 1
+            If NewPowerList.Contains(CheckedLocation.PowerOptions(i)) Then
                 Return True
             End If
         Next
-        For Each OptionPower As Powers In CheckedLocation.GroupedPowers
-            If Not NewPowerList.Contains(OptionPower) Then
+        For i As Integer = 0 To CheckedLocation.GroupedPowers.Count - 1
+            If Not NewPowerList.Contains(CheckedLocation.GroupedPowers(i)) Then
                 Return False
             End If
         Next
+
         'Already Passed Reqs and has all Optionals
         Return True
     End Function
@@ -243,6 +244,30 @@ Public Class Randomizer
             Return 11956
         End If
         Return -1
+    End Function
+    Shared Function GetCreatureNumber(SpawnedCharacter As CreatureType)
+        Dim SpawnedInt As Integer = CInt(SpawnedCharacter)
+        If SpawnedInt = 0 Then
+            Return 1
+        ElseIf SpawnedInt < 14 Then
+            Return (SpawnedInt + 4)
+        ElseIf SpawnedInt < 27 Then
+            Return (SpawnedInt + 5)
+        ElseIf SpawnedInt < 31 Then
+            Return (SpawnedInt + 102)
+        ElseIf SpawnedInt < 45 Then
+            Return (SpawnedInt + 103)
+        ElseIf SpawnedInt < 58 Then
+            Return (SpawnedInt + 104)
+        ElseIf SpawnedInt < 68 Then
+            Return (SpawnedInt + 105)
+        ElseIf SpawnedInt < 74 Then
+            Return (SpawnedInt + 106)
+        ElseIf SpawnedInt < 80 Then
+            Return (SpawnedInt + 108)
+        Else
+            Return -1
+        End If
     End Function
 
     Shared Sub ExportLocations(SentPath As String)

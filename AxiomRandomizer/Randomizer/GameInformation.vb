@@ -198,6 +198,7 @@
         Public ItemWeight As Double
         Public InGameItemID As Integer
         Public AddedDrop As Boolean = False
+        Public PowersAttained As List(Of Powers)
     End Class
     Public Class ItemDrop
         Public Name As String
@@ -208,6 +209,12 @@
         Public Weight As Double
         Public Placed As Boolean = False
     End Class
+    Public Class MonsterSpawn
+        Public Vanilla As CreatureType
+        Public Region As Area
+        Public Spawns As CreatureType
+    End Class
+
 #End Region
 #Region "Normal Difficulty"
     Public Class NormalLocations
@@ -1752,7 +1759,7 @@
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.PowerOptions.AddRange({Powers.RedCoat})
             TempLocation.GroupedPowers = New List(Of Powers)
-            TempLocation.PowerOptions.AddRange({Powers.Glitch2,
+            TempLocation.GroupedPowers.AddRange({Powers.Glitch2,
                                                Powers.TrenchCoat})
             Locations.Add(TempLocation)
             '_______________
@@ -1791,7 +1798,7 @@
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.PowerOptions.AddRange({Powers.RedCoat})
             TempLocation.GroupedPowers = New List(Of Powers)
-            TempLocation.PowerOptions.AddRange({Powers.Glitch2,
+            TempLocation.GroupedPowers.AddRange({Powers.Glitch2,
                                                Powers.Drone,
                                                Powers.DroneTeleport})
             Locations.Add(TempLocation)
@@ -1980,7 +1987,7 @@
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.PowerOptions.AddRange({Powers.RedCoat})
             TempLocation.GroupedPowers = New List(Of Powers)
-            TempLocation.PowerOptions.AddRange({Powers.Glitch3,
+            TempLocation.GroupedPowers.AddRange({Powers.Glitch3,
                                                Powers.HighJump})
             Locations.Add(TempLocation)
             '_______________
@@ -3756,6 +3763,535 @@
             Return Items
         End Function
     End Class
+    Public Class NormalMonsters
+        Public Shared Function ResetMonsters()
+            Dim Spawns As List(Of MonsterSpawn)
+            Spawns = New List(Of MonsterSpawn)
+            Dim TempSpawn As MonsterSpawn
+            '
+            '_______________Eribu
+            '
+            '_______________Area 1
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Snailborg
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.SpitbugNest
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Spiru
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Buoyg
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.SwarmilyParent
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.TrapClaw
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Yorchug
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Streeg
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Snailborg_Meta
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.TrapClaw_Meta
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Quadropus
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.TrapClaw_Gamma
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Mutant_Strong
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.SentryBot_Meta
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.TubePuff
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Blurst
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.WillOWisp
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Gill
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Hoverbug
+            TempSpawn.Region = Area.Eribu
+            Spawns.Add(TempSpawn)
+            '
+            '_______________Absu
+            '
+            '_______________Area 2
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Snailborg
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.SpitbugNest
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.MushroomPoof
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Buoyg
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.SwarmilyParent
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.LoopDiatom
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.LoopDiatom_Violet
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Streeg
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Snailborg_Meta
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.TrapClaw_Meta
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Fungine
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Arachnoptopus
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Quadropus
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Mutant_Idle
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Mutant_Tongue
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Mutant_Sleeping
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.RepairDrone
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Mutant_Strong
+            TempSpawn.Region = Area.Absu
+            Spawns.Add(TempSpawn)
+            '
+            '_______________Zi
+            '
+            '_______________Area 3
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Furglot
+            TempSpawn.Region = Area.Zi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.BuhbullSpawner
+            TempSpawn.Region = Area.Zi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Scorpiant
+            TempSpawn.Region = Area.Zi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.TubeWorm
+            TempSpawn.Region = Area.Zi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Goolumn
+            TempSpawn.Region = Area.Zi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Prongfish
+            TempSpawn.Region = Area.Zi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Rugg
+            TempSpawn.Region = Area.Zi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Rugg_Meta
+            TempSpawn.Region = Area.Zi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Arachnoptopus
+            TempSpawn.Region = Area.Zi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Mutant_Idle
+            TempSpawn.Region = Area.Zi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Piston1
+            TempSpawn.Region = Area.Zi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Piston1
+            TempSpawn.Region = Area.Zi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Piston2
+            TempSpawn.Region = Area.Zi
+            Spawns.Add(TempSpawn)
+            '______________ 'TraceHallucination not replaced
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.RepairDrone
+            TempSpawn.Region = Area.Zi
+            Spawns.Add(TempSpawn)
+            '
+            '_______________Kur
+            '
+            '_______________Area 4
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Pliaa
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Quadropus
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Gill
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Blite
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Spidler
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Drometon
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Mogra
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.SmallMogra
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.FlynnStone
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.NrokSpawner
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Seamk
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Mutant_Strong
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Mutant_Sleeping
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.TrapClaw_Gamma
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.RepairDroneSpawner
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.RepairDrone
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.EyeCopter
+            TempSpawn.Region = Area.Kur
+            Spawns.Add(TempSpawn)
+            '
+            '_______________Indi
+            '
+            '_______________Area 5
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Drometon
+            TempSpawn.Region = Area.Indi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Glugg
+            TempSpawn.Region = Area.Indi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Blurst
+            TempSpawn.Region = Area.Indi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.TubePuff
+            TempSpawn.Region = Area.Indi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.RepairDrone
+            TempSpawn.Region = Area.Indi
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Snailborg
+            TempSpawn.Region = Area.Indi
+            Spawns.Add(TempSpawn)
+            '
+            '_______________UkkinNa "Normal"
+            '
+            '_______________Area 6
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.RepairDrone
+            TempSpawn.Region = Area.UkkinNa
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.SentryBot
+            TempSpawn.Region = Area.UkkinNa
+            Spawns.Add(TempSpawn)
+            '______________
+            'Annihiwaiter will remain
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Potato
+            TempSpawn.Region = Area.UkkinNa
+            Spawns.Add(TempSpawn)
+            '______________
+            'Daraga will remain
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Glugg
+            TempSpawn.Region = Area.UkkinNa
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.TubePuff
+            TempSpawn.Region = Area.UkkinNa
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Elsenova
+            TempSpawn.Region = Area.UkkinNa
+            Spawns.Add(TempSpawn)
+            '
+            '_______________Edin
+            '
+            '_______________Area 7
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Jorm
+            TempSpawn.Region = Area.Edin
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Jormite
+            TempSpawn.Region = Area.Edin
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.NightRayTube
+            TempSpawn.Region = Area.Edin
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.EyeCopter
+            TempSpawn.Region = Area.Edin
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Mutant_Strong
+            TempSpawn.Region = Area.Edin
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Hoverling
+            TempSpawn.Region = Area.Edin
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Volg
+            TempSpawn.Region = Area.Edin
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.SpaceBat
+            TempSpawn.Region = Area.Edin
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.WillOWisp
+            TempSpawn.Region = Area.Edin
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.DeformedTraceChrysalis
+            TempSpawn.Region = Area.Edin
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Hoverling
+            TempSpawn.Region = Area.Edin
+            Spawns.Add(TempSpawn)
+            '
+            '_______________EKurMah
+            '
+            '_______________Area 8
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Hoverbug
+            TempSpawn.Region = Area.EKurMah
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Hookfish
+            TempSpawn.Region = Area.EKurMah
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Furglot
+            TempSpawn.Region = Area.EKurMah
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Artichoker
+            TempSpawn.Region = Area.EKurMah
+            Spawns.Add(TempSpawn)
+            '
+            '_______________MarUru
+            '
+            '_______________Area 9
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.Diskko
+            TempSpawn.Region = Area.MarUru
+            Spawns.Add(TempSpawn)
+            '______________
+            TempSpawn = New MonsterSpawn()
+            TempSpawn.Vanilla = CreatureType.SentryBot_Meta
+            TempSpawn.Region = Area.MarUru
+            Spawns.Add(TempSpawn)
+            '______________
+            'TieFlighter to stay for puzzle
+            'DonaughtFactory staying because it's basically the final boss.
+            'BreachAttractor staying for final boss
+            'Elsenova staying for final boss
+            'ElevatorEndCap staying for final boss
+            'Athetos staying for final boss
+            Return Spawns
+        End Function
+    End Class
 #End Region
 #Region "Practice Mode"
     Public Class PracticeLocations
@@ -3945,6 +4481,367 @@
             TempLocation.Weight = 6
             Locations.Add(TempLocation)
             '__________________________
+            'Adding Weapons
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 1"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5296
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 50
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 2"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5328
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 49
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 3"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5360
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 48
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 4"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5392
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 47
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 5"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5424
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 46
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 6"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5456
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 45
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 7"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5488
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 44
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 8"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5520
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 43
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 9"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5552
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 42
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 10"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5584
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 41
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 11"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5616
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 40
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 12"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5648
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 39
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 13"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5680
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 38
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 14"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5712
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 37
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 15"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5744
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 36
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 16"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5776
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 35
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 17"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5808
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 34
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 18"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5840
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 33
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 19"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5872
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 32
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 20"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5904
+            TempLocation.YLocation = 3120
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 31
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 21"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5936
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 30
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Weapon 22"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 5968
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 29
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Size Node 1"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 6592
+            TempLocation.YLocation = 3168
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 28
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Size Node 2"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 6592
+            TempLocation.YLocation = 3136
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 27
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Size Node 3"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 6624
+            TempLocation.YLocation = 3136
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 26
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Size Node 4"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 6624
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 25
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Range Node 1"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 6320
+            TempLocation.YLocation = 3136
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 24
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Range Node 2"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 6320
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 23
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Range Node 3"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 6352
+            TempLocation.YLocation = 3136
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 22
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Range Node 4"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 6352
+            TempLocation.YLocation = 3104
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 21
+            Locations.Add(TempLocation)
+            '__________________________
             'Emptying the default location
             TempLocation = New Location()
             TempLocation.Name = "Left From Start"
@@ -3955,7 +4852,7 @@
             TempLocation.RequiredPowers = New List(Of Powers)
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.GroupedPowers = New List(Of Powers)
-            TempLocation.Weight = 5 'Makes this always placed first
+            TempLocation.Weight = 2 'Makes this always placed first
             Locations.Add(TempLocation)
             Return Locations
         End Function
@@ -4146,14 +5043,323 @@
             TempItem.Weight = 6
             Items.Add(TempItem)
             '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Nova
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Nova,
+                                          Powers.Damage})
+            TempItem.GID = 3
+            TempItem.Weight = 50
+            Items.Add(TempItem)
             '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.MultiDisruptor
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage})
+            TempItem.GID = 35
+            TempItem.Weight = 49
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Kilver
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage,
+                                          Powers.Nova,
+                                          Powers.Kilver})
+            TempItem.GID = 36
+            TempItem.Weight = 48
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.FlameThrower
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage,
+                                          Powers.Nova,
+                                          Powers.Kilver})
+            TempItem.GID = 40
+            TempItem.Weight = 47
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.VerticalSpread
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage,
+                                          Powers.Nova})
+            TempItem.GID = 43
+            TempItem.Weight = 46
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.IonBeam
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage})
+            TempItem.GID = 44
+            TempItem.Weight = 45
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.TriCone
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage})
+            TempItem.GID = 45
+            TempItem.Weight = 44
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Reflect
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage,
+                                          Powers.Nova})
+            TempItem.GID = 46
+            TempItem.Weight = 43
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.WallTrace
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage,
+                                          Powers.Nova})
+            TempItem.GID = 47
+            TempItem.Weight = 42
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.InertialPulse
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage})
+            TempItem.GID = 48
+            TempItem.Weight = 41
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.FireWall
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage})
+            TempItem.GID = 49
+            TempItem.Weight = 40
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.TetheredCharge
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage,
+                                          Powers.Nova})
+            TempItem.GID = 50
+            TempItem.Weight = 39
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Scythe
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage,
+                                          Powers.Nova,
+                                          Powers.Kilver})
+            TempItem.GID = 51
+            TempItem.Weight = 38
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Shards
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage})
+            TempItem.GID = 52
+            TempItem.Weight = 37
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.DistortionField
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage,
+                                          Powers.Nova,
+                                          Powers.Kilver})
+            TempItem.GID = 53
+            TempItem.Weight = 36
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Voranj
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage})
+            TempItem.GID = 54
+            TempItem.Weight = 35
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.DataGrenade
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage})
+            TempItem.GID = 55
+            TempItem.Weight = 34
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.LightningGun
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage})
+            TempItem.GID = 56
+            TempItem.Weight = 33
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "FatBeam"
+            TempItem.DropType = ItemType.FatBeam
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage,
+                                          Powers.Nova,
+                                          Powers.Kilver,
+                                          Powers.FatBeam})
+            TempItem.GID = 57
+            TempItem.Weight = 32
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Swim
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage})
+            TempItem.GID = 58
+            TempItem.Weight = 31
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "WebSlicer"
+            TempItem.DropType = ItemType.WebSlicer
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage,
+                                          Powers.Nova,
+                                          Powers.Kilver})
+            TempItem.GID = 59
+            TempItem.Weight = 30
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HeatSeeker"
+            TempItem.DropType = ItemType.HeatSeeker
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({
+                                          Powers.Damage,
+                                          Powers.Nova,
+                                          Powers.Kilver})
+            TempItem.GID = 76 'Guess IDK if it'll work
+            TempItem.Weight = 29
+            Items.Add(TempItem)
+            '
+            '______________SIZE NODES
+            '
+            TempItem = New ItemDrop()
+            TempItem.Name = "SizeNode1"
+            TempItem.DropType = ItemType.SizeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 65
+            TempItem.Weight = 28
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "SizeNode2"
+            TempItem.DropType = ItemType.SizeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 65
+            TempItem.Weight = 27
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "SizeNode3"
+            TempItem.DropType = ItemType.SizeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 65
+            TempItem.Weight = 26
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "SizeNode4"
+            TempItem.DropType = ItemType.SizeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 65
+            TempItem.Weight = 25
+            Items.Add(TempItem)
+            '
+            '______________SIZE NODES
+            '
+            TempItem = New ItemDrop()
+            TempItem.Name = "RangeNode1"
+            TempItem.DropType = ItemType.RangeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 66
+            TempItem.Weight = 24
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "RangeNode2"
+            TempItem.DropType = ItemType.RangeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 66
+            TempItem.Weight = 23
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "RangeNode3"
+            TempItem.DropType = ItemType.RangeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 66
+            TempItem.Weight = 22
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "RangeNode4"
+            TempItem.DropType = ItemType.RangeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 66
+            TempItem.Weight = 21
+            Items.Add(TempItem)
+            '______________
+            'To Delete the old disruptor location
             TempItem = New ItemDrop()
             TempItem.Name = "HealthNodeFragment25"
             TempItem.DropType = ItemType.HealthNodeFragment
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.GID = 38
-            TempItem.Weight = 25
+            TempItem.Weight = 100
             Items.Add(TempItem)
+
             Return Items
         End Function
 
