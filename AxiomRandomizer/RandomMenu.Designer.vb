@@ -41,7 +41,7 @@ Partial Class RandomMenu
         Me.LabelDonate = New System.Windows.Forms.Label()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.CheckBoxHideItems = New System.Windows.Forms.CheckBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxMonsters = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'TextBoxSeed
@@ -97,9 +97,9 @@ Partial Class RandomMenu
         Me.CheckBoxIllusion.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CheckBoxIllusion.Location = New System.Drawing.Point(12, 91)
         Me.CheckBoxIllusion.Name = "CheckBoxIllusion"
-        Me.CheckBoxIllusion.Size = New System.Drawing.Size(155, 17)
+        Me.CheckBoxIllusion.Size = New System.Drawing.Size(153, 17)
         Me.CheckBoxIllusion.TabIndex = 5
-        Me.CheckBoxIllusion.Text = "Allow Illusion Bypass Route"
+        Me.CheckBoxIllusion.Text = "Remove Illusion Sequence"
         Me.CheckBoxIllusion.UseVisualStyleBackColor = True
         '
         'CheckBoxWalls
@@ -210,23 +210,24 @@ Partial Class RandomMenu
         Me.CheckBoxHideItems.Text = "Hide Items"
         Me.CheckBoxHideItems.UseVisualStyleBackColor = True
         '
-        'CheckBox1
+        'CheckBoxMonsters
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Enabled = False
-        Me.CheckBox1.Location = New System.Drawing.Point(12, 183)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(125, 17)
-        Me.CheckBox1.TabIndex = 18
-        Me.CheckBox1.Text = "Randomize Monsters"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.CheckBoxMonsters.AutoSize = True
+        Me.CheckBoxMonsters.Location = New System.Drawing.Point(12, 183)
+        Me.CheckBoxMonsters.Name = "CheckBoxMonsters"
+        Me.CheckBoxMonsters.Size = New System.Drawing.Size(125, 17)
+        Me.CheckBoxMonsters.TabIndex = 18
+        Me.CheckBoxMonsters.Text = "Randomize Monsters"
+        Me.ToolTip1.SetToolTip(Me.CheckBoxMonsters, "This currently has a high chance of crashing your game.  For testing purposes pri" &
+        "marily.")
+        Me.CheckBoxMonsters.UseVisualStyleBackColor = True
         '
         'RandomMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(284, 331)
-        Me.Controls.Add(Me.CheckBox1)
+        Me.Controls.Add(Me.CheckBoxMonsters)
         Me.Controls.Add(Me.CheckBoxHideItems)
         Me.Controls.Add(Me.LabelDonate)
         Me.Controls.Add(Me.ButtonOpenRando)
@@ -273,5 +274,5 @@ Partial Class RandomMenu
     Friend WithEvents LabelDonate As Label
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents CheckBoxHideItems As CheckBox
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CheckBoxMonsters As CheckBox
 End Class

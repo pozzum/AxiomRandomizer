@@ -11,8 +11,13 @@ Public Class Randomizer
     Public Shared LocationInformation As List(Of Location)
     Public Shared ItemPool As List(Of ItemDrop)
     Public Shared PowerList As List(Of Powers)
+    Public Shared MonsterList As List(Of MonsterSpawn)
+    Public Shared RemovedMonsters As List(Of CreatureType)
+    Public Shared Generator As System.Random
+#Region "Locations"
 
-    Shared Sub BuildLocations(Seed As Long, Difficulty As DifficultySetting)
+
+    Shared Sub BuildLocations(Seed As Integer, Difficulty As DifficultySetting)
 
         PowerList = New List(Of Powers)
         If Difficulty = DifficultySetting.Normal Then
@@ -32,7 +37,7 @@ Public Class Randomizer
         End If
     End Sub
     Shared Sub ApplyWeights(Seed As Integer)
-        Dim Generator As System.Random = New System.Random(Seed:=Seed)
+        Generator = New System.Random(Seed:=Seed)
         For Each TempLocation As Location In LocationInformation
             If TempLocation.Weight = 0 Then
                 TempLocation.Weight = Generator.NextDouble()
@@ -295,4 +300,33 @@ Public Class Randomizer
         'reader.Deserialize(file, LocationInformation)
         file.Close()
     End Sub
+#End Region
+#Region "Monsters"
+    Shared Sub ShuffleMonsters(Seed As Integer, Difficulty As DifficultySetting)
+        If Difficulty = DifficultySetting.Normal Then
+            MonsterList = NormalMonsters.ResetMonsters()
+            RemovedMonsters = NormalMonsters.BannedMonsters()
+        ElseIf Difficulty = DifficultySetting.Practice Then
+            MonsterList = NormalMonsters.ResetMonsters()
+            RemovedMonsters = NormalMonsters.BannedMonsters()
+        End If
+        For i As Integer = 0 To MonsterList.Count - 1
+            Dim attempt As Integer = 0
+            Do While attempt < 10
+                Dim TempSpawn As CreatureType = DirectCast([Enum].Parse(GetType(CreatureType),
+                                    Generator.Next(79)), CreatureType)
+                If Not RemovedMonsters.Contains(TempSpawn) Then
+                    MonsterList(i).Spawns = TempSpawn
+                End If
+                attempt += 1
+                If attempt = 9 Then
+                    MonsterList(i).Spawns = MonsterList(i).Vanilla
+                End If
+            Loop
+            'If MonsterList(i).Region = Area.Indi Then
+            'MessageBox.Show(MonsterList(i).Vanilla.ToString & " Replaced by " & MonsterList(i).Spawns.ToString)
+            'End If
+        Next
+    End Sub
+#End Region
 End Class

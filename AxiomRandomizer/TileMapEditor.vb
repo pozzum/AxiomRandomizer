@@ -28,6 +28,39 @@ Public Class TileMapEditor
             GeneralTools.MakeWriteable(TileMapFolder & FileName)
             Dim lines() As String = IO.File.ReadAllLines(TileMapFolder & FileName)
             Dim NewLines As List(Of String) = New List(Of String)
+            'Make the first pass monster replacements
+            If Randomizer.MonsterList.Count > 0 Then
+                'MessageBox.Show("Monsters Changing " & RegionPlaced.ToString)
+                'Make List of Monster Replacements for this area
+                Dim SpawnPairs As List(Of KeyValuePair(Of Integer, Integer)) = New List(Of KeyValuePair(Of Integer, Integer))
+                For i As Integer = 0 To Randomizer.MonsterList.Count - 1
+                    If Randomizer.MonsterList(i).Region = RegionPlaced Then
+                        SpawnPairs.Add(New KeyValuePair(Of Integer, Integer)(
+                                       Randomizer.GetDefaultGID(RegionPlaced) +
+                                       Randomizer.GetCreatureNumber(Randomizer.MonsterList(i).Vanilla),
+                                       Randomizer.GetDefaultGID(RegionPlaced) +
+                                       Randomizer.GetCreatureNumber(Randomizer.MonsterList(i).Spawns))) 'OLD,NEW
+                    End If
+                Next
+                For i As Integer = 0 To lines.Length - 1
+                    If lines(i).Contains("<object gid=") Then
+                        For j As Integer = 0 To SpawnPairs.Count - 1
+                            If lines(i).Contains("<object gid=""" & SpawnPairs(j).Key.ToString) Then
+                                lines(i) = lines(i).Replace("<object gid=""" & SpawnPairs(j).Key.ToString,
+                                                            "<object gid=""" & SpawnPairs(j).Value.ToString)
+                            End If
+                        Next
+                    ElseIf lines(i).Contains("<object id=") Then
+                        For j As Integer = 0 To SpawnPairs.Count - 1
+                            If lines(i).Contains(" gid=""" & SpawnPairs(j).Key.ToString) Then
+                                lines(i) = lines(i).Replace(" gid=""" & SpawnPairs(j).Key.ToString,
+                                                            " gid=""" & SpawnPairs(j).Value.ToString)
+                            End If
+                        Next
+                    End If
+                Next
+            End If
+
             For Each Templocation As Location In Randomizer.LocationInformation
                 If Templocation.Region = RegionPlaced Then
                     If Templocation.AddedDrop = False Then
@@ -60,6 +93,7 @@ Public Class TileMapEditor
                     End If
                 End If
             Next
+            'Adding New Items
             If NewLines.Count > 0 Then
                 Dim OldLineLength As Integer = lines.Length - 1
                 ReDim Preserve lines((lines.Length - 1) + NewLines.Count)

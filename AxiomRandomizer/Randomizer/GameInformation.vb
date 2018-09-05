@@ -4291,6 +4291,13 @@
             'Athetos staying for final boss
             Return Spawns
         End Function
+        Public Shared Function BannedMonsters()
+            Dim Bans As List(Of CreatureType) = New List(Of CreatureType)
+            Bans.Add(CreatureType.Oraca)
+            Bans.Add(CreatureType.BreachAttractor)
+            'Bans.Add(CreatureType.Piston3)
+            Return Bans
+        End Function
     End Class
 #End Region
 #Region "Practice Mode"

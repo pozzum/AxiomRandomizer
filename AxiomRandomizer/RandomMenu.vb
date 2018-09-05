@@ -39,7 +39,7 @@ Public Class RandomMenu
     Private Sub ButtonRandomSeed_Click(sender As Object, e As EventArgs) Handles ButtonRandomSeed.Click
         TextBoxSeed.Text = GetRandomNumber()
     End Sub
-    Function GetRandomNumber() As Long
+    Function GetRandomNumber() As Integer
         Randomize()
         Return CLng((Rnd() * Integer.MaxValue)).ToString
     End Function
@@ -66,16 +66,21 @@ Public Class RandomMenu
                                 ComboBoxDifficulties.SelectedItem.ToString),
                                 Randomizer.DifficultySetting)
             Randomizer.BuildLocations(CLng(TextBoxSeed.Text), SelectedDifficulty)
+            If CheckBoxMonsters.Checked Then
+                Randomizer.ShuffleMonsters(CLng(TextBoxSeed.Text), SelectedDifficulty)
+            Else
+                Randomizer.MonsterList = New List(Of GameInformation.MonsterSpawn)
+            End If
             TileMapEditor.WriteItems()
-            TileMapEditor.OneWayDropDown(CheckBoxDropDown.Checked)
-            TileMapEditor.OneWayWalls(CheckBoxWalls.Checked)
-            TileMapEditor.RemoveIllusion(CheckBoxIllusion.Checked)
-            PackUnpack.BuildFromAppdata(My.Settings.ExeFilePath)
-            Randomizer.ExportLocations(My.Settings.ExeFilePath)
-            CheckRandoExe()
-            MessageBox.Show("Build complete.")
-        Else
-            MessageBox.Show("Error With Tile Map")
+                TileMapEditor.OneWayDropDown(CheckBoxDropDown.Checked)
+                TileMapEditor.OneWayWalls(CheckBoxWalls.Checked)
+                TileMapEditor.RemoveIllusion(CheckBoxIllusion.Checked)
+                PackUnpack.BuildFromAppdata(My.Settings.ExeFilePath)
+                Randomizer.ExportLocations(My.Settings.ExeFilePath)
+                CheckRandoExe()
+                MessageBox.Show("Build complete.")
+            Else
+                MessageBox.Show("Error With Tile Map")
         End If
     End Sub
     Private Sub ButtonSpoiler_Click(sender As Object, e As EventArgs) Handles ButtonSpoiler.Click
@@ -92,7 +97,8 @@ Public Class RandomMenu
         Dim SentTextBox As TextBox = CType(sender, TextBox)
         Dim CursorPosition As Integer = SentTextBox.SelectionStart
         SentTextBox.Text = Regex.Replace(SentTextBox.Text, "[^0-9]", "")
-        If SentTextBox.Text > Integer.MaxValue Then
+        If SentTextBox.Text.Length > 0 AndAlso
+         CLng(SentTextBox.Text) > Integer.MaxValue Then
             SentTextBox.Text = SentTextBox.Text.Substring(0, SentTextBox.Text.Length - 1)
         End If
         SentTextBox.SelectionStart = CursorPosition
@@ -108,7 +114,9 @@ Public Class RandomMenu
     End Sub
 
     Private Sub ButtonOpenRando_Click(sender As Object, e As EventArgs) Handles ButtonOpenRando.Click
-        'MessageBox.Show(My.Settings.RandoExePath)
+        'MessageBox.Show("""" & My.Settings.RandoExePath & """")
+        'Process.Start("""" & My.Settings.RandoExePath & """")
+        Me.Close()
         If File.Exists(My.Settings.RandoExePath) Then
             'Dim TempProcess As ProcessStartInfo = New ProcessStartInfo With {
             '.FileName = "CMD",
@@ -124,7 +132,7 @@ Public Class RandomMenu
         End If
     End Sub
 
-    Private Sub LabelDonate_Click(sender As Object, e As EventArgs) Handles LabelDonate.DoubleClick
+    Private Sub LabelDonate_Click(sender As Object, e As EventArgs) Handles LabelDonate.Click
         Process.Start("http://paypal.me/pozzum")
     End Sub
 #End Region
