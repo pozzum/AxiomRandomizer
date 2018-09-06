@@ -4273,15 +4273,15 @@
             '_______________MarUru
             '
             '_______________Area 9
-            TempSpawn = New MonsterSpawn()
-            TempSpawn.Vanilla = CreatureType.Diskko
-            TempSpawn.Region = Area.MarUru
-            Spawns.Add(TempSpawn)
+            'TempSpawn = New MonsterSpawn()
+            'TempSpawn.Vanilla = CreatureType.Diskko
+            'TempSpawn.Region = Area.MarUru
+            'Spawns.Add(TempSpawn)
             '______________
-            TempSpawn = New MonsterSpawn()
-            TempSpawn.Vanilla = CreatureType.SentryBot_Meta
-            TempSpawn.Region = Area.MarUru
-            Spawns.Add(TempSpawn)
+            'TempSpawn = New MonsterSpawn()
+            'TempSpawn.Vanilla = CreatureType.SentryBot_Meta
+            'TempSpawn.Region = Area.MarUru
+            'Spawns.Add(TempSpawn)
             '______________
             'TieFlighter to stay for puzzle
             'DonaughtFactory staying because it's basically the final boss.
@@ -4293,9 +4293,18 @@
         End Function
         Public Shared Function BannedMonsters()
             Dim Bans As List(Of CreatureType) = New List(Of CreatureType)
+            Bans.Add(CreatureType.Piston1)
+            Bans.Add(CreatureType.Piston2)
+            Bans.Add(CreatureType.Piston3)
+            Bans.Add(CreatureType.Diskko)
+            Bans.Add(CreatureType.SentryBot_Meta)
+            Bans.Add(CreatureType.DonaughtFactory)
+            Bans.Add(CreatureType.TieFlighter)
             Bans.Add(CreatureType.Oraca)
             Bans.Add(CreatureType.BreachAttractor)
-            'Bans.Add(CreatureType.Piston3)
+            Bans.Add(CreatureType.ElevatorEndCap)
+            Bans.Add(CreatureType.Elsenova)
+            Bans.Add(CreatureType.Athetos)
             Return Bans
         End Function
     End Class
@@ -5283,9 +5292,7 @@
             TempItem.DropType = ItemType.HeatSeeker
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.GivenPowers.AddRange({
-                                          Powers.Damage,
-                                          Powers.Nova,
-                                          Powers.Kilver})
+                                          Powers.Damage})
             TempItem.GID = 76 'Guess IDK if it'll work
             TempItem.Weight = 29
             Items.Add(TempItem)

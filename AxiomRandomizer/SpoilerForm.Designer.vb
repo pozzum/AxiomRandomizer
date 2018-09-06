@@ -23,8 +23,6 @@ Partial Class SpoilerForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.Placed = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ItemType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ItemName = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -33,9 +31,11 @@ Partial Class SpoilerForm
         Me.Area = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VanillaItem = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LocationWeight = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportLocationsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.ImportLocationsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
@@ -54,22 +54,6 @@ Partial Class SpoilerForm
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.Size = New System.Drawing.Size(734, 687)
         Me.DataGridView1.TabIndex = 1
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportLocationsToolStripMenuItem, Me.ImportLocationsToolStripMenuItem})
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(50, 20)
-        Me.ToolStripMenuItem1.Text = "Seed: "
-        '
-        'MenuStrip1
-        '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(734, 24)
-        Me.MenuStrip1.TabIndex = 0
-        Me.MenuStrip1.Text = "MenuStrip1"
         '
         'Placed
         '
@@ -119,10 +103,17 @@ Partial Class SpoilerForm
         Me.LocationWeight.Name = "LocationWeight"
         Me.LocationWeight.Width = 101
         '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportLocationsToolStripMenuItem, Me.ImportLocationsToolStripMenuItem})
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(50, 20)
+        Me.ToolStripMenuItem1.Text = "Seed: "
+        '
         'ExportLocationsToolStripMenuItem
         '
         Me.ExportLocationsToolStripMenuItem.Name = "ExportLocationsToolStripMenuItem"
-        Me.ExportLocationsToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
+        Me.ExportLocationsToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
         Me.ExportLocationsToolStripMenuItem.Text = "Export Locations"
         '
         'ImportLocationsToolStripMenuItem
@@ -130,6 +121,15 @@ Partial Class SpoilerForm
         Me.ImportLocationsToolStripMenuItem.Name = "ImportLocationsToolStripMenuItem"
         Me.ImportLocationsToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
         Me.ImportLocationsToolStripMenuItem.Text = "Import Locations"
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(734, 24)
+        Me.MenuStrip1.TabIndex = 0
+        Me.MenuStrip1.Text = "MenuStrip1"
         '
         'OpenFileDialog1
         '
