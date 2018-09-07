@@ -3116,10 +3116,8 @@
             TempItem.DropType = ItemType.HeatSeeker
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.GivenPowers.AddRange({
-                                          Powers.Damage,
-                                          Powers.Nova,
-                                          Powers.Kilver})
-            TempItem.GID = 76 'Guess IDK if it'll work
+                                          Powers.Damage})
+            TempItem.GID = 57 'Guess IDK if it'll work
             Items.Add(TempItem)
             '
             '______________HEALTH NODES
@@ -5293,7 +5291,7 @@
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.GivenPowers.AddRange({
                                           Powers.Damage})
-            TempItem.GID = 76 'Guess IDK if it'll work
+            TempItem.GID = 57 'Guess IDK if it'll work
             TempItem.Weight = 29
             Items.Add(TempItem)
             '
