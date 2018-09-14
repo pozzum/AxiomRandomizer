@@ -3111,14 +3111,14 @@
             TempItem.GID = 59
             Items.Add(TempItem)
             '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "HeatSeeker"
-            TempItem.DropType = ItemType.HeatSeeker
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GivenPowers.AddRange({
-                                          Powers.Damage})
-            TempItem.GID = 57 'Guess IDK if it'll work
-            Items.Add(TempItem)
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "HeatSeeker"
+            'TempItem.DropType = ItemType.HeatSeeker
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GivenPowers.AddRange({
+            'Powers.Damage})
+            'TempItem.GID = 57 'Guess IDK if it'll work
+            'Items.Add(TempItem)
             '
             '______________HEALTH NODES
             '
@@ -3738,12 +3738,12 @@
             TempItem.GID = 75
             Items.Add(TempItem)
             '______________...Next 3 removed for hidden weapons
-            'TempItem = New ItemDrop()
-            'TempItem.Name = "Note26"
-            'TempItem.DropType = ItemType.Lore
-            'TempItem.GivenPowers = New List(Of Powers)
-            'TempItem.GID = 75
-            'Items.Add(TempItem)
+            TempItem = New ItemDrop()
+            TempItem.Name = "Note26"
+            TempItem.DropType = ItemType.Lore
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 75
+            Items.Add(TempItem)
             '______________
             'TempItem = New ItemDrop()
             'TempItem.Name = "Note27"
