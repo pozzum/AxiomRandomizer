@@ -102,6 +102,7 @@ Public Class Randomizer
                                 If LocationInformation(K).RequiredPowers.Contains(Powers.LabCoat) Then
                                     'Find old item and unplace it as long as it doesn't give powers
                                     If LocationInformation(K).ItemName = "" Then
+                                        '(LocationInformation(K).Item = ItemType.Empty) = False Then
                                         MessageBox.Show(LocationInformation(K).Item.ToString)
                                         Continue For
                                     Else
@@ -111,7 +112,7 @@ Public Class Randomizer
                                         LocationInformation(K).ItemName = ItemPool(J).Name
                                         LocationInformation(K).ItemWeight = ItemPool(J).Weight
                                         LocationInformation(K).PlaceOrder = PlacementCount
-                                        LocationInformation(K).InGameItemID = ItemPool(J).GID + GetDefaultGID(LocationInformation(NextLocation).Region)
+                                        LocationInformation(K).InGameItemID = ItemPool(J).GID + GetDefaultGID(LocationInformation(K).Region)
                                         GivePowers(ItemPool(J).GivenPowers)
                                         ItemPool(J).Placed = True
                                         Continue Do
