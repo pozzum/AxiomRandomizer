@@ -3948,10 +3948,10 @@
             TempSpawn.Region = Area.Absu
             Spawns.Add(TempSpawn)
             '______________
-            TempSpawn = New MonsterSpawn()
-            TempSpawn.Vanilla = CreatureType.RepairDrone
-            TempSpawn.Region = Area.Absu
-            Spawns.Add(TempSpawn)
+            'TempSpawn = New MonsterSpawn()
+            'TempSpawn.Vanilla = CreatureType.RepairDrone
+            'TempSpawn.Region = Area.Absu
+            'Spawns.Add(TempSpawn)
             '______________
             TempSpawn = New MonsterSpawn()
             TempSpawn.Vanilla = CreatureType.Mutant_Strong
@@ -4026,10 +4026,10 @@
             TempSpawn.Region = Area.Zi
             Spawns.Add(TempSpawn)
             '______________ 'TraceHallucination not replaced
-            TempSpawn = New MonsterSpawn()
-            TempSpawn.Vanilla = CreatureType.RepairDrone
-            TempSpawn.Region = Area.Zi
-            Spawns.Add(TempSpawn)
+            'TempSpawn = New MonsterSpawn()
+            'TempSpawn.Vanilla = CreatureType.RepairDrone
+            'TempSpawn.Region = Area.Zi
+            'Spawns.Add(TempSpawn)
             '
             '_______________Kur
             '
@@ -4104,15 +4104,15 @@
             TempSpawn.Region = Area.Kur
             Spawns.Add(TempSpawn)
             '______________
-            TempSpawn = New MonsterSpawn()
-            TempSpawn.Vanilla = CreatureType.RepairDroneSpawner
-            TempSpawn.Region = Area.Kur
-            Spawns.Add(TempSpawn)
+            'TempSpawn = New MonsterSpawn()
+            'TempSpawn.Vanilla = CreatureType.RepairDroneSpawner
+            'TempSpawn.Region = Area.Kur
+            'Spawns.Add(TempSpawn)
             '______________
-            TempSpawn = New MonsterSpawn()
-            TempSpawn.Vanilla = CreatureType.RepairDrone
-            TempSpawn.Region = Area.Kur
-            Spawns.Add(TempSpawn)
+            'TempSpawn = New MonsterSpawn()
+            'TempSpawn.Vanilla = CreatureType.RepairDrone
+            'TempSpawn.Region = Area.Kur
+            'Spawns.Add(TempSpawn)
             '______________
             TempSpawn = New MonsterSpawn()
             TempSpawn.Vanilla = CreatureType.EyeCopter
@@ -4142,10 +4142,10 @@
             TempSpawn.Region = Area.Indi
             Spawns.Add(TempSpawn)
             '______________
-            TempSpawn = New MonsterSpawn()
-            TempSpawn.Vanilla = CreatureType.RepairDrone
-            TempSpawn.Region = Area.Indi
-            Spawns.Add(TempSpawn)
+            'TempSpawn = New MonsterSpawn()
+            'TempSpawn.Vanilla = CreatureType.RepairDrone
+            'TempSpawn.Region = Area.Indi
+            'Spawns.Add(TempSpawn)
             '______________
             TempSpawn = New MonsterSpawn()
             TempSpawn.Vanilla = CreatureType.Snailborg
@@ -4155,10 +4155,10 @@
             '_______________UkkinNa "Normal"
             '
             '_______________Area 6
-            TempSpawn = New MonsterSpawn()
-            TempSpawn.Vanilla = CreatureType.RepairDrone
-            TempSpawn.Region = Area.UkkinNa
-            Spawns.Add(TempSpawn)
+            'TempSpawn = New MonsterSpawn()
+            'TempSpawn.Vanilla = CreatureType.RepairDrone
+            'TempSpawn.Region = Area.UkkinNa
+            'Spawns.Add(TempSpawn)
             '______________
             TempSpawn = New MonsterSpawn()
             TempSpawn.Vanilla = CreatureType.SentryBot
@@ -4303,6 +4303,10 @@
             Bans.Add(CreatureType.ElevatorEndCap)
             Bans.Add(CreatureType.Elsenova)
             Bans.Add(CreatureType.Athetos)
+            Bans.Add(CreatureType.TraceHallucination)
+            Bans.Add(CreatureType.RepairDroneSpawner)
+            Bans.Add(CreatureType.RepairDrone)
+            Bans.Add(CreatureType.RepairDrone_egg)
             Return Bans
         End Function
     End Class
