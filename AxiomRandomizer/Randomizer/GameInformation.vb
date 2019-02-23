@@ -72,7 +72,7 @@ Namespace GameInformation
         Damage
         Drill
         Nova 'Doors opened by Nova
-        Kilver 'Doors Opened by Nova
+        Kilver 'Doors Opened by Kilver
         FatBeam 'Doors Opened by Fatbeam
         Glitch1
         Glitch2
@@ -264,9 +264,11 @@ Namespace GameInformation
             TempLocation.YLocation = 2096
             TempLocation.RequiredPowers = New List(Of Powers)
             TempLocation.RequiredPowers.AddRange({Powers.Damage,
-                                                 Powers.GunModel,
-                                                 Powers.Nova})
+                                                 Powers.GunModel})
             TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.PowerOptions.AddRange({Powers.Nova,
+                                               Powers.Kilver})
+
             TempLocation.GroupedPowers = New List(Of Powers)
             Locations.Add(TempLocation)
             '_______________
@@ -431,7 +433,7 @@ Namespace GameInformation
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()
-            TempLocation.Name = "Dilled Above First Item"
+            TempLocation.Name = "Room Above Spawn Location"
             TempLocation.Vanilla = ItemType.Lore
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 3088
@@ -449,7 +451,7 @@ Namespace GameInformation
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()
-            TempLocation.Name = "Behind Laser wall Password"
+            TempLocation.Name = "Behind Laser Wall Password"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 3057
@@ -825,7 +827,7 @@ Namespace GameInformation
                                                  Powers.GunModel,
                                                  Powers.Drill,
                                                  Powers.Kilver,
-                                                 Powers.Glitch1})
+                                                 Powers.Glitch2})
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.GroupedPowers = New List(Of Powers)
             TempLocation.GroupedPowers.AddRange({Powers.HighJump,
@@ -1783,11 +1785,14 @@ Namespace GameInformation
                                                  Powers.GunModel,
                                                  Powers.Drill,
                                                  Powers.HighJump,
-                                                 Powers.LabCoat})
+                                                 Powers.TrenchCoat})
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.PowerOptions.AddRange({Powers.Glitch2,
                                                Powers.RedCoat})
             TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.GroupedPowers.AddRange({Powers.LabCoat,
+                                                Powers.Grapple})
+
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()
@@ -1823,11 +1828,13 @@ Namespace GameInformation
                                                  Powers.GunModel,
                                                  Powers.Drill,
                                                  Powers.HighJump,
-                                                 Powers.LabCoat})
+                                                 Powers.TrenchCoat})
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.PowerOptions.AddRange({Powers.Glitch2,
                                                Powers.RedCoat})
             TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.GroupedPowers.AddRange({Powers.LabCoat,
+                                                Powers.Grapple})
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()
@@ -2057,8 +2064,8 @@ Namespace GameInformation
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()
-            TempLocation.Name = "Grapple Up Western"
-            TempLocation.Vanilla = ItemType.Lore
+            TempLocation.Name = "Above Clone Entrance"
+            TempLocation.Vanilla = ItemType.HealthNodeFragment
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4367
             TempLocation.XLocation = 5456
@@ -2071,7 +2078,9 @@ Namespace GameInformation
                                                  Powers.HighJump,
                                                  Powers.LabCoat,
                                                  Powers.TrenchCoat,
-                                                 Powers.Grapple})
+                                                 Powers.Grapple,
+                                                 Powers.Drone,
+                                                 Powers.EnhancedLaunch})
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.GroupedPowers = New List(Of Powers)
             Locations.Add(TempLocation)
@@ -2111,8 +2120,10 @@ Namespace GameInformation
                                                  Powers.HighJump,
                                                  Powers.LabCoat,
                                                  Powers.TrenchCoat,
-                                                 Powers.Drone})
+                                                 Powers.Drone,
+                                                 Powers.DroneTeleport})
             TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.PowerOptions.AddRange({Powers.RedCoat})
             TempLocation.GroupedPowers = New List(Of Powers)
             Locations.Add(TempLocation)
             '_______________
