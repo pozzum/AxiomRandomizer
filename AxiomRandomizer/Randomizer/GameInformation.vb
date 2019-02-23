@@ -264,11 +264,9 @@ Namespace GameInformation
             TempLocation.YLocation = 2096
             TempLocation.RequiredPowers = New List(Of Powers)
             TempLocation.RequiredPowers.AddRange({Powers.Damage,
-                                                 Powers.GunModel})
+                                                 Powers.GunModel,
+                                                 Powers.Nova})
             TempLocation.PowerOptions = New List(Of Powers)
-            TempLocation.PowerOptions.AddRange({Powers.Nova,
-                                               Powers.Kilver})
-
             TempLocation.GroupedPowers = New List(Of Powers)
             Locations.Add(TempLocation)
             '_______________
