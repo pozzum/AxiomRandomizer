@@ -1,4 +1,4 @@
-﻿Imports System.IO
+Imports System.IO
 Imports System.Security.Cryptography
 Imports System.Windows.Forms 'MessageBoxes
 Public Class ExeVersions
@@ -63,6 +63,11 @@ Public Class ExeVersions
             My.Settings.VersionString = "Version 1.43, 8/1/2018"
             'Version 1.43, 8/1/2018
             'Randomizer origionally developed for this version (Steam)
+            Return True
+        ElseIf EXEhash = "E99C059B3F743465AAAAB366DE1F536E" Then
+            My.Settings.VersionString = "Version 1.47, 2/8/2019"
+            'Version 1.47, 2/8/2019
+            'Epic Games Version
             Return True
         ElseIf MessageBox.Show("Game version is unknown randomizer may not work." & vbNewLine &
                                     "File Hash: " & EXEhash & vbNewLine &

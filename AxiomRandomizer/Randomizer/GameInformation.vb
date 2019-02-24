@@ -1,4 +1,4 @@
-﻿Namespace GameInformation
+Namespace GameInformation
     'Uses the Super Metroid Randomizer as inspiration / template
     'https://github.com/Dessyreqt/smrandomizer
 #Region "Classes"
@@ -72,7 +72,7 @@
         Damage
         Drill
         Nova 'Doors opened by Nova
-        Kilver 'Doors Opened by Nova
+        Kilver 'Doors Opened by Kilver
         FatBeam 'Doors Opened by Fatbeam
         Glitch1
         Glitch2
@@ -424,14 +424,14 @@
                                                  Powers.Glitch3})
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.PowerOptions.AddRange({Powers.Grapple,
-                                               Powers.DroneTeleport})
+                                               Powers.HighJump})
             TempLocation.GroupedPowers = New List(Of Powers)
             TempLocation.GroupedPowers.AddRange({Powers.Drone,
                                                 Powers.DroneTeleport})
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()
-            TempLocation.Name = "Dilled Above First Item"
+            TempLocation.Name = "Room Above Spawn Location"
             TempLocation.Vanilla = ItemType.Lore
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 3088
@@ -449,7 +449,7 @@
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()
-            TempLocation.Name = "Behind Laser wall Password"
+            TempLocation.Name = "Behind Laser Wall Password"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 3057
@@ -615,7 +615,9 @@
             TempLocation.RequiredPowers.AddRange({Powers.Damage,
                                                  Powers.GunModel,
                                                  Powers.Drill,
-                                                 Powers.TrenchCoat})
+                                                 Powers.TrenchCoat,
+                                                 Powers.Drone,
+                                                 Powers.DroneTeleport})
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.GroupedPowers = New List(Of Powers)
             Locations.Add(TempLocation)
@@ -823,9 +825,13 @@
                                                  Powers.GunModel,
                                                  Powers.Drill,
                                                  Powers.Kilver,
-                                                 Powers.Glitch1})
+                                                 Powers.Glitch2})
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.GroupedPowers.AddRange({Powers.HighJump,
+                                                Powers.TrenchCoat})
+            TempLocation.GroupedPowers.AddRange({Powers.HighJump,
+                                                Powers.Grapple})
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()
@@ -1285,9 +1291,11 @@
                                                  Powers.Drill,
                                                  Powers.Kilver})
             TempLocation.PowerOptions = New List(Of Powers)
-            TempLocation.PowerOptions.AddRange({Powers.Glitch1,
-                                               Powers.TrenchCoat})
+            TempLocation.PowerOptions.AddRange({Powers.TrenchCoat,
+                                               Powers.Grapple})
             TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.GroupedPowers.AddRange({Powers.Glitch1,
+                                               Powers.HighJump})
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()
@@ -1775,11 +1783,14 @@
                                                  Powers.GunModel,
                                                  Powers.Drill,
                                                  Powers.HighJump,
-                                                 Powers.LabCoat})
+                                                 Powers.TrenchCoat})
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.PowerOptions.AddRange({Powers.Glitch2,
                                                Powers.RedCoat})
             TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.GroupedPowers.AddRange({Powers.LabCoat,
+                                                Powers.Grapple})
+
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()
@@ -1815,11 +1826,13 @@
                                                  Powers.GunModel,
                                                  Powers.Drill,
                                                  Powers.HighJump,
-                                                 Powers.LabCoat})
+                                                 Powers.TrenchCoat})
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.PowerOptions.AddRange({Powers.Glitch2,
                                                Powers.RedCoat})
             TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.GroupedPowers.AddRange({Powers.LabCoat,
+                                                Powers.Grapple})
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()
@@ -2049,8 +2062,8 @@
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()
-            TempLocation.Name = "Grapple Up Western"
-            TempLocation.Vanilla = ItemType.Lore
+            TempLocation.Name = "Above Clone Entrance"
+            TempLocation.Vanilla = ItemType.HealthNodeFragment
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4367
             TempLocation.XLocation = 5456
@@ -2063,7 +2076,9 @@
                                                  Powers.HighJump,
                                                  Powers.LabCoat,
                                                  Powers.TrenchCoat,
-                                                 Powers.Grapple})
+                                                 Powers.Grapple,
+                                                 Powers.Drone,
+                                                 Powers.EnhancedLaunch})
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.GroupedPowers = New List(Of Powers)
             Locations.Add(TempLocation)
@@ -2103,8 +2118,10 @@
                                                  Powers.HighJump,
                                                  Powers.LabCoat,
                                                  Powers.TrenchCoat,
-                                                 Powers.Drone})
+                                                 Powers.Drone,
+                                                 Powers.DroneTeleport})
             TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.PowerOptions.AddRange({Powers.RedCoat})
             TempLocation.GroupedPowers = New List(Of Powers)
             Locations.Add(TempLocation)
             '_______________
@@ -2356,20 +2373,19 @@
             TempLocation.XLocation = 3744
             TempLocation.YLocation = 960
             TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.RequiredPowers = New List(Of Powers)
             TempLocation.RequiredPowers.AddRange({Powers.Damage,
                                                  Powers.GunModel,
                                                  Powers.Drill,
-                                                 Powers.Kilver,
-                                                 Powers.HighJump,
-                                                 Powers.LabCoat,
+                                                 Powers.Drone,
+                                                 Powers.DroneTeleport,
                                                  Powers.TrenchCoat})
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.PowerOptions.AddRange({Powers.RedCoat})
             TempLocation.GroupedPowers = New List(Of Powers)
             TempLocation.GroupedPowers.AddRange({Powers.Grapple,
-                                                Powers.Drone,
-                                                Powers.DroneTeleport,
-                                                Powers.Key})
+                                                Powers.Key,
+                                                Powers.HighJump})
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()
@@ -2431,17 +2447,15 @@
             TempLocation.RequiredPowers.AddRange({Powers.Damage,
                                                  Powers.GunModel,
                                                  Powers.Drill,
-                                                 Powers.Kilver,
-                                                 Powers.HighJump,
-                                                 Powers.LabCoat,
+                                                 Powers.Drone,
+                                                 Powers.DroneTeleport,
                                                  Powers.TrenchCoat})
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.PowerOptions.AddRange({Powers.RedCoat})
             TempLocation.GroupedPowers = New List(Of Powers)
             TempLocation.GroupedPowers.AddRange({Powers.Grapple,
-                                                Powers.Drone,
-                                                Powers.DroneTeleport,
-                                                Powers.Key})
+                                                Powers.Key,
+                                                Powers.HighJump})
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()
