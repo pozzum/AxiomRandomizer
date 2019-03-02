@@ -1,10 +1,11 @@
-﻿Imports AxiomRandomizer.GameInformation
+Imports AxiomRandomizer.GameInformation
 Imports System.IO 'files
 Public Class Randomizer
     'Uses the Super Metroid Randomizer as inspiration / template
     'https://github.com/Dessyreqt/smrandomizer
 
     Public Enum DifficultySetting
+        Easy
         Normal
         Practice
     End Enum
@@ -23,6 +24,13 @@ Public Class Randomizer
         If Difficulty = DifficultySetting.Normal Then
             LocationInformation = NormalLocations.ResetLocations()
             ItemPool = NormalItems.ResetItemPool()
+            MessageBox.Show("Locations: " & LocationInformation.Count & vbNewLine &
+                            "Items: " & ItemPool.Count)
+            ApplyWeights(Seed)
+            PlaceItems()
+        ElseIf Difficulty = DifficultySetting.Easy Then
+            LocationInformation = EasyLocations.ResetLocations()
+            ItemPool = EasyItems.ResetItemPool()
             MessageBox.Show("Locations: " & LocationInformation.Count & vbNewLine &
                             "Items: " & ItemPool.Count)
             ApplyWeights(Seed)
