@@ -41,7 +41,12 @@ Public Class RandomMenu
     End Sub
     Function GetRandomNumber() As Integer
         Randomize()
-        Return CLng((Rnd() * Integer.MaxValue)).ToString
+        If Rnd() > 0.5 Then
+            Return CLng((Rnd() * Integer.MaxValue)).ToString
+        Else
+            Return CLng(-(Rnd() * Integer.MaxValue)).ToString
+        End If
+
     End Function
     Private Sub ButtonFileSelect_Click(sender As Object, e As EventArgs) Handles ButtonFileSelect.Click
         Me.Hide()
@@ -96,9 +101,14 @@ Public Class RandomMenu
     Private Sub TextBoxSeed_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSeed.TextChanged
         Dim SentTextBox As TextBox = CType(sender, TextBox)
         Dim CursorPosition As Integer = SentTextBox.SelectionStart
-        SentTextBox.Text = Regex.Replace(SentTextBox.Text, "[^0-9]", "")
+        SentTextBox.Text = Regex.Replace(SentTextBox.Text, "[^\d-]", "")
+        If InStrRev(SentTextBox.Text, "-") > 1 Then
+            SentTextBox.Text = Regex.Replace(SentTextBox.Text, "[-]", "")
+        End If
         If SentTextBox.Text.Length > 0 AndAlso
-         CLng(SentTextBox.Text) > Integer.MaxValue Then
+            SentTextBox.Text <> "-" AndAlso
+         CLng(SentTextBox.Text) > Integer.MaxValue OrElse
+         CLng(SentTextBox.Text) < Integer.MinValue Then
             SentTextBox.Text = SentTextBox.Text.Substring(0, SentTextBox.Text.Length - 1)
         End If
         SentTextBox.SelectionStart = CursorPosition
@@ -132,8 +142,8 @@ Public Class RandomMenu
         End If
     End Sub
 
-    Private Sub LabelDonate_Click(sender As Object, e As EventArgs) Handles LabelDonate.Click
-        Process.Start("http://paypal.me/pozzum")
+    Private Sub LabelDonate_Click(sender As Object, e As EventArgs) Handles LabelCredits.Click
+        CreditsForm.Show()
     End Sub
 #End Region
 End Class

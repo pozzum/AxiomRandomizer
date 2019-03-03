@@ -16,8 +16,6 @@ Public Class Randomizer
     Public Shared RemovedMonsters As List(Of CreatureType)
     Public Shared Generator As System.Random
 #Region "Locations"
-
-
     Shared Sub BuildLocations(Seed As Integer, Difficulty As DifficultySetting)
 
         PowerList = New List(Of Powers)
@@ -101,6 +99,7 @@ Public Class Randomizer
                         Exit For
                     End If
                 End If
+                'reroll
                 If i = ItemPool.Count - 1 Then 'Issue with Wall restricted item being the next progression
                     'Get next wall restricted item
                     For J As Integer = 0 To ItemPool.Count - 1
@@ -116,6 +115,7 @@ Public Class Randomizer
                                     Else
                                         MessageBox.Show("Unplacing Item")
                                         UnplaceItem(LocationInformation(K).ItemName)
+                                        LocationInformation(K).RerollCount += 1
                                         LocationInformation(K).Item = ItemPool(J).DropType
                                         LocationInformation(K).ItemName = ItemPool(J).Name
                                         LocationInformation(K).ItemWeight = ItemPool(J).Weight

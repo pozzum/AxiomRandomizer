@@ -7,7 +7,6 @@
     Sub LoadLocations()
         DataGridView1.Rows.Clear()
         For i As Integer = 0 To Randomizer.LocationInformation.Count - 1
-
             DataGridView1.Rows.Add(Randomizer.LocationInformation(i).PlaceOrder,
                                    Randomizer.LocationInformation(i).Item.ToString,
                                    Randomizer.LocationInformation(i).ItemName,
@@ -15,7 +14,9 @@
                                    Randomizer.LocationInformation(i).Name,
                                    Randomizer.LocationInformation(i).Region.ToString,
                                    Randomizer.LocationInformation(i).Vanilla.ToString,
-                                   Randomizer.LocationInformation(i).Weight)
+                                   Randomizer.LocationInformation(i).VanillaPlacement,
+                                   Randomizer.LocationInformation(i).Weight,
+                                   Randomizer.LocationInformation(i).RerollCount)
         Next
     End Sub
 

@@ -30,7 +30,9 @@ Partial Class SpoilerForm
         Me.LocationName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Area = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VanillaItem = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VanillaOrder = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LocationWeight = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Rerolls = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportLocationsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportLocationsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -47,7 +49,7 @@ Partial Class SpoilerForm
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Placed, Me.ItemType, Me.ItemName, Me.ItemWeight, Me.LocationName, Me.Area, Me.VanillaItem, Me.LocationWeight})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Placed, Me.ItemType, Me.ItemName, Me.ItemWeight, Me.LocationName, Me.Area, Me.VanillaItem, Me.VanillaOrder, Me.LocationWeight, Me.Rerolls})
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(0, 24)
         Me.DataGridView1.Name = "DataGridView1"
@@ -59,49 +61,71 @@ Partial Class SpoilerForm
         '
         Me.Placed.HeaderText = "Placed"
         Me.Placed.Name = "Placed"
+        Me.Placed.ReadOnly = True
         Me.Placed.Width = 65
         '
         'ItemType
         '
         Me.ItemType.HeaderText = "Item Type"
         Me.ItemType.Name = "ItemType"
+        Me.ItemType.ReadOnly = True
         Me.ItemType.Width = 73
         '
         'ItemName
         '
         Me.ItemName.HeaderText = "Item Name"
         Me.ItemName.Name = "ItemName"
+        Me.ItemName.ReadOnly = True
         Me.ItemName.Width = 77
         '
         'ItemWeight
         '
         Me.ItemWeight.HeaderText = "Item Weight"
         Me.ItemWeight.Name = "ItemWeight"
+        Me.ItemWeight.ReadOnly = True
         Me.ItemWeight.Width = 82
         '
         'LocationName
         '
         Me.LocationName.HeaderText = "Nick Name"
         Me.LocationName.Name = "LocationName"
+        Me.LocationName.ReadOnly = True
         Me.LocationName.Width = 78
         '
         'Area
         '
         Me.Area.HeaderText = "Area"
         Me.Area.Name = "Area"
+        Me.Area.ReadOnly = True
         Me.Area.Width = 54
         '
         'VanillaItem
         '
         Me.VanillaItem.HeaderText = "Vanilla Item"
         Me.VanillaItem.Name = "VanillaItem"
+        Me.VanillaItem.ReadOnly = True
         Me.VanillaItem.Width = 79
+        '
+        'VanillaOrder
+        '
+        Me.VanillaOrder.HeaderText = "Vanilla Order"
+        Me.VanillaOrder.Name = "VanillaOrder"
+        Me.VanillaOrder.ReadOnly = True
+        Me.VanillaOrder.Width = 85
         '
         'LocationWeight
         '
         Me.LocationWeight.HeaderText = "Location Weight"
         Me.LocationWeight.Name = "LocationWeight"
+        Me.LocationWeight.ReadOnly = True
         Me.LocationWeight.Width = 101
+        '
+        'Rerolls
+        '
+        Me.Rerolls.HeaderText = "Rerolls"
+        Me.Rerolls.Name = "Rerolls"
+        Me.Rerolls.ReadOnly = True
+        Me.Rerolls.Width = 64
         '
         'ToolStripMenuItem1
         '
@@ -146,6 +170,7 @@ Partial Class SpoilerForm
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "SpoilerForm"
         Me.ShowIcon = False
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Spoiler Menu"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
@@ -158,6 +183,10 @@ Partial Class SpoilerForm
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents ExportLocationsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
+    Friend WithEvents ImportLocationsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents Placed As DataGridViewTextBoxColumn
     Friend WithEvents ItemType As DataGridViewTextBoxColumn
     Friend WithEvents ItemName As DataGridViewTextBoxColumn
@@ -165,9 +194,7 @@ Partial Class SpoilerForm
     Friend WithEvents LocationName As DataGridViewTextBoxColumn
     Friend WithEvents Area As DataGridViewTextBoxColumn
     Friend WithEvents VanillaItem As DataGridViewTextBoxColumn
+    Friend WithEvents VanillaOrder As DataGridViewTextBoxColumn
     Friend WithEvents LocationWeight As DataGridViewTextBoxColumn
-    Friend WithEvents ExportLocationsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents SaveFileDialog1 As SaveFileDialog
-    Friend WithEvents ImportLocationsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents Rerolls As DataGridViewTextBoxColumn
 End Class

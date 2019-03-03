@@ -191,6 +191,7 @@ Namespace GameInformation
     Public Class Location
         Public Name As String
         Public Vanilla As ItemType
+        Public VanillaPlacement As Integer
         Public Region As Area
         Public LineNumber1 As Integer
         Public XLocation As Integer
@@ -202,6 +203,7 @@ Namespace GameInformation
         Public Item As ItemType
         Public ItemName As String = "" 'Required for nodes to save
         Public PlaceOrder As Integer
+        Public RerollCount As Integer = 0
         Public ItemWeight As Double
         Public InGameItemID As Integer
         Public AddedDrop As Boolean = False
@@ -238,6 +240,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Left From Start"
             TempLocation.Vanilla = ItemType.DataDisruptor
+            TempLocation.VanillaPlacement = 1
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 2923
             TempLocation.XLocation = 4064
@@ -251,6 +254,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Red Ruins"
             TempLocation.Vanilla = ItemType.Nova
+            TempLocation.VanillaPlacement = 2
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 2937
             TempLocation.XLocation = 8880
@@ -268,6 +272,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Red Stalagmites"
             TempLocation.Vanilla = ItemType.SizeNode
+            TempLocation.VanillaPlacement = 3
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 3035
             TempLocation.XLocation = 5024
@@ -281,6 +286,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "After Xedur"
             TempLocation.Vanilla = ItemType.Drill
+            TempLocation.VanillaPlacement = 4
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 2945
             TempLocation.XLocation = 8960
@@ -297,6 +303,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Drilled Under Xedur"
             TempLocation.Vanilla = ItemType.PowerNode
+            TempLocation.VanillaPlacement = 5
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 2938
             TempLocation.XLocation = 8016
@@ -310,6 +317,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Upper Left Platforms"
             TempLocation.Vanilla = ItemType.MultiDisruptor
+            TempLocation.VanillaPlacement = 6
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 3025
             TempLocation.XLocation = 5504
@@ -323,6 +331,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Entering Absu"
             TempLocation.Vanilla = ItemType.HealthNode
+            TempLocation.VanillaPlacement = 7
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 3000
             TempLocation.XLocation = 8384
@@ -337,6 +346,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Drilled Shaft"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 8
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5277
             TempLocation.XLocation = 2032
@@ -350,6 +360,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Elsenova"
             TempLocation.Vanilla = ItemType.Kilver
+            TempLocation.VanillaPlacement = 9
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5137
             TempLocation.XLocation = 4064
@@ -366,6 +377,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Behind Kilver Door"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 10
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5279
             TempLocation.XLocation = 3104
@@ -379,6 +391,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "After Telal"
             TempLocation.Vanilla = ItemType.AddressDisruptor1
+            TempLocation.VanillaPlacement = 11
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5325
             TempLocation.XLocation = 6608
@@ -396,6 +409,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Guarded by Ghouls"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 12
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 3026
             TempLocation.XLocation = 7040
@@ -410,6 +424,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Far Left Hallway"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 13
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5415
             TempLocation.XLocation = 176
@@ -423,6 +438,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Middle of Lower Shaft"
             TempLocation.Vanilla = ItemType.HealthNode
+            TempLocation.VanillaPlacement = 14
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5242
             TempLocation.XLocation = 7392
@@ -436,6 +452,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Purple Corrupted Diatom"
             TempLocation.Vanilla = ItemType.SizeNode
+            TempLocation.VanillaPlacement = 15
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5320
             TempLocation.XLocation = 7344
@@ -449,6 +466,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Pink Vines"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 16
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5410
             TempLocation.XLocation = 6464
@@ -462,6 +480,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Green Squid Room"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 17
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5411
             TempLocation.XLocation = 9072
@@ -475,6 +494,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Remote Detonation"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 18
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5278
             TempLocation.XLocation = 10512
@@ -488,6 +508,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Exit to Zi"
             TempLocation.Vanilla = ItemType.PowerNode
+            TempLocation.VanillaPlacement = 19
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5158
             TempLocation.XLocation = 11824
@@ -502,6 +523,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Below Cavern"
             TempLocation.Vanilla = ItemType.HighJump
+            TempLocation.VanillaPlacement = 20
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4673
             TempLocation.XLocation = 2640
@@ -518,6 +540,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Above Ruggs"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 21
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4908
             TempLocation.XLocation = 2480
@@ -531,6 +554,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "High Jump Bypass"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 22
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4940
             TempLocation.XLocation = 3776
@@ -544,6 +568,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "After Uruku"
             TempLocation.Vanilla = ItemType.LabCoat
+            TempLocation.VanillaPlacement = 23
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4896
             TempLocation.XLocation = 6000
@@ -558,6 +583,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Hidden in Cavern"
             TempLocation.Vanilla = ItemType.FireWall
+            TempLocation.VanillaPlacement = 24
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4906
             TempLocation.XLocation = 1952
@@ -574,6 +600,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Jail Cell"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 25
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5414
             TempLocation.XLocation = 3424
@@ -587,6 +614,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Lowest Room"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 26
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5408
             TempLocation.XLocation = 3520
@@ -600,6 +628,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Green Fungus Secret"
             TempLocation.Vanilla = ItemType.RangeNode
+            TempLocation.VanillaPlacement = 27
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5324
             TempLocation.XLocation = 8400
@@ -614,6 +643,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Center Steam Room"
             TempLocation.Vanilla = ItemType.RangeNode
+            TempLocation.VanillaPlacement = 28
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4907
             TempLocation.XLocation = 1472
@@ -627,6 +657,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Steam Secret"
             TempLocation.Vanilla = ItemType.TendrilsTop
+            TempLocation.VanillaPlacement = 29
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4592
             TempLocation.XLocation = 1184
@@ -640,6 +671,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Filtration Preview"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 30
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4897
             TempLocation.XLocation = 4560
@@ -653,6 +685,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "High Jump Access"
             TempLocation.Vanilla = ItemType.SizeNode
+            TempLocation.VanillaPlacement = 31
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4906
             TempLocation.XLocation = 4032
@@ -666,6 +699,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Boss Room"
             TempLocation.Vanilla = ItemType.HealthNode
+            TempLocation.VanillaPlacement = 32
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4893
             TempLocation.XLocation = 4736
@@ -680,6 +714,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Near Indi Exit"
             TempLocation.Vanilla = ItemType.PowerNode
+            TempLocation.VanillaPlacement = 33
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4719
             TempLocation.XLocation = 240
@@ -694,6 +729,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Wall Blocked Slope Room"
             TempLocation.Vanilla = ItemType.DroneGun
+            TempLocation.VanillaPlacement = 34
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4782
             TempLocation.XLocation = 3104
@@ -710,6 +746,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Drone by Skeleton"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 35
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5409
             TempLocation.XLocation = 1200
@@ -723,6 +760,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Attic Left"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 36
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5357
             TempLocation.XLocation = 3600
@@ -736,6 +774,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Chasm Tunnel"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 37
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5413
             TempLocation.XLocation = 9232
@@ -749,6 +788,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Boss Secret"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 38
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5358
             TempLocation.XLocation = 8400
@@ -763,6 +803,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Bottom Arterial Shaft"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 39
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4949
             TempLocation.XLocation = 5040
@@ -776,6 +817,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Veruska Secret"
             TempLocation.Vanilla = ItemType.PasswordTool
+            TempLocation.VanillaPlacement = 40
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4909
             TempLocation.XLocation = 4064
@@ -789,6 +831,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Veruska Basement"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 41
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4939
             TempLocation.XLocation = 5168
@@ -802,6 +845,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Maintenance Secret"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 42
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4941
             TempLocation.XLocation = 816
@@ -815,6 +859,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Maintenance Tunnel"
             TempLocation.Vanilla = ItemType.Voranj
+            TempLocation.VanillaPlacement = 43
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4911
             TempLocation.XLocation = 2160
@@ -829,6 +874,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Drilled High Jump"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 44
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4803
             TempLocation.XLocation = 2816
@@ -842,6 +888,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Thorn Maze Secret"
             TempLocation.Vanilla = ItemType.VerticalSpread
+            TempLocation.VanillaPlacement = 45
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4957
             TempLocation.XLocation = 2640
@@ -855,6 +902,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Grappled Mountain Slope"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 46
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4785
             TempLocation.XLocation = 1728
@@ -868,6 +916,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Drone Runs"
             TempLocation.Vanilla = ItemType.AddressDisruptor2
+            TempLocation.VanillaPlacement = 47
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4931
             TempLocation.XLocation = 704
@@ -882,6 +931,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Near Eribu"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 48
             TempLocation.Region = Area.Indi
             TempLocation.LineNumber1 = 2580
             TempLocation.XLocation = 128
@@ -898,6 +948,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Upper Attic"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 49
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5355
             TempLocation.XLocation = 4544
@@ -911,6 +962,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Right Attic"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 50
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5354
             TempLocation.XLocation = 5152
@@ -924,6 +976,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Lower Right Corrupted"
             TempLocation.Vanilla = ItemType.InertialPulse
+            TempLocation.VanillaPlacement = 51
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5359
             TempLocation.XLocation = 11744
@@ -938,6 +991,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Eye Stalk Secret"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 52
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4910
             TempLocation.XLocation = 240
@@ -952,6 +1006,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Above Lair"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 53
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4791
             TempLocation.XLocation = 3120
@@ -965,6 +1020,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Lair Secret"
             TempLocation.Vanilla = ItemType.HealthNode
+            TempLocation.VanillaPlacement = 54
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4846
             TempLocation.XLocation = 4544
@@ -978,6 +1034,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Climb out of the Pit"
             TempLocation.Vanilla = ItemType.Grapple
+            TempLocation.VanillaPlacement = 55
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4781
             TempLocation.XLocation = 8048
@@ -994,6 +1051,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Under Water"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 56
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 3058
             TempLocation.XLocation = 2272
@@ -1008,6 +1066,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Filtration Up High"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 57
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4948
             TempLocation.XLocation = 5632
@@ -1022,6 +1081,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Stalagmite Maze"
             TempLocation.Vanilla = ItemType.TetheredCharge
+            TempLocation.VanillaPlacement = 58
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4975
             TempLocation.XLocation = 4560
@@ -1035,6 +1095,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Hidden Ice Crags"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 59
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4953
             TempLocation.XLocation = 4192
@@ -1048,6 +1109,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Hidden Stalagmite"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 60
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4911
             TempLocation.XLocation = 4576
@@ -1061,6 +1123,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Above Grapple"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 61
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4853
             TempLocation.XLocation = 7984
@@ -1074,6 +1137,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Crumbling Blocks"
             TempLocation.Vanilla = ItemType.PowerNode
+            TempLocation.VanillaPlacement = 62
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4847
             TempLocation.XLocation = 7760
@@ -1087,6 +1151,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "High Up Ice Crags"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 63
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4952
             TempLocation.XLocation = 2016
@@ -1100,6 +1165,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Higher Up Ice Crags"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 64
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4958
             TempLocation.XLocation = 2176
@@ -1113,6 +1179,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Above Stalagmites"
             TempLocation.Vanilla = ItemType.Reflect
+            TempLocation.VanillaPlacement = 65
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4929
             TempLocation.XLocation = 5504
@@ -1126,6 +1193,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Ice Crag Ruins"
             TempLocation.Vanilla = ItemType.EnhancedLaunch
+            TempLocation.VanillaPlacement = 66
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4928
             TempLocation.XLocation = 5024
@@ -1140,21 +1208,9 @@ Namespace GameInformation
             'Ukkin-Na
             '_______________
             TempLocation = New Location()
-            TempLocation.Name = "Hidden Maddness"
-            TempLocation.Vanilla = ItemType.Lore
-            TempLocation.Region = Area.UkkinNa
-            TempLocation.LineNumber1 = 6164
-            TempLocation.XLocation = 2928
-            TempLocation.YLocation = 4256
-            TempLocation.RequiredPowers = New List(Of Powers)
-            TempLocation.RequiredPowers.AddRange({Powers.Damage, Powers.GunModel, Powers.Nova, Powers.Drill, Powers.Kilver, Powers.Glitch2, Powers.HighJump, Powers.LabCoat, Powers.Drone, Powers.Grapple, Powers.EnhancedLaunch})
-            TempLocation.PowerOptions = New List(Of Powers)
-            TempLocation.GroupedPowers = New List(Of Powers)
-            Locations.Add(TempLocation)
-            '_______________
-            TempLocation = New Location()
             TempLocation.Name = "Above Insanity"
             TempLocation.Vanilla = ItemType.BlackCoat
+            TempLocation.VanillaPlacement = 67
             TempLocation.Region = Area.UkkinNa
             TempLocation.LineNumber1 = 6147
             TempLocation.XLocation = 3616
@@ -1171,6 +1227,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Below Corruption"
             TempLocation.Vanilla = ItemType.RangeNode
+            TempLocation.VanillaPlacement = 68
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5412
             TempLocation.XLocation = 3488
@@ -1184,6 +1241,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Lava Secret"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 69
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5423
             TempLocation.XLocation = 10800
@@ -1198,6 +1256,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Top of Kur"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 70
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4956
             TempLocation.XLocation = 3424
@@ -1212,6 +1271,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Exit to Indi"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 71
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 3085
             TempLocation.XLocation = 8464
@@ -1225,6 +1285,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Near Edin"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 72
             TempLocation.Region = Area.Indi
             TempLocation.LineNumber1 = 2578
             TempLocation.XLocation = 11344
@@ -1237,8 +1298,23 @@ Namespace GameInformation
             'Ukkin-Na
             '_______________
             TempLocation = New Location()
+            TempLocation.Name = "Hidden Maddness"
+            TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 73
+            TempLocation.Region = Area.UkkinNa
+            TempLocation.LineNumber1 = 6164
+            TempLocation.XLocation = 2928
+            TempLocation.YLocation = 4256
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.RequiredPowers.AddRange({Powers.Damage, Powers.GunModel, Powers.Nova, Powers.Drill, Powers.Kilver, Powers.Glitch2, Powers.HighJump, Powers.TrenchCoat, Powers.Drone, Powers.Grapple, Powers.EnhancedLaunch})
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            Locations.Add(TempLocation)
+            '_______________
+            TempLocation = New Location()
             TempLocation.Name = "Wall Blocked Insanity"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 74
             TempLocation.Region = Area.UkkinNa
             TempLocation.LineNumber1 = 6167
             TempLocation.XLocation = 3456
@@ -1252,6 +1328,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Hidden Psychosis"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 75
             TempLocation.Region = Area.UkkinNa
             TempLocation.LineNumber1 = 6168
             TempLocation.XLocation = 4528
@@ -1265,6 +1342,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Below Pep talk"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 76
             TempLocation.Region = Area.UkkinNa
             TempLocation.LineNumber1 = 6140
             TempLocation.XLocation = 3744
@@ -1278,6 +1356,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Right of Ophelia"
             TempLocation.Vanilla = ItemType.HealthNode
+            TempLocation.VanillaPlacement = 77
             TempLocation.Region = Area.UkkinNa
             TempLocation.LineNumber1 = 6137
             TempLocation.XLocation = 1648
@@ -1291,6 +1370,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Above Ophelia"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 78
             TempLocation.Region = Area.UkkinNa
             TempLocation.LineNumber1 = 6163
             TempLocation.XLocation = 1312
@@ -1304,6 +1384,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Drop Below Ophelia"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 79
             TempLocation.Region = Area.UkkinNa
             TempLocation.LineNumber1 = 6162
             TempLocation.XLocation = 1664
@@ -1317,6 +1398,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Above Waiter"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 80
             TempLocation.Region = Area.UkkinNa
             TempLocation.LineNumber1 = 6145
             TempLocation.XLocation = 1728
@@ -1331,6 +1413,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Hangar Entrance"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 81
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4362
             TempLocation.XLocation = 6160
@@ -1344,6 +1427,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Western Hangar Entrance"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 82
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4361
             TempLocation.XLocation = 5584
@@ -1357,6 +1441,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Above Clone Entrance"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 83
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4367
             TempLocation.XLocation = 5456
@@ -1370,6 +1455,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Hangar Foyer"
             TempLocation.Vanilla = ItemType.DistortionField
+            TempLocation.VanillaPlacement = 84
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4330
             TempLocation.XLocation = 6000
@@ -1383,6 +1469,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Rusalki Bodies"
             TempLocation.Vanilla = ItemType.GlitchBomb
+            TempLocation.VanillaPlacement = 85
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4326
             TempLocation.XLocation = 7456
@@ -1400,6 +1487,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Reflector Room"
             TempLocation.Vanilla = ItemType.HealthNode
+            TempLocation.VanillaPlacement = 86
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 3087
             TempLocation.XLocation = 7904
@@ -1413,6 +1501,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Main Shaft Glitch Bomb"
             TempLocation.Vanilla = ItemType.LightningGun
+            TempLocation.VanillaPlacement = 87
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 3086
             TempLocation.XLocation = 6000
@@ -1427,6 +1516,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Lower Attic"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 88
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5356
             TempLocation.XLocation = 4080
@@ -1441,6 +1531,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Hangar Attic"
             TempLocation.Vanilla = ItemType.PowerNode
+            TempLocation.VanillaPlacement = 89
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4366
             TempLocation.XLocation = 6960
@@ -1454,6 +1545,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Hangar Attic Second"
             TempLocation.Vanilla = ItemType.HealthNode
+            TempLocation.VanillaPlacement = 90
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4335
             TempLocation.XLocation = 6928
@@ -1467,6 +1559,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Hidden Tunnel West"
             TempLocation.Vanilla = ItemType.RangeNode
+            TempLocation.VanillaPlacement = 91
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4329
             TempLocation.XLocation = 4688
@@ -1480,6 +1573,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "West Tower Base"
             TempLocation.Vanilla = ItemType.Shards
+            TempLocation.VanillaPlacement = 92
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4341
             TempLocation.XLocation = 3392
@@ -1493,6 +1587,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "West Tower Secret"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 93
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4357
             TempLocation.XLocation = 4192
@@ -1506,6 +1601,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "After Ukhu"
             TempLocation.Vanilla = ItemType.DroneTeleport
+            TempLocation.VanillaPlacement = 94
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4328
             TempLocation.XLocation = 2240
@@ -1522,6 +1618,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Room Above Spawn Location"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 95
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 3088
             TempLocation.XLocation = 5040
@@ -1536,6 +1633,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Bottom Left Main Shaft"
             TempLocation.Vanilla = ItemType.DataGrenade
+            TempLocation.VanillaPlacement = 96
             TempLocation.Region = Area.Absu
             TempLocation.LineNumber1 = 5353
             TempLocation.XLocation = 1680
@@ -1550,6 +1648,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "High Above Pop Talk"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 97
             TempLocation.Region = Area.UkkinNa
             TempLocation.LineNumber1 = 6165
             TempLocation.XLocation = 4672
@@ -1564,6 +1663,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Below Ukhu"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 98
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4356
             TempLocation.XLocation = 3472
@@ -1577,6 +1677,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "West Tower West Secret"
             TempLocation.Vanilla = ItemType.HealthNode
+            TempLocation.VanillaPlacement = 99
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4342
             TempLocation.XLocation = 2464
@@ -1590,6 +1691,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Above West Tower"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 100
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4363
             TempLocation.XLocation = 3424
@@ -1603,6 +1705,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Suspended Room"
             TempLocation.Vanilla = ItemType.TendrilsBottom
+            TempLocation.VanillaPlacement = 101
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4343
             TempLocation.XLocation = 2000
@@ -1616,6 +1719,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Open Air Grapple"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 102
             TempLocation.Region = Area.Edin
             TempLocation.LineNumber1 = 4368
             TempLocation.XLocation = 528
@@ -1630,6 +1734,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Drilled In Entrance"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 103
             TempLocation.Region = Area.EKurMah
             TempLocation.LineNumber1 = 3682
             TempLocation.XLocation = 1136
@@ -1643,6 +1748,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Secondary Key Chamber"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 104
             TempLocation.Region = Area.EKurMah
             TempLocation.LineNumber1 = 3683
             TempLocation.XLocation = 3744
@@ -1656,6 +1762,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Primary Key Chamber"
             TempLocation.Vanilla = ItemType.BreachSuppressor
+            TempLocation.VanillaPlacement = 105
             TempLocation.Region = Area.EKurMah
             TempLocation.LineNumber1 = 3658
             TempLocation.XLocation = 3296
@@ -1672,6 +1779,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Behind Seal"
             TempLocation.Vanilla = ItemType.PowerNode
+            TempLocation.VanillaPlacement = 106
             TempLocation.Region = Area.EKurMah
             TempLocation.LineNumber1 = 3723
             TempLocation.XLocation = 1040
@@ -1685,6 +1793,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Basement Shaft"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 107
             TempLocation.Region = Area.EKurMah
             TempLocation.LineNumber1 = 3688
             TempLocation.XLocation = 3520
@@ -1698,6 +1807,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Verdan Cavern"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.VanillaPlacement = 107
             TempLocation.Region = Area.EKurMah
             TempLocation.LineNumber1 = 3659
             TempLocation.XLocation = 2848
@@ -1711,6 +1821,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Basement"
             TempLocation.Vanilla = ItemType.RedCoat
+            TempLocation.VanillaPlacement = 108
             TempLocation.Region = Area.EKurMah
             TempLocation.LineNumber1 = 3661
             TempLocation.XLocation = 1664
@@ -1727,6 +1838,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Mountain Slope"
             TempLocation.Vanilla = ItemType.IonBeam
+            TempLocation.VanillaPlacement = 109
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4959
             TempLocation.XLocation = 2128
@@ -1741,6 +1853,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Below Madness"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 110
             TempLocation.Region = Area.UkkinNa
             TempLocation.LineNumber1 = 6148
             TempLocation.XLocation = 4208
@@ -1755,6 +1868,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "RedCoat Exhibition"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 111
             TempLocation.Region = Area.EKurMah
             TempLocation.LineNumber1 = 3705
             TempLocation.XLocation = 1984
@@ -1769,6 +1883,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "After Sentinel"
             TempLocation.Vanilla = ItemType.HealthNode
+            TempLocation.VanillaPlacement = 112
             TempLocation.Region = Area.MarUru
             TempLocation.LineNumber1 = 11944
             TempLocation.XLocation = 1520
@@ -1782,6 +1897,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Glitch Room Primary"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 113
             TempLocation.Region = Area.MarUru
             TempLocation.LineNumber1 = 11945
             TempLocation.XLocation = 2624
@@ -1795,6 +1911,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Glitch Room Below"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 114
             TempLocation.Region = Area.MarUru
             TempLocation.LineNumber1 = 11946
             TempLocation.XLocation = 2544
@@ -1808,6 +1925,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Glitch Room Hidden"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 115
             TempLocation.Region = Area.MarUru
             TempLocation.LineNumber1 = 11946
             TempLocation.XLocation = 2768
@@ -1821,6 +1939,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Hybrid Room"
             TempLocation.Vanilla = ItemType.SizeNode
+            TempLocation.VanillaPlacement = 116
             TempLocation.Region = Area.MarUru
             TempLocation.LineNumber1 = 11947
             TempLocation.XLocation = 3072
@@ -1834,6 +1953,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Above Save Room"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 117
             TempLocation.Region = Area.MarUru
             TempLocation.LineNumber1 = 11952
             TempLocation.XLocation = 1696
@@ -1847,6 +1967,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Hidden Left of Save"
             TempLocation.Vanilla = ItemType.Scythe
+            TempLocation.VanillaPlacement = 118
             TempLocation.Region = Area.MarUru
             TempLocation.LineNumber1 = 11953
             TempLocation.XLocation = 1200
@@ -1860,6 +1981,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Final Shaft"
             TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 119
             TempLocation.Region = Area.MarUru
             TempLocation.LineNumber1 = 11951
             TempLocation.XLocation = 2016
@@ -1876,6 +1998,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Lower Left Password"
             TempLocation.Vanilla = ItemType.WallTrace
+            TempLocation.VanillaPlacement = 120
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 3131
             TempLocation.XLocation = 6576
@@ -1889,6 +2012,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Behind Laser Wall Password"
             TempLocation.Vanilla = ItemType.PowerNodeFragment
+            TempLocation.VanillaPlacement = 121
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 3057
             TempLocation.XLocation = 4064
@@ -1902,6 +2026,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Far Left Password"
             TempLocation.Vanilla = ItemType.FlameThrower
+            TempLocation.VanillaPlacement = 122
             TempLocation.Region = Area.Eribu
             TempLocation.LineNumber1 = 3130
             TempLocation.XLocation = 2144
@@ -1916,6 +2041,7 @@ Namespace GameInformation
             TempLocation = New Location()
             TempLocation.Name = "Passworded Verdan Cavern"
             TempLocation.Vanilla = ItemType.Swim
+            TempLocation.VanillaPlacement = 123
             TempLocation.Region = Area.EKurMah
             TempLocation.LineNumber1 = 3660
             TempLocation.XLocation = 1544
@@ -3455,7 +3581,6 @@ Namespace GameInformation
         Public Shared Function ResetLocations()
             Dim Locations As List(Of Location)
             Locations = New List(Of Location)
-
             Dim TempLocation As Location
 #Region "Area 1 - Eribu"
             '_______________
@@ -6729,6 +6854,7 @@ Namespace GameInformation
             Dim Locations As List(Of Location)
             Locations = New List(Of Location)
             Dim TempLocation As Location
+#Region "PowerUp Locations"
             '__________________________
             TempLocation = New Location()
             TempLocation.Name = "Practice 1"
@@ -6909,6 +7035,8 @@ Namespace GameInformation
             TempLocation.GroupedPowers = New List(Of Powers)
             TempLocation.Weight = 6
             Locations.Add(TempLocation)
+#End Region
+#Region "Weapon Locations"
             '__________________________
             'Adding Weapons
             TempLocation = New Location()
@@ -7174,105 +7302,11 @@ Namespace GameInformation
             TempLocation.GroupedPowers = New List(Of Powers)
             TempLocation.Weight = 29
             Locations.Add(TempLocation)
-            ''__________________________
-            'TempLocation = New Location()
-            'TempLocation.Name = "Size Node 1"
-            'TempLocation.Region = Area.Eribu
-            'TempLocation.AddedDrop = True
-            'TempLocation.XLocation = 6592
-            'TempLocation.YLocation = 3168
-            'TempLocation.RequiredPowers = New List(Of Powers)
-            'TempLocation.PowerOptions = New List(Of Powers)
-            'TempLocation.GroupedPowers = New List(Of Powers)
-            'TempLocation.Weight = 28
-            'Locations.Add(TempLocation)
-            ''__________________________
-            'TempLocation = New Location()
-            'TempLocation.Name = "Size Node 2"
-            'TempLocation.Region = Area.Eribu
-            'TempLocation.AddedDrop = True
-            'TempLocation.XLocation = 6592
-            'TempLocation.YLocation = 3136
-            'TempLocation.RequiredPowers = New List(Of Powers)
-            'TempLocation.PowerOptions = New List(Of Powers)
-            'TempLocation.GroupedPowers = New List(Of Powers)
-            'TempLocation.Weight = 27
-            'Locations.Add(TempLocation)
-            ''__________________________
-            'TempLocation = New Location()
-            'TempLocation.Name = "Size Node 3"
-            'TempLocation.Region = Area.Eribu
-            'TempLocation.AddedDrop = True
-            'TempLocation.XLocation = 6624
-            'TempLocation.YLocation = 3136
-            'TempLocation.RequiredPowers = New List(Of Powers)
-            'TempLocation.PowerOptions = New List(Of Powers)
-            'TempLocation.GroupedPowers = New List(Of Powers)
-            'TempLocation.Weight = 26
-            'Locations.Add(TempLocation)
-            ''__________________________
-            'TempLocation = New Location()
-            'TempLocation.Name = "Size Node 4"
-            'TempLocation.Region = Area.Eribu
-            'TempLocation.AddedDrop = True
-            'TempLocation.XLocation = 6624
-            'TempLocation.YLocation = 3104
-            'TempLocation.RequiredPowers = New List(Of Powers)
-            'TempLocation.PowerOptions = New List(Of Powers)
-            'TempLocation.GroupedPowers = New List(Of Powers)
-            'TempLocation.Weight = 25
-            'Locations.Add(TempLocation)
-            ''__________________________
-            'TempLocation = New Location()
-            'TempLocation.Name = "Range Node 1"
-            'TempLocation.Region = Area.Eribu
-            'TempLocation.AddedDrop = True
-            'TempLocation.XLocation = 6320
-            'TempLocation.YLocation = 3136
-            'TempLocation.RequiredPowers = New List(Of Powers)
-            'TempLocation.PowerOptions = New List(Of Powers)
-            'TempLocation.GroupedPowers = New List(Of Powers)
-            'TempLocation.Weight = 24
-            'Locations.Add(TempLocation)
-            ''__________________________
-            'TempLocation = New Location()
-            'TempLocation.Name = "Range Node 2"
-            'TempLocation.Region = Area.Eribu
-            'TempLocation.AddedDrop = True
-            'TempLocation.XLocation = 6320
-            'TempLocation.YLocation = 3104
-            'TempLocation.RequiredPowers = New List(Of Powers)
-            'TempLocation.PowerOptions = New List(Of Powers)
-            'TempLocation.GroupedPowers = New List(Of Powers)
-            'TempLocation.Weight = 23
-            'Locations.Add(TempLocation)
-            ''__________________________
-            'TempLocation = New Location()
-            'TempLocation.Name = "Range Node 3"
-            'TempLocation.Region = Area.Eribu
-            'TempLocation.AddedDrop = True
-            'TempLocation.XLocation = 6352
-            'TempLocation.YLocation = 3136
-            'TempLocation.RequiredPowers = New List(Of Powers)
-            'TempLocation.PowerOptions = New List(Of Powers)
-            'TempLocation.GroupedPowers = New List(Of Powers)
-            'TempLocation.Weight = 22
-            'Locations.Add(TempLocation)
-            ''__________________________
-            'TempLocation = New Location()
-            'TempLocation.Name = "Range Node 4"
-            'TempLocation.Region = Area.Eribu
-            'TempLocation.AddedDrop = True
-            'TempLocation.XLocation = 6352
-            'TempLocation.YLocation = 3104
-            'TempLocation.RequiredPowers = New List(Of Powers)
-            'TempLocation.PowerOptions = New List(Of Powers)
-            'TempLocation.GroupedPowers = New List(Of Powers)
-            'TempLocation.Weight = 21
-            'Locations.Add(TempLocation)
+#End Region
+#Region "Node Locations"
             '__________________________
             TempLocation = New Location()
-            TempLocation.Name = "Health Node 1"
+            TempLocation.Name = "Size Node 1"
             TempLocation.Region = Area.Eribu
             TempLocation.AddedDrop = True
             TempLocation.XLocation = 6592
@@ -7284,7 +7318,7 @@ Namespace GameInformation
             Locations.Add(TempLocation)
             '__________________________
             TempLocation = New Location()
-            TempLocation.Name = "Health Node 2"
+            TempLocation.Name = "Size Node 2"
             TempLocation.Region = Area.Eribu
             TempLocation.AddedDrop = True
             TempLocation.XLocation = 6592
@@ -7296,7 +7330,7 @@ Namespace GameInformation
             Locations.Add(TempLocation)
             '__________________________
             TempLocation = New Location()
-            TempLocation.Name = "Health Node 3"
+            TempLocation.Name = "Size Node 3"
             TempLocation.Region = Area.Eribu
             TempLocation.AddedDrop = True
             TempLocation.XLocation = 6624
@@ -7308,7 +7342,7 @@ Namespace GameInformation
             Locations.Add(TempLocation)
             '__________________________
             TempLocation = New Location()
-            TempLocation.Name = "Health Node 4"
+            TempLocation.Name = "Size Node 4"
             TempLocation.Region = Area.Eribu
             TempLocation.AddedDrop = True
             TempLocation.XLocation = 6624
@@ -7320,7 +7354,7 @@ Namespace GameInformation
             Locations.Add(TempLocation)
             '__________________________
             TempLocation = New Location()
-            TempLocation.Name = "Power Node 1"
+            TempLocation.Name = "Range Node 1"
             TempLocation.Region = Area.Eribu
             TempLocation.AddedDrop = True
             TempLocation.XLocation = 6320
@@ -7332,7 +7366,7 @@ Namespace GameInformation
             Locations.Add(TempLocation)
             '__________________________
             TempLocation = New Location()
-            TempLocation.Name = "Power Node 2"
+            TempLocation.Name = "Range Node 2"
             TempLocation.Region = Area.Eribu
             TempLocation.AddedDrop = True
             TempLocation.XLocation = 6320
@@ -7344,7 +7378,7 @@ Namespace GameInformation
             Locations.Add(TempLocation)
             '__________________________
             TempLocation = New Location()
-            TempLocation.Name = "Power Node 3"
+            TempLocation.Name = "Range Node 3"
             TempLocation.Region = Area.Eribu
             TempLocation.AddedDrop = True
             TempLocation.XLocation = 6352
@@ -7356,7 +7390,7 @@ Namespace GameInformation
             Locations.Add(TempLocation)
             '__________________________
             TempLocation = New Location()
-            TempLocation.Name = "Power Node 4"
+            TempLocation.Name = "Range Node 4"
             TempLocation.Region = Area.Eribu
             TempLocation.AddedDrop = True
             TempLocation.XLocation = 6352
@@ -7365,6 +7399,186 @@ Namespace GameInformation
             TempLocation.PowerOptions = New List(Of Powers)
             TempLocation.GroupedPowers = New List(Of Powers)
             TempLocation.Weight = 21
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Health Node 1"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 7088
+            TempLocation.YLocation = 3200
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 75
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Health Node 2"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 7088
+            TempLocation.YLocation = 3168
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 74
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Health Node 3"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 7088
+            TempLocation.YLocation = 3136
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 73
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Health Node 4"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 7056
+            TempLocation.YLocation = 3200
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 72
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Health Node 5"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 7056
+            TempLocation.YLocation = 3168
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 71
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Health Node 6"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 7056
+            TempLocation.YLocation = 3136
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 70
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Health Node 7"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 7024
+            TempLocation.YLocation = 3136
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 69
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Health Node 8"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 7024
+            TempLocation.YLocation = 3168
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 68
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Health Node 9"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 7024
+            TempLocation.YLocation = 3200
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 67
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Power Node 1"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 6800
+            TempLocation.YLocation = 3152
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 66
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Power Node 2"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 6800
+            TempLocation.YLocation = 3120
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 65
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Power Node 3"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 6832
+            TempLocation.YLocation = 3152
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 64
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Power Node 4"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 6832
+            TempLocation.YLocation = 3120
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 63
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Power Node 5"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 6864
+            TempLocation.YLocation = 3152
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 64
+            Locations.Add(TempLocation)
+            '__________________________
+            TempLocation = New Location()
+            TempLocation.Name = "Power Node 6"
+            TempLocation.Region = Area.Eribu
+            TempLocation.AddedDrop = True
+            TempLocation.XLocation = 6864
+            TempLocation.YLocation = 3120
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.PowerOptions = New List(Of Powers)
+            TempLocation.GroupedPowers = New List(Of Powers)
+            TempLocation.Weight = 63
             Locations.Add(TempLocation)
             '__________________________
             'Emptying the default location
@@ -7379,6 +7593,7 @@ Namespace GameInformation
             TempLocation.GroupedPowers = New List(Of Powers)
             TempLocation.Weight = 2 'Makes this always placed first
             Locations.Add(TempLocation)
+#End Region
             Return Locations
         End Function
     End Class
@@ -7387,6 +7602,7 @@ Namespace GameInformation
             Dim Items As List(Of ItemDrop)
             Items = New List(Of ItemDrop)
             Dim TempItem As ItemDrop
+#Region "PowerUp Drops"
             '
             '______________WEAPONS
             '
@@ -7526,6 +7742,8 @@ Namespace GameInformation
             TempItem.GID = 73
             TempItem.Weight = 6
             Items.Add(TempItem)
+#End Region
+#Region "Weapon Drops"
             '______________
             TempItem = New ItemDrop()
             TempItem.Name = ""
@@ -7724,81 +7942,85 @@ Namespace GameInformation
             TempItem.GID = 57 'Guess IDK if it'll work
             TempItem.Weight = 29
             Items.Add(TempItem)
+#End Region
+#Region "Node Drops"
             '
             '______________SIZE NODES
             '
-            'TempItem = New ItemDrop()
-            'TempItem.Name = "SizeNode1"
-            'TempItem.DropType = ItemType.SizeNode
-            'TempItem.GivenPowers = New List(Of Powers)
-            'TempItem.GID = 65
-            'TempItem.Weight = 28
-            'Items.Add(TempItem)
-            ''______________
-            'TempItem = New ItemDrop()
-            'TempItem.Name = "SizeNode2"
-            'TempItem.DropType = ItemType.SizeNode
-            'TempItem.GivenPowers = New List(Of Powers)
-            'TempItem.GID = 65
-            'TempItem.Weight = 27
-            'Items.Add(TempItem)
-            ''______________
-            'TempItem = New ItemDrop()
-            'TempItem.Name = "SizeNode3"
-            'TempItem.DropType = ItemType.SizeNode
-            'TempItem.GivenPowers = New List(Of Powers)
-            'TempItem.GID = 65
-            'TempItem.Weight = 26
-            'Items.Add(TempItem)
-            ''______________
-            'TempItem = New ItemDrop()
-            'TempItem.Name = "SizeNode4"
-            'TempItem.DropType = ItemType.SizeNode
-            'TempItem.GivenPowers = New List(Of Powers)
-            'TempItem.GID = 65
-            'TempItem.Weight = 25
-            'Items.Add(TempItem)
-            ''
-            ''______________SIZE NODES
-            ''
-            'TempItem = New ItemDrop()
-            'TempItem.Name = "RangeNode1"
-            'TempItem.DropType = ItemType.RangeNode
-            'TempItem.GivenPowers = New List(Of Powers)
-            'TempItem.GID = 66
-            'TempItem.Weight = 24
-            'Items.Add(TempItem)
-            ''______________
-            'TempItem = New ItemDrop()
-            'TempItem.Name = "RangeNode2"
-            'TempItem.DropType = ItemType.RangeNode
-            'TempItem.GivenPowers = New List(Of Powers)
-            'TempItem.GID = 66
-            'TempItem.Weight = 23
-            'Items.Add(TempItem)
-            ''______________
-            'TempItem = New ItemDrop()
-            'TempItem.Name = "RangeNode3"
-            'TempItem.DropType = ItemType.RangeNode
-            'TempItem.GivenPowers = New List(Of Powers)
-            'TempItem.GID = 66
-            'TempItem.Weight = 22
-            'Items.Add(TempItem)
-            ''______________
-            'TempItem = New ItemDrop()
-            'TempItem.Name = "RangeNode4"
-            'TempItem.DropType = ItemType.RangeNode
-            'TempItem.GivenPowers = New List(Of Powers)
-            'TempItem.GID = 66
-            'TempItem.Weight = 21
-            'Items.Add(TempItem)
+            TempItem = New ItemDrop()
+            TempItem.Name = "SizeNode1"
+            TempItem.DropType = ItemType.SizeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 65
+            TempItem.Weight = 28
+            Items.Add(TempItem)
             '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "SizeNode2"
+            TempItem.DropType = ItemType.SizeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 65
+            TempItem.Weight = 27
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "SizeNode3"
+            TempItem.DropType = ItemType.SizeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 65
+            TempItem.Weight = 26
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "SizeNode4"
+            TempItem.DropType = ItemType.SizeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 65
+            TempItem.Weight = 25
+            Items.Add(TempItem)
+            '
+            '______________RANGE NODES
+            '
+            TempItem = New ItemDrop()
+            TempItem.Name = "RangeNode1"
+            TempItem.DropType = ItemType.RangeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 66
+            TempItem.Weight = 24
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "RangeNode2"
+            TempItem.DropType = ItemType.RangeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 66
+            TempItem.Weight = 23
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "RangeNode3"
+            TempItem.DropType = ItemType.RangeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 66
+            TempItem.Weight = 22
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "RangeNode4"
+            TempItem.DropType = ItemType.RangeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 66
+            TempItem.Weight = 21
+            Items.Add(TempItem)
+            '
+            '______________Health NODES
+            '
             TempItem = New ItemDrop()
             TempItem.Name = "HealthNode1"
             TempItem.DropType = ItemType.HealthNode
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.GID = 34
-            TempItem.Weight = 28
+            TempItem.Weight = 75
             Items.Add(TempItem)
             '______________
             TempItem = New ItemDrop()
@@ -7806,7 +8028,7 @@ Namespace GameInformation
             TempItem.DropType = ItemType.HealthNode
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.GID = 34
-            TempItem.Weight = 27
+            TempItem.Weight = 74
             Items.Add(TempItem)
             '______________
             TempItem = New ItemDrop()
@@ -7814,7 +8036,7 @@ Namespace GameInformation
             TempItem.DropType = ItemType.HealthNode
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.GID = 34
-            TempItem.Weight = 26
+            TempItem.Weight = 73
             Items.Add(TempItem)
             '______________
             TempItem = New ItemDrop()
@@ -7822,7 +8044,47 @@ Namespace GameInformation
             TempItem.DropType = ItemType.HealthNode
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.GID = 34
-            TempItem.Weight = 25
+            TempItem.Weight = 72
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNode5"
+            TempItem.DropType = ItemType.HealthNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 34
+            TempItem.Weight = 71
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNode6"
+            TempItem.DropType = ItemType.HealthNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 34
+            TempItem.Weight = 70
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNode7"
+            TempItem.DropType = ItemType.HealthNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 34
+            TempItem.Weight = 69
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNode8"
+            TempItem.DropType = ItemType.HealthNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 34
+            TempItem.Weight = 68
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNode9"
+            TempItem.DropType = ItemType.HealthNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 34
+            TempItem.Weight = 67
             Items.Add(TempItem)
             '______________
             TempItem = New ItemDrop()
@@ -7830,7 +8092,7 @@ Namespace GameInformation
             TempItem.DropType = ItemType.PowerNode
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.GID = 32
-            TempItem.Weight = 24
+            TempItem.Weight = 66
             Items.Add(TempItem)
             '______________
             TempItem = New ItemDrop()
@@ -7838,7 +8100,7 @@ Namespace GameInformation
             TempItem.DropType = ItemType.PowerNode
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.GID = 32
-            TempItem.Weight = 23
+            TempItem.Weight = 65
             Items.Add(TempItem)
             '______________
             TempItem = New ItemDrop()
@@ -7846,7 +8108,7 @@ Namespace GameInformation
             TempItem.DropType = ItemType.PowerNode
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.GID = 32
-            TempItem.Weight = 22
+            TempItem.Weight = 64
             Items.Add(TempItem)
             '______________
             TempItem = New ItemDrop()
@@ -7854,8 +8116,25 @@ Namespace GameInformation
             TempItem.DropType = ItemType.PowerNode
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.GID = 32
-            TempItem.Weight = 21
+            TempItem.Weight = 63
             Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNode5"
+            TempItem.DropType = ItemType.PowerNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 32
+            TempItem.Weight = 62
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNode6"
+            TempItem.DropType = ItemType.PowerNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 32
+            TempItem.Weight = 61
+            Items.Add(TempItem)
+#End Region
             '______________
             'To Delete the old disruptor location
             TempItem = New ItemDrop()

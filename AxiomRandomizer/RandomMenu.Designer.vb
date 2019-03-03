@@ -38,16 +38,16 @@ Partial Class RandomMenu
         Me.ButtonSpoiler = New System.Windows.Forms.Button()
         Me.ButtonOpenBaseGame = New System.Windows.Forms.Button()
         Me.ButtonOpenRando = New System.Windows.Forms.Button()
-        Me.LabelDonate = New System.Windows.Forms.Label()
+        Me.LabelCredits = New System.Windows.Forms.Label()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.CheckBoxHideItems = New System.Windows.Forms.CheckBox()
         Me.CheckBoxMonsters = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxHideItems = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'TextBoxSeed
         '
         Me.TextBoxSeed.Location = New System.Drawing.Point(12, 25)
-        Me.TextBoxSeed.MaxLength = 10
+        Me.TextBoxSeed.MaxLength = 11
         Me.TextBoxSeed.Name = "TextBoxSeed"
         Me.TextBoxSeed.Size = New System.Drawing.Size(194, 20)
         Me.TextBoxSeed.TabIndex = 0
@@ -188,27 +188,16 @@ Partial Class RandomMenu
         Me.ButtonOpenRando.Text = "Open Rando Game"
         Me.ButtonOpenRando.UseVisualStyleBackColor = True
         '
-        'LabelDonate
+        'LabelCredits
         '
-        Me.LabelDonate.ForeColor = System.Drawing.SystemColors.AppWorkspace
-        Me.LabelDonate.Location = New System.Drawing.Point(155, 301)
-        Me.LabelDonate.Name = "LabelDonate"
-        Me.LabelDonate.Size = New System.Drawing.Size(117, 17)
-        Me.LabelDonate.TabIndex = 16
-        Me.LabelDonate.Text = "Developed By Pozzum"
-        Me.LabelDonate.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        Me.ToolTip1.SetToolTip(Me.LabelDonate, "donations are appreciated :)")
-        '
-        'CheckBoxHideItems
-        '
-        Me.CheckBoxHideItems.AutoSize = True
-        Me.CheckBoxHideItems.Enabled = False
-        Me.CheckBoxHideItems.Location = New System.Drawing.Point(12, 160)
-        Me.CheckBoxHideItems.Name = "CheckBoxHideItems"
-        Me.CheckBoxHideItems.Size = New System.Drawing.Size(76, 17)
-        Me.CheckBoxHideItems.TabIndex = 17
-        Me.CheckBoxHideItems.Text = "Hide Items"
-        Me.CheckBoxHideItems.UseVisualStyleBackColor = True
+        Me.LabelCredits.ForeColor = System.Drawing.SystemColors.AppWorkspace
+        Me.LabelCredits.Location = New System.Drawing.Point(155, 301)
+        Me.LabelCredits.Name = "LabelCredits"
+        Me.LabelCredits.Size = New System.Drawing.Size(117, 17)
+        Me.LabelCredits.TabIndex = 16
+        Me.LabelCredits.Text = "Thank the Devs!"
+        Me.LabelCredits.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.ToolTip1.SetToolTip(Me.LabelCredits, "donations are appreciated :)")
         '
         'CheckBoxMonsters
         '
@@ -222,6 +211,17 @@ Partial Class RandomMenu
         "marily.")
         Me.CheckBoxMonsters.UseVisualStyleBackColor = True
         '
+        'CheckBoxHideItems
+        '
+        Me.CheckBoxHideItems.AutoSize = True
+        Me.CheckBoxHideItems.Enabled = False
+        Me.CheckBoxHideItems.Location = New System.Drawing.Point(12, 160)
+        Me.CheckBoxHideItems.Name = "CheckBoxHideItems"
+        Me.CheckBoxHideItems.Size = New System.Drawing.Size(76, 17)
+        Me.CheckBoxHideItems.TabIndex = 17
+        Me.CheckBoxHideItems.Text = "Hide Items"
+        Me.CheckBoxHideItems.UseVisualStyleBackColor = True
+        '
         'RandomMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -229,7 +229,7 @@ Partial Class RandomMenu
         Me.ClientSize = New System.Drawing.Size(284, 331)
         Me.Controls.Add(Me.CheckBoxMonsters)
         Me.Controls.Add(Me.CheckBoxHideItems)
-        Me.Controls.Add(Me.LabelDonate)
+        Me.Controls.Add(Me.LabelCredits)
         Me.Controls.Add(Me.ButtonOpenRando)
         Me.Controls.Add(Me.ButtonOpenBaseGame)
         Me.Controls.Add(Me.ButtonSpoiler)
@@ -271,7 +271,7 @@ Partial Class RandomMenu
     Friend WithEvents ButtonSpoiler As Button
     Friend WithEvents ButtonOpenBaseGame As Button
     Friend WithEvents ButtonOpenRando As Button
-    Friend WithEvents LabelDonate As Label
+    Friend WithEvents LabelCredits As Label
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents CheckBoxHideItems As CheckBox
     Friend WithEvents CheckBoxMonsters As CheckBox
