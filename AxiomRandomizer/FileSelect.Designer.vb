@@ -37,6 +37,7 @@ Partial Class FileSelect
         Me.CheckBoxBackground = New System.Windows.Forms.CheckBox()
         Me.CheckBoxWakeUp = New System.Windows.Forms.CheckBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.CheckBoxDisruptorTrace = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -186,11 +187,27 @@ Partial Class FileSelect
         "drone.  " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Otherwise the game would crash.")
         Me.CheckBoxWakeUp.UseVisualStyleBackColor = True
         '
+        'CheckBoxDisruptorTrace
+        '
+        Me.CheckBoxDisruptorTrace.AutoSize = True
+        Me.CheckBoxDisruptorTrace.Checked = True
+        Me.CheckBoxDisruptorTrace.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBoxDisruptorTrace.Location = New System.Drawing.Point(12, 220)
+        Me.CheckBoxDisruptorTrace.Name = "CheckBoxDisruptorTrace"
+        Me.CheckBoxDisruptorTrace.Size = New System.Drawing.Size(215, 17)
+        Me.CheckBoxDisruptorTrace.TabIndex = 9
+        Me.CheckBoxDisruptorTrace.Tag = "0.7.0.1"
+        Me.CheckBoxDisruptorTrace.Text = "Remove Trace Sprite from Pickup Anim."
+        Me.ToolTip1.SetToolTip(Me.CheckBoxDisruptorTrace, "Removes momentary ""Trace""" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "sprite-load when picking up the" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Axiom Disruptor, disa" &
+        "bling this" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "will cause picking it up with drone to crash." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
+        Me.CheckBoxDisruptorTrace.UseVisualStyleBackColor = True
+        '
         'FileSelect
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(234, 221)
+        Me.ClientSize = New System.Drawing.Size(234, 241)
+        Me.Controls.Add(Me.CheckBoxDisruptorTrace)
         Me.Controls.Add(Me.CheckBoxWakeUp)
         Me.Controls.Add(Me.CheckBoxBackground)
         Me.Controls.Add(Me.CheckBoxAnimations)
@@ -227,4 +244,5 @@ Partial Class FileSelect
     Friend WithEvents CheckBoxBackground As CheckBox
     Friend WithEvents CheckBoxWakeUp As CheckBox
     Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents CheckBoxDisruptorTrace As CheckBox
 End Class

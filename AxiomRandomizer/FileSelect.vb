@@ -158,11 +158,23 @@ Public Class FileSelect
             End If
             My.Settings.ExpressExtractUsed = RadioExpress.Checked
             If RadioExpress.Checked Then
-                If PackUnpack.UnpacktoAppdata(EXEFilePath) = True Then
+                If PackUnpack.UnpacktoAppdata(EXEFilePath,
+                                              CheckBoxSave.Checked,
+                                              CheckBoxLabcoat.Checked,
+                                              CheckBoxAnimations.Checked,
+                                              CheckBoxBackground.Checked,
+                                              CheckBoxWakeUp.Checked,
+                                              CheckBoxDisruptorTrace.Checked) = True Then
                     RandomMenu.Show()
                 End If
             Else
-                If PackUnpack.UnpacktoAppdata(EXEFilePath) = True Then
+                If PackUnpack.UnpacktoAppdata(EXEFilePath,
+                                              CheckBoxSave.Checked,
+                                              CheckBoxLabcoat.Checked,
+                                              CheckBoxAnimations.Checked,
+                                              CheckBoxBackground.Checked,
+                                              CheckBoxWakeUp.Checked,
+                                              CheckBoxDisruptorTrace.Checked) = True Then
                     RandomMenu.Show()
                 End If
             End If
@@ -211,6 +223,7 @@ Public Class FileSelect
         CheckBoxAnimations.Checked = True
         CheckBoxBackground.Checked = True
         CheckBoxWakeUp.Checked = True
+        CheckBoxDisruptorTrace.Checked = True
     End Sub
 #End Region
 

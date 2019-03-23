@@ -13,7 +13,8 @@ Public Class PackUnpack
                                  Optional LabCoatChange As Boolean = True,
                                  Optional TileWakeChange As Boolean = True,
                                  Optional BackgroundChange As Boolean = True,
-                                 Optional AxiomDisruptChange As Boolean = True)
+                                 Optional AxiomDisruptChange As Boolean = True,
+                                 Optional AxiomTranceChange As Boolean = True)
         Dim UnpackFolder As String = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\"
         GeneralTools.FolderCheck(UnpackFolder)
         UnpackFolder += VanillaFolder & Path.DirectorySeparatorChar
@@ -52,7 +53,7 @@ Public Class PackUnpack
                 GeneralTools.UnZip(Path.GetDirectoryName(UnpackFolder) &
                                Path.DirectorySeparatorChar &
                                "OuterBeyond.EmbeddedContent.Content.zip")
-                ModifyCode(UnpackFolder, SaveChange, LabCoatChange, TileWakeChange, BackgroundChange, AxiomDisruptChange)
+                ModifyCode(UnpackFolder, SaveChange, LabCoatChange, TileWakeChange, BackgroundChange, AxiomDisruptChange, AxiomTranceChange)
                 MessageBox.Show("Game Successfully Dumped to app data")
                 File.Delete(Path.GetDirectoryName(Application.ExecutablePath) &
                                Path.DirectorySeparatorChar &
@@ -85,7 +86,8 @@ Public Class PackUnpack
                                  Optional LabCoatChange As Boolean = True,
                                  Optional TileWakeChange As Boolean = True,
                                  Optional BackgroundChange As Boolean = True,
-                                 Optional AxiomDisruptChange As Boolean = True)
+                                 Optional AxiomDisruptChange As Boolean = True,
+                                 Optional AxiomTranceChange As Boolean = True)
         Dim lines() As String = IO.File.ReadAllLines(IlFile)
         If My.Settings.SteamVersion Then
             For i As Integer = 0 To lines.Length - 1
@@ -136,17 +138,21 @@ Public Class PackUnpack
                     End If
                     '
                     'Waking Up Glitches by default - To Be Found
-
+                    '
                     'Remove World Wakeup from Picking up axiom disruptor
                 ElseIf lines(i) = "    IL_0015:  ldstr      ""DataDisruptor""" Then
                     If AxiomDisruptChange Then
                         lines(i) = "    IL_0015:  ldstr      ""DummDisruptor"""
                     End If
+                    '
+                    'Remove Temp Trace Sprite when picking up the Axiom Disruptor.
+                ElseIf lines(i) = "    IL_01c6:  ldstr      ""DataDisruptor""" Then
+                    If AxiomTranceChange Then
+                        lines(i) = "    IL_01c6:  ldstr      ""DummDisruptor"""
+                    End If
                 End If
-
-                'removed because epic version does not have a leaderboard
                 If i = lines.Length - 1 Then
-                    If Not LeaderboardRemoved AndAlso My.Settings.SteamVersion Then
+                    If Not LeaderboardRemoved Then
                         MessageBox.Show("Error Removing Leaderboard Uploads")
                     End If
                 End If
@@ -202,12 +208,11 @@ Public Class PackUnpack
                     If AxiomDisruptChange Then
                         lines(i) = "    IL_0015:  ldstr      ""DummDisruptor"""
                     End If
-                End If
-
-                'removed because epic version does not have a leaderboard
-                If i = lines.Length - 1 Then
-                    If Not LeaderboardRemoved AndAlso My.Settings.SteamVersion Then
-                        MessageBox.Show("Error Removing Leaderboard Uploads")
+                    '
+                    'Remove Temp Trace Sprite when picking up the Axiom Disruptor.
+                ElseIf lines(i) = "    IL_01c7:  ldstr      ""DataDisruptor""" Then
+                    If AxiomTranceChange Then
+                        lines(i) = "    IL_01c7:  ldstr      ""DummDisruptor"""
                     End If
                 End If
             Next
