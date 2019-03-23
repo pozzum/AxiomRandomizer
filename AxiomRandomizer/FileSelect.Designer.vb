@@ -78,7 +78,9 @@ Partial Class FileSelect
         '
         'OpenFileSave
         '
-        Me.OpenFileSave.FileName = "remotecache.vdf"
+        Me.OpenFileSave.FileName = "Save3.sav"
+        Me.OpenFileSave.Filter = "Axiom Verge Save File|*.*"
+        Me.OpenFileSave.Title = "Select Axiom verge save file."
         '
         'GroupBox1
         '

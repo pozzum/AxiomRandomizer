@@ -123,28 +123,43 @@ Public Class FileSelect
         End If
     End Sub
     Sub GetSaveFile()
-        If Directory.Exists("C:\Steam\userdata") Then
-            Dim UserDirectories() As String = Directory.GetDirectories("C:\Steam\userdata")
-            For Each TestDirectory As String In UserDirectories
-                If Directory.Exists(TestDirectory & "\" & SteamAppID) Then
-                    OpenFileSave.InitialDirectory = TestDirectory & "\" & SteamAppID
+        If My.Settings.SteamVersion Then
+            If Directory.Exists("C:\Steam\userdata") Then
+                Dim UserDirectories() As String = Directory.GetDirectories("C:\Steam\userdata")
+                For Each TestDirectory As String In UserDirectories
+                    If Directory.Exists(TestDirectory & "\" & SteamAppID) Then
+                        OpenFileSave.InitialDirectory = TestDirectory & "\" & SteamAppID & "\remote"
+                    End If
+                Next
+            ElseIf Directory.Exists("C:\Program Files (x86)\Steam\userdata") Then
+                Dim UserDirectories() As String = Directory.GetDirectories("C:\Program Files (x86)\Steam\userdata")
+                For Each TestDirectory As String In UserDirectories
+                    If Directory.Exists(TestDirectory & "\" & SteamAppID) Then
+                        OpenFileSave.InitialDirectory = TestDirectory & "\" & SteamAppID & "\remote"
+                    End If
+                Next
+            End If
+            If OpenFileSave.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+                Dim filename As String = Path.GetFileName(OpenFileSave.FileName)
+                filename = filename.ToLower
+                If filename.Contains("save") Then
+                    My.Settings.SaveFilePath = Path.GetDirectoryName(OpenFileSave.FileName)
+                Else
+                    MessageBox.Show("Save Location Error: Reopen exe")
                 End If
-            Next
-        ElseIf Directory.Exists("C:\Program Files (x86)\Steam\userdata") Then
-            Dim UserDirectories() As String = Directory.GetDirectories("C:\Program Files (x86)\Steam\userdata")
-            For Each TestDirectory As String In UserDirectories
-                If Directory.Exists(TestDirectory & "\" & SteamAppID) Then
-                    OpenFileSave.InitialDirectory = TestDirectory & "\" & SteamAppID
+            End If
+        Else 'Epic Version
+            If Directory.Exists(My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\SavedGames\AxiomVerge\Saves\Player1\") Then
+                OpenFileSave.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\SavedGames\AxiomVerge\Saves\Player1\"
+            End If
+            If OpenFileSave.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+                Dim filename As String = Path.GetFileName(OpenFileSave.FileName)
+                filename = filename.ToLower
+                If filename.Contains("save") Then
+                    My.Settings.SaveFilePath = Path.GetDirectoryName(OpenFileSave.FileName)
+                Else
+                    MessageBox.Show("Save Location Error: Reopen exe")
                 End If
-            Next
-        End If
-        If OpenFileSave.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-            Dim filename As String = Path.GetFileName(OpenFileSave.FileName)
-            filename = filename.ToLower
-            If filename = "remotecache.vdf" Then
-                My.Settings.SaveFilePath = Path.GetDirectoryName(OpenFileSave.FileName)
-            Else
-                MessageBox.Show("Save Location Error: Reopen exe")
             End If
         End If
     End Sub
@@ -153,9 +168,7 @@ Public Class FileSelect
         If ExeVersions.CheckExe(EXEFilePath) = True Then
             CheckBackup(EXEFilePath)
             My.Settings.ExeFilePath = EXEFilePath
-            If My.Settings.SaveFilePath = "" Then
-                GetSaveFile()
-            End If
+            GetSaveFile()
             My.Settings.ExpressExtractUsed = RadioExpress.Checked
             If RadioExpress.Checked Then
                 If PackUnpack.UnpacktoAppdata(EXEFilePath,
