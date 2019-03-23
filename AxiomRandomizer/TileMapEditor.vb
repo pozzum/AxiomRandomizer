@@ -443,7 +443,6 @@ Public Class TileMapEditor
             Return False
         End If
     End Function
-
     Shared Function OpenAbsu(ApplyChange As Boolean)
         TileMapFolder = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\WorkingFiles\OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
         If System.IO.File.Exists(TileMapFolder & "Area2.tmx") Then

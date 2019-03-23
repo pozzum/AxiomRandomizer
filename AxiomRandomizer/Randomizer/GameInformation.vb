@@ -46,8 +46,8 @@ Namespace GameInformation
         AddressDisruptor1
         AddressDisruptor2
         GlitchBomb 'Address Bomb
-        LabCoat
-        TrenchCoat 'TrenchCoat
+        GlitchTeleport
+        BlackCoat 'TrenchCoat
         RedCoat
         PasswordTool
         TendrilsTop 'Bioflux Accelerator
@@ -565,7 +565,7 @@ Namespace GameInformation
             '_______________
             TempLocation = New Location()
             TempLocation.Name = "After Uruku"
-            TempLocation.Vanilla = ItemType.LabCoat
+            TempLocation.Vanilla = ItemType.GlitchTeleport
             TempLocation.VanillaPlacement = 23
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4896
@@ -1207,7 +1207,7 @@ Namespace GameInformation
             '_______________
             TempLocation = New Location()
             TempLocation.Name = "Above Insanity"
-            TempLocation.Vanilla = ItemType.TrenchCoat
+            TempLocation.Vanilla = ItemType.BlackCoat
             TempLocation.VanillaPlacement = 67
             TempLocation.Region = Area.UkkinNa
             TempLocation.LineNumber1 = 6147
@@ -2115,7 +2115,7 @@ Namespace GameInformation
             '______________
             TempItem = New ItemDrop()
             TempItem.Name = ""
-            TempItem.DropType = ItemType.LabCoat
+            TempItem.DropType = ItemType.GlitchTeleport
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.GivenPowers.AddRange({Powers.LabCoat})
             TempItem.Weight = 3 'weight 3 for coats & drones to maximize variance
@@ -2191,7 +2191,7 @@ Namespace GameInformation
             '______________
             TempItem = New ItemDrop()
             TempItem.Name = ""
-            TempItem.DropType = ItemType.TrenchCoat
+            TempItem.DropType = ItemType.BlackCoat
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.JumpAdded = 3 'Red Coat placed first however we want to place redcoat in places reachable by trench so this still has a relevant jump height.
             TempItem.GivenPowers.AddRange({Powers.TrenchCoat})
@@ -4350,7 +4350,7 @@ Namespace GameInformation
             '_______________
             TempLocation = New Location()
             TempLocation.Name = "After Uruku"
-            TempLocation.Vanilla = ItemType.LabCoat
+            TempLocation.Vanilla = ItemType.GlitchTeleport
             TempLocation.VanillaPlacement = 23
             TempLocation.Region = Area.Zi
             TempLocation.LineNumber1 = 4896
@@ -5044,7 +5044,7 @@ Namespace GameInformation
             '_______________
             TempLocation = New Location()
             TempLocation.Name = "Above Insanity"
-            TempLocation.Vanilla = ItemType.TrenchCoat
+            TempLocation.Vanilla = ItemType.BlackCoat
             TempLocation.VanillaPlacement = 67
             TempLocation.Region = Area.UkkinNa
             TempLocation.LineNumber1 = 6147
@@ -5789,7 +5789,7 @@ Namespace GameInformation
             '______________
             TempItem = New ItemDrop()
             TempItem.Name = ""
-            TempItem.DropType = ItemType.LabCoat
+            TempItem.DropType = ItemType.GlitchTeleport
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.GivenPowers.AddRange({Powers.LabCoat})
             TempItem.Weight = 3 'weight 3 for coats & drones to maximize variance
@@ -5865,7 +5865,7 @@ Namespace GameInformation
             '______________
             TempItem = New ItemDrop()
             TempItem.Name = ""
-            TempItem.DropType = ItemType.TrenchCoat
+            TempItem.DropType = ItemType.BlackCoat
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.JumpAdded = 3 'Red Coat placed first however we want to place redcoat in places reachable by trench so this still has a relevant jump height.
             TempItem.GivenPowers.AddRange({Powers.TrenchCoat})
@@ -8198,7 +8198,7 @@ Namespace GameInformation
             '______________
             TempItem = New ItemDrop()
             TempItem.Name = ""
-            TempItem.DropType = ItemType.LabCoat
+            TempItem.DropType = ItemType.GlitchTeleport
             TempItem.GivenPowers = New List(Of Powers)
             'TempItem.GivenPowers.AddRange({Powers.LabCoat})
             TempItem.GID = 61
@@ -8207,7 +8207,7 @@ Namespace GameInformation
             '______________
             TempItem = New ItemDrop()
             TempItem.Name = ""
-            TempItem.DropType = ItemType.TrenchCoat
+            TempItem.DropType = ItemType.BlackCoat
             TempItem.GivenPowers = New List(Of Powers)
             'TempItem.GivenPowers.AddRange({Powers.TrenchCoat})
             TempItem.GID = 72

@@ -39,9 +39,20 @@ Public Class FileSelect
             My.Settings.UpgradeRequired = False
             My.Settings.Save()
         End If
+        '1 time moving PackUnpack Files
+        If My.Settings.IldasmSavedPath = "" OrElse
+           My.Settings.IlasmSavedPath = "" Then
+            CheckPackUnpackFiles()
+        End If
+
         If My.Settings.ExeFilePath <> "" Then
+            'Making Sure Save File is located
             If My.Settings.SaveFilePath = "" Then
                 GetSaveFile()
+            End If
+            'Making Sure Xml Setting is initalised
+            If My.Settings.XMLSaveLocation = "" Then
+                My.Settings.XMLSaveLocation = My.Settings.ExeFilePath
             End If
             If CheckChangeLog() = True Then
                 If CheckVanillaFolder() = True Then
@@ -49,11 +60,6 @@ Public Class FileSelect
                         RandomMenu.Show()
                     End If
                 End If
-            End If
-        Else '1 time moving PackUnpack Files
-            If My.Settings.IldasmSavedPath = "" OrElse
-           My.Settings.IlasmSavedPath = "" Then
-                CheckPackUnpackFiles()
             End If
         End If
     End Sub
@@ -168,6 +174,7 @@ Public Class FileSelect
         If ExeVersions.CheckExe(EXEFilePath) = True Then
             CheckBackup(EXEFilePath)
             My.Settings.ExeFilePath = EXEFilePath
+            My.Settings.XMLSaveLocation = My.Settings.ExeFilePath
             GetSaveFile()
             My.Settings.ExpressExtractUsed = RadioExpress.Checked
             If RadioExpress.Checked Then

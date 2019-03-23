@@ -257,6 +257,42 @@ Namespace My
                 Me("MapGeneration") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property XMLSaveLocation() As String
+            Get
+                Return CType(Me("XMLSaveLocation"),String)
+            End Get
+            Set
+                Me("XMLSaveLocation") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property VanillaDecompileLocation() As String
+            Get
+                Return CType(Me("VanillaDecompileLocation"),String)
+            End Get
+            Set
+                Me("VanillaDecompileLocation") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property WorkingDecompileLocation() As String
+            Get
+                Return CType(Me("WorkingDecompileLocation"),String)
+            End Get
+            Set
+                Me("WorkingDecompileLocation") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

@@ -53,5 +53,14 @@
     <Setting Name="MapGeneration" Type="System.String" Scope="User">
       <Value Profile="(Default)">"Default"</Value>
     </Setting>
+    <Setting Name="XMLSaveLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="VanillaDecompileLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="WorkingDecompileLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
