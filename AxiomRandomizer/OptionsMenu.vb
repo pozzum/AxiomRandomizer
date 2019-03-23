@@ -9,15 +9,21 @@
     End Sub
 #Region "Basic Options"
     Sub LoadBasic()
+        LabelXML.ForeColor = System.Drawing.SystemColors.ControlText
+        CheckBoxXMLLimit.Checked = My.Settings.XMLLimited
         CheckBoxDebug.Checked = My.Settings.DebugMode
+        TrackBarXML.Value = My.Settings.XMLLimitCount
+        LabelXML.Text = TrackBarXML.Value.ToString
+        LabelXML.Enabled = CheckBoxXMLLimit.Checked
     End Sub
     Private Sub CheckBoxXMLLimit_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxXMLLimit.CheckedChanged
+        My.Settings.XMLLimited = CheckBoxXMLLimit.Checked
         If CheckBoxXMLLimit.Checked Then
             TrackBarXML.Enabled = True
-            LabelXML.ForeColor = Color.Black
+            LabelXML.Enabled = True
         Else
             TrackBarXML.Enabled = False
-            LabelXML.ForeColor = Color.Gray
+            LabelXML.Enabled = False
         End If
     End Sub
     Private Sub TrackBarXML_Scroll(sender As Object, e As EventArgs) Handles TrackBarXML.Scroll

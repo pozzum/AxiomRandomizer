@@ -96,9 +96,17 @@ Public Class Randomizer
                         RandomMenu.TextBoxDebug.Text += vbNewLine & "Placing item: " & ItemPool(i).Name
                     End If
                     For j As Integer = 0 To LocationInformation.Count - 1
-                        If LocationInformation(j).RerollCount > 15 Then
+                        If LocationInformation(j).RerollCount > 20 Then
                             RandomMenu.TextBoxDebug.Text += vbNewLine & "Infinite Loop Break"
-                            MessageBox.Show("Infinite Loop Break")
+                            If MessageBox.Show("Infinite Loop Break." & vbNewLine & "Would you like to make a log file?", "Seed Failure", MessageBoxButtons.YesNo) Then
+                                Dim Logname As String = Split(RandomMenu.TextBoxDebug.Text, vbCrLf)(0)
+                                Logname = Logname.Remove(0, 10) 'removes New Seed: from the string
+                                Logname = Logname.Replace(":", "") 'Removes : to make the file name viable
+                                Dim TempSaveDialog As SaveFileDialog = New SaveFileDialog With {.FileName = Logname & ".log"}
+                                If TempSaveDialog.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+                                    File.WriteAllText(TempSaveDialog.FileName, RandomMenu.TextBoxDebug.Text)
+                                End If
+                            End If
                             Return False
                         End If
                         If LocationInformation(j).Item = ItemType.Empty Then

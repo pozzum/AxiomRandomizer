@@ -93,7 +93,6 @@ Partial Class OptionsMenu
         'LabelXML
         '
         Me.LabelXML.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelXML.Enabled = False
         Me.LabelXML.ForeColor = System.Drawing.SystemColors.ControlText
         Me.LabelXML.Location = New System.Drawing.Point(49, 77)
         Me.LabelXML.Name = "LabelXML"
