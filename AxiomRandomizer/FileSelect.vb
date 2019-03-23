@@ -3,10 +3,13 @@ Imports System.ComponentModel 'Backgroundworker
 Imports System.Environment 'appdata
 Imports System.Threading 'Multithreading
 Public Class FileSelect
+#Region "Form Events"
     Dim SteamAppID As String = "332200"
     Private Sub FileSelect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Here we force the express setup even if this a second use of the menu.
+        ExpressSettings()
         'My.Settings.Reset()
-        'My.Settings.Save()
+        My.Settings.Save()
         Me.Text = Me.Text & " Ver: " & My.Application.Info.Version.ToString
         CheckUpdate()
         CheckSettings()
@@ -16,6 +19,19 @@ Public Class FileSelect
             RandomMenu.Show()
         End If
     End Sub
+#End Region
+#Region "EXE Updater"
+    Public Shared WithEvents BackgroundApplicationUpdate As BackgroundWorker = New BackgroundWorker
+    Public Shared Sub BackgroundApplicationUpdate_DoWork(sender As Object, e As ComponentModel.DoWorkEventArgs) Handles BackgroundApplicationUpdate.DoWork
+        OnlineVersion.CheckUpdate()
+    End Sub
+    Sub CheckUpdate()
+        'Dim Temp As ThreadStart = New ThreadStart With (OnlineVersion.CheckUpdate)
+        Dim checkUpdateThread = New Thread(AddressOf OnlineVersion.CheckUpdate)
+        checkUpdateThread.SetApartmentState(ApartmentState.STA)
+        checkUpdateThread.Start()
+    End Sub
+#End Region
 #Region "Exe Already Setup"
     Private Sub CheckSettings()
         If My.Settings.UpgradeRequired = True Then
@@ -72,7 +88,7 @@ Public Class FileSelect
         ElseIf Not Directory.Exists(GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\VanillaFiles") Then
             Return False
         ElseIf My.Settings.ManualDecompilePending = True Then
-            PackUnpack.RemoveLeaderboard(GetFolderPath(SpecialFolder.ApplicationData) &
+            PackUnpack.ModifyCode(GetFolderPath(SpecialFolder.ApplicationData) &
                                          "\AxiomRandomizer\VanillaFiles\RandomAV.iL")
             Return True
         Else
@@ -92,7 +108,7 @@ Public Class FileSelect
         End If
     End Sub
 #End Region
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub AVFileSelector_Click(sender As Object, e As EventArgs) Handles AVFileSelector.Click
         If Not My.Settings.ExeFilePath = "" Then
             If File.Exists(My.Settings.ExeFilePath) Then
                 OpenFileExe.InitialDirectory = Path.GetDirectoryName(My.Settings.ExeFilePath)
@@ -140,11 +156,15 @@ Public Class FileSelect
             If My.Settings.SaveFilePath = "" Then
                 GetSaveFile()
             End If
-            If PackUnpack.UnpacktoAppdata(EXEFilePath) = True Then
-                If Application.OpenForms().OfType(Of RandomMenu).Any Then
-                    RandomMenu.SetExePath()
+            My.Settings.ExpressExtractUsed = RadioExpress.Checked
+            If RadioExpress.Checked Then
+                If PackUnpack.UnpacktoAppdata(EXEFilePath) = True Then
+                    RandomMenu.Show()
                 End If
-                RandomMenu.Show()
+            Else
+                If PackUnpack.UnpacktoAppdata(EXEFilePath) = True Then
+                    RandomMenu.Show()
+                End If
             End If
         End If
     End Sub
@@ -155,12 +175,16 @@ Public Class FileSelect
         Dim BackupFileExtension As String = ".bak"
         Dim BackupPath As String = BackupFolder & BackupFileName & BackupFileExtension
         If File.Exists(BackupPath) Then
-            ExeVersions.CheckBackup(BackupPath, EXEFilePath)
-            Dim x As Integer = 0
-            Do
-                x = x + 1
-                BackupPath = BackupFolder & BackupFileName & " - (" & CStr(x) & ")" & BackupFileExtension
-            Loop While File.Exists(BackupPath)
+            If Not ExeVersions.CheckBackup(BackupPath, EXEFilePath) Then
+                Dim x As Integer = 0
+                Do
+                    x = x + 1
+                    BackupPath = BackupFolder & BackupFileName & " - (" & CStr(x) & ")" & BackupFileExtension
+                Loop While File.Exists(BackupPath)
+            Else
+                ' if the hashes for the backup and the tested exe are the same, then we do not have to make a backup file.
+                Exit Sub
+            End If
         End If
         Try
             File.Copy(EXEFilePath, BackupPath, Overwrite)
@@ -168,16 +192,25 @@ Public Class FileSelect
             MessageBox.Show(ex.Message)
         End Try
     End Sub
-#Region "EXE Updater"
-    Public Shared WithEvents BackgroundApplicationUpdate As BackgroundWorker = New BackgroundWorker
-    Public Shared Sub BackgroundApplicationUpdate_DoWork(sender As Object, e As ComponentModel.DoWorkEventArgs) Handles BackgroundApplicationUpdate.DoWork
-        OnlineVersion.CheckUpdate()
+
+#Region "Express and custom settings"
+    Private Sub RadioExpress_CheckedChanged(sender As Object, e As EventArgs) Handles RadioExpress.CheckedChanged 'Radio Custom would be redunant
+        If RadioExpress.Checked = True Then
+            ExpressSettings()
+        Else
+            Me.Width = 250
+            Me.Height = 260
+        End If
     End Sub
-    Sub CheckUpdate()
-        'Dim Temp As ThreadStart = New ThreadStart With (OnlineVersion.CheckUpdate)
-        Dim checkUpdateThread = New Thread(AddressOf OnlineVersion.CheckUpdate)
-        checkUpdateThread.SetApartmentState(ApartmentState.STA)
-        checkUpdateThread.Start()
+    Sub ExpressSettings()
+        Me.Width = 250
+        Me.Height = 140
+        RadioExpress.Checked = True
+        CheckBoxSave.Checked = True
+        CheckBoxLabcoat.Checked = True
+        CheckBoxAnimations.Checked = True
+        CheckBoxBackground.Checked = True
+        CheckBoxWakeUp.Checked = True
     End Sub
 #End Region
 

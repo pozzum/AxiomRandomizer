@@ -6,8 +6,10 @@
     End Sub
     Sub LoadLocations()
         DataGridView1.Rows.Clear()
+        Randomizer.LocationInformation.Sort(Function(x, y) x.VanillaPlacement.CompareTo(y.VanillaPlacement))
         For i As Integer = 0 To Randomizer.LocationInformation.Count - 1
-            DataGridView1.Rows.Add(Randomizer.LocationInformation(i).PlaceOrder,
+            If Not (Randomizer.LocationInformation(i).Item = GameInformation.ItemType.Empty) Then
+                DataGridView1.Rows.Add(Randomizer.LocationInformation(i).PlaceOrder,
                                    Randomizer.LocationInformation(i).Item.ToString,
                                    Randomizer.LocationInformation(i).ItemName,
                                    Randomizer.LocationInformation(i).ItemWeight,
@@ -16,7 +18,11 @@
                                    Randomizer.LocationInformation(i).Vanilla.ToString,
                                    Randomizer.LocationInformation(i).VanillaPlacement,
                                    Randomizer.LocationInformation(i).Weight,
-                                   Randomizer.LocationInformation(i).RerollCount)
+                                   Randomizer.LocationInformation(i).RerollCount,
+                                   String.Join(",", Randomizer.LocationInformation(i).RequiredPowers.ToArray()),
+                                   String.Join(",", Randomizer.LocationInformation(i).AddedPowers.ToArray()))
+                'MessageBox.Show(String.Join(",", Randomizer.LocationInformation(i).PowersAttained.ToArray()))
+            End If
         Next
     End Sub
 

@@ -75,6 +75,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="BatchMenu.Designer.vb">
+      <DependentUpon>BatchMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BatchMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="CreditsForm.Designer.vb">
       <DependentUpon>CreditsForm.vb</DependentUpon>
     </Compile>
@@ -106,6 +112,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="OnlineVersion.vb" />
+    <Compile Include="OptionsMenu.Designer.vb">
+      <DependentUpon>OptionsMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OptionsMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="PackUnpack\PackUnpack.vb" />
     <Compile Include="Randomizer\GameInformation.vb" />
     <Compile Include="Randomizer\Randomizer.vb" />
@@ -125,6 +137,9 @@
     <Compile Include="TileMapEditor.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BatchMenu.resx">
+      <DependentUpon>BatchMenu.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreditsForm.resx">
       <DependentUpon>CreditsForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -137,6 +152,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OptionsMenu.resx">
+      <DependentUpon>OptionsMenu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RandomMenu.resx">
       <DependentUpon>RandomMenu.vb</DependentUpon>

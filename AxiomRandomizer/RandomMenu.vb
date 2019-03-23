@@ -2,91 +2,118 @@
 Imports System.IO    'Files
 Public Class RandomMenu
 #Region "Form Startup"
-    Private Sub RandomMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub RandomMenu_LoadRandomMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = Me.Text & " Ver: " & My.Application.Info.Version.ToString
         FileSelect.Close()
         AddDifficulties()
         CheckLastSeed()
         CheckRandoExe()
-        TextBoxExeLocation.Text = My.Settings.ExeFilePath
+        MenuHeight()
     End Sub
     Shared Sub AddDifficulties()
         RandomMenu.ComboBoxDifficulties.Items.AddRange(System.Enum.GetNames(GetType(Randomizer.DifficultySetting)))
         RandomMenu.ComboBoxDifficulties.SelectedIndex = 0
     End Sub
-    Shared Sub SetExePath()
-        RandomMenu.TextBoxExeLocation.Text = My.Settings.ExeFilePath
-    End Sub
     Sub CheckLastSeed()
         If My.Settings.PreviousSeed = "" Then
-            My.Settings.PreviousSeed = GetRandomNumber()
+            My.Settings.PreviousSeed = GetRandomNumber().ToString
         End If
         TextBoxSeed.Text = My.Settings.PreviousSeed
     End Sub
     Sub CheckRandoExe()
         If My.Settings.RandoExePath = "" Then
-            ButtonOpenRando.Enabled = False
+            OpenRandomizedGameToolStripMenuItem.Enabled = False
         Else
             If File.Exists(My.Settings.RandoExePath) Then
-                ButtonOpenRando.Enabled = True
+                OpenRandomizedGameToolStripMenuItem.Enabled = True
             Else
-                ButtonOpenRando.Enabled = False
+                OpenRandomizedGameToolStripMenuItem.Enabled = False
+            End If
+        End If
+    End Sub
+    Shared Sub MenuHeight()
+        If Application.OpenForms().OfType(Of RandomMenu).Any Then
+            If My.Settings.MapGeneration = "Custom" Then
+                If My.Settings.DebugMode Then
+                    RandomMenu.Height = 650
+                    RandomMenu.TextBoxDebug.Visible = True
+                Else
+                    RandomMenu.Height = 300
+                    RandomMenu.TextBoxDebug.Visible = False
+                End If
+            Else
+                If My.Settings.DebugMode Then
+                    RandomMenu.Height = 650
+                    RandomMenu.TextBoxDebug.Visible = True
+                Else
+                    RandomMenu.Height = 225
+                    RandomMenu.TextBoxDebug.Visible = False
+                End If
             End If
         End If
     End Sub
 #End Region
 #Region "Form Controls"
     Private Sub ButtonRandomSeed_Click(sender As Object, e As EventArgs) Handles ButtonRandomSeed.Click
-        TextBoxSeed.Text = GetRandomNumber()
+        TextBoxSeed.Text = GetRandomNumber().ToString
     End Sub
     Function GetRandomNumber() As Integer
         Randomize()
         If Rnd() > 0.5 Then
-            Return CLng((Rnd() * Integer.MaxValue)).ToString
+            Return CInt(Rnd() * Integer.MaxValue)
         Else
-            Return CLng(-(Rnd() * Integer.MaxValue)).ToString
+            Return CInt(-(Rnd() * Integer.MaxValue))
         End If
 
     End Function
-    Private Sub ButtonFileSelect_Click(sender As Object, e As EventArgs) Handles ButtonFileSelect.Click
-        Me.Hide()
-        FileSelect.ShowDialog()
-    End Sub
     Private Sub CheckBoxWalls_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxWalls.CheckedChanged
-        If CheckBoxWalls.Checked = False Then
+        If CheckBoxWalls.Checked = False AndAlso RadioButtonCustomMap.Checked Then
             MessageBox.Show("Diabling this may increase the chance of soft-locking in Ukkin-Na")
         End If
     End Sub
     Private Sub CheckBoxDropDown_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxDropDown.CheckedChanged
-        If CheckBoxDropDown.Checked = False Then
+        If CheckBoxDropDown.Checked = False AndAlso RadioButtonCustomMap.Checked Then
             MessageBox.Show("Diabling this may increase the chance of soft-locking in Zi")
         End If
     End Sub
     Private Sub ButtonBuild_Click(sender As Object, e As EventArgs) Handles ButtonBuild.Click
-        PackUnpack.CopyToWorking()
-        If TileMapEditor.CheckTileMaps() Then
-            My.Settings.PreviousSeed = TextBoxSeed.Text
-            Dim SelectedDifficulty As Randomizer.DifficultySetting =
+        Dim SelectedDifficulty As Randomizer.DifficultySetting =
         DirectCast([Enum].Parse(GetType(Randomizer.DifficultySetting),
                                 ComboBoxDifficulties.SelectedItem.ToString),
                                 Randomizer.DifficultySetting)
-            Randomizer.BuildLocations(CLng(TextBoxSeed.Text), SelectedDifficulty)
-            If CheckBoxMonsters.Checked Then
-                Randomizer.ShuffleMonsters(CLng(TextBoxSeed.Text), SelectedDifficulty)
-            Else
-                Randomizer.MonsterList = New List(Of GameInformation.MonsterSpawn)
-            End If
-            TileMapEditor.WriteItems()
+        If Not SelectedDifficulty = Randomizer.DifficultySetting.Rebuild Then
+            PackUnpack.CopyToWorking()
+            If TileMapEditor.CheckTileMaps() Then
+                My.Settings.PreviousSeed = TextBoxSeed.Text
+                Randomizer.BuildLocations(CLng(TextBoxSeed.Text), SelectedDifficulty, CheckBoxOpenEribu.Checked, CheckBoxOpenElsenova.Checked, CheckBoxOpenAbsu.Checked)
+                'If CheckBoxMonsters.Checked Then
+                'Randomizer.ShuffleMonsters(CLng(TextBoxSeed.Text), SelectedDifficulty)
+                'Else
+                'Randomizer.MonsterList = New List(Of GameInformation.MonsterSpawn)
+                'End If
+                TileMapEditor.WriteItems()
                 TileMapEditor.OneWayDropDown(CheckBoxDropDown.Checked)
                 TileMapEditor.OneWayWalls(CheckBoxWalls.Checked)
                 TileMapEditor.RemoveIllusion(CheckBoxIllusion.Checked)
-                PackUnpack.BuildFromAppdata(My.Settings.ExeFilePath)
+                TileMapEditor.OpenEribu(CheckBoxOpenEribu.Checked)
+                TileMapEditor.OpenElsenova(CheckBoxOpenElsenova.Checked)
+                TileMapEditor.OpenAbsu(CheckBoxOpenAbsu.Checked)
                 Randomizer.ExportLocations(My.Settings.ExeFilePath)
-                CheckRandoExe()
-                MessageBox.Show("Build complete.")
+                XMLEditor.WriteSettings(CLng(TextBoxSeed.Text),
+                                        SelectedDifficulty,
+                                        CheckBoxOpenEribu.Checked,
+                                        CheckBoxOpenElsenova.Checked,
+                                        CheckBoxOpenAbsu.Checked,
+                                        CheckBoxDropDown.Checked,
+                                        CheckBoxWalls.Checked,
+                                        CheckBoxIllusion.Checked)
             Else
                 MessageBox.Show("Error With Tile Map")
+            End If
         End If
+        PackUnpack.BuildFromAppdata(My.Settings.ExeFilePath)
+        CheckRandoExe()
+        MessageBox.Show("Build complete.")
     End Sub
     Private Sub ButtonSpoiler_Click(sender As Object, e As EventArgs) Handles ButtonSpoiler.Click
         My.Settings.PreviousSeed = TextBoxSeed.Text
@@ -94,11 +121,11 @@ Public Class RandomMenu
             DirectCast([Enum].Parse(GetType(Randomizer.DifficultySetting),
                                     ComboBoxDifficulties.SelectedItem.ToString),
                                     Randomizer.DifficultySetting)
-        Randomizer.BuildLocations(CLng(TextBoxSeed.Text), SelectedDifficulty)
+        Randomizer.BuildLocations(CLng(TextBoxSeed.Text), SelectedDifficulty, CheckBoxOpenElsenova.Checked, CheckBoxOpenEribu.Checked, CheckBoxOpenAbsu.Checked)
         SpoilerForm.Show()
     End Sub
-
     Private Sub TextBoxSeed_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSeed.TextChanged
+        'THis can have bad data pasted in still TO FIX
         Dim SentTextBox As TextBox = CType(sender, TextBox)
         Dim CursorPosition As Integer = SentTextBox.SelectionStart
         SentTextBox.Text = Regex.Replace(SentTextBox.Text, "[^\d-]", "")
@@ -113,8 +140,151 @@ Public Class RandomMenu
         End If
         SentTextBox.SelectionStart = CursorPosition
     End Sub
+    Private Sub TrackBarBatchSize_Scroll(sender As Object, e As EventArgs) Handles TrackBarBatchSize.Scroll
+        LabelBatchSize.Text = "Batch Size: " & TrackBarBatchSize.Value
+    End Sub
+    Public Shared BatchList As List(Of GameInformation.Location)
+    Private Sub ButtonGenerateBatch_Click(sender As Object, e As EventArgs) Handles ButtonGenerateBatch.Click
+        Dim SelectedDifficulty As Randomizer.DifficultySetting =
+    DirectCast([Enum].Parse(GetType(Randomizer.DifficultySetting),
+                            ComboBoxDifficulties.SelectedItem.ToString),
+                            Randomizer.DifficultySetting)
+        'first one we do out of the loop so we can pair the name locations and vanilla order for future locations
+        Randomizer.BuildLocations(GetRandomNumber(), SelectedDifficulty, CheckBoxOpenElsenova.Checked, CheckBoxOpenEribu.Checked, CheckBoxOpenAbsu.Checked)
+        Randomizer.LocationInformation.Sort(Function(x, y) x.VanillaPlacement.CompareTo(y.VanillaPlacement))
+        Randomizer.LocationInformation.Reverse()
+        BatchList = New List(Of GameInformation.Location)
+        For i As Integer = 0 To Randomizer.LocationInformation.Count - 1
+            Dim TempItemList As New List(Of GameInformation.ItemType)
+            TempItemList.Add(Randomizer.LocationInformation(i).Item)
+            Dim CurrentBatch As New GameInformation.Location With {
+                .Name = Randomizer.LocationInformation(i).Name,
+                .Vanilla = Randomizer.LocationInformation(i).Vanilla,
+                .VanillaPlacement = Randomizer.LocationInformation(i).VanillaPlacement,
+                .Region = Randomizer.LocationInformation(i).Region,
+                .RequiredPowers = Randomizer.LocationInformation(i).RequiredPowers,
+                .PlacedItems = TempItemList
+            }
+            BatchList.Add(CurrentBatch)
+        Next
+        BatchList.Sort(Function(x, y) x.VanillaPlacement.CompareTo(y.VanillaPlacement))
+        BatchList.Reverse()
+        For I As Integer = 1 To TrackBarBatchSize.Value - 1
+            Randomizer.BuildLocations(GetRandomNumber(), SelectedDifficulty, CheckBoxOpenElsenova.Checked, CheckBoxOpenEribu.Checked, CheckBoxOpenAbsu.Checked)
+            Randomizer.LocationInformation.Sort(Function(x, y) x.VanillaPlacement.CompareTo(y.VanillaPlacement))
+            Randomizer.LocationInformation.Reverse()
+            For J As Integer = 0 To Randomizer.LocationInformation.Count - 1
+                BatchList(J).PlacedItems.Add(Randomizer.LocationInformation(J).Item)
+            Next
+        Next
+        BatchMenu.Show()
+    End Sub
+#End Region
+#Region "Map Options"
+    Private Sub ComboBoxDifficulties_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxDifficulties.SelectedIndexChanged
+        If RadioButtonDefaultMap.Checked Then
+            DefaultMapOptionsFromDifficulty()
+        End If
+    End Sub
+    Private Sub RadioButtonDefaultMap_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonDefaultMap.CheckedChanged
+        If RadioButtonDefaultMap.Checked Then
+            CheckBoxWalls.Enabled = False
+            CheckBoxIllusion.Enabled = False
+            CheckBoxDropDown.Enabled = False
+            CheckBoxOpenEribu.Enabled = False
+            CheckBoxOpenElsenova.Enabled = False
+            CheckBoxOpenAbsu.Enabled = False
+            DefaultMapOptionsFromDifficulty()
+        End If
+        'Make this setting enumerated somehow... TO FIX
+        My.Settings.MapGeneration = "Default"
+        MenuHeight()
+    End Sub
+    Private Sub RadioButtonCustomMap_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonCustomMap.CheckedChanged
+        If RadioButtonCustomMap.Checked Then
+            CheckBoxWalls.Enabled = True
+            CheckBoxIllusion.Enabled = True
+            CheckBoxDropDown.Enabled = True
+            CheckBoxOpenEribu.Enabled = True
+            CheckBoxOpenElsenova.Enabled = True
+            CheckBoxOpenAbsu.Enabled = True
+        End If
+        My.Settings.MapGeneration = "Custom"
+        MenuHeight()
+    End Sub
+    Private Sub RadioButtonVanillaMap_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonVanillaMap.CheckedChanged
+        If RadioButtonVanillaMap.Checked Then
+            CheckBoxWalls.Enabled = False
+            CheckBoxIllusion.Enabled = False
+            CheckBoxDropDown.Enabled = False
+            CheckBoxOpenEribu.Enabled = False
+            CheckBoxOpenElsenova.Enabled = False
+            CheckBoxOpenAbsu.Enabled = False
+            'Unchecks
+            CheckBoxWalls.Checked = False
+            CheckBoxIllusion.Checked = False
+            CheckBoxDropDown.Checked = False
+            CheckBoxOpenEribu.Checked = False
+            CheckBoxOpenElsenova.Checked = False
+            CheckBoxOpenAbsu.Checked = False
+        End If
+        My.Settings.MapGeneration = "Vanilla"
+        MenuHeight()
+    End Sub
+    Sub DefaultMapOptionsFromDifficulty()
+        If ComboBoxDifficulties.Items.Count > 0 Then
+            Dim SelectedDifficulty As Randomizer.DifficultySetting =
+DirectCast([Enum].Parse(GetType(Randomizer.DifficultySetting),
+                        ComboBoxDifficulties.SelectedItem.ToString),
+                        Randomizer.DifficultySetting)
+            If SelectedDifficulty = Randomizer.DifficultySetting.Easy Then
+                CheckBoxWalls.Checked = True
+                CheckBoxIllusion.Checked = True
+                CheckBoxDropDown.Checked = True
+                CheckBoxOpenEribu.Checked = False
+                CheckBoxOpenElsenova.Checked = False
+                CheckBoxOpenAbsu.Checked = False
+            ElseIf SelectedDifficulty = Randomizer.DifficultySetting.Normal Then
+                CheckBoxWalls.Checked = True
+                CheckBoxIllusion.Checked = True
+                CheckBoxDropDown.Checked = True
+                CheckBoxOpenEribu.Checked = True
+                CheckBoxOpenElsenova.Checked = True
+                CheckBoxOpenAbsu.Checked = True
+            ElseIf SelectedDifficulty = Randomizer.DifficultySetting.Practice Then
+                CheckBoxWalls.Checked = True
+                CheckBoxIllusion.Checked = True
+                CheckBoxDropDown.Checked = True
+                CheckBoxOpenEribu.Checked = False
+                CheckBoxOpenElsenova.Checked = False
+                CheckBoxOpenAbsu.Checked = False
+            ElseIf SelectedDifficulty = Randomizer.DifficultySetting.Rebuild Then
+                CheckBoxWalls.Checked = False
+                CheckBoxIllusion.Checked = False
+                CheckBoxDropDown.Checked = False
+                CheckBoxOpenEribu.Checked = False
+                CheckBoxOpenElsenova.Checked = False
+                CheckBoxOpenAbsu.Checked = False
+            End If
+        End If
+    End Sub
+#End Region
+#Region "Toolstrip"
+    Private Sub OpenRandomizedGameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenRandomizedGameToolStripMenuItem.Click
+        'messageBox.Show("""" & My.Settings.RandoExePath & """")
+        If File.Exists(My.Settings.RandoExePath) Then
+            'For some reason this always opens the Randomized exe
 
-    Private Sub ButtonOpenBaseGame_Click(sender As Object, e As EventArgs) Handles ButtonOpenBaseGame.Click
+            'Process.Start("""" & My.Settings.RandoExePath & """")
+            'Me.Close()
+
+            Process.Start("""" & Path.GetDirectoryName(My.Settings.RandoExePath) & """")
+            Me.Close()
+        Else
+            MessageBox.Show("File Not Found")
+        End If
+    End Sub
+    Private Sub OpenBaseGameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenBaseGameToolStripMenuItem.Click
         If File.Exists(My.Settings.ExeFilePath) Then
             Process.Start("""" & My.Settings.ExeFilePath & """")
             Me.Close()
@@ -122,27 +292,15 @@ Public Class RandomMenu
             MessageBox.Show("File Not Found")
         End If
     End Sub
-
-    Private Sub ButtonOpenRando_Click(sender As Object, e As EventArgs) Handles ButtonOpenRando.Click
-        'MessageBox.Show("""" & My.Settings.RandoExePath & """")
-        'Process.Start("""" & My.Settings.RandoExePath & """")
-        Me.Close()
-        If File.Exists(My.Settings.RandoExePath) Then
-            'Dim TempProcess As ProcessStartInfo = New ProcessStartInfo With {
-            '.FileName = "CMD",
-            '.Arguments = "/K ""H:\Steam\steamapps\common\Axiom Verge\RandomAV.bat"""}
-            Process.Start("""" & Path.GetDirectoryName(My.Settings.RandoExePath) & """")
-            'Dim StartInfo As ProcessStartInfo = New ProcessStartInfo()
-            'StartInfo.FileName = My.Settings.RandoExePath
-            ' TempProcess.StartInfo = StartInfo
-            'TempProcess.Start()
-            Me.Close()
-        Else
-            MessageBox.Show("File Not Found")
-        End If
+    Private Sub OptionsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OptionsToolStripMenuItem.Click
+        Me.Hide()
+        OptionsMenu.Show()
     End Sub
-
-    Private Sub LabelDonate_Click(sender As Object, e As EventArgs) Handles LabelCredits.Click
+    Private Sub SelectExeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectExeToolStripMenuItem.Click
+        Me.Hide()
+        FileSelect.Show()
+    End Sub
+    Private Sub ThankTheDevsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThankTheDevsToolStripMenuItem.Click
         CreditsForm.Show()
     End Sub
 #End Region

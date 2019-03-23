@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -29,7 +29,7 @@ Namespace My
     Private Shared addedHandlerLockObject As New Object
 
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)> _
-    Private Shared Sub AutoSaveSettings(ByVal sender As Global.System.Object, ByVal e As Global.System.EventArgs)
+    Private Shared Sub AutoSaveSettings(sender As Global.System.Object, e As Global.System.EventArgs)
         If My.Application.SaveMySettingsOnExit Then
             My.Settings.Save()
         End If
@@ -159,6 +159,102 @@ Namespace My
             End Get
             Set
                 Me("ManualDecompilePending") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property ExeHashString() As String
+            Get
+                Return CType(Me("ExeHashString"),String)
+            End Get
+            Set
+                Me("ExeHashString") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property SteamVersion() As Boolean
+            Get
+                Return CType(Me("SteamVersion"),Boolean)
+            End Get
+            Set
+                Me("SteamVersion") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property ExpressExtractUsed() As Boolean
+            Get
+                Return CType(Me("ExpressExtractUsed"),Boolean)
+            End Get
+            Set
+                Me("ExpressExtractUsed") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0.0.0.0")>  _
+        Public Property ExtractionVersion() As String
+            Get
+                Return CType(Me("ExtractionVersion"),String)
+            End Get
+            Set
+                Me("ExtractionVersion") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property XMLLimited() As Boolean
+            Get
+                Return CType(Me("XMLLimited"),Boolean)
+            End Get
+            Set
+                Me("XMLLimited") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("10")>  _
+        Public Property XMLLimitCount() As Integer
+            Get
+                Return CType(Me("XMLLimitCount"),Integer)
+            End Get
+            Set
+                Me("XMLLimitCount") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property DebugMode() As Boolean
+            Get
+                Return CType(Me("DebugMode"),Boolean)
+            End Get
+            Set
+                Me("DebugMode") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("""Default""")>  _
+        Public Property MapGeneration() As String
+            Get
+                Return CType(Me("MapGeneration"),String)
+            End Get
+            Set
+                Me("MapGeneration") = value
             End Set
         End Property
     End Class

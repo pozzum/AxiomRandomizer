@@ -33,6 +33,8 @@ Partial Class SpoilerForm
         Me.VanillaOrder = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LocationWeight = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Rerolls = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ReqPowers = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AcquiredPowers = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportLocationsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportLocationsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -47,14 +49,15 @@ Partial Class SpoilerForm
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Placed, Me.ItemType, Me.ItemName, Me.ItemWeight, Me.LocationName, Me.Area, Me.VanillaItem, Me.VanillaOrder, Me.LocationWeight, Me.Rerolls})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Placed, Me.ItemType, Me.ItemName, Me.ItemWeight, Me.LocationName, Me.Area, Me.VanillaItem, Me.VanillaOrder, Me.LocationWeight, Me.Rerolls, Me.ReqPowers, Me.AcquiredPowers})
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(0, 24)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(734, 687)
+        Me.DataGridView1.Size = New System.Drawing.Size(984, 687)
         Me.DataGridView1.TabIndex = 1
         '
         'Placed
@@ -127,6 +130,20 @@ Partial Class SpoilerForm
         Me.Rerolls.ReadOnly = True
         Me.Rerolls.Width = 64
         '
+        'ReqPowers
+        '
+        Me.ReqPowers.HeaderText = "Req Powers"
+        Me.ReqPowers.Name = "ReqPowers"
+        Me.ReqPowers.ReadOnly = True
+        Me.ReqPowers.Width = 83
+        '
+        'AcquiredPowers
+        '
+        Me.AcquiredPowers.HeaderText = "Added Powers"
+        Me.AcquiredPowers.Name = "AcquiredPowers"
+        Me.AcquiredPowers.ReadOnly = True
+        Me.AcquiredPowers.Width = 93
+        '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportLocationsToolStripMenuItem, Me.ImportLocationsToolStripMenuItem})
@@ -151,7 +168,7 @@ Partial Class SpoilerForm
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(734, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(984, 24)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -164,7 +181,7 @@ Partial Class SpoilerForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(734, 711)
+        Me.ClientSize = New System.Drawing.Size(984, 711)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
@@ -197,4 +214,6 @@ Partial Class SpoilerForm
     Friend WithEvents VanillaOrder As DataGridViewTextBoxColumn
     Friend WithEvents LocationWeight As DataGridViewTextBoxColumn
     Friend WithEvents Rerolls As DataGridViewTextBoxColumn
+    Friend WithEvents ReqPowers As DataGridViewTextBoxColumn
+    Friend WithEvents AcquiredPowers As DataGridViewTextBoxColumn
 End Class

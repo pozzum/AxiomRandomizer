@@ -5,13 +5,18 @@ Public Class PackUnpack
     'https://ci.dot.net/job/dotnet_coreclr/job/master/job/release_windows_nt/lastSuccessfulBuild/artifact/bin/Product/Windows_NT.x64.Release/<- download link
     'Exes versions 2.1.40
     Shared IlFileName As String = "RandomAV.iL" '"AxiomVergeRandomizer.iL"
-    Shared VanillFolder As String = "VanillaFiles"
+    Shared VanillaFolder As String = "VanillaFiles"
     Shared WorkingFolder As String = "WorkingFiles"
 #Region "Unpacking"
-    Shared Function UnpacktoAppdata(ExeFilePath)
+    Shared Function UnpacktoAppdata(ExeFilePath As String,
+                                 Optional SaveChange As Boolean = True,
+                                 Optional LabCoatChange As Boolean = True,
+                                 Optional TileWakeChange As Boolean = True,
+                                 Optional BackgroundChange As Boolean = True,
+                                 Optional AxiomDisruptChange As Boolean = True)
         Dim UnpackFolder As String = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\"
         GeneralTools.FolderCheck(UnpackFolder)
-        UnpackFolder += VanillFolder & Path.DirectorySeparatorChar
+        UnpackFolder += VanillaFolder & Path.DirectorySeparatorChar
         GeneralTools.FolderCheck(UnpackFolder)
         UnpackFolder += IlFileName
         Dim IldasmPath As String = GetUnpackerPath()
@@ -47,7 +52,7 @@ Public Class PackUnpack
                 GeneralTools.UnZip(Path.GetDirectoryName(UnpackFolder) &
                                Path.DirectorySeparatorChar &
                                "OuterBeyond.EmbeddedContent.Content.zip")
-                RemoveLeaderboard(UnpackFolder)
+                ModifyCode(UnpackFolder, SaveChange, LabCoatChange, TileWakeChange, BackgroundChange, AxiomDisruptChange)
                 MessageBox.Show("Game Successfully Dumped to app data")
                 File.Delete(Path.GetDirectoryName(Application.ExecutablePath) &
                                Path.DirectorySeparatorChar &
@@ -75,19 +80,138 @@ Public Class PackUnpack
             End If
         End If
     End Function
-    Shared Sub RemoveLeaderboard(IlFile As String)
+    Shared Sub ModifyCode(IlFile As String,
+                                 Optional SaveChange As Boolean = True,
+                                 Optional LabCoatChange As Boolean = True,
+                                 Optional TileWakeChange As Boolean = True,
+                                 Optional BackgroundChange As Boolean = True,
+                                 Optional AxiomDisruptChange As Boolean = True)
         Dim lines() As String = IO.File.ReadAllLines(IlFile)
-        For i As Integer = 0 To lines.Length - 1
-            If lines(i) = "    IL_003d:  brtrue.s   IL_0042" Then
-                lines(i) = "    IL_003d:  br   IL_0042"
-                Exit For
-            ElseIf lines(i).Contains(""".sav""") Then
-                lines(i) = lines(i).Replace(""".sav""", """.save""")
-            End If
-            If i = lines.Length - 1 Then
-                MessageBox.Show("Error Removing Leaderboard Uploads")
-            End If
-        Next
+        If My.Settings.SteamVersion Then
+            For i As Integer = 0 To lines.Length - 1
+                Dim LeaderboardRemoved As Boolean = False
+                'This removes Leaderboard Uploads
+                If lines(i) = "    IL_003d:  brtrue.s   IL_0042" Then
+                    lines(i) = "    IL_003d:  br   IL_0042"
+                    LeaderboardRemoved = True
+                    '
+                    'changes save files from .sav to .save
+                ElseIf lines(i).Contains(""".sav""") Then
+                    If SaveChange Then
+                        lines(i) = lines(i).Replace(""".sav""", """.save""")
+                    End If
+                    '
+                    'Changes Initial Sprite to Labcoat
+                ElseIf lines(i) = "    IL_00bc:  ldstr      ""Trace""" Then
+                    If LabCoatChange Then
+                        lines(i) = "    IL_00bc:  ldstr      ""TraceCoat"""
+                    End If
+                ElseIf lines(i) = "    IL_00d7:  ldstr      ""TraceUnarmed""" Then
+                    If LabCoatChange Then
+                        lines(i) = "    IL_00d7:  ldstr      ""TraceCoat"""
+                    End If
+                ElseIf lines(i) = "    IL_01a9:  ldstr      ""TraceUnarmedLeotard""" Then
+                    If LabCoatChange Then
+                        lines(i) = "    IL_01a9:  ldstr      ""TraceLeotard"""
+                    End If
+                    '
+                    'Waking Up Tiles by default
+                ElseIf lines(i) = "    IL_033b:  ldstr      ""DataDisruptor""" Then
+                    If TileWakeChange Then
+                        lines(i) = "    IL_033b:  ldstr      ""DummDisruptor"""
+                    End If
+                ElseIf lines(i) = "    IL_0345:  brfalse.s  IL_035f" Then
+                    If TileWakeChange Then
+                        lines(i) = "    IL_0345:  brtrue.s  IL_035f"
+                    End If
+                    '
+                    'Waking Up Background by default
+                ElseIf lines(i) = "    IL_00dd:  ldstr      ""DataDisruptor""" Then
+                    If BackgroundChange Then
+                        lines(i) = "    IL_00dd:  ldstr      ""DummDisruptor"""
+                    End If
+                ElseIf lines(i) = "    IL_00e7:  brfalse.s  IL_012e" Then
+                    If BackgroundChange Then
+                        lines(i) = "    IL_00e7:  brtrue.s  IL_012e"
+                    End If
+                    '
+                    'Waking Up Glitches by default - To Be Found
+
+                    'Remove World Wakeup from Picking up axiom disruptor
+                ElseIf lines(i) = "    IL_0015:  ldstr      ""DataDisruptor""" Then
+                    If AxiomDisruptChange Then
+                        lines(i) = "    IL_0015:  ldstr      ""DummDisruptor"""
+                    End If
+                End If
+
+                'removed because epic version does not have a leaderboard
+                If i = lines.Length - 1 Then
+                    If Not LeaderboardRemoved AndAlso My.Settings.SteamVersion Then
+                        MessageBox.Show("Error Removing Leaderboard Uploads")
+                    End If
+                End If
+            Next
+        Else 'Epic Version
+            For i As Integer = 0 To lines.Length - 1
+                Dim LeaderboardRemoved As Boolean = False
+                '
+                'changes save files from .sav to .save
+                If lines(i).Contains(""".sav""") Then
+                    If SaveChange Then
+                        lines(i) = lines(i).Replace(""".sav""", """.save""")
+                    End If
+                    '
+                    'Changes Initial Sprite to Labcoat
+                ElseIf lines(i) = "    IL_00bc:  ldstr      ""Trace""" Then
+                    If LabCoatChange Then
+                        lines(i) = "    IL_00bc:  ldstr      ""TraceCoat"""
+                    End If
+                ElseIf lines(i) = "    IL_00d7:  ldstr      ""TraceUnarmed""" Then
+                    If LabCoatChange Then
+                        lines(i) = "    IL_00d7:  ldstr      ""TraceCoat"""
+                    End If
+                ElseIf lines(i) = "    IL_01a9:  ldstr      ""TraceUnarmedLeotard""" Then
+                    If LabCoatChange Then
+                        lines(i) = "    IL_01a9:  ldstr      ""TraceLeotard"""
+                    End If
+                    '
+                    'Waking Up Tiles by default
+                ElseIf lines(i) = "    IL_0337:  ldstr      ""DataDisruptor""" Then
+                    If TileWakeChange Then
+                        lines(i) = "    IL_0337:  ldstr      ""DummDisruptor"""
+                    End If
+                ElseIf lines(i) = "    IL_0341:  brfalse.s  IL_035b" Then
+                    If TileWakeChange Then
+                        lines(i) = "    IL_0341:  brtrue.s  IL_035b"
+                    End If
+                    '
+                    'Waking Up Background by default
+                ElseIf lines(i) = "    IL_00dd:  ldstr      ""DataDisruptor""" Then
+                    If BackgroundChange Then
+                        lines(i) = "    IL_00dd:  ldstr      ""DummDisruptor"""
+                    End If
+                ElseIf lines(i) = "    IL_00e7:  brfalse.s  IL_012e" Then
+                    If BackgroundChange Then
+                        lines(i) = "    IL_00e7:  brtrue.s  IL_012e"
+                    End If
+                    '
+                    'Waking Up Glitches by default - To Be Found
+
+                    'Remove World Wakeup from Picking up axiom disruptor
+                ElseIf lines(i) = "    IL_0015:  ldstr      ""DataDisruptor""" Then
+                    If AxiomDisruptChange Then
+                        lines(i) = "    IL_0015:  ldstr      ""DummDisruptor"""
+                    End If
+                End If
+
+                'removed because epic version does not have a leaderboard
+                If i = lines.Length - 1 Then
+                    If Not LeaderboardRemoved AndAlso My.Settings.SteamVersion Then
+                        MessageBox.Show("Error Removing Leaderboard Uploads")
+                    End If
+                End If
+            Next
+        End If
         IO.File.WriteAllLines(IlFile, lines)
     End Sub
     Shared Function GetUnpackerPath() As String
@@ -179,7 +303,7 @@ Public Class PackUnpack
     End Function
 #End Region
     Shared Sub CopyToWorking()
-        Dim UnpackFolder As String = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\" & VanillFolder & Path.DirectorySeparatorChar
+        Dim UnpackFolder As String = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\" & VanillaFolder & Path.DirectorySeparatorChar
         Dim WorkingPath As String = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\" & WorkingFolder & Path.DirectorySeparatorChar
         If Directory.Exists(WorkingPath) Then
             GeneralTools.DeleteAllItems(WorkingPath)

@@ -59,13 +59,17 @@ Public Class ExeVersions
 #End Region
     Shared Function CheckExe(EXEFilePath)
         Dim EXEhash As String = Md5Hash(EXEFilePath)
+        My.Settings.ExeHashString = EXEhash
+        'MessageBox.Show(EXEhash)
         If EXEhash = "B5AD0D15712898CED08A78084FEEB6D1" Then
             My.Settings.VersionString = "Version 1.43, 8/1/2018"
+            My.Settings.SteamVersion = True
             'Version 1.43, 8/1/2018
             'Randomizer origionally developed for this version (Steam)
             Return True
         ElseIf EXEhash = "E99C059B3F743465AAAAB366DE1F536E" Then
-            My.Settings.VersionString = "Version 1.47, 2/8/2019"
+            My.Settings.VersionString = "Version 1.47, 2/7/2019"
+            My.Settings.SteamVersion = False
             'Version 1.47, 2/8/2019
             'Epic Games Version
             Return True

@@ -29,38 +29,37 @@ Public Class TileMapEditor
             Dim lines() As String = IO.File.ReadAllLines(TileMapFolder & FileName)
             Dim NewLines As List(Of String) = New List(Of String)
             'Make the first pass monster replacements
-            If Randomizer.MonsterList.Count > 0 Then
-                'MessageBox.Show("Monsters Changing " & RegionPlaced.ToString)
-                'Make List of Monster Replacements for this area
-                Dim SpawnPairs As List(Of KeyValuePair(Of Integer, Integer)) = New List(Of KeyValuePair(Of Integer, Integer))
-                For i As Integer = 0 To Randomizer.MonsterList.Count - 1
-                    If Randomizer.MonsterList(i).Region = RegionPlaced Then
-                        SpawnPairs.Add(New KeyValuePair(Of Integer, Integer)(
-                                       Randomizer.GetDefaultGID(RegionPlaced) +
-                                       Randomizer.GetCreatureNumber(Randomizer.MonsterList(i).Vanilla),
-                                       Randomizer.GetDefaultGID(RegionPlaced) +
-                                       Randomizer.GetCreatureNumber(Randomizer.MonsterList(i).Spawns))) 'OLD,NEW
-                    End If
-                Next
-                For i As Integer = 0 To lines.Length - 1
-                    If lines(i).Contains("<object gid=") Then
-                        For j As Integer = 0 To SpawnPairs.Count - 1
-                            If lines(i).Contains("<object gid=""" & SpawnPairs(j).Key.ToString) Then
-                                lines(i) = lines(i).Replace("<object gid=""" & SpawnPairs(j).Key.ToString,
-                                                            "<object gid=""" & SpawnPairs(j).Value.ToString)
-                            End If
-                        Next
-                    ElseIf lines(i).Contains("<object id=") Then
-                        For j As Integer = 0 To SpawnPairs.Count - 1
-                            If lines(i).Contains(" gid=""" & SpawnPairs(j).Key.ToString) Then
-                                lines(i) = lines(i).Replace(" gid=""" & SpawnPairs(j).Key.ToString,
-                                                            " gid=""" & SpawnPairs(j).Value.ToString)
-                            End If
-                        Next
-                    End If
-                Next
-            End If
-
+            'if randomizer.monsterlist.count > 0 then
+            '    messagebox.show("monsters changing " & regionplaced.tostring)
+            '    make list of monster replacements for this area
+            'dim spawnpairs as list(of keyvaluepair(of integer, integer)) = new list(of keyvaluepair(of integer, integer))
+            '    for i as integer = 0 to randomizer.monsterlist.count - 1
+            '        if randomizer.monsterlist(i).region = regionplaced then
+            '            spawnpairs.add(new keyvaluepair(of integer, integer)(
+            '            randomizer.getdefaultgid(regionplaced) +
+            '            randomizer.getcreaturenumber(randomizer.monsterlist(i).vanilla),
+            '            randomizer.getdefaultgid(regionplaced) +
+            '            randomizer.getcreaturenumber(randomizer.monsterlist(i).spawns))) 'old,new
+            '        end if
+            '    next
+            '    for i as integer = 0 to lines.length - 1
+            '        if lines(i).contains("<object gid=") then
+            '            for j as integer = 0 to spawnpairs.count - 1
+            '                if lines(i).contains("<object gid=""" & spawnpairs(j).key.tostring) then
+            '                    lines(i) = lines(i).replace("<object gid=""" & spawnpairs(j).key.tostring,
+            '                                                                   "<object gid=""" & spawnpairs(j).value.tostring)
+            '                end if
+            '            next
+            '        elseif lines(i).contains("<object id=") then
+            '            for j as integer = 0 to spawnpairs.count - 1
+            '                if lines(i).contains(" gid=""" & spawnpairs(j).key.tostring) then
+            '                    lines(i) = lines(i).replace(" gid=""" & spawnpairs(j).key.tostring,
+            '                                                                   " gid=""" & spawnpairs(j).value.tostring)
+            '                end if
+            '            next
+            '        end if
+            '    next
+            'end if
             For Each Templocation As Location In Randomizer.LocationInformation
                 If Templocation.Region = RegionPlaced Then
                     If Templocation.AddedDrop = False Then
@@ -290,5 +289,276 @@ Public Class TileMapEditor
         GeneralTools.MakeWriteable(TileMapFolder & "Area6.tmx")
         File.Copy(TileMapFolder & "Area6Normal.tmx", TileMapFolder & "Area6.tmx", True)
     End Sub
+    Shared Function OpenEribu(ApplyChange As Boolean)
+        TileMapFolder = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\WorkingFiles\OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
+        If System.IO.File.Exists(TileMapFolder & "Area1.tmx") Then
+            GeneralTools.MakeWriteable(TileMapFolder & "Area1.tmx")
+            Dim lines() As String = IO.File.ReadAllLines(TileMapFolder & "Area1.tmx")
+            Dim LineCount As Integer = 0
+            If ApplyChange Then
+                For i As Integer = 0 To lines.Length - 1
+                    If lines(i).Contains("4,4,4,4,4,8,8,8,8,8,8,8,8,8,8,") Then
+                        lines(i) = lines(i).Replace("4,4,4,4,4,8,8,8,8,8,8,8,8,8,8,", "0,4,4,4,4,8,8,8,8,8,8,8,8,8,8,")
+                        LineCount += 1
+                    ElseIf lines(i).Contains("0,4,4,4,4,8,8,8,8,8,8,8,8,8,8,") Then
+                        LineCount += 1
+                    End If
+                    If lines(i).Contains("40,8,4,4,4,4,4,8,8,49,") Then
+                        lines(i) = lines(i).Replace("40,8,4,4,4,4,4,8,8,49,", "40,8,0,0,4,4,4,8,8,49,")
+                        LineCount += 1
+                    ElseIf lines(i).Contains("40,8,0,0,4,4,4,8,8,49,") Then
+                        LineCount += 1
+                    End If
+                    If lines(i).Contains("24,4,4,4,4,4,24,49,") Then
+                        lines(i) = lines(i).Replace("24,4,4,4,4,4,24,49,", "24,0,0,4,4,4,24,49,")
+                        LineCount += 1
+                    ElseIf lines(i).Contains("24,0,0,4,4,4,24,49,") Then
+                        LineCount += 1
+                    End If
+                    If lines(i).Contains("49,8,4,4,4,4,4,8,8,40,") Then
+                        lines(i) = lines(i).Replace("49,8,4,4,4,4,4,8,8,40,", "49,8,0,0,4,4,4,8,8,40,")
+                        LineCount += 1
+                    ElseIf lines(i).Contains("49,8,0,0,4,4,4,8,8,40,") Then
+                        LineCount += 1
+                    End If
+                    If i = lines.Length - 1 Then
+                        If LineCount < 4 Then
+                            If MessageBox.Show("Eribu opening incomplete, continue build?", "Drill Removal Fail", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                                Return True
+                            Else
+                                Return False
+                            End If
+                        End If
+                    End If
+                Next
+            Else ' make sure to remove change
+                For i As Integer = 0 To lines.Length - 1
+                    If lines(i).Contains("0,4,4,4,4,8,8,8,8,8,8,8,8,8,8,") Then
+                        lines(i) = lines(i).Replace("0,4,4,4,4,8,8,8,8,8,8,8,8,8,8,", "4,4,4,4,4,8,8,8,8,8,8,8,8,8,8,")
+                        LineCount += 1
+                    ElseIf lines(i).Contains("4,4,4,4,4,8,8,8,8,8,8,8,8,8,8,") Then
+                        LineCount += 1
+                    End If
+                    If lines(i).Contains("40,8,0,0,4,4,4,8,8,49,") Then
+                        lines(i) = lines(i).Replace("40,8,0,0,4,4,4,8,8,49,", "40,8,4,4,4,4,4,8,8,49,")
+                        LineCount += 1
+                    ElseIf lines(i).Contains("40,8,4,4,4,4,4,8,8,49,") Then
+                        LineCount += 1
+                    End If
+                    If lines(i).Contains("24,4,4,4,0,0,24,49,") Then
+                        lines(i) = lines(i).Replace("24,4,4,4,0,0,24,49,", "24,4,4,4,4,4,24,49,")
+                        LineCount += 1
+                    ElseIf lines(i).Contains("24,4,4,4,4,4,24,49,") Then
+                        LineCount += 1
+                    End If
+                    If lines(i).Contains("49,8,0,0,4,4,4,8,8,40,") Then
+                        lines(i) = lines(i).Replace("49,8,0,0,4,4,4,8,8,40,", "49,8,4,4,4,4,4,8,8,40,")
+                        LineCount += 1
+                    ElseIf lines(i).Contains("49,8,4,4,4,4,4,8,8,40,") Then
+                        LineCount += 1
+                    End If
+                Next
+                If LineCount < 4 Then
+                    If MessageBox.Show("Eribu closure incomplete, continue build?", "Drill Addition Fail", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End If
+            End If
+            IO.File.WriteAllLines(TileMapFolder & "Area1.tmx", lines)
+            Return True
+        Else
+            MessageBox.Show("Map file not found, creation failed")
+            Return False
+        End If
+    End Function
+    Shared Function OpenElsenova(ApplyChange As Boolean)
+        'Right Door
+        ',235,1073742030,0,0,0,2147483661
+        ',235,0,0,0,0,2147483661
+        'Left Door
+        '11,12,13,0,1073742030,235,0,0,0,0,
+        '11,12,13,0,0,235,0,0,0,0,
+        TileMapFolder = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\WorkingFiles\OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
+        If System.IO.File.Exists(TileMapFolder & "Area2.tmx") Then
+            GeneralTools.MakeWriteable(TileMapFolder & "Area2.tmx")
+            Dim lines() As String = IO.File.ReadAllLines(TileMapFolder & "Area2.tmx")
+            Dim LineCount As Integer = 0
+            If ApplyChange Then
+                For i As Integer = 0 To lines.Length - 1
+                    'Right Door
+                    If lines(i).Contains(",235,0,0,0,0,2147483661") Then
+                        lines(i) = lines(i).Replace(",235,0,0,0,0,2147483661", ",235,1073742030,0,0,0,2147483661")
+                        LineCount += 1
+                    ElseIf lines(i).Contains(",235,1073742030,0,0,0,2147483661") Then
+                        LineCount += 1
+                    End If
+                    'Left Door
+                    If lines(i).Contains("11,12,13,0,0,235,0,0,0,0,") Then
+                        lines(i) = lines(i).Replace("11,12,13,0,0,235,0,0,0,0,", "11,12,13,0,1073742030,235,0,0,0,0,")
+                        LineCount += 1
+                    ElseIf lines(i).Contains("11,12,13,0,1073742030,235,0,0,0,0,") Then
+                        LineCount += 1
+                    End If
+                    If i = lines.Length - 1 Then
+                        If LineCount < 2 Then
+                            If MessageBox.Show("Kilver door button addition incomplete, continue build?", "Button Stuck", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                                Return True
+                            Else
+                                Return False
+                            End If
+                        End If
+                    End If
+                Next
+            Else ' make sure to remove change
+                For i As Integer = 0 To lines.Length - 1
+                    If lines(i).Contains(",235,1073742030,0,0,0,2147483661") Then
+                        lines(i) = lines(i).Replace(",235,1073742030,0,0,0,2147483661", ",235,0,0,0,0,2147483661")
+                        LineCount += 1
+                    ElseIf lines(i).Contains(",235,0,0,0,0,2147483661") Then
+                        LineCount += 1
+                    End If
+                    If lines(i).Contains("11,12,13,0,1073742030,235,0,0,0,0,") Then
+                        lines(i) = lines(i).Replace("11,12,13,0,1073742030,235,0,0,0,0,", ",235,0,0,0,0,2147483661")
+                        LineCount += 1
+                    ElseIf lines(i).Contains(",235,0,0,0,0,2147483661") Then
+                        LineCount += 1
+                    End If
+                    If i = lines.Length - 1 Then
+                        If LineCount < 2 Then
+                            If MessageBox.Show("Kilver door button removal incomplete, continue build?", "Button Stuck", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                                Return True
+                            Else
+                                Return False
+                            End If
+                        End If
+                    End If
+                Next
+            End If
+            IO.File.WriteAllLines(TileMapFolder & "Area2.tmx", lines)
+            Return True
+        Else
+            MessageBox.Show("Map file not found, creation failed")
+            Return False
+        End If
+    End Function
 
+    Shared Function OpenAbsu(ApplyChange As Boolean)
+        TileMapFolder = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\WorkingFiles\OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
+        If System.IO.File.Exists(TileMapFolder & "Area2.tmx") Then
+            GeneralTools.MakeWriteable(TileMapFolder & "Area2.tmx")
+            Dim lines() As String = IO.File.ReadAllLines(TileMapFolder & "Area2.tmx")
+            Dim LineCount As Integer = 0
+            If ApplyChange Then
+                For i As Integer = 0 To lines.Length - 1
+                    If lines(i).Contains(",0,645,0,645,0,545,546,") Then
+                        lines(i) = lines(i).Replace(",0,645,0,645,0,545,546,", ",206,645,0,645,0,545,546,")
+                        LineCount += 1
+                    ElseIf lines(i).Contains(",206,645,0,645,0,545,546,") Then
+                        LineCount += 1
+                    End If
+                    If i = lines.Length - 1 Then
+                        If LineCount < 1 Then
+                            If MessageBox.Show("Absu button relocation incomplete, continue build?", "Button Stuck", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                                Return True
+                            Else
+                                Return False
+                            End If
+                        End If
+                    End If
+                Next
+            Else ' make sure to remove change
+                For i As Integer = 0 To lines.Length - 1
+                    If lines(i).Contains(",206,645,0,645,0,545,546,") Then
+                        lines(i) = lines(i).Replace(",206,645,0,645,0,545,546,", ",0,645,0,645,0,545,546,")
+                        LineCount += 1
+                    ElseIf lines(i).Contains(",0,645,0,645,0,545,546,") Then
+                        LineCount += 1
+                    End If
+                    If i = lines.Length - 1 Then
+                        If LineCount < 1 Then
+                            If MessageBox.Show("Absu button relocation incomplete, continue build?", "Button Stuck", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                                Return True
+                            Else
+                                Return False
+                            End If
+                        End If
+                    End If
+                Next
+            End If
+            IO.File.WriteAllLines(TileMapFolder & "Area2.tmx", lines)
+            Return True
+        Else
+            MessageBox.Show("Map file not found, creation failed")
+            Return False
+        End If
+    End Function
+End Class
+Public Class XMLEditor
+    Shared Function WriteSettings(SeedNum As Long,
+                                  Difficulty As Randomizer.DifficultySetting,
+                                  OpenEribu1 As Boolean,
+                                  OpenElsenova2 As Boolean,
+                                  OpenAbsu3 As Boolean,
+                                  DropDown As Boolean,
+                                  Walls As Boolean,
+                                  Illusion As Boolean)
+        Dim TextSettingsFolder = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\WorkingFiles\OuterBeyond.EmbeddedContent.Content\Text\"
+        'I will only implement this for english currently however there should later be translations for the languiages following after
+        If System.IO.File.Exists(TextSettingsFolder & "UI_English.xml") Then
+            GeneralTools.MakeWriteable(TextSettingsFolder & "UI_English.xml")
+            Dim lines() As String = IO.File.ReadAllLines(TextSettingsFolder & "UI_English.xml")
+            Dim LineCount As Integer = 0
+            Dim DiscriptionString As String = "~This is a special mode with randomized items"
+            'If MonstersRando Then
+            'DiscriptionString += ", and monsters randomized.  "
+            'Else
+            'DiscriptionString += ".  "
+            'End If
+            DiscriptionString += "This has been generated on the " & Difficulty.ToString & " difficulty with the seed: " & SeedNum.ToString
+            '_____Individual checks
+            Dim OptionsString As String = "`The following options have been enabled: "
+            If OpenEribu1 Then OptionsString += "Open Eribu, "
+            If OpenElsenova2 Then OptionsString += "Open Elsenova, "
+            If OpenAbsu3 Then OptionsString += "Open Absu, "
+            If DropDown Then OptionsString += "Drop Down Change, "
+            If Walls Then OptionsString += "1 Way Wall Change, "
+            If Illusion Then OptionsString += "Illusion Removed, "
+            OptionsString += " </THTextEntry>"
+            For i As Integer = 0 To lines.Length - 1
+                If lines(i).Contains("This is a special mode for competitive streamers who complete the game in a single sitting.") OrElse
+                    lines(i).StartsWith("~") Then
+                    lines(i) = DiscriptionString
+                    LineCount += 1
+                End If
+                If lines(i).Contains("It eliminates dialogue, cutscenes, and randomized content, and provides an on-screen timer.</THTextEntry>") OrElse
+                    lines(i).StartsWith("`") Then
+                    lines(i) = OptionsString
+                    LineCount += 1
+                End If
+            Next
+            'It eliminates dialogue, cutscenes, and randomized content, and provides an on-screen timer.</THTextEntry>
+            If LineCount < 2 Then
+                If MessageBox.Show("Settings description incomplete, continue build?", "UI Edits Fail", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                    Return True
+                Else
+                    Return False
+                End If
+            End If
+            IO.File.WriteAllLines(TextSettingsFolder & "UI_English.xml", lines)
+            Return True
+        Else
+            MessageBox.Show("UI text file not found, modification failed")
+            Return False
+        End If
+        'French
+        'German
+        'Italian
+        'Japanese
+        'Portugese
+        'Russian
+        'Spanish
+
+    End Function
 End Class

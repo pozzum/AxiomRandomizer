@@ -8,6 +8,7 @@ Public Class Randomizer
         Easy
         Normal
         Practice
+        Rebuild
     End Enum
     Public Shared LocationInformation As List(Of Location)
     Public Shared ItemPool As List(Of ItemDrop)
@@ -16,197 +17,221 @@ Public Class Randomizer
     Public Shared RemovedMonsters As List(Of CreatureType)
     Public Shared Generator As System.Random
 #Region "Locations"
-    Shared Sub BuildLocations(Seed As Integer, Difficulty As DifficultySetting)
-
+    Shared Sub BuildLocations(Seed As Integer, Difficulty As DifficultySetting, Optional OpenEribu1 As Boolean = False, Optional OpenElseNova2 As Boolean = False, Optional OpenAbsu3 As Boolean = False)
         PowerList = New List(Of Powers)
         If Difficulty = DifficultySetting.Normal Then
-            LocationInformation = NormalLocations.ResetLocations()
+            'Normal is the only that has logic for opened areas
+            LocationInformation = NormalLocations.ResetLocations(OpenEribu1, OpenElseNova2, OpenAbsu3)
             ItemPool = NormalItems.ResetItemPool()
-            MessageBox.Show("Locations: " & LocationInformation.Count & vbNewLine &
-                            "Items: " & ItemPool.Count)
-            ApplyWeights(Seed)
-            PlaceItems()
         ElseIf Difficulty = DifficultySetting.Easy Then
             LocationInformation = EasyLocations.ResetLocations()
             ItemPool = EasyItems.ResetItemPool()
-            MessageBox.Show("Locations: " & LocationInformation.Count & vbNewLine &
-                            "Items: " & ItemPool.Count)
-            ApplyWeights(Seed)
-            PlaceItems()
         ElseIf Difficulty = DifficultySetting.Practice Then
             LocationInformation = PracticeLocations.ResetLocations() 'New List(Of Location) '
             ItemPool = PracticeItems.ResetItemPool() 'New List(Of ItemDrop) '
-            MessageBox.Show("Locations: " & LocationInformation.Count & vbNewLine &
-                            "Items: " & ItemPool.Count)
-            ApplyWeights(Seed)
-            PlaceItems()
+        ElseIf Difficulty = DifficultySetting.Rebuild Then
+            MessageBox.Show("Application rebuilt from appdata.")
+            Exit Sub
         End If
+        RandomMenu.TextBoxDebug.Text = "New Seed: " & Seed.ToString & " Difficulty: " & Difficulty.ToString
+        If OpenEribu1 Then
+            RandomMenu.TextBoxDebug.Text += vbNewLine & "Eribu Open"
+        Else
+            RandomMenu.TextBoxDebug.Text += vbNewLine & "Eribu Closed"
+        End If
+        If OpenElseNova2 Then
+            RandomMenu.TextBoxDebug.Text += vbNewLine & "ElseNova Open"
+        Else
+            RandomMenu.TextBoxDebug.Text += vbNewLine & "ElseNova Closed"
+        End If
+        If OpenAbsu3 Then
+            RandomMenu.TextBoxDebug.Text += vbNewLine & "Absu Open"
+        Else
+            RandomMenu.TextBoxDebug.Text += vbNewLine & "Absu Closed"
+        End If
+        RandomMenu.TextBoxDebug.Text += vbNewLine & "Locations: " & LocationInformation.Count &
+                                    vbNewLine & "Items: " & ItemPool.Count
+        ApplyWeights(Seed)
+        PlaceAssumedItems()
+        'PlaceItems()
     End Sub
     Shared Sub ApplyWeights(Seed As Integer)
         Generator = New System.Random(Seed:=Seed)
         For Each TempLocation As Location In LocationInformation
-            If TempLocation.Weight = 0 Then
+            'positive numbers will stay on the location but with an added decimal places to break ties
+            If TempLocation.Weight > 0 Then
+                TempLocation.Weight += Generator.NextDouble()
+            ElseIf TempLocation.Weight = 0 Then ' 0 will get a new number
                 TempLocation.Weight = Generator.NextDouble()
-            ElseIf TempLocation.Weight < 0 Then
-                TempLocation.Weight = Generator.NextDouble() * Math.Abs(TempLocation.Weight)
+            ElseIf TempLocation.Weight < 0 Then 'Negative Num
+                TempLocation.Weight = (Generator.NextDouble() * (-1)) + TempLocation.Weight
             End If
         Next
         LocationInformation.Sort(Function(x, y) x.Weight.CompareTo(y.Weight))
         LocationInformation.Reverse()
         For Each TempItemDrop As ItemDrop In ItemPool
-            If TempItemDrop.Weight = 0 Then
+            '
+            If TempItemDrop.Weight > 0 Then
+                TempItemDrop.Weight += Generator.NextDouble()
+            ElseIf TempItemDrop.Weight = 0 Then ' 0 will get a new number
                 TempItemDrop.Weight = Generator.NextDouble()
-            ElseIf TempItemDrop.Weight < 0 Then
-                TempItemDrop.Weight = Generator.NextDouble() * Math.Abs(TempItemDrop.Weight)
+            ElseIf TempItemDrop.Weight < 0 Then 'negative num
+                TempItemDrop.Weight = (Generator.NextDouble() * (-1)) + TempItemDrop.Weight
             End If
         Next
         ItemPool.Sort(Function(x, y) x.Weight.CompareTo(y.Weight))
         ItemPool.Reverse()
         'MessageBox.Show("Weights Applied")
     End Sub
-    Shared Function PlaceItems()
-        'MessageBox.Show("Start")
-        Dim NextLocation As Integer = 0
+    Shared Function PlaceAssumedItems()
         Dim PlacementCount As Integer = 1
-        For Each TempLocation In LocationInformation
-            If CanAttain(TempLocation) Then
-                NextLocation = LocationInformation.IndexOf(TempLocation)
-            End If
-        Next
-        Do While PlacementCount < LocationInformation.Count
-            For i As Integer = 0 To ItemPool.Count - 1
+        'this has to be built to allow a resort of the item pool so it needs to be in a do while loop and start from 1 each loop..
+        'this might be slightly more process intensive which is unfortunate but I want to place a random weapon first
+        Do While PlacementCount <= ItemPool.Count - 1 'might need a -1 so not infinite ?????
+            For i As Integer = 0 To ItemPool.Count - 1 'will go from the highest item to the lowest item.
                 If ItemPool(i).Placed = False Then
-                    Dim LocationTest As Integer = GetNextLocation(ItemPool(i), NextLocation)
-                    If Not LocationTest = -1 Then
-                        If ItemPool(i).WallRestrict Then
-                            If Not LocationInformation(NextLocation).RequiredPowers.Contains(Powers.LabCoat) Then
-                                Continue For
-                            End If
-                        End If
-                        LocationInformation(NextLocation).Item = ItemPool(i).DropType
-                        LocationInformation(NextLocation).ItemName = ItemPool(i).Name
-                        LocationInformation(NextLocation).ItemWeight = ItemPool(i).Weight
-                        LocationInformation(NextLocation).PlaceOrder = PlacementCount
-                        LocationInformation(NextLocation).InGameItemID = ItemPool(i).GID + GetDefaultGID(LocationInformation(NextLocation).Region)
-                        GivePowers(ItemPool(i).GivenPowers)
-                        LocationInformation(NextLocation).PowersAttained = PowerList
-                        'MessageBox.Show(PlacementCount & vbNewLine &
-                        'ItemPool(i).DropType.ToString & vbNewLine &
-                        'LocationInformation(NextLocation).Name)
-                        ItemPool(i).Placed = True
-                        NextLocation = LocationTest
-                        PlacementCount += 1
-                        Exit For
+                    If ItemPool(i).Name = "" Then
+                        RandomMenu.TextBoxDebug.Text += vbNewLine & "Placing item: " & ItemPool(i).DropType.ToString
+                    Else
+                        RandomMenu.TextBoxDebug.Text += vbNewLine & "Placing item: " & ItemPool(i).Name
                     End If
-                End If
-                'reroll
-                If i = ItemPool.Count - 1 Then 'Issue with Wall restricted item being the next progression
-                    'Get next wall restricted item
-                    For J As Integer = 0 To ItemPool.Count - 1
-                        If ItemPool(J).Placed = False AndAlso
-                                ItemPool(J).WallRestrict = True Then
-                            For K As Integer = 0 To LocationInformation.Count - 1
-                                If LocationInformation(K).RequiredPowers.Contains(Powers.LabCoat) Then
-                                    'Find old item and unplace it as long as it doesn't give powers
-                                    If LocationInformation(K).ItemName = "" Then
-                                        '(LocationInformation(K).Item = ItemType.Empty) = False Then
-                                        MessageBox.Show(LocationInformation(K).Item.ToString)
+                    For j As Integer = 0 To LocationInformation.Count - 1
+                        If LocationInformation(j).RerollCount > 15 Then
+                            RandomMenu.TextBoxDebug.Text += vbNewLine & "Infinite Loop Break"
+                            MessageBox.Show("Infinite Loop Break")
+                            Return False
+                        End If
+                        If LocationInformation(j).Item = ItemType.Empty Then
+                            If ItemPool(i).GivenPowers.Count > 0 Then
+                                'this checks the default required powers to make it's not blocked
+                                If LocationInformation(j).RequiredPowers.Contains(ItemPool(i).GivenPowers(0)) Then
+                                    RandomMenu.TextBoxDebug.Text += vbNewLine & LocationInformation(j).Name & " Skipped due to required power " & ItemPool(i).GivenPowers(0).ToString
+                                    LocationInformation(j).RerollCount += 1
+                                    Continue For
+                                Else
+                                    'this checks the itererated powers to make it's not blocked
+                                    If LocationInformation(j).AddedPowers.Contains(ItemPool(i).GivenPowers(0)) Then
+                                        LocationInformation(j).RerollCount += 1
+                                        RandomMenu.TextBoxDebug.Text += vbNewLine & LocationInformation(j).Name & " Skipped due to given power " & ItemPool(i).GivenPowers(0).ToString
                                         Continue For
                                     Else
-                                        MessageBox.Show("Unplacing Item")
-                                        UnplaceItem(LocationInformation(K).ItemName)
-                                        LocationInformation(K).RerollCount += 1
-                                        LocationInformation(K).Item = ItemPool(J).DropType
-                                        LocationInformation(K).ItemName = ItemPool(J).Name
-                                        LocationInformation(K).ItemWeight = ItemPool(J).Weight
-                                        LocationInformation(K).PlaceOrder = PlacementCount
-                                        LocationInformation(K).InGameItemID = ItemPool(J).GID + GetDefaultGID(LocationInformation(K).Region)
-                                        GivePowers(ItemPool(J).GivenPowers)
-                                        ItemPool(J).Placed = True
-                                        Continue Do
+                                        If LocationInformation(j).RequiredJump > GetJumpHeight(ItemPool(i)) Then
+                                            LocationInformation(j).RerollCount += 1
+                                            RandomMenu.TextBoxDebug.Text += vbNewLine & LocationInformation(j).Name & " Skipped due to jump height"
+                                            Continue For
+                                        Else
+                                            IterateRestrictions(ItemPool(i).GivenPowers(0), LocationInformation(j).RequiredPowers)
+                                            TotalAddedJump += ItemPool(i).JumpAdded
+                                        End If
                                     End If
                                 End If
-                            Next
+                            End If
+                            LocationInformation(j).Item = ItemPool(i).DropType
+                            LocationInformation(j).ItemName = ItemPool(i).Name
+                            LocationInformation(j).ItemWeight = ItemPool(i).Weight
+                            LocationInformation(j).PlaceOrder = PlacementCount
+                            LocationInformation(j).InGameItemID = ItemPool(i).GID + GetDefaultGID(LocationInformation(j).Region)
+                            LocationInformation(j).PowersAttained = New List(Of Powers)
+                            LocationInformation(j).PowersAttained.AddRange(PowerList)
+                            ItemPool(i).Placed = True
+                            If ItemPool(i).Name = "" Then
+                                RandomMenu.TextBoxDebug.Text += vbNewLine & ItemPool(i).DropType.ToString & " Placed in: " & LocationInformation(j).Name
+                            Else
+                                RandomMenu.TextBoxDebug.Text += vbNewLine & ItemPool(i).Name & " Placed in: " & LocationInformation(j).Name
+                            End If
+                            If ItemPool(i).GivenPowers.Count > 0 Then
+                                'If TempItem adds Powers.Damage then Clear all other Powers.Damage so the additional Powers of nova / kilvers are evident
+                                GivePowers(ItemPool(i).GivenPowers(0))
+                                If ItemPool(i).GivenPowers(0) = Powers.Damage OrElse
+                                    ItemPool(i).GivenPowers(0) = Powers.Nova OrElse
+                                    ItemPool(i).GivenPowers(0) = Powers.Kilver OrElse
+                                    ItemPool(i).GivenPowers(0) = Powers.LongBeam Then
+                                    Dim ClearPowerList As List(Of Powers) = New List(Of Powers)
+                                    ClearPowerList.AddRange(ItemPool(i).GivenPowers)
+                                    For Each TempPower As Powers In ClearPowerList
+                                        StripPower(TempPower)
+                                    Next
+                                End If
+                            End If
+                            PlacementCount += 1
+                            Exit For
                         End If
                     Next
-                    Dim message As String = "Could not complete item placement" & vbNewLine &
-                                     PlacementCount & " Items placed" & vbNewLine
-                    For j As Integer = 0 To PowerList.Count - 1
-                        message += PowerList(j).ToString & vbNewLine
-                    Next
-                    MessageBox.Show(message)
-                    Return False
+                    'this will exit the for loop for the item so the logic can check for resorted weights.
+                    Exit For
                 End If
             Next
         Loop
-        For i As Integer = 0 To ItemPool.Count - 1
-            If ItemPool(i).Placed = False Then
-                For j As Integer = 0 To LocationInformation.Count - 1
-                    If LocationInformation(j).Item = ItemType.Empty Then
-                        LocationInformation(j).Item = ItemPool(i).DropType
-                        LocationInformation(j).ItemName = ItemPool(i).Name
-                        LocationInformation(j).PlaceOrder = PlacementCount
-                        LocationInformation(NextLocation).ItemWeight = ItemPool(i).Weight
-                        LocationInformation(NextLocation).InGameItemID = ItemPool(i).GID + GetDefaultGID(LocationInformation(NextLocation).Region)
-                        ItemPool(i).Placed = True
-                    End If
-                Next
-            End If
-        Next
+        RandomMenu.TextBoxDebug.Text += vbNewLine & "Item placements complete"
         Return True
     End Function
-    Shared Sub GivePowers(TestedList As List(Of Powers))
-        If TestedList.Count > 0 Then
-            For i As Integer = 0 To TestedList.Count - 1
-                If Not PowerList.Contains(TestedList(i)) Then
-                    PowerList.Add(TestedList(i))
-                End If
-            Next
+    Shared TotalAddedJump As Integer = 0
+    Shared Function GetJumpHeight(TestedItem As ItemDrop)
+        If TestedItem.JumpAdded > 0 Then
+            Dim TestReturn As Integer = 14 - TestedItem.JumpAdded - TotalAddedJump
+            If TestReturn > 4 Then
+                Return TestReturn
+            Else
+                Return 4
+            End If
+        Else
+            Return 13
+        End If
+    End Function
+    Shared Sub GivePowers(TestedPower As Powers)
+        'This just checks the first power because only the first power is used for new logic.
+        If Not PowerList.Contains(TestedPower) Then
+            PowerList.Add(TestedPower)
         End If
     End Sub
-
-    Shared Function CanAttain(CheckedLocation As Location, Optional NewItem As ItemDrop = Nothing) As Boolean
-        Dim NewPowerList As List(Of Powers) = New List(Of Powers)
-        NewPowerList.AddRange(PowerList)
-        If NewItem IsNot Nothing Then
-            NewPowerList.AddRange(NewItem.GivenPowers)
-        End If
-        For Each ReqPower As Powers In CheckedLocation.RequiredPowers
-            If Not NewPowerList.Contains(ReqPower) Then
-                Return False
-            End If
-        Next
-        If CheckedLocation.PowerOptions.Count = 0 AndAlso
-                CheckedLocation.GroupedPowers.Count = 0 Then
-            Return True
-        End If
-        For i As Integer = 0 To CheckedLocation.PowerOptions.Count - 1
-            If NewPowerList.Contains(CheckedLocation.PowerOptions(i)) Then
-                Return True
-            End If
-        Next
-        For i As Integer = 0 To CheckedLocation.GroupedPowers.Count - 1
-            If Not NewPowerList.Contains(CheckedLocation.GroupedPowers(i)) Then
-                Return False
-            End If
-        Next
-
-        'Already Passed Reqs and has all Optionals
-        Return True
-    End Function
-
-    Shared Function GetNextLocation(TestedItem As ItemDrop, TestedIndex As Integer) As Integer
-        For Each TempLocation In LocationInformation
-            If TempLocation.Item = ItemType.Empty Then
-                If CanAttain(TempLocation, TestedItem) Then
-                    If Not LocationInformation.IndexOf(TempLocation) = TestedIndex Then
-                        Return LocationInformation.IndexOf(TempLocation)
-                    End If
+    Shared Sub IterateRestrictions(RestrictedPower As Powers, ExendedRestrictions As List(Of Powers))
+        For j As Integer = 0 To LocationInformation.Count - 1
+            If LocationInformation(j).Item = ItemType.Empty Then
+                If LocationInformation(j).RequiredPowers.Contains(RestrictedPower) Then
+                    For i As Integer = 0 To ExendedRestrictions.Count - 1
+                        If Not LocationInformation(j).AddedPowers.Contains(ExendedRestrictions(i)) Then
+                            LocationInformation(j).AddedPowers.Add(ExendedRestrictions(i))
+                        End If
+                    Next
+                ElseIf LocationInformation(j).AddedPowers.Contains(RestrictedPower) Then
+                    For i As Integer = 0 To ExendedRestrictions.Count - 1
+                        If Not LocationInformation(j).AddedPowers.Contains(ExendedRestrictions(i)) Then
+                            LocationInformation(j).AddedPowers.Add(ExendedRestrictions(i))
+                        End If
+                    Next
                 End If
             End If
         Next
-        Return -1
-    End Function
+    End Sub
+    Shared Sub StripPower(PowertoStrip As Powers)
+        For j As Integer = 0 To ItemPool.Count - 1
+            If ItemPool(j).GivenPowers.Count > 0 Then
+                If ItemPool(j).GivenPowers.Contains(PowertoStrip) Then
+                    ItemPool(j).GivenPowers.Remove(PowertoStrip)
+                    If ItemPool(j).GivenPowers.Count = 0 Then
+                        ItemPool(j).Weight -= Math.Floor(ItemPool(j).Weight) ' powerless items have weight 0-1
+                    Else
+                        If PowertoStrip = Powers.Damage Then
+                            If Not ItemPool(j).GivenPowers(0) = Powers.Nova Then
+                                ItemPool(j).Weight -= 1
+                            End If
+                        ElseIf PowertoStrip = Powers.Nova Then
+                            If ItemPool(j).GivenPowers(0) = Powers.Kilver Then
+                                ItemPool(j).Weight -= 1
+                            End If
+                        ElseIf PowertoStrip = Powers.Kilver Then
+                            If Not ItemPool(j).GivenPowers(0) = Powers.LongBeam Then
+                                ItemPool(j).Weight -= Math.Floor(ItemPool(j).Weight) + 1 'Sets it to be an optional item
+                            End If
+                            'elseIf PowertoStrip = Powers.LongBeam Then
+                        End If
+                        End If
+                End If
+            End If
+        Next
+        ItemPool.Sort(Function(x, y) x.Weight.CompareTo(y.Weight))
+        ItemPool.Reverse()
+    End Sub
     Shared Function GetDefaultGID(AreaCheck As Area) As Integer
         If AreaCheck = Area.Eribu Then
             Return 513
@@ -229,13 +254,6 @@ Public Class Randomizer
         End If
         Return -1
     End Function
-    Shared Sub UnplaceItem(ItemName As String)
-        For i As Integer = 0 To ItemPool.Count - 1
-            If ItemPool(i).Name = ItemName Then
-                ItemPool(i).Placed = False
-            End If
-        Next
-    End Sub
     Shared Function GetAddedLine(AreaCheck As Area) As Integer
         ' </objectgroup> line
         If AreaCheck = Area.Eribu Then

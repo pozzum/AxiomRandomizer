@@ -29,5 +29,29 @@
     <Setting Name="ManualDecompilePending" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="ExeHashString" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SteamVersion" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ExpressExtractUsed" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ExtractionVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0.0.0.0</Value>
+    </Setting>
+    <Setting Name="XMLLimited" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="XMLLimitCount" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="DebugMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="MapGeneration" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"Default"</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
