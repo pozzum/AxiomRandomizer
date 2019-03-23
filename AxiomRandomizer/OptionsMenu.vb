@@ -41,7 +41,8 @@
         Me.Close()
     End Sub
     Private Sub ButtonClearAppData_Click(sender As Object, e As EventArgs) Handles ButtonClearAppData.Click
-        MessageBox.Show("Soon tm")
+        GeneralTools.DeleteAllItems(My.Settings.VanillaDecompileLocation)
+        GeneralTools.DeleteAllItems(My.Settings.WorkingDecompileLocation)
     End Sub
 #End Region
 #Region "Folder Options"

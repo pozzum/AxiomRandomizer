@@ -88,14 +88,12 @@ Public Class FileSelect
         End If
     End Function
     Function CheckVanillaFolder()
-        If Directory.Exists(GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\Dump") Then
-            GeneralTools.DeleteAllItems(GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\Dump")
+        If My.Settings.VanillaDecompileLocation = "" Then
             Return False
-        ElseIf Not Directory.Exists(GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\VanillaFiles") Then
+        ElseIf Not Directory.Exists(My.Settings.VanillaDecompileLocation) Then
             Return False
         ElseIf My.Settings.ManualDecompilePending = True Then
-            PackUnpack.ModifyCode(GetFolderPath(SpecialFolder.ApplicationData) &
-                                         "\AxiomRandomizer\VanillaFiles\RandomAV.iL")
+            PackUnpack.ModifyCode(My.Settings.VanillaDecompileLocation & "RandomAV.iL")
             Return True
         Else
             Return True
@@ -110,6 +108,8 @@ Public Class FileSelect
                 GeneralTools.MoveAllItems(Path.GetDirectoryName(Application.ExecutablePath) &
                        Path.DirectorySeparatorChar & "PackUnpack\", AppDataStorage &
                        Path.DirectorySeparatorChar & "PackUnpack\")
+                PackUnpack.GetUnpackerPath()
+                PackUnpack.GetpackerPath()
             End If
         End If
     End Sub

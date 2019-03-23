@@ -4,11 +4,11 @@ Imports AxiomRandomizer.GameInformation
 Public Class TileMapEditor
     Shared TileMapFolder As String
     Shared Function CheckTileMaps()
-        TileMapFolder = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\WorkingFiles\OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
+        TileMapFolder = My.Settings.WorkingDecompileLocation & "OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
         Return File.Exists(TileMapFolder & "Area1.tmx")
     End Function
     Shared Function WriteItems()
-        TileMapFolder = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\WorkingFiles\OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
+        TileMapFolder = My.Settings.WorkingDecompileLocation & "OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
         If WriteRegion("Area1.tmx", Area.Eribu) AndAlso
            WriteRegion("Area2.tmx", Area.Absu) AndAlso
            WriteRegion("Area3.tmx", Area.Zi) AndAlso
@@ -113,7 +113,7 @@ Public Class TileMapEditor
         Return True
     End Function
     Shared Function OneWayDropDown(ApplyChange As Boolean)
-        TileMapFolder = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\WorkingFiles\OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
+        TileMapFolder = My.Settings.WorkingDecompileLocation & "OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
         If System.IO.File.Exists(TileMapFolder & "Area3.tmx") Then
             GeneralTools.MakeWriteable(TileMapFolder & "Area3.tmx")
             Dim lines() As String = IO.File.ReadAllLines(TileMapFolder & "Area3.tmx")
@@ -194,7 +194,7 @@ Public Class TileMapEditor
         End If
     End Function
     Shared Function OneWayWalls(ApplyChange As Boolean)
-        TileMapFolder = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\WorkingFiles\OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
+        TileMapFolder = My.Settings.WorkingDecompileLocation & "OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
         If System.IO.File.Exists(TileMapFolder & "Area6Normal.tmx") Then
             GeneralTools.MakeWriteable(TileMapFolder & "Area6Normal.tmx")
             Dim lines() As String = IO.File.ReadAllLines(TileMapFolder & "Area6Normal.tmx")
@@ -290,7 +290,7 @@ Public Class TileMapEditor
         File.Copy(TileMapFolder & "Area6Normal.tmx", TileMapFolder & "Area6.tmx", True)
     End Sub
     Shared Function OpenEribu(ApplyChange As Boolean)
-        TileMapFolder = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\WorkingFiles\OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
+        TileMapFolder = My.Settings.WorkingDecompileLocation & "OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
         If System.IO.File.Exists(TileMapFolder & "Area1.tmx") Then
             GeneralTools.MakeWriteable(TileMapFolder & "Area1.tmx")
             Dim lines() As String = IO.File.ReadAllLines(TileMapFolder & "Area1.tmx")
@@ -380,7 +380,7 @@ Public Class TileMapEditor
         'Left Door
         '11,12,13,0,1073742030,235,0,0,0,0,
         '11,12,13,0,0,235,0,0,0,0,
-        TileMapFolder = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\WorkingFiles\OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
+        TileMapFolder = My.Settings.WorkingDecompileLocation & "OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
         If System.IO.File.Exists(TileMapFolder & "Area2.tmx") Then
             GeneralTools.MakeWriteable(TileMapFolder & "Area2.tmx")
             Dim lines() As String = IO.File.ReadAllLines(TileMapFolder & "Area2.tmx")
@@ -444,7 +444,7 @@ Public Class TileMapEditor
         End If
     End Function
     Shared Function OpenAbsu(ApplyChange As Boolean)
-        TileMapFolder = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\WorkingFiles\OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
+        TileMapFolder = My.Settings.WorkingDecompileLocation & "OuterBeyond.EmbeddedContent.Content\Art\TileMaps\"
         If System.IO.File.Exists(TileMapFolder & "Area2.tmx") Then
             GeneralTools.MakeWriteable(TileMapFolder & "Area2.tmx")
             Dim lines() As String = IO.File.ReadAllLines(TileMapFolder & "Area2.tmx")
@@ -503,7 +503,7 @@ Public Class XMLEditor
                                   DropDown As Boolean,
                                   Walls As Boolean,
                                   Illusion As Boolean)
-        Dim TextSettingsFolder = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\WorkingFiles\OuterBeyond.EmbeddedContent.Content\Text\"
+        Dim TextSettingsFolder = My.Settings.WorkingDecompileLocation & "OuterBeyond.EmbeddedContent.Content\Text\"
         'I will only implement this for english currently however there should later be translations for the languiages following after
         If System.IO.File.Exists(TextSettingsFolder & "UI_English.xml") Then
             GeneralTools.MakeWriteable(TextSettingsFolder & "UI_English.xml")

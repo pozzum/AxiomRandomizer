@@ -19,6 +19,7 @@ Public Class PackUnpack
         GeneralTools.FolderCheck(UnpackFolder)
         UnpackFolder += VanillaFolder & Path.DirectorySeparatorChar
         GeneralTools.FolderCheck(UnpackFolder)
+        My.Settings.VanillaDecompileLocation = UnpackFolder
         UnpackFolder += IlFileName
         Dim IldasmPath As String = GetUnpackerPath()
         If IldasmPath = "" Then
@@ -248,7 +249,7 @@ Public Class PackUnpack
 #End Region
 #Region "Rebuilding"
     Shared Function BuildFromAppdata(ExeFilePath)
-        Dim WorkingPath As String = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\" & WorkingFolder & Path.DirectorySeparatorChar
+        Dim WorkingPath As String = My.Settings.WorkingDecompileLocation
         GeneralTools.Zip(WorkingPath & "OuterBeyond.EmbeddedContent.Content\")
         'MessageBox.Show("Click OK if zipping is complete")
         Dim IlasmPath As String = GetpackerPath()
@@ -308,12 +309,13 @@ Public Class PackUnpack
     End Function
 #End Region
     Shared Sub CopyToWorking()
-        Dim UnpackFolder As String = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\" & VanillaFolder & Path.DirectorySeparatorChar
-        Dim WorkingPath As String = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\" & WorkingFolder & Path.DirectorySeparatorChar
-        If Directory.Exists(WorkingPath) Then
-            GeneralTools.DeleteAllItems(WorkingPath)
+        If My.Settings.WorkingDecompileLocation = "" Then
+            My.Settings.WorkingDecompileLocation = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\" & WorkingFolder & Path.DirectorySeparatorChar
         End If
-        My.Computer.FileSystem.CopyDirectory(UnpackFolder, WorkingPath, True)
+        If Directory.Exists(My.Settings.WorkingDecompileLocation) Then
+            GeneralTools.DeleteAllItems(My.Settings.WorkingDecompileLocation)
+        End If
+        My.Computer.FileSystem.CopyDirectory(My.Settings.VanillaDecompileLocation, My.Settings.WorkingDecompileLocation, True)
     End Sub
     Shared Function DecompileBatch(ExeFilePath, IldasmFilePath, DecompileLocation)
         Dim BatchFile(22) As String
