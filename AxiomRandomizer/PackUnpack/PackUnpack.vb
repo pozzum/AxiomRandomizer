@@ -2,11 +2,9 @@
 Imports System.Environment 'appdata
 Public Class PackUnpack
     'ILAsm and ILDAsm provided by https://github.com/dotnet/coreclr under MIT License
-    'https://ci.dot.net/job/dotnet_coreclr/job/master/job/release_windows_nt/lastSuccessfulBuild/artifact/bin/Product/Windows_NT.x64.Release/<- download link
+    'https://ci.dot.net/job/dotnet_coreclr/job/master/job/release_windows_nt/lastSuccessfulBuild/artifact/bin/Product/Windows_NT.x64.Release/ <- download link
     'Exes versions 2.1.40
-    Shared IlFileName As String = "RandomAV.iL" '"AxiomVergeRandomizer.iL"
-    Shared VanillaFolder As String = "VanillaFiles"
-    Shared WorkingFolder As String = "WorkingFiles"
+    'Shared IlFileName As String = "RandomAV.iL" '"AxiomVergeRandomizer.iL"
 #Region "Unpacking"
     Shared Function UnpacktoAppdata(ExeFilePath As String,
                                  Optional SaveChange As Boolean = True,
@@ -15,12 +13,21 @@ Public Class PackUnpack
                                  Optional BackgroundChange As Boolean = True,
                                  Optional AxiomDisruptChange As Boolean = True,
                                  Optional AxiomTranceChange As Boolean = True)
-        Dim UnpackFolder As String = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\"
+        Dim UnpackFolder As String
+        If My.Settings.VanillaDecompileLocation = "" Then
+            UnpackFolder = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\"
+            GeneralTools.FolderCheck(UnpackFolder)
+            UnpackFolder += "VanillaFiles" & Path.DirectorySeparatorChar
+            My.Settings.VanillaDecompileLocation = UnpackFolder
+        Else
+            UnpackFolder = My.Settings.VanillaDecompileLocation
+        End If
+        'to initalize settings
+        If My.Settings.WorkingDecompileLocation = "" Then
+            My.Settings.WorkingDecompileLocation = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\" & "WorkingFiles" & Path.DirectorySeparatorChar
+        End If
         GeneralTools.FolderCheck(UnpackFolder)
-        UnpackFolder += VanillaFolder & Path.DirectorySeparatorChar
-        GeneralTools.FolderCheck(UnpackFolder)
-        My.Settings.VanillaDecompileLocation = UnpackFolder
-        UnpackFolder += IlFileName
+        UnpackFolder += Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL"
         Dim IldasmPath As String = GetUnpackerPath()
         If IldasmPath = "" Then
             If MessageBox.Show("Ildasm.exe not Found!" & vbNewLine &
@@ -268,13 +275,11 @@ Public Class PackUnpack
                 Return False
             End If
         End If
-        'MessageBox.Show(IlasmPath)
-        'MessageBox.Show(WorkingPath & IlFileName)
-        Process.Start(IlasmPath, """" & WorkingPath & IlFileName & """").WaitForExit()
-        My.Settings.RandoExePath = Path.GetDirectoryName(ExeFilePath) & Path.DirectorySeparatorChar & Path.GetFileNameWithoutExtension(IlFileName) & ".exe"
+        Process.Start(IlasmPath, """" & WorkingPath & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL" & """").WaitForExit()
+        My.Settings.RandoExePath = Path.GetDirectoryName(ExeFilePath) & Path.DirectorySeparatorChar & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".exe"
         'MessageBox.Show("Click OK when command dialog closes")
-        If File.Exists(WorkingPath & Path.GetFileNameWithoutExtension(IlFileName) & ".exe") Then
-            File.Copy(WorkingPath & Path.GetFileNameWithoutExtension(IlFileName) & ".exe",
+        If File.Exists(WorkingPath & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".exe") Then
+            File.Copy(WorkingPath & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".exe",
                         My.Settings.RandoExePath, True)
             Return True
         Else
@@ -310,7 +315,7 @@ Public Class PackUnpack
 #End Region
     Shared Sub CopyToWorking()
         If My.Settings.WorkingDecompileLocation = "" Then
-            My.Settings.WorkingDecompileLocation = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\" & WorkingFolder & Path.DirectorySeparatorChar
+            My.Settings.WorkingDecompileLocation = GetFolderPath(SpecialFolder.ApplicationData) & "\AxiomRandomizer\" & "WorkingFiles" & Path.DirectorySeparatorChar
         End If
         If Directory.Exists(My.Settings.WorkingDecompileLocation) Then
             GeneralTools.DeleteAllItems(My.Settings.WorkingDecompileLocation)

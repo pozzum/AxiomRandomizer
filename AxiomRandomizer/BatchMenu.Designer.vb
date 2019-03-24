@@ -26,7 +26,7 @@ Partial Class BatchMenu
         Me.LocationName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VanillaItem = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VanillaPlacementNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Region = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ItemRegion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RequiredPowers = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PlacementCount = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Drill = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -64,7 +64,7 @@ Partial Class BatchMenu
         Me.DataGridBatchView.AllowUserToDeleteRows = False
         Me.DataGridBatchView.AllowUserToResizeRows = False
         Me.DataGridBatchView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridBatchView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.LocationName, Me.VanillaItem, Me.VanillaPlacementNumber, Me.Region, Me.RequiredPowers, Me.PlacementCount, Me.Drill, Me.Glitch1, Me.Glitch2, Me.Glitch3Bomb, Me.LabCoat, Me.TrenchCoat, Me.RedCoat, Me.PasswordTool, Me.HighJump, Me.DroneGun, Me.EnhancedLaunch, Me.DroneTeleport, Me.Grapple, Me.BreachSuppressor, Me.HPNode, Me.HPNodeFrag, Me.PwrNode, Me.PwrNodeFrag, Me.SizeNode, Me.RangeNode, Me.Notes, Me.Damage, Me.Nova, Me.Kilver, Me.LongBeam, Me.FatBeam})
+        Me.DataGridBatchView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.LocationName, Me.VanillaItem, Me.VanillaPlacementNumber, Me.ItemRegion, Me.RequiredPowers, Me.PlacementCount, Me.Drill, Me.Glitch1, Me.Glitch2, Me.Glitch3Bomb, Me.LabCoat, Me.TrenchCoat, Me.RedCoat, Me.PasswordTool, Me.HighJump, Me.DroneGun, Me.EnhancedLaunch, Me.DroneTeleport, Me.Grapple, Me.BreachSuppressor, Me.HPNode, Me.HPNodeFrag, Me.PwrNode, Me.PwrNodeFrag, Me.SizeNode, Me.RangeNode, Me.Notes, Me.Damage, Me.Nova, Me.Kilver, Me.LongBeam, Me.FatBeam})
         Me.DataGridBatchView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridBatchView.Location = New System.Drawing.Point(0, 0)
         Me.DataGridBatchView.Name = "DataGridBatchView"
@@ -92,12 +92,12 @@ Partial Class BatchMenu
         Me.VanillaPlacementNumber.ReadOnly = True
         Me.VanillaPlacementNumber.Width = 87
         '
-        'Region
+        'ItemRegion
         '
-        Me.Region.HeaderText = "Region"
-        Me.Region.Name = "Region"
-        Me.Region.ReadOnly = True
-        Me.Region.Width = 66
+        Me.ItemRegion.HeaderText = "Region"
+        Me.ItemRegion.Name = "ItemRegion"
+        Me.ItemRegion.ReadOnly = True
+        Me.ItemRegion.Width = 66
         '
         'RequiredPowers
         '
@@ -301,7 +301,7 @@ Partial Class BatchMenu
     Friend WithEvents LocationName As DataGridViewTextBoxColumn
     Friend WithEvents VanillaItem As DataGridViewTextBoxColumn
     Friend WithEvents VanillaPlacementNumber As DataGridViewTextBoxColumn
-    Friend WithEvents Region As DataGridViewTextBoxColumn
+    Friend WithEvents ItemRegion As DataGridViewTextBoxColumn
     Friend WithEvents RequiredPowers As DataGridViewTextBoxColumn
     Friend WithEvents PlacementCount As DataGridViewTextBoxColumn
     Friend WithEvents Drill As DataGridViewTextBoxColumn

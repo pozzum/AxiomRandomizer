@@ -34,30 +34,31 @@ Partial Class OptionsMenu
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.Button7 = New System.Windows.Forms.Button()
+        Me.ButtonRandoExe = New System.Windows.Forms.Button()
         Me.TextBoxRandomExeLocation = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.Button6 = New System.Windows.Forms.Button()
+        Me.ButtonIlasmLocation = New System.Windows.Forms.Button()
         Me.TextBoxIlasmLocation = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.Button5 = New System.Windows.Forms.Button()
+        Me.ButtonIldasmLocation = New System.Windows.Forms.Button()
         Me.TextBoxIldasmLocation = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.ButtonXMLLocation = New System.Windows.Forms.Button()
         Me.TextBoxXMLSaveLocation = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.ButtonSaveLocation = New System.Windows.Forms.Button()
         Me.TextBoxSaveFileLocation = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.ButtonExeLocation = New System.Windows.Forms.Button()
         Me.TextBoxGameLocation = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.AVFileSelector = New System.Windows.Forms.Button()
+        Me.ButtonWorkingFolder = New System.Windows.Forms.Button()
+        Me.ButtonVanillaFolder = New System.Windows.Forms.Button()
         Me.TextBoxWorkingDecompile = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBoxVanillaDecompile = New System.Windows.Forms.TextBox()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.TrackBarXML, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -189,26 +190,26 @@ Partial Class OptionsMenu
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.Button7)
+        Me.TabPage2.Controls.Add(Me.ButtonRandoExe)
         Me.TabPage2.Controls.Add(Me.TextBoxRandomExeLocation)
         Me.TabPage2.Controls.Add(Me.Label8)
-        Me.TabPage2.Controls.Add(Me.Button6)
+        Me.TabPage2.Controls.Add(Me.ButtonIlasmLocation)
         Me.TabPage2.Controls.Add(Me.TextBoxIlasmLocation)
         Me.TabPage2.Controls.Add(Me.Label7)
-        Me.TabPage2.Controls.Add(Me.Button5)
+        Me.TabPage2.Controls.Add(Me.ButtonIldasmLocation)
         Me.TabPage2.Controls.Add(Me.TextBoxIldasmLocation)
         Me.TabPage2.Controls.Add(Me.Label6)
-        Me.TabPage2.Controls.Add(Me.Button4)
+        Me.TabPage2.Controls.Add(Me.ButtonXMLLocation)
         Me.TabPage2.Controls.Add(Me.TextBoxXMLSaveLocation)
         Me.TabPage2.Controls.Add(Me.Label5)
-        Me.TabPage2.Controls.Add(Me.Button3)
+        Me.TabPage2.Controls.Add(Me.ButtonSaveLocation)
         Me.TabPage2.Controls.Add(Me.TextBoxSaveFileLocation)
         Me.TabPage2.Controls.Add(Me.Label4)
-        Me.TabPage2.Controls.Add(Me.Button2)
+        Me.TabPage2.Controls.Add(Me.ButtonExeLocation)
         Me.TabPage2.Controls.Add(Me.TextBoxGameLocation)
         Me.TabPage2.Controls.Add(Me.Label3)
-        Me.TabPage2.Controls.Add(Me.Button1)
-        Me.TabPage2.Controls.Add(Me.AVFileSelector)
+        Me.TabPage2.Controls.Add(Me.ButtonWorkingFolder)
+        Me.TabPage2.Controls.Add(Me.ButtonVanillaFolder)
         Me.TabPage2.Controls.Add(Me.TextBoxWorkingDecompile)
         Me.TabPage2.Controls.Add(Me.Label2)
         Me.TabPage2.Controls.Add(Me.Label1)
@@ -221,14 +222,14 @@ Partial Class OptionsMenu
         Me.TabPage2.Text = "Folder Options"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'Button7
+        'ButtonRandoExe
         '
-        Me.Button7.Location = New System.Drawing.Point(243, 134)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(25, 23)
-        Me.Button7.TabIndex = 23
-        Me.Button7.Text = "..."
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.ButtonRandoExe.Location = New System.Drawing.Point(243, 134)
+        Me.ButtonRandoExe.Name = "ButtonRandoExe"
+        Me.ButtonRandoExe.Size = New System.Drawing.Size(25, 23)
+        Me.ButtonRandoExe.TabIndex = 23
+        Me.ButtonRandoExe.Text = "..."
+        Me.ButtonRandoExe.UseVisualStyleBackColor = True
         '
         'TextBoxRandomExeLocation
         '
@@ -247,14 +248,14 @@ Partial Class OptionsMenu
         Me.Label8.TabIndex = 21
         Me.Label8.Text = "Randomized Game Location:"
         '
-        'Button6
+        'ButtonIlasmLocation
         '
-        Me.Button6.Location = New System.Drawing.Point(243, 290)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(25, 23)
-        Me.Button6.TabIndex = 20
-        Me.Button6.Text = "..."
-        Me.Button6.UseVisualStyleBackColor = True
+        Me.ButtonIlasmLocation.Location = New System.Drawing.Point(243, 290)
+        Me.ButtonIlasmLocation.Name = "ButtonIlasmLocation"
+        Me.ButtonIlasmLocation.Size = New System.Drawing.Size(25, 23)
+        Me.ButtonIlasmLocation.TabIndex = 20
+        Me.ButtonIlasmLocation.Text = "..."
+        Me.ButtonIlasmLocation.UseVisualStyleBackColor = True
         '
         'TextBoxIlasmLocation
         '
@@ -273,14 +274,14 @@ Partial Class OptionsMenu
         Me.Label7.TabIndex = 18
         Me.Label7.Text = "Ilasm.exe Save Location:"
         '
-        'Button5
+        'ButtonIldasmLocation
         '
-        Me.Button5.Location = New System.Drawing.Point(243, 251)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(25, 23)
-        Me.Button5.TabIndex = 17
-        Me.Button5.Text = "..."
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.ButtonIldasmLocation.Location = New System.Drawing.Point(243, 251)
+        Me.ButtonIldasmLocation.Name = "ButtonIldasmLocation"
+        Me.ButtonIldasmLocation.Size = New System.Drawing.Size(25, 23)
+        Me.ButtonIldasmLocation.TabIndex = 17
+        Me.ButtonIldasmLocation.Text = "..."
+        Me.ButtonIldasmLocation.UseVisualStyleBackColor = True
         '
         'TextBoxIldasmLocation
         '
@@ -299,14 +300,14 @@ Partial Class OptionsMenu
         Me.Label6.TabIndex = 15
         Me.Label6.Text = "Ildasm.exe Save Location:"
         '
-        'Button4
+        'ButtonXMLLocation
         '
-        Me.Button4.Location = New System.Drawing.Point(243, 212)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(25, 23)
-        Me.Button4.TabIndex = 14
-        Me.Button4.Text = "..."
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.ButtonXMLLocation.Location = New System.Drawing.Point(243, 212)
+        Me.ButtonXMLLocation.Name = "ButtonXMLLocation"
+        Me.ButtonXMLLocation.Size = New System.Drawing.Size(25, 23)
+        Me.ButtonXMLLocation.TabIndex = 14
+        Me.ButtonXMLLocation.Text = "..."
+        Me.ButtonXMLLocation.UseVisualStyleBackColor = True
         '
         'TextBoxXMLSaveLocation
         '
@@ -325,14 +326,14 @@ Partial Class OptionsMenu
         Me.Label5.TabIndex = 12
         Me.Label5.Text = "XML Save Location:"
         '
-        'Button3
+        'ButtonSaveLocation
         '
-        Me.Button3.Location = New System.Drawing.Point(243, 173)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(25, 23)
-        Me.Button3.TabIndex = 11
-        Me.Button3.Text = "..."
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.ButtonSaveLocation.Location = New System.Drawing.Point(243, 173)
+        Me.ButtonSaveLocation.Name = "ButtonSaveLocation"
+        Me.ButtonSaveLocation.Size = New System.Drawing.Size(25, 23)
+        Me.ButtonSaveLocation.TabIndex = 11
+        Me.ButtonSaveLocation.Text = "..."
+        Me.ButtonSaveLocation.UseVisualStyleBackColor = True
         '
         'TextBoxSaveFileLocation
         '
@@ -351,14 +352,14 @@ Partial Class OptionsMenu
         Me.Label4.TabIndex = 9
         Me.Label4.Text = "Save Location:"
         '
-        'Button2
+        'ButtonExeLocation
         '
-        Me.Button2.Location = New System.Drawing.Point(243, 95)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(25, 23)
-        Me.Button2.TabIndex = 8
-        Me.Button2.Text = "..."
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.ButtonExeLocation.Location = New System.Drawing.Point(243, 95)
+        Me.ButtonExeLocation.Name = "ButtonExeLocation"
+        Me.ButtonExeLocation.Size = New System.Drawing.Size(25, 23)
+        Me.ButtonExeLocation.TabIndex = 8
+        Me.ButtonExeLocation.Text = "..."
+        Me.ButtonExeLocation.UseVisualStyleBackColor = True
         '
         'TextBoxGameLocation
         '
@@ -377,23 +378,23 @@ Partial Class OptionsMenu
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Game Location:"
         '
-        'Button1
+        'ButtonWorkingFolder
         '
-        Me.Button1.Location = New System.Drawing.Point(243, 56)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(25, 23)
-        Me.Button1.TabIndex = 5
-        Me.Button1.Text = "..."
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.ButtonWorkingFolder.Location = New System.Drawing.Point(243, 56)
+        Me.ButtonWorkingFolder.Name = "ButtonWorkingFolder"
+        Me.ButtonWorkingFolder.Size = New System.Drawing.Size(25, 23)
+        Me.ButtonWorkingFolder.TabIndex = 5
+        Me.ButtonWorkingFolder.Text = "..."
+        Me.ButtonWorkingFolder.UseVisualStyleBackColor = True
         '
-        'AVFileSelector
+        'ButtonVanillaFolder
         '
-        Me.AVFileSelector.Location = New System.Drawing.Point(243, 17)
-        Me.AVFileSelector.Name = "AVFileSelector"
-        Me.AVFileSelector.Size = New System.Drawing.Size(25, 23)
-        Me.AVFileSelector.TabIndex = 4
-        Me.AVFileSelector.Text = "..."
-        Me.AVFileSelector.UseVisualStyleBackColor = True
+        Me.ButtonVanillaFolder.Location = New System.Drawing.Point(243, 17)
+        Me.ButtonVanillaFolder.Name = "ButtonVanillaFolder"
+        Me.ButtonVanillaFolder.Size = New System.Drawing.Size(25, 23)
+        Me.ButtonVanillaFolder.TabIndex = 4
+        Me.ButtonVanillaFolder.Text = "..."
+        Me.ButtonVanillaFolder.UseVisualStyleBackColor = True
         '
         'TextBoxWorkingDecompile
         '
@@ -466,27 +467,28 @@ Partial Class OptionsMenu
     Friend WithEvents LabelXML As Label
     Friend WithEvents TrackBarXML As TrackBar
     Friend WithEvents CheckBoxXMLLimit As CheckBox
-    Friend WithEvents Button4 As Button
+    Friend WithEvents ButtonXMLLocation As Button
     Friend WithEvents TextBoxXMLSaveLocation As TextBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents Button3 As Button
+    Friend WithEvents ButtonSaveLocation As Button
     Friend WithEvents TextBoxSaveFileLocation As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents Button2 As Button
+    Friend WithEvents ButtonExeLocation As Button
     Friend WithEvents TextBoxGameLocation As TextBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents Button1 As Button
-    Friend WithEvents AVFileSelector As Button
+    Friend WithEvents ButtonWorkingFolder As Button
+    Friend WithEvents ButtonVanillaFolder As Button
     Friend WithEvents CheckBoxDebug As CheckBox
-    Friend WithEvents Button5 As Button
+    Friend WithEvents ButtonIldasmLocation As Button
     Friend WithEvents TextBoxIldasmLocation As TextBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents Button6 As Button
+    Friend WithEvents ButtonIlasmLocation As Button
     Friend WithEvents TextBoxIlasmLocation As TextBox
     Friend WithEvents Label7 As Label
-    Friend WithEvents Button7 As Button
+    Friend WithEvents ButtonRandoExe As Button
     Friend WithEvents TextBoxRandomExeLocation As TextBox
     Friend WithEvents Label8 As Label
     Friend WithEvents ButtonClearAppData As Button
     Friend WithEvents ButtonResetSettings As Button
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
 End Class

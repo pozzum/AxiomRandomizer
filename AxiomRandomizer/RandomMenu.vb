@@ -98,7 +98,7 @@ Public Class RandomMenu
                 TileMapEditor.OpenEribu(CheckBoxOpenEribu.Checked)
                 TileMapEditor.OpenElsenova(CheckBoxOpenElsenova.Checked)
                 TileMapEditor.OpenAbsu(CheckBoxOpenAbsu.Checked)
-                Randomizer.ExportLocations(My.Settings.ExeFilePath)
+                XMLTools.ExportLocations(My.Settings.XMLSaveLocation)
                 XMLEditor.WriteSettings(CLng(TextBoxSeed.Text),
                                         SelectedDifficulty,
                                         CheckBoxOpenEribu.Checked,
@@ -302,6 +302,12 @@ DirectCast([Enum].Parse(GetType(Randomizer.DifficultySetting),
     End Sub
     Private Sub ThankTheDevsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThankTheDevsToolStripMenuItem.Click
         CreditsForm.Show()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If My.Settings.XMLLimited Then
+            XMLTools.LimitXMLCount(My.Settings.XMLSaveLocation, My.Settings.XMLLimitCount)
+        End If
     End Sub
 #End Region
 End Class

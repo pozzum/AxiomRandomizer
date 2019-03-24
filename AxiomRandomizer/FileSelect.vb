@@ -52,7 +52,11 @@ Public Class FileSelect
             End If
             'Making Sure Xml Setting is initalised
             If My.Settings.XMLSaveLocation = "" Then
-                My.Settings.XMLSaveLocation = My.Settings.ExeFilePath
+                My.Settings.XMLSaveLocation = Path.GetDirectoryName(My.Settings.ExeFilePath) & Path.DirectorySeparatorChar
+            End If
+            'Making Sure the Random Exe Setting is initalised
+            If My.Settings.RandoExePath = "" Then
+                My.Settings.RandoExePath = Path.GetDirectoryName(My.Settings.ExeFilePath) & Path.DirectorySeparatorChar & "RandomAV.exe"
             End If
             If CheckChangeLog() = True Then
                 If CheckVanillaFolder() = True Then
@@ -115,54 +119,57 @@ Public Class FileSelect
     End Sub
 #End Region
     Private Sub AVFileSelector_Click(sender As Object, e As EventArgs) Handles AVFileSelector.Click
+        GetExeFile()
+    End Sub
+    Shared Sub GetExeFile()
         If Not My.Settings.ExeFilePath = "" Then
             If File.Exists(My.Settings.ExeFilePath) Then
-                OpenFileExe.InitialDirectory = Path.GetDirectoryName(My.Settings.ExeFilePath)
+                FileSelect.OpenFileExe.InitialDirectory = Path.GetDirectoryName(My.Settings.ExeFilePath)
             End If
         End If
-        If OpenFileExe.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-            If OpenFileExe.FileName.Contains("AxiomVerge") Then
-                CheckVersion(OpenFileExe.FileName)
+        If FileSelect.OpenFileExe.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+            If FileSelect.OpenFileExe.FileName.Contains("AxiomVerge") Then
+                FileSelect.CheckVersion(FileSelect.OpenFileExe.FileName)
             Else
                 MessageBox.Show("Please Select Axiom Verge exe file.")
             End If
         End If
     End Sub
-    Sub GetSaveFile()
+    Shared Sub GetSaveFile()
         If My.Settings.SteamVersion Then
             If Directory.Exists("C:\Steam\userdata") Then
                 Dim UserDirectories() As String = Directory.GetDirectories("C:\Steam\userdata")
                 For Each TestDirectory As String In UserDirectories
-                    If Directory.Exists(TestDirectory & "\" & SteamAppID) Then
-                        OpenFileSave.InitialDirectory = TestDirectory & "\" & SteamAppID & "\remote"
+                    If Directory.Exists(TestDirectory & "\" & FileSelect.SteamAppID) Then
+                        FileSelect.OpenFileSave.InitialDirectory = TestDirectory & "\" & FileSelect.SteamAppID & "\remote"
                     End If
                 Next
             ElseIf Directory.Exists("C:\Program Files (x86)\Steam\userdata") Then
                 Dim UserDirectories() As String = Directory.GetDirectories("C:\Program Files (x86)\Steam\userdata")
                 For Each TestDirectory As String In UserDirectories
-                    If Directory.Exists(TestDirectory & "\" & SteamAppID) Then
-                        OpenFileSave.InitialDirectory = TestDirectory & "\" & SteamAppID & "\remote"
+                    If Directory.Exists(TestDirectory & "\" & FileSelect.SteamAppID) Then
+                        FileSelect.OpenFileSave.InitialDirectory = TestDirectory & "\" & FileSelect.SteamAppID & "\remote"
                     End If
                 Next
             End If
-            If OpenFileSave.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-                Dim filename As String = Path.GetFileName(OpenFileSave.FileName)
+            If FileSelect.OpenFileSave.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+                Dim filename As String = Path.GetFileName(FileSelect.OpenFileSave.FileName)
                 filename = filename.ToLower
                 If filename.Contains("save") Then
-                    My.Settings.SaveFilePath = Path.GetDirectoryName(OpenFileSave.FileName)
+                    My.Settings.SaveFilePath = Path.GetDirectoryName(FileSelect.OpenFileSave.FileName)
                 Else
                     MessageBox.Show("Save Location Error: Reopen exe")
                 End If
             End If
         Else 'Epic Version
             If Directory.Exists(My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\SavedGames\AxiomVerge\Saves\Player1\") Then
-                OpenFileSave.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\SavedGames\AxiomVerge\Saves\Player1\"
+                FileSelect.OpenFileSave.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments & "\SavedGames\AxiomVerge\Saves\Player1\"
             End If
-            If OpenFileSave.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-                Dim filename As String = Path.GetFileName(OpenFileSave.FileName)
+            If FileSelect.OpenFileSave.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+                Dim filename As String = Path.GetFileName(FileSelect.OpenFileSave.FileName)
                 filename = filename.ToLower
                 If filename.Contains("save") Then
-                    My.Settings.SaveFilePath = Path.GetDirectoryName(OpenFileSave.FileName)
+                    My.Settings.SaveFilePath = Path.GetDirectoryName(FileSelect.OpenFileSave.FileName)
                 Else
                     MessageBox.Show("Save Location Error: Reopen exe")
                 End If
@@ -174,7 +181,8 @@ Public Class FileSelect
         If ExeVersions.CheckExe(EXEFilePath) = True Then
             CheckBackup(EXEFilePath)
             My.Settings.ExeFilePath = EXEFilePath
-            My.Settings.XMLSaveLocation = My.Settings.ExeFilePath
+            My.Settings.XMLSaveLocation = Path.GetDirectoryName(My.Settings.ExeFilePath) & Path.DirectorySeparatorChar
+            My.Settings.RandoExePath = Path.GetDirectoryName(EXEFilePath) & Path.DirectorySeparatorChar & "RandomAV.exe"
             GetSaveFile()
             My.Settings.ExpressExtractUsed = RadioExpress.Checked
             If RadioExpress.Checked Then

@@ -29,13 +29,13 @@
     Private Sub ExportLocationsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportLocationsToolStripMenuItem.Click
         SaveFileDialog1.FileName = My.Settings.PreviousSeed & ".xml"
         If SaveFileDialog1.ShowDialog = DialogResult.OK Then
-            Randomizer.ExportLocations(SaveFileDialog1.FileName)
+            XMLTools.ExportLocations(SaveFileDialog1.FileName)
         End If
     End Sub
 
     Private Sub ImportLocationsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportLocationsToolStripMenuItem.Click
         If OpenFileDialog1.ShowDialog = DialogResult.OK Then
-            Randomizer.ImportLocations(OpenFileDialog1.FileName)
+            XMLTools.ImportLocations(OpenFileDialog1.FileName)
             ToolStripMenuItem1.Text = "Seed: Loaded File"
             LoadLocations()
         End If

@@ -310,31 +310,7 @@ Public Class Randomizer
         End If
     End Function
 
-    Shared Sub ExportLocations(SentPath As String)
-        Dim SavedPath As String
-        If SentPath.EndsWith(".xml") Then
-            SavedPath = SentPath
-        ElseIf SentPath.EndsWith(".exe") Then
-            SavedPath = Path.GetDirectoryName(SentPath) & Path.DirectorySeparatorChar &
-                My.Settings.PreviousSeed.ToString & ".xml"
-        Else
-            SavedPath = SentPath & Path.DirectorySeparatorChar &
-               My.Settings.PreviousSeed.ToString & ".xml"
-        End If
-        Dim writer As New System.Xml.Serialization.XmlSerializer(GetType(List(Of Location)))
-        Dim file As New System.IO.StreamWriter(
-            SavedPath)
-        writer.Serialize(file, LocationInformation)
-        file.Close()
-    End Sub
-    Shared Sub ImportLocations(SentPath As String)
-        Dim reader As New System.Xml.Serialization.XmlSerializer(GetType(List(Of Location)))
-        Dim file As New System.IO.StreamReader(
-            SentPath)
-        LocationInformation = reader.Deserialize(file)
-        'reader.Deserialize(file, LocationInformation)
-        file.Close()
-    End Sub
+
 #End Region
 #Region "Monsters"
     Shared Sub ShuffleMonsters(Seed As Integer, Difficulty As DifficultySetting)
