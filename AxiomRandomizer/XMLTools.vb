@@ -55,7 +55,6 @@ Public Class XMLTools
         Function(f1 As FileInfo, f2 As FileInfo) File.GetCreationTime(f2.FullName).CompareTo(File.GetCreationTime(f1.FullName))
         )
     )
-        MessageBox.Show(FileList.Length)
         Dim DeletionList As List(Of String) = New List(Of String)
         For Each TempXML As FileInfo In FileList
             Dim TempLines As String() = IO.File.ReadAllLines(TempXML.FullName)

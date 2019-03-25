@@ -22,8 +22,10 @@ Partial Class OptionsMenu
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.CheckBoxNewSeedGenerator = New System.Windows.Forms.CheckBox()
         Me.ButtonClearAppData = New System.Windows.Forms.Button()
         Me.ButtonResetSettings = New System.Windows.Forms.Button()
         Me.CheckBoxDebug = New System.Windows.Forms.CheckBox()
@@ -31,10 +33,10 @@ Partial Class OptionsMenu
         Me.TrackBarXML = New System.Windows.Forms.TrackBar()
         Me.CheckBoxXMLLimit = New System.Windows.Forms.CheckBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.RadioButtonDefaultMenuSettings = New System.Windows.Forms.RadioButton()
+        Me.RadioButtonSaveMenuSettings = New System.Windows.Forms.RadioButton()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.ButtonRandoExe = New System.Windows.Forms.Button()
+        Me.ButtonRandoExeChangeName = New System.Windows.Forms.Button()
         Me.TextBoxRandomExeLocation = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.ButtonIlasmLocation = New System.Windows.Forms.Button()
@@ -59,6 +61,7 @@ Partial Class OptionsMenu
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBoxVanillaDecompile = New System.Windows.Forms.TextBox()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.TrackBarXML, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,6 +82,7 @@ Partial Class OptionsMenu
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.CheckBoxNewSeedGenerator)
         Me.TabPage1.Controls.Add(Me.ButtonClearAppData)
         Me.TabPage1.Controls.Add(Me.ButtonResetSettings)
         Me.TabPage1.Controls.Add(Me.CheckBoxDebug)
@@ -94,39 +98,57 @@ Partial Class OptionsMenu
         Me.TabPage1.Text = "Basic Options"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'CheckBoxNewSeedGenerator
+        '
+        Me.CheckBoxNewSeedGenerator.AutoSize = True
+        Me.CheckBoxNewSeedGenerator.Location = New System.Drawing.Point(9, 57)
+        Me.CheckBoxNewSeedGenerator.Name = "CheckBoxNewSeedGenerator"
+        Me.CheckBoxNewSeedGenerator.Size = New System.Drawing.Size(178, 17)
+        Me.CheckBoxNewSeedGenerator.TabIndex = 8
+        Me.CheckBoxNewSeedGenerator.Text = "Generate a new seed on launch"
+        Me.ToolTip1.SetToolTip(Me.CheckBoxNewSeedGenerator, "By default the tool uses your last seed when loaded." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Enabling this will generate" &
+        " a new seed on every launch.")
+        Me.CheckBoxNewSeedGenerator.UseVisualStyleBackColor = True
+        '
         'ButtonClearAppData
         '
-        Me.ButtonClearAppData.Location = New System.Drawing.Point(106, 131)
+        Me.ButtonClearAppData.Location = New System.Drawing.Point(118, 154)
         Me.ButtonClearAppData.Name = "ButtonClearAppData"
-        Me.ButtonClearAppData.Size = New System.Drawing.Size(91, 23)
+        Me.ButtonClearAppData.Size = New System.Drawing.Size(150, 23)
         Me.ButtonClearAppData.TabIndex = 7
-        Me.ButtonClearAppData.Text = "Clear App Data"
+        Me.ButtonClearAppData.Text = "Clear Decompile Folders"
+        Me.ToolTip1.SetToolTip(Me.ButtonClearAppData, "This will empty your decompile folders." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This is a good option if you wish to " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "r" &
+        "e-decompile the game with new settings. ")
         Me.ButtonClearAppData.UseVisualStyleBackColor = True
         '
         'ButtonResetSettings
         '
-        Me.ButtonResetSettings.Location = New System.Drawing.Point(9, 131)
+        Me.ButtonResetSettings.Location = New System.Drawing.Point(9, 154)
         Me.ButtonResetSettings.Name = "ButtonResetSettings"
-        Me.ButtonResetSettings.Size = New System.Drawing.Size(91, 23)
+        Me.ButtonResetSettings.Size = New System.Drawing.Size(100, 23)
         Me.ButtonResetSettings.TabIndex = 6
         Me.ButtonResetSettings.Text = "Reset Settings"
+        Me.ToolTip1.SetToolTip(Me.ButtonResetSettings, "This resets your local settings and closing the tool." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This can be helpful to try" &
+        " and fix issues.")
         Me.ButtonResetSettings.UseVisualStyleBackColor = True
         '
         'CheckBoxDebug
         '
         Me.CheckBoxDebug.AutoSize = True
-        Me.CheckBoxDebug.Location = New System.Drawing.Point(9, 108)
+        Me.CheckBoxDebug.Location = New System.Drawing.Point(9, 131)
         Me.CheckBoxDebug.Name = "CheckBoxDebug"
         Me.CheckBoxDebug.Size = New System.Drawing.Size(118, 17)
         Me.CheckBoxDebug.TabIndex = 5
         Me.CheckBoxDebug.Text = "Enable Debug Text"
+        Me.ToolTip1.SetToolTip(Me.CheckBoxDebug, "This allows a larger printout of the randomizer function." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "THIS WILL SPOIL SEEDS." &
+        "")
         Me.CheckBoxDebug.UseVisualStyleBackColor = True
         '
         'LabelXML
         '
         Me.LabelXML.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelXML.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.LabelXML.Location = New System.Drawing.Point(49, 77)
+        Me.LabelXML.Location = New System.Drawing.Point(49, 100)
         Me.LabelXML.Name = "LabelXML"
         Me.LabelXML.Size = New System.Drawing.Size(39, 13)
         Me.LabelXML.TabIndex = 4
@@ -136,7 +158,7 @@ Partial Class OptionsMenu
         'TrackBarXML
         '
         Me.TrackBarXML.Enabled = False
-        Me.TrackBarXML.Location = New System.Drawing.Point(94, 57)
+        Me.TrackBarXML.Location = New System.Drawing.Point(94, 80)
         Me.TrackBarXML.Maximum = 100
         Me.TrackBarXML.Name = "TrackBarXML"
         Me.TrackBarXML.Size = New System.Drawing.Size(179, 45)
@@ -147,17 +169,19 @@ Partial Class OptionsMenu
         'CheckBoxXMLLimit
         '
         Me.CheckBoxXMLLimit.AutoSize = True
-        Me.CheckBoxXMLLimit.Location = New System.Drawing.Point(9, 57)
+        Me.CheckBoxXMLLimit.Location = New System.Drawing.Point(9, 80)
         Me.CheckBoxXMLLimit.Name = "CheckBoxXMLLimit"
         Me.CheckBoxXMLLimit.Size = New System.Drawing.Size(79, 17)
         Me.CheckBoxXMLLimit.TabIndex = 2
         Me.CheckBoxXMLLimit.Text = "Limit XMLS"
+        Me.ToolTip1.SetToolTip(Me.CheckBoxXMLLimit, "The tool by default creates a spoiler XML file in the XML Folder." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This can autom" &
+        "atically limit xml files to a certain number.")
         Me.CheckBoxXMLLimit.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.RadioButton2)
-        Me.GroupBox1.Controls.Add(Me.RadioButton1)
+        Me.GroupBox1.Controls.Add(Me.RadioButtonDefaultMenuSettings)
+        Me.GroupBox1.Controls.Add(Me.RadioButtonSaveMenuSettings)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
@@ -165,32 +189,31 @@ Partial Class OptionsMenu
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         '
-        'RadioButton2
+        'RadioButtonDefaultMenuSettings
         '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(103, 19)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(100, 17)
-        Me.RadioButton2.TabIndex = 1
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "Default Settings"
-        Me.RadioButton2.UseVisualStyleBackColor = True
+        Me.RadioButtonDefaultMenuSettings.AutoSize = True
+        Me.RadioButtonDefaultMenuSettings.Checked = True
+        Me.RadioButtonDefaultMenuSettings.Location = New System.Drawing.Point(103, 19)
+        Me.RadioButtonDefaultMenuSettings.Name = "RadioButtonDefaultMenuSettings"
+        Me.RadioButtonDefaultMenuSettings.Size = New System.Drawing.Size(100, 17)
+        Me.RadioButtonDefaultMenuSettings.TabIndex = 1
+        Me.RadioButtonDefaultMenuSettings.TabStop = True
+        Me.RadioButtonDefaultMenuSettings.Text = "Default Settings"
+        Me.RadioButtonDefaultMenuSettings.UseVisualStyleBackColor = True
         '
-        'RadioButton1
+        'RadioButtonSaveMenuSettings
         '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Checked = True
-        Me.RadioButton1.Location = New System.Drawing.Point(6, 19)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(91, 17)
-        Me.RadioButton1.TabIndex = 0
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "Save Settings"
-        Me.RadioButton1.UseVisualStyleBackColor = True
+        Me.RadioButtonSaveMenuSettings.AutoSize = True
+        Me.RadioButtonSaveMenuSettings.Location = New System.Drawing.Point(6, 19)
+        Me.RadioButtonSaveMenuSettings.Name = "RadioButtonSaveMenuSettings"
+        Me.RadioButtonSaveMenuSettings.Size = New System.Drawing.Size(91, 17)
+        Me.RadioButtonSaveMenuSettings.TabIndex = 0
+        Me.RadioButtonSaveMenuSettings.Text = "Save Settings"
+        Me.RadioButtonSaveMenuSettings.UseVisualStyleBackColor = True
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.ButtonRandoExe)
+        Me.TabPage2.Controls.Add(Me.ButtonRandoExeChangeName)
         Me.TabPage2.Controls.Add(Me.TextBoxRandomExeLocation)
         Me.TabPage2.Controls.Add(Me.Label8)
         Me.TabPage2.Controls.Add(Me.ButtonIlasmLocation)
@@ -222,31 +245,31 @@ Partial Class OptionsMenu
         Me.TabPage2.Text = "Folder Options"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'ButtonRandoExe
+        'ButtonRandoExeChangeName
         '
-        Me.ButtonRandoExe.Location = New System.Drawing.Point(243, 134)
-        Me.ButtonRandoExe.Name = "ButtonRandoExe"
-        Me.ButtonRandoExe.Size = New System.Drawing.Size(25, 23)
-        Me.ButtonRandoExe.TabIndex = 23
-        Me.ButtonRandoExe.Text = "..."
-        Me.ButtonRandoExe.UseVisualStyleBackColor = True
+        Me.ButtonRandoExeChangeName.Location = New System.Drawing.Point(213, 134)
+        Me.ButtonRandoExeChangeName.Name = "ButtonRandoExeChangeName"
+        Me.ButtonRandoExeChangeName.Size = New System.Drawing.Size(55, 23)
+        Me.ButtonRandoExeChangeName.TabIndex = 25
+        Me.ButtonRandoExeChangeName.Text = "Change"
+        Me.ButtonRandoExeChangeName.UseVisualStyleBackColor = True
         '
         'TextBoxRandomExeLocation
         '
+        Me.TextBoxRandomExeLocation.Enabled = False
         Me.TextBoxRandomExeLocation.Location = New System.Drawing.Point(8, 136)
         Me.TextBoxRandomExeLocation.Name = "TextBoxRandomExeLocation"
-        Me.TextBoxRandomExeLocation.ReadOnly = True
-        Me.TextBoxRandomExeLocation.Size = New System.Drawing.Size(229, 20)
-        Me.TextBoxRandomExeLocation.TabIndex = 22
+        Me.TextBoxRandomExeLocation.Size = New System.Drawing.Size(199, 20)
+        Me.TextBoxRandomExeLocation.TabIndex = 24
         '
         'Label8
         '
         Me.Label8.AutoSize = True
         Me.Label8.Location = New System.Drawing.Point(8, 120)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(144, 13)
+        Me.Label8.Size = New System.Drawing.Size(131, 13)
         Me.Label8.TabIndex = 21
-        Me.Label8.Text = "Randomized Game Location:"
+        Me.Label8.Text = "Randomized Game Name:"
         '
         'ButtonIlasmLocation
         '
@@ -458,8 +481,8 @@ Partial Class OptionsMenu
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents RadioButton2 As RadioButton
-    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents RadioButtonDefaultMenuSettings As RadioButton
+    Friend WithEvents RadioButtonSaveMenuSettings As RadioButton
     Friend WithEvents TextBoxWorkingDecompile As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
@@ -485,10 +508,12 @@ Partial Class OptionsMenu
     Friend WithEvents ButtonIlasmLocation As Button
     Friend WithEvents TextBoxIlasmLocation As TextBox
     Friend WithEvents Label7 As Label
-    Friend WithEvents ButtonRandoExe As Button
-    Friend WithEvents TextBoxRandomExeLocation As TextBox
     Friend WithEvents Label8 As Label
     Friend WithEvents ButtonClearAppData As Button
     Friend WithEvents ButtonResetSettings As Button
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
+    Friend WithEvents ButtonRandoExeChangeName As Button
+    Friend WithEvents TextBoxRandomExeLocation As TextBox
+    Friend WithEvents CheckBoxNewSeedGenerator As CheckBox
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

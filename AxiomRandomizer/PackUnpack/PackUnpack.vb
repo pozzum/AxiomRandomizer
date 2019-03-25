@@ -276,7 +276,7 @@ Public Class PackUnpack
             End If
         End If
         Process.Start(IlasmPath, """" & WorkingPath & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL" & """").WaitForExit()
-        My.Settings.RandoExePath = Path.GetDirectoryName(ExeFilePath) & Path.DirectorySeparatorChar & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".exe"
+        My.Settings.RandoExePath = My.Settings.RandoExePath
         'MessageBox.Show("Click OK when command dialog closes")
         If File.Exists(WorkingPath & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".exe") Then
             File.Copy(WorkingPath & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".exe",

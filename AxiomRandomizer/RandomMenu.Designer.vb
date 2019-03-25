@@ -54,7 +54,8 @@ Partial Class RandomMenu
         Me.ButtonGenerateBatch = New System.Windows.Forms.Button()
         Me.TrackBarBatchSize = New System.Windows.Forms.TrackBar()
         Me.LabelBatchSize = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.ReportAnIssueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.TrackBarBatchSize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -276,6 +277,7 @@ Partial Class RandomMenu
         '
         'ThankTheDevsToolStripMenuItem
         '
+        Me.ThankTheDevsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReportAnIssueToolStripMenuItem})
         Me.ThankTheDevsToolStripMenuItem.Name = "ThankTheDevsToolStripMenuItem"
         Me.ThankTheDevsToolStripMenuItem.Size = New System.Drawing.Size(103, 20)
         Me.ThankTheDevsToolStripMenuItem.Text = "Thank the Devs!"
@@ -352,21 +354,17 @@ Partial Class RandomMenu
         Me.LabelBatchSize.TabIndex = 28
         Me.LabelBatchSize.Text = "Batch Size: 100"
         '
-        'Button1
+        'ReportAnIssueToolStripMenuItem
         '
-        Me.Button1.Location = New System.Drawing.Point(205, 14)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 29
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.ReportAnIssueToolStripMenuItem.Name = "ReportAnIssueToolStripMenuItem"
+        Me.ReportAnIssueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ReportAnIssueToolStripMenuItem.Text = "Report an Issue?"
         '
         'RandomMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(384, 611)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.LabelBatchSize)
         Me.Controls.Add(Me.TrackBarBatchSize)
         Me.Controls.Add(Me.ButtonGenerateBatch)
@@ -436,5 +434,6 @@ Partial Class RandomMenu
     Friend WithEvents ButtonGenerateBatch As Button
     Friend WithEvents TrackBarBatchSize As TrackBar
     Friend WithEvents LabelBatchSize As Label
-    Friend WithEvents Button1 As Button
+    Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
+    Friend WithEvents ReportAnIssueToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -9,16 +9,21 @@ Public Class RandomMenu
         CheckLastSeed()
         CheckRandoExe()
         MenuHeight()
+        If My.Settings.SaveMenuSettings Then LoadSavedSettings()
     End Sub
     Shared Sub AddDifficulties()
         RandomMenu.ComboBoxDifficulties.Items.AddRange(System.Enum.GetNames(GetType(Randomizer.DifficultySetting)))
         RandomMenu.ComboBoxDifficulties.SelectedIndex = 0
     End Sub
     Sub CheckLastSeed()
-        If My.Settings.PreviousSeed = "" Then
-            My.Settings.PreviousSeed = GetRandomNumber().ToString
+        If My.Settings.RandomSeedOnLaunch Then
+            TextBoxSeed.Text = GetRandomNumber().ToString
+        Else
+            If My.Settings.PreviousSeed = "" Then
+                My.Settings.PreviousSeed = GetRandomNumber().ToString
+            End If
+            TextBoxSeed.Text = My.Settings.PreviousSeed
         End If
-        TextBoxSeed.Text = My.Settings.PreviousSeed
     End Sub
     Sub CheckRandoExe()
         If My.Settings.RandoExePath = "" Then
@@ -51,6 +56,44 @@ Public Class RandomMenu
                 End If
             End If
         End If
+    End Sub
+    Sub LoadSavedSettings()
+        ComboBoxDifficulties.SelectedIndex = ComboBoxDifficulties.Items.IndexOf(My.Settings.MenuSavedDifficulty)
+        If My.Settings.MenuSavedMapOptions = "Default" Then
+            RadioButtonDefaultMap.Checked = True
+        ElseIf My.Settings.MenuSavedMapOptions = "Custom" Then
+            RadioButtonCustomMap.Checked = True
+        ElseIf My.Settings.MenuSavedMapOptions = "Vanilla" Then
+            RadioButtonVanillaMap.Checked = True
+        End If
+        CheckBoxWalls.Checked = My.Settings.MenuSavedUkkin_Na1Way
+        CheckBoxIllusion.Checked = My.Settings.MenuSavedIllusionDelete
+        CheckBoxDropDown.Checked = My.Settings.MenuSavedZi1Way
+        CheckBoxOpenEribu.Checked = My.Settings.MenuSavedOpenEribu
+        CheckBoxOpenElsenova.Checked = My.Settings.MenuSavedOpenElsenova
+        CheckBoxOpenAbsu.Checked = My.Settings.MenuSavedOpenAbsu
+        TrackBarBatchSize.Value = My.Settings.MenuSavedBatchSize
+    End Sub
+    Private Sub RandomMenu_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        My.Settings.PreviousSeed = TextBoxSeed.Text
+        If My.Settings.SaveMenuSettings Then SaveMenuSettings()
+    End Sub
+    Sub SaveMenuSettings()
+        My.Settings.MenuSavedDifficulty = ComboBoxDifficulties.SelectedItem.ToString
+        If RadioButtonDefaultMap.Checked Then
+            My.Settings.MenuSavedMapOptions = "Default"
+        ElseIf RadioButtonCustomMap.Checked Then
+            My.Settings.MenuSavedMapOptions = "Custom"
+        ElseIf RadioButtonVanillaMap.Checked Then
+            My.Settings.MenuSavedMapOptions = "Vanilla"
+        End If
+        My.Settings.MenuSavedUkkin_Na1Way = CheckBoxWalls.Checked
+        My.Settings.MenuSavedIllusionDelete = CheckBoxIllusion.Checked
+        My.Settings.MenuSavedZi1Way = CheckBoxDropDown.Checked
+        My.Settings.MenuSavedOpenEribu = CheckBoxOpenEribu.Checked
+        My.Settings.MenuSavedOpenElsenova = CheckBoxOpenElsenova.Checked
+        My.Settings.MenuSavedOpenAbsu = CheckBoxOpenAbsu.Checked
+        My.Settings.MenuSavedBatchSize = TrackBarBatchSize.Value
     End Sub
 #End Region
 #Region "Form Controls"
@@ -303,11 +346,8 @@ DirectCast([Enum].Parse(GetType(Randomizer.DifficultySetting),
     Private Sub ThankTheDevsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThankTheDevsToolStripMenuItem.Click
         CreditsForm.Show()
     End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If My.Settings.XMLLimited Then
-            XMLTools.LimitXMLCount(My.Settings.XMLSaveLocation, My.Settings.XMLLimitCount)
-        End If
+    Private Sub ReportAnIssueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReportAnIssueToolStripMenuItem.Click
+        Process.Start("https://github.com/pozzum/AxiomRandomizer/issues")
     End Sub
 #End Region
 End Class

@@ -293,6 +293,138 @@ Namespace My
                 Me("WorkingDecompileLocation") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property RandomSeedOnLaunch() As Boolean
+            Get
+                Return CType(Me("RandomSeedOnLaunch"),Boolean)
+            End Get
+            Set
+                Me("RandomSeedOnLaunch") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property SaveMenuSettings() As Boolean
+            Get
+                Return CType(Me("SaveMenuSettings"),Boolean)
+            End Get
+            Set
+                Me("SaveMenuSettings") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property MenuSavedDifficulty() As String
+            Get
+                Return CType(Me("MenuSavedDifficulty"),String)
+            End Get
+            Set
+                Me("MenuSavedDifficulty") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property MenuSavedMapOptions() As String
+            Get
+                Return CType(Me("MenuSavedMapOptions"),String)
+            End Get
+            Set
+                Me("MenuSavedMapOptions") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property MenuSavedUkkin_Na1Way() As Boolean
+            Get
+                Return CType(Me("MenuSavedUkkin_Na1Way"),Boolean)
+            End Get
+            Set
+                Me("MenuSavedUkkin_Na1Way") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property MenuSavedIllusionDelete() As Boolean
+            Get
+                Return CType(Me("MenuSavedIllusionDelete"),Boolean)
+            End Get
+            Set
+                Me("MenuSavedIllusionDelete") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property MenuSavedZi1Way() As Boolean
+            Get
+                Return CType(Me("MenuSavedZi1Way"),Boolean)
+            End Get
+            Set
+                Me("MenuSavedZi1Way") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property MenuSavedOpenEribu() As Boolean
+            Get
+                Return CType(Me("MenuSavedOpenEribu"),Boolean)
+            End Get
+            Set
+                Me("MenuSavedOpenEribu") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property MenuSavedOpenElsenova() As Boolean
+            Get
+                Return CType(Me("MenuSavedOpenElsenova"),Boolean)
+            End Get
+            Set
+                Me("MenuSavedOpenElsenova") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property MenuSavedOpenAbsu() As Boolean
+            Get
+                Return CType(Me("MenuSavedOpenAbsu"),Boolean)
+            End Get
+            Set
+                Me("MenuSavedOpenAbsu") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("100")>  _
+        Public Property MenuSavedBatchSize() As Integer
+            Get
+                Return CType(Me("MenuSavedBatchSize"),Integer)
+            End Get
+            Set
+                Me("MenuSavedBatchSize") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

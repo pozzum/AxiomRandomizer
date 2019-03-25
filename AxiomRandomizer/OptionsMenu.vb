@@ -1,12 +1,19 @@
 ﻿Imports System.IO    'Files
 Public Class OptionsMenu
     Private Sub OptionsMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.Text = Me.Text & " Ver: " & My.Application.Info.Version.ToString
         LoadBasicOptionsTab()
         LoadFolderOptionsTab()
         CurrentXMLCount = -1
         XMLTrimPending = False
     End Sub
     Private Sub OptionsMenu_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If ButtonRandoExeChangeName.Text = "Save" Then
+            If MessageBox.Show("Exiting now will not save the Random Exe name Continue?", "Save Pending", MessageBoxButtons.OKCancel) = DialogResult.Cancel Then
+                e.Cancel = True
+                Exit Sub
+            End If
+        End If
         If XMLTrimPending Then
             XMLTools.LimitXMLCount(My.Settings.XMLSaveLocation, My.Settings.XMLLimitCount)
         End If
@@ -18,12 +25,19 @@ Public Class OptionsMenu
     Dim XMLTrimPending As Boolean = False
     Dim CurrentXMLCount As Integer = -1
     Sub LoadBasicOptionsTab()
-        LabelXML.ForeColor = System.Drawing.SystemColors.ControlText
+        RadioButtonSaveMenuSettings.Checked = My.Settings.SaveMenuSettings
+        CheckBoxNewSeedGenerator.Checked = My.Settings.RandomSeedOnLaunch
         CheckBoxXMLLimit.Checked = My.Settings.XMLLimited
         CheckBoxDebug.Checked = My.Settings.DebugMode
         TrackBarXML.Value = My.Settings.XMLLimitCount
         LabelXML.Text = TrackBarXML.Value.ToString
         LabelXML.Enabled = CheckBoxXMLLimit.Checked
+    End Sub
+    Private Sub RadioButtonSaveMenuSettings_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonSaveMenuSettings.CheckedChanged
+        My.Settings.SaveMenuSettings = RadioButtonSaveMenuSettings.Checked
+    End Sub
+    Private Sub CheckBoxNewSeedGenerator_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxNewSeedGenerator.CheckedChanged
+        My.Settings.RandomSeedOnLaunch = CheckBoxNewSeedGenerator.Checked
     End Sub
     Private Sub CheckBoxXMLLimit_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxXMLLimit.CheckedChanged
         My.Settings.XMLLimited = CheckBoxXMLLimit.Checked
@@ -75,7 +89,7 @@ Public Class OptionsMenu
         TextBoxVanillaDecompile.Text = My.Settings.VanillaDecompileLocation
         TextBoxWorkingDecompile.Text = My.Settings.WorkingDecompileLocation
         TextBoxGameLocation.Text = My.Settings.ExeFilePath
-        TextBoxRandomExeLocation.Text = My.Settings.RandoExePath
+        TextBoxRandomExeLocation.Text = Path.GetFileName(My.Settings.RandoExePath)
         TextBoxSaveFileLocation.Text = My.Settings.SaveFilePath
         TextBoxXMLSaveLocation.Text = My.Settings.XMLSaveLocation
         TextBoxIldasmLocation.Text = My.Settings.IldasmSavedPath
@@ -109,7 +123,38 @@ Public Class OptionsMenu
         FileSelect.GetExeFile()
         LoadFolderOptionsTab()
     End Sub
-    Private Sub ButtonRandoExe_Click(sender As Object, e As EventArgs) Handles ButtonRandoExe.Click
+    Private Sub ButtonRandoExeChangeName_Click(sender As Object, e As EventArgs) Handles ButtonRandoExeChangeName.Click
+        If ButtonRandoExeChangeName.Text = "Change" Then
+            ButtonRandoExeChangeName.Text = "Save"
+            TextBoxRandomExeLocation.Enabled = True
+        ElseIf ButtonRandoExeChangeName.Text = "Save" Then
+            Dim TempRando As String
+            If TextBoxRandomExeLocation.Text.EndsWith(".exe") Then
+                TempRando = Path.GetDirectoryName(My.Settings.RandoExePath) & Path.DirectorySeparatorChar & TextBoxRandomExeLocation.Text
+            Else
+                TempRando = Path.GetDirectoryName(My.Settings.RandoExePath) & Path.DirectorySeparatorChar & TextBoxRandomExeLocation.Text & ".exe"
+            End If
+            If File.Exists(TempRando) Then
+                File.Delete(TempRando)
+            End If
+            If File.Exists(My.Settings.RandoExePath) Then
+                File.Move(My.Settings.RandoExePath, TempRando)
+            End If
+            'now we have to rename the il files
+            'Vanilla Folder
+            File.Move(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL",
+                      My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(TempRando) & ".iL")
+            'Working Folder
+            File.Move(My.Settings.WorkingDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL",
+                      My.Settings.WorkingDecompileLocation & Path.GetFileNameWithoutExtension(TempRando) & ".iL")
+            My.Settings.RandoExePath = TempRando
+            MessageBox.Show("Future randomized exes will be saved to." & vbNewLine & My.Settings.RandoExePath)
+            ButtonRandoExeChangeName.Text = "Change"
+            TextBoxRandomExeLocation.Enabled = False
+        End If
+        LoadFolderOptionsTab()
+    End Sub
+    Private Sub ButtonRandoExe_Click(sender As Object, e As EventArgs) 'Handles ButtonRandoExe.Click
         SaveFileDialog1.InitialDirectory = Path.GetDirectoryName(My.Settings.RandoExePath)
         SaveFileDialog1.FileName = Path.GetFileName(My.Settings.RandoExePath)
         SaveFileDialog1.Filter = "Randomize.exe|*.exe"

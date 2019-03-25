@@ -1,5 +1,6 @@
 ﻿Public Class CreditsForm
     Private Sub Credits_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.Text = Me.Text & " Ver: " & My.Application.Info.Version.ToString
         LinkLabelGitHub.Links.Add(LinkLabelGitHub.LinkArea.Start, LinkLabelGitHub.LinkArea.Length, "https://github.com/pozzum/AxiomRandomizer")
         LinkLabelPozzum.Links.Add(LinkLabelPozzum.LinkArea.Start, LinkLabelPozzum.LinkArea.Length, "http://paypal.me/pozzum")
         LinkLabelVideoGameRoulette.Links.Add(LinkLabelVideoGameRoulette.LinkArea.Start, LinkLabelVideoGameRoulette.LinkArea.Length, "https://paypal.me/VideoGameRoulette")
