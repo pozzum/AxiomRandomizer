@@ -22,10 +22,10 @@ Public Class Randomizer
         If Difficulty = DifficultySetting.Normal Then
             'Normal is the only that has logic for opened areas
             LocationInformation = NormalLocations.ResetLocations(OpenEribu1, OpenElseNova2, OpenAbsu3)
-            ItemPool = NormalItems.ResetItemPool()
+            ItemPool = VanillaItems.ResetItemPool()
         ElseIf Difficulty = DifficultySetting.Easy Then
             LocationInformation = EasyLocations.ResetLocations()
-            ItemPool = EasyItems.ResetItemPool()
+            ItemPool = VanillaItems.ResetItemPool()
         ElseIf Difficulty = DifficultySetting.Practice Then
             LocationInformation = PracticeLocations.ResetLocations() 'New List(Of Location) '
             ItemPool = PracticeItems.ResetItemPool() 'New List(Of ItemDrop) '
@@ -313,31 +313,31 @@ Public Class Randomizer
 
 #End Region
 #Region "Monsters"
-    Shared Sub ShuffleMonsters(Seed As Integer, Difficulty As DifficultySetting)
-        If Difficulty = DifficultySetting.Normal Then
-            MonsterList = NormalMonsters.ResetMonsters()
-            RemovedMonsters = NormalMonsters.BannedMonsters()
-        ElseIf Difficulty = DifficultySetting.Practice Then
-            MonsterList = NormalMonsters.ResetMonsters()
-            RemovedMonsters = NormalMonsters.BannedMonsters()
-        End If
-        For i As Integer = 0 To MonsterList.Count - 1
-            Dim attempt As Integer = 0
-            Do While attempt < 10
-                Dim TempSpawn As CreatureType = DirectCast([Enum].Parse(GetType(CreatureType),
-                                    Generator.Next(79)), CreatureType)
-                If Not RemovedMonsters.Contains(TempSpawn) Then
-                    MonsterList(i).Spawns = TempSpawn
-                End If
-                attempt += 1
-                If attempt = 9 Then
-                    MonsterList(i).Spawns = MonsterList(i).Vanilla
-                End If
-            Loop
-            'If MonsterList(i).Region = Area.Indi Then
-            'MessageBox.Show(MonsterList(i).Vanilla.ToString & " Replaced by " & MonsterList(i).Spawns.ToString)
-            'End If
-        Next
-    End Sub
+    'Shared Sub ShuffleMonsters(Seed As Integer, Difficulty As DifficultySetting)
+    '    If Difficulty = DifficultySetting.Normal Then
+    '        MonsterList = NormalMonsters.ResetMonsters()
+    '        RemovedMonsters = NormalMonsters.BannedMonsters()
+    '    ElseIf Difficulty = DifficultySetting.Practice Then
+    '        MonsterList = NormalMonsters.ResetMonsters()
+    '        RemovedMonsters = NormalMonsters.BannedMonsters()
+    '    End If
+    '    For i As Integer = 0 To MonsterList.Count - 1
+    '        Dim attempt As Integer = 0
+    '        Do While attempt < 10
+    '            Dim TempSpawn As CreatureType = DirectCast([Enum].Parse(GetType(CreatureType),
+    '                                Generator.Next(79)), CreatureType)
+    '            If Not RemovedMonsters.Contains(TempSpawn) Then
+    '                MonsterList(i).Spawns = TempSpawn
+    '            End If
+    '            attempt += 1
+    '            If attempt = 9 Then
+    '                MonsterList(i).Spawns = MonsterList(i).Vanilla
+    '            End If
+    '        Loop
+    '        'If MonsterList(i).Region = Area.Indi Then
+    '        'MessageBox.Show(MonsterList(i).Vanilla.ToString & " Replaced by " & MonsterList(i).Spawns.ToString)
+    '        'End If
+    '    Next
+    'End Sub
 #End Region
 End Class
