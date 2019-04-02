@@ -47,6 +47,7 @@ Partial Class RandomMenu
         Me.SelectExeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ThankTheDevsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReportAnIssueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TextBoxDebug = New System.Windows.Forms.TextBox()
         Me.ButtonSpoilerMap = New System.Windows.Forms.Button()
         Me.ButtonGenNumber = New System.Windows.Forms.Button()
@@ -55,7 +56,7 @@ Partial Class RandomMenu
         Me.TrackBarBatchSize = New System.Windows.Forms.TrackBar()
         Me.LabelBatchSize = New System.Windows.Forms.Label()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.ReportAnIssueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckBoxHideItemIcons = New System.Windows.Forms.CheckBox()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.TrackBarBatchSize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -282,6 +283,12 @@ Partial Class RandomMenu
         Me.ThankTheDevsToolStripMenuItem.Size = New System.Drawing.Size(103, 20)
         Me.ThankTheDevsToolStripMenuItem.Text = "Thank the Devs!"
         '
+        'ReportAnIssueToolStripMenuItem
+        '
+        Me.ReportAnIssueToolStripMenuItem.Name = "ReportAnIssueToolStripMenuItem"
+        Me.ReportAnIssueToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
+        Me.ReportAnIssueToolStripMenuItem.Text = "Report an Issue?"
+        '
         'TextBoxDebug
         '
         Me.TextBoxDebug.Location = New System.Drawing.Point(12, 255)
@@ -354,17 +361,22 @@ Partial Class RandomMenu
         Me.LabelBatchSize.TabIndex = 28
         Me.LabelBatchSize.Text = "Batch Size: 100"
         '
-        'ReportAnIssueToolStripMenuItem
+        'CheckBoxHideItemIcons
         '
-        Me.ReportAnIssueToolStripMenuItem.Name = "ReportAnIssueToolStripMenuItem"
-        Me.ReportAnIssueToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ReportAnIssueToolStripMenuItem.Text = "Report an Issue?"
+        Me.CheckBoxHideItemIcons.AutoSize = True
+        Me.CheckBoxHideItemIcons.Location = New System.Drawing.Point(192, 212)
+        Me.CheckBoxHideItemIcons.Name = "CheckBoxHideItemIcons"
+        Me.CheckBoxHideItemIcons.Size = New System.Drawing.Size(100, 17)
+        Me.CheckBoxHideItemIcons.TabIndex = 29
+        Me.CheckBoxHideItemIcons.Text = "Hide Item Icons"
+        Me.CheckBoxHideItemIcons.UseVisualStyleBackColor = True
         '
         'RandomMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(384, 611)
+        Me.Controls.Add(Me.CheckBoxHideItemIcons)
         Me.Controls.Add(Me.LabelBatchSize)
         Me.Controls.Add(Me.TrackBarBatchSize)
         Me.Controls.Add(Me.ButtonGenerateBatch)
@@ -436,4 +448,5 @@ Partial Class RandomMenu
     Friend WithEvents LabelBatchSize As Label
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents ReportAnIssueToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CheckBoxHideItemIcons As CheckBox
 End Class

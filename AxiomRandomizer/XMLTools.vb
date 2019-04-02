@@ -82,7 +82,8 @@ Public Class XMLEditor
                                   OpenAbsu3 As Boolean,
                                   DropDown As Boolean,
                                   Walls As Boolean,
-                                  Illusion As Boolean)
+                                  Illusion As Boolean,
+                                  ObscuredItems As Boolean)
         Dim TextSettingsFolder = My.Settings.WorkingDecompileLocation & "OuterBeyond.EmbeddedContent.Content\Text\"
         'I will only implement this for english currently however there should later be translations for the languiages following after
         If System.IO.File.Exists(TextSettingsFolder & "UI_English.xml") Then
@@ -104,6 +105,7 @@ Public Class XMLEditor
             If DropDown Then OptionsString += "Drop Down Change, "
             If Walls Then OptionsString += "1 Way Wall Change, "
             If Illusion Then OptionsString += "Illusion Removed, "
+
             OptionsString += " </THTextEntry>"
             For i As Integer = 0 To lines.Length - 1
                 If lines(i).Contains("This is a special mode for competitive streamers who complete the game in a single sitting.") OrElse
@@ -138,7 +140,34 @@ Public Class XMLEditor
         'Portugese
         'Russian
         'Spanish
+    End Function
+    Shared Function MakeItemsTraceFace()
+        Dim ItemSettingsXML = My.Settings.WorkingDecompileLocation & "OuterBeyond.EmbeddedContent.Content\XML\Items.xml"
+        If System.IO.File.Exists(ItemSettingsXML) Then
+            GeneralTools.MakeWriteable(ItemSettingsXML)
+            Dim lines As List(Of String) = IO.File.ReadAllLines(ItemSettingsXML).ToList
+            Dim LineCount As Integer = 0
+            Do While LineCount < lines.Count
+                If lines(LineCount).Contains("<mPickupAnimation>DataDisruptorPickup</mPickupAnimation>") Then
+                    lines(LineCount) = lines(LineCount).Replace("DataDisruptorPickup", "ExitDrone")
+                End If
+                If lines(LineCount).Contains("<mIconAnimation>") Then
+                    If Not lines(LineCount - 1).Contains("<mPickupAnimation>") Then
+                        lines.Insert(LineCount, "    <mPickupAnimation>ExitDrone</mPickupAnimation> ")
+                    End If
+                End If
+                If lines(LineCount).Contains("<mPulseVal>0.0</mPulseVal>") Then
+                    lines.RemoveAt(LineCount)
+                    Continue Do 'skips the plus 1 so the current line is re read
+                End If
+                LineCount += 1
+            Loop
+            IO.File.WriteAllLines(ItemSettingsXML, lines)
+            Return True
+        Else
+            MessageBox.Show("UI text file not found, modification failed")
+            Return False
+        End If
 
     End Function
-
 End Class

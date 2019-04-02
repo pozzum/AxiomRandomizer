@@ -73,6 +73,7 @@ Public Class RandomMenu
         CheckBoxOpenElsenova.Checked = My.Settings.MenuSavedOpenElsenova
         CheckBoxOpenAbsu.Checked = My.Settings.MenuSavedOpenAbsu
         TrackBarBatchSize.Value = My.Settings.MenuSavedBatchSize
+        CheckBoxHideItemIcons.Checked = My.Settings.MenuSavedHideIcons
     End Sub
     Private Sub RandomMenu_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         My.Settings.PreviousSeed = TextBoxSeed.Text
@@ -94,6 +95,7 @@ Public Class RandomMenu
         My.Settings.MenuSavedOpenElsenova = CheckBoxOpenElsenova.Checked
         My.Settings.MenuSavedOpenAbsu = CheckBoxOpenAbsu.Checked
         My.Settings.MenuSavedBatchSize = TrackBarBatchSize.Value
+        My.Settings.MenuSavedHideIcons = CheckBoxHideItemIcons.Checked
     End Sub
 #End Region
 #Region "Form Controls"
@@ -141,6 +143,9 @@ Public Class RandomMenu
                 TileMapEditor.OpenEribu(CheckBoxOpenEribu.Checked)
                 TileMapEditor.OpenElsenova(CheckBoxOpenElsenova.Checked)
                 TileMapEditor.OpenAbsu(CheckBoxOpenAbsu.Checked)
+                If CheckBoxHideItemIcons.Checked Then
+                    XMLEditor.MakeItemsTraceFace()
+                End If
                 XMLTools.ExportLocations(My.Settings.XMLSaveLocation)
                 XMLEditor.WriteSettings(CLng(TextBoxSeed.Text),
                                         SelectedDifficulty,
@@ -149,7 +154,8 @@ Public Class RandomMenu
                                         CheckBoxOpenAbsu.Checked,
                                         CheckBoxDropDown.Checked,
                                         CheckBoxWalls.Checked,
-                                        CheckBoxIllusion.Checked)
+                                        CheckBoxIllusion.Checked,
+                                        CheckBoxHideItemIcons.Checked)
             Else
                 MessageBox.Show("Error With Tile Map")
             End If
@@ -237,6 +243,7 @@ Public Class RandomMenu
             CheckBoxOpenEribu.Enabled = False
             CheckBoxOpenElsenova.Enabled = False
             CheckBoxOpenAbsu.Enabled = False
+            CheckBoxHideItemIcons.Enabled = False
             DefaultMapOptionsFromDifficulty()
         End If
         'Make this setting enumerated somehow... TO FIX
@@ -251,6 +258,7 @@ Public Class RandomMenu
             CheckBoxOpenEribu.Enabled = True
             CheckBoxOpenElsenova.Enabled = True
             CheckBoxOpenAbsu.Enabled = True
+            CheckBoxHideItemIcons.Enabled = True
         End If
         My.Settings.MapGeneration = "Custom"
         MenuHeight()
@@ -270,6 +278,7 @@ Public Class RandomMenu
             CheckBoxOpenEribu.Checked = False
             CheckBoxOpenElsenova.Checked = False
             CheckBoxOpenAbsu.Checked = False
+            CheckBoxHideItemIcons.Checked = False
         End If
         My.Settings.MapGeneration = "Vanilla"
         MenuHeight()
@@ -287,6 +296,7 @@ DirectCast([Enum].Parse(GetType(Randomizer.DifficultySetting),
                 CheckBoxOpenEribu.Checked = False
                 CheckBoxOpenElsenova.Checked = False
                 CheckBoxOpenAbsu.Checked = False
+                CheckBoxHideItemIcons.Checked = False
             ElseIf SelectedDifficulty = Randomizer.DifficultySetting.Normal Then
                 CheckBoxWalls.Checked = True
                 CheckBoxIllusion.Checked = True
@@ -294,6 +304,7 @@ DirectCast([Enum].Parse(GetType(Randomizer.DifficultySetting),
                 CheckBoxOpenEribu.Checked = True
                 CheckBoxOpenElsenova.Checked = True
                 CheckBoxOpenAbsu.Checked = True
+                CheckBoxHideItemIcons.Checked = True
             ElseIf SelectedDifficulty = Randomizer.DifficultySetting.Practice Then
                 CheckBoxWalls.Checked = True
                 CheckBoxIllusion.Checked = True
@@ -301,6 +312,7 @@ DirectCast([Enum].Parse(GetType(Randomizer.DifficultySetting),
                 CheckBoxOpenEribu.Checked = False
                 CheckBoxOpenElsenova.Checked = False
                 CheckBoxOpenAbsu.Checked = False
+                CheckBoxHideItemIcons.Checked = False
             ElseIf SelectedDifficulty = Randomizer.DifficultySetting.Rebuild Then
                 CheckBoxWalls.Checked = False
                 CheckBoxIllusion.Checked = False
@@ -308,6 +320,7 @@ DirectCast([Enum].Parse(GetType(Randomizer.DifficultySetting),
                 CheckBoxOpenEribu.Checked = False
                 CheckBoxOpenElsenova.Checked = False
                 CheckBoxOpenAbsu.Checked = False
+                CheckBoxHideItemIcons.Checked = False
             End If
         End If
     End Sub

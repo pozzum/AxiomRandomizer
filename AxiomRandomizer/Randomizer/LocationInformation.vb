@@ -37,7 +37,7 @@ Namespace GameInformation
         Public PowersAttained As List(Of Powers)
     End Class
 #End Region
-#Region "Difficulkty Classes"
+#Region "Difficulty Classes"
     Public Class EasyLocations
         Public Shared Function ResetLocations(Optional OpenEribu1 As Boolean = False, Optional OpenAbsu2 As Boolean = False)
             Dim Locations As List(Of Location)
@@ -58,7 +58,6 @@ Namespace GameInformation
             TempLocation.RequiredPowers = New List(Of Powers)
             TempLocation.AddedPowers = New List(Of Powers)
             TempLocation.MapOptionPowers = New List(Of Powers)
-            'TempLocation.Weight = 1.9 'Makes this always placed first
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()
@@ -73,7 +72,6 @@ Namespace GameInformation
             TempLocation.RequiredPowers.AddRange({Powers.Damage})
             TempLocation.AddedPowers = New List(Of Powers)
             TempLocation.MapOptionPowers = New List(Of Powers)
-            'TempLocation.Weight = 1.5
             Locations.Add(TempLocation)
 #End Region
 #Region "Nova Progression"

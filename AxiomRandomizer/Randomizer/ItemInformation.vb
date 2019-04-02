@@ -75,6 +75,7 @@
     End Enum
     Public Class ItemDrop
         Public Name As String
+        Public NickName As String
         Public DropType As ItemType
         Public GivenPowers As List(Of Powers)
         Public GID As Integer
@@ -83,7 +84,7 @@
         Public JumpAdded As Integer = 0
     End Class
 #End Region
-    Public Class VanillaItems
+    Public Class NormalItems
         Public Shared Function ResetItemPool()
             Dim Items As List(Of ItemDrop)
             Items = New List(Of ItemDrop)
@@ -1191,7 +1192,6 @@
             TempItem.Name = ""
             TempItem.DropType = ItemType.DataDisruptor
             TempItem.GivenPowers = New List(Of Powers)
-            'TempItem.GivenPowers.AddRange({Powers.Damage})
             TempItem.GID = 2
             TempItem.Weight = 20
             Items.Add(TempItem)

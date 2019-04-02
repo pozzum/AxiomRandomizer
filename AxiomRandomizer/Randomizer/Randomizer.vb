@@ -22,10 +22,10 @@ Public Class Randomizer
         If Difficulty = DifficultySetting.Normal Then
             'Normal is the only that has logic for opened areas
             LocationInformation = NormalLocations.ResetLocations(OpenEribu1, OpenElseNova2, OpenAbsu3)
-            ItemPool = VanillaItems.ResetItemPool()
+            ItemPool = NormalItems.ResetItemPool()
         ElseIf Difficulty = DifficultySetting.Easy Then
             LocationInformation = EasyLocations.ResetLocations()
-            ItemPool = VanillaItems.ResetItemPool()
+            ItemPool = NormalItems.ResetItemPool()
         ElseIf Difficulty = DifficultySetting.Practice Then
             LocationInformation = PracticeLocations.ResetLocations() 'New List(Of Location) '
             ItemPool = PracticeItems.ResetItemPool() 'New List(Of ItemDrop) '
