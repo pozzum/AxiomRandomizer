@@ -4,6 +4,7 @@ Public Class OptionsMenu
         Me.Text = Me.Text & " Ver: " & My.Application.Info.Version.ToString
         LoadBasicOptionsTab()
         LoadFolderOptionsTab()
+        LoadDebugOptionsTab()
         CurrentXMLCount = -1
         XMLTrimPending = False
     End Sub
@@ -32,6 +33,8 @@ Public Class OptionsMenu
         TrackBarXML.Value = My.Settings.XMLLimitCount
         LabelXML.Text = TrackBarXML.Value.ToString
         LabelXML.Enabled = CheckBoxXMLLimit.Checked
+        CheckBoxSeperateCoat.Checked = My.Settings.SeperateLabCoats
+        CheckBoxRandomizeFakeCoat.Checked = My.Settings.RandomizeFakeCoat
     End Sub
     Private Sub RadioButtonSaveMenuSettings_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonSaveMenuSettings.CheckedChanged
         My.Settings.SaveMenuSettings = RadioButtonSaveMenuSettings.Checked
@@ -73,13 +76,69 @@ Public Class OptionsMenu
     Private Sub CheckBoxDebug_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxDebug.CheckedChanged
         My.Settings.DebugMode = CheckBoxDebug.Checked
         RandomMenu.MenuHeight()
+        LoadDebugOptionsTab()
+    End Sub
+    Private Sub CheckBoxSeperateCoat_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxSeperateCoat.CheckedChanged
+        If CheckBoxSeperateCoat.Checked Then
+            If Not My.Settings.SeperateLabCoats Then
+                If My.Settings.xnbcliSavedPath = "" Then
+                    Dim Result = MessageBox.Show("This option requires the xnbcli program" & vbNewLine &
+                                "Do you need to download this program?", "xnbcli.exe check", MessageBoxButtons.YesNoCancel)
+                    If Result = DialogResult.Cancel Then
+                        CheckBoxSeperateCoat.Checked = False
+                        Exit Sub
+                    ElseIf Result = DialogResult.Yes Then
+                        'https://github.com/LeonBlade/xnbcli/releases
+                        '1.0.4 Latest release at time of writing
+                        Process.Start("https://github.com/LeonBlade/xnbcli/releases")
+                    End If
+                    Dim TempDialog As New OpenFileDialog() With {.FileName = "xnbcli.exe"}
+                    If TempDialog.ShowDialog = DialogResult.OK Then
+                        If File.Exists(TempDialog.FileName) Then
+                            My.Settings.xnbcliSavedPath = TempDialog.FileName
+                            LoadFolderOptionsTab()
+                            If Not PackUnpack.Graphics.CreateWhiteCoat() Then
+                                'Message should be spwaned by Previous Function
+                                CheckBoxSeperateCoat.Checked = False
+                                Exit Sub
+                            End If
+                        Else
+                            CheckBoxSeperateCoat.Checked = False
+                            Exit Sub
+                        End If
+                    Else
+                        CheckBoxSeperateCoat.Checked = False
+                        Exit Sub
+                    End If
+                Else
+                    If Not PackUnpack.Graphics.CreateWhiteCoat() Then
+                        'Message should be spwaned by Previous Function
+                        CheckBoxSeperateCoat.Checked = False
+                        Exit Sub
+                    End If
+                End If
+            End If
+        Else
+            If My.Settings.SeperateLabCoats Then
+                'delete White coat /possibly randoed fake coat and return IL file
+                PackUnpack.Graphics.RemoveWhiteCoat()
+                PackUnpack.ModifyCodeLabCoat(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", False)
+            End If
+            CheckBoxRandomizeFakeCoat.Checked = False
+        End If
+        My.Settings.SeperateLabCoats = CheckBoxSeperateCoat.Checked
+        CheckBoxRandomizeFakeCoat.Enabled = CheckBoxSeperateCoat.Checked
+    End Sub
+
+    Private Sub CheckBoxRandomizeFakeCoat_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxRandomizeFakeCoat.CheckedChanged
+        My.Settings.RandomizeFakeCoat = CheckBoxRandomizeFakeCoat.Checked
     End Sub
     Private Sub ButtonResetSettings_Click(sender As Object, e As EventArgs) Handles ButtonResetSettings.Click
         My.Settings.Reset()
         My.Settings.Save()
         Me.Close()
     End Sub
-    Private Sub ButtonClearAppData_Click(sender As Object, e As EventArgs) Handles ButtonClearAppData.Click
+    Private Sub ButtonClearDecompileFolders_Click(sender As Object, e As EventArgs) Handles ButtonClearDecompileFolders.Click
         GeneralTools.DeleteAllItems(My.Settings.VanillaDecompileLocation)
         GeneralTools.DeleteAllItems(My.Settings.WorkingDecompileLocation)
     End Sub
@@ -94,6 +153,16 @@ Public Class OptionsMenu
         TextBoxXMLSaveLocation.Text = My.Settings.XMLSaveLocation
         TextBoxIldasmLocation.Text = My.Settings.IldasmSavedPath
         TextBoxIlasmLocation.Text = My.Settings.IlasmSavedPath
+        TextBoxXnbcliLocation.Text = My.Settings.xnbcliSavedPath
+        If My.Settings.xnbcliSavedPath = "" Then
+            Labelxnbcli.Visible = False
+            TextBoxXnbcliLocation.Visible = False
+            ButtonXnbcliLocation.Visible = False
+        Else
+            Labelxnbcli.Visible = True
+            TextBoxXnbcliLocation.Visible = True
+            ButtonXnbcliLocation.Visible = True
+        End If
     End Sub
     Private Sub ButtonVanillaFolder_Click(sender As Object, e As EventArgs) Handles ButtonVanillaFolder.Click
         SaveFileDialog1.InitialDirectory = Path.GetDirectoryName(My.Settings.VanillaDecompileLocation)
@@ -290,6 +359,28 @@ Public Class OptionsMenu
         End If
         LoadFolderOptionsTab()
     End Sub
-#End Region
 
+
+#End Region
+#Region "Debug Options"
+    Sub LoadDebugOptionsTab()
+        If My.Settings.DebugMode Then
+            If Not TabControl1.TabPages.Contains(TabPageDebugTab) Then
+                TabControl1.TabPages.Add(TabPageDebugTab)
+            End If
+        Else
+            If TabControl1.TabPages.Contains(TabPageDebugTab) Then
+                TabControl1.TabPages.Remove(TabPageDebugTab)
+            End If
+        End If
+    End Sub
+
+    Private Sub ButtonAddWhiteCoatIL_Click(sender As Object, e As EventArgs) Handles ButtonAddWhiteCoatIL.Click
+        PackUnpack.ModifyCodeLabCoat(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", True)
+    End Sub
+
+    Private Sub ButtonDelWhiteCoatIl_Click(sender As Object, e As EventArgs) Handles ButtonDelWhiteCoatIl.Click
+        PackUnpack.ModifyCodeLabCoat(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", False)
+    End Sub
+#End Region
 End Class

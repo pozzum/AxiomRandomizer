@@ -97,7 +97,7 @@ Public Class FileSelect
         ElseIf Not Directory.Exists(My.Settings.VanillaDecompileLocation) Then
             Return False
         ElseIf My.Settings.ManualDecompilePending = True Then
-            PackUnpack.ModifyCode(My.Settings.VanillaDecompileLocation & "RandomAV.iL")
+            PackUnpack.ModifyCode(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL")
             Return True
         Else
             Return True

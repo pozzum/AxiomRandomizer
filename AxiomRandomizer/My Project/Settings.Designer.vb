@@ -437,6 +437,42 @@ Namespace My
                 Me("MenuSavedHideIcons") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property SeperateLabCoats() As Boolean
+            Get
+                Return CType(Me("SeperateLabCoats"),Boolean)
+            End Get
+            Set
+                Me("SeperateLabCoats") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property RandomizeFakeCoat() As Boolean
+            Get
+                Return CType(Me("RandomizeFakeCoat"),Boolean)
+            End Get
+            Set
+                Me("RandomizeFakeCoat") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property xnbcliSavedPath() As String
+            Get
+                Return CType(Me("xnbcliSavedPath"),String)
+            End Get
+            Set
+                Me("xnbcliSavedPath") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

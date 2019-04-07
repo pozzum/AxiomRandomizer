@@ -1177,23 +1177,24 @@
                 Return Spawns
             End Function
             Public Shared Function BannedMonsters()
-                Dim Bans As List(Of CreatureType) = New List(Of CreatureType)
-                Bans.Add(CreatureType.Piston1)
-                Bans.Add(CreatureType.Piston2)
-                Bans.Add(CreatureType.Piston3)
-                Bans.Add(CreatureType.Diskko)
-                Bans.Add(CreatureType.SentryBot_Meta)
-                Bans.Add(CreatureType.DonaughtFactory)
-                Bans.Add(CreatureType.TieFlighter)
-                Bans.Add(CreatureType.Oraca)
-                Bans.Add(CreatureType.BreachAttractor)
-                Bans.Add(CreatureType.ElevatorEndCap)
-                Bans.Add(CreatureType.Elsenova)
-                Bans.Add(CreatureType.Athetos)
-                Bans.Add(CreatureType.TraceHallucination)
-                Bans.Add(CreatureType.RepairDroneSpawner)
-                Bans.Add(CreatureType.RepairDrone)
-                Bans.Add(CreatureType.RepairDrone_egg)
+                Dim Bans As List(Of CreatureType) = New List(Of CreatureType) From {
+                    CreatureType.Piston1,
+                    CreatureType.Piston2,
+                    CreatureType.Piston3,
+                    CreatureType.Diskko,
+                    CreatureType.SentryBot_Meta,
+                    CreatureType.DonaughtFactory,
+                    CreatureType.TieFlighter,
+                    CreatureType.Oraca,
+                    CreatureType.BreachAttractor,
+                    CreatureType.ElevatorEndCap,
+                    CreatureType.Elsenova,
+                    CreatureType.Athetos,
+                    CreatureType.TraceHallucination,
+                    CreatureType.RepairDroneSpawner,
+                    CreatureType.RepairDrone,
+                    CreatureType.RepairDrone_egg
+                }
                 Return Bans
             End Function
         End Class

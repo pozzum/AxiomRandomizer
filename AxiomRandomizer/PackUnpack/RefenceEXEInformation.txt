@@ -1,0 +1,7 @@
+﻿ILAsm and ILDAsm provided by https://github.com/dotnet/coreclr under MIT License
+Download Link ->	https://ci.dot.net/job/dotnet_coreclr/job/master/job/release_windows_nt/lastSuccessfulBuild/artifact/bin/Product/Windows_NT.x64.Release/ 
+Exes versions ->	2.1.40
+
+xnbcli not included with releases, must be downloaded.
+Release Page ->		https://github.com/LeonBlade/xnbcli/releases
+xnbcli.exe version tested ->	v1.0.4

@@ -130,7 +130,7 @@ Public Class RandomMenu
             PackUnpack.CopyToWorking()
             If TileMapEditor.CheckTileMaps() Then
                 My.Settings.PreviousSeed = TextBoxSeed.Text
-                Randomizer.BuildLocations(CLng(TextBoxSeed.Text), SelectedDifficulty, CheckBoxOpenEribu.Checked, CheckBoxOpenElsenova.Checked, CheckBoxOpenAbsu.Checked)
+                Randomizer.BuildLocations(CInt(TextBoxSeed.Text), SelectedDifficulty, CheckBoxOpenEribu.Checked, CheckBoxOpenElsenova.Checked, CheckBoxOpenAbsu.Checked)
                 'If CheckBoxMonsters.Checked Then
                 'Randomizer.ShuffleMonsters(CLng(TextBoxSeed.Text), SelectedDifficulty)
                 'Else
@@ -143,11 +143,9 @@ Public Class RandomMenu
                 TileMapEditor.OpenEribu(CheckBoxOpenEribu.Checked)
                 TileMapEditor.OpenElsenova(CheckBoxOpenElsenova.Checked)
                 TileMapEditor.OpenAbsu(CheckBoxOpenAbsu.Checked)
-                If CheckBoxHideItemIcons.Checked Then
-                    XMLEditor.MakeItemsTraceFace()
-                End If
+                If CheckBoxHideItemIcons.Checked Then XMLEditor.MakeItemsTraceFace()
                 XMLTools.ExportLocations(My.Settings.XMLSaveLocation)
-                XMLEditor.WriteSettings(CLng(TextBoxSeed.Text),
+                XMLEditor.WriteSettings(CInt(TextBoxSeed.Text),
                                         SelectedDifficulty,
                                         CheckBoxOpenEribu.Checked,
                                         CheckBoxOpenElsenova.Checked,
@@ -156,6 +154,7 @@ Public Class RandomMenu
                                         CheckBoxWalls.Checked,
                                         CheckBoxIllusion.Checked,
                                         CheckBoxHideItemIcons.Checked)
+                If My.Settings.RandomizeFakeCoat Then PackUnpack.Graphics.RandomizeFakeCoat(CInt(TextBoxSeed.Text))
             Else
                 MessageBox.Show("Error With Tile Map")
             End If
@@ -170,7 +169,7 @@ Public Class RandomMenu
             DirectCast([Enum].Parse(GetType(Randomizer.DifficultySetting),
                                     ComboBoxDifficulties.SelectedItem.ToString),
                                     Randomizer.DifficultySetting)
-        Randomizer.BuildLocations(CLng(TextBoxSeed.Text), SelectedDifficulty, CheckBoxOpenElsenova.Checked, CheckBoxOpenEribu.Checked, CheckBoxOpenAbsu.Checked)
+        Randomizer.BuildLocations(CInt(TextBoxSeed.Text), SelectedDifficulty, CheckBoxOpenElsenova.Checked, CheckBoxOpenEribu.Checked, CheckBoxOpenAbsu.Checked)
         SpoilerForm.Show()
     End Sub
     Private Sub TextBoxSeed_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSeed.TextChanged
@@ -204,8 +203,9 @@ Public Class RandomMenu
         Randomizer.LocationInformation.Reverse()
         BatchList = New List(Of GameInformation.Location)
         For i As Integer = 0 To Randomizer.LocationInformation.Count - 1
-            Dim TempItemList As New List(Of GameInformation.ItemType)
-            TempItemList.Add(Randomizer.LocationInformation(i).Item)
+            Dim TempItemList As New List(Of GameInformation.ItemType) From {
+                Randomizer.LocationInformation(i).Item
+            }
             Dim CurrentBatch As New GameInformation.Location With {
                 .Name = Randomizer.LocationInformation(i).Name,
                 .Vanilla = Randomizer.LocationInformation(i).Vanilla,

@@ -25,8 +25,10 @@ Partial Class OptionsMenu
         Me.components = New System.ComponentModel.Container()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.CheckBoxRandomizeFakeCoat = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxSeperateCoat = New System.Windows.Forms.CheckBox()
         Me.CheckBoxNewSeedGenerator = New System.Windows.Forms.CheckBox()
-        Me.ButtonClearAppData = New System.Windows.Forms.Button()
+        Me.ButtonClearDecompileFolders = New System.Windows.Forms.Button()
         Me.ButtonResetSettings = New System.Windows.Forms.Button()
         Me.CheckBoxDebug = New System.Windows.Forms.CheckBox()
         Me.LabelXML = New System.Windows.Forms.Label()
@@ -36,6 +38,9 @@ Partial Class OptionsMenu
         Me.RadioButtonDefaultMenuSettings = New System.Windows.Forms.RadioButton()
         Me.RadioButtonSaveMenuSettings = New System.Windows.Forms.RadioButton()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.ButtonXnbcliLocation = New System.Windows.Forms.Button()
+        Me.TextBoxXnbcliLocation = New System.Windows.Forms.TextBox()
+        Me.Labelxnbcli = New System.Windows.Forms.Label()
         Me.ButtonRandoExeChangeName = New System.Windows.Forms.Button()
         Me.TextBoxRandomExeLocation = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -62,17 +67,23 @@ Partial Class OptionsMenu
         Me.TextBoxVanillaDecompile = New System.Windows.Forms.TextBox()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TabPageDebugTab = New System.Windows.Forms.TabPage()
+        Me.ButtonAddWhiteCoatIL = New System.Windows.Forms.Button()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.ButtonDelWhiteCoatIl = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.TrackBarXML, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        Me.TabPageDebugTab.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPageDebugTab)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
@@ -82,8 +93,10 @@ Partial Class OptionsMenu
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.CheckBoxRandomizeFakeCoat)
+        Me.TabPage1.Controls.Add(Me.CheckBoxSeperateCoat)
         Me.TabPage1.Controls.Add(Me.CheckBoxNewSeedGenerator)
-        Me.TabPage1.Controls.Add(Me.ButtonClearAppData)
+        Me.TabPage1.Controls.Add(Me.ButtonClearDecompileFolders)
         Me.TabPage1.Controls.Add(Me.ButtonResetSettings)
         Me.TabPage1.Controls.Add(Me.CheckBoxDebug)
         Me.TabPage1.Controls.Add(Me.LabelXML)
@@ -98,6 +111,30 @@ Partial Class OptionsMenu
         Me.TabPage1.Text = "Basic Options"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'CheckBoxRandomizeFakeCoat
+        '
+        Me.CheckBoxRandomizeFakeCoat.AutoSize = True
+        Me.CheckBoxRandomizeFakeCoat.Enabled = False
+        Me.CheckBoxRandomizeFakeCoat.Location = New System.Drawing.Point(9, 177)
+        Me.CheckBoxRandomizeFakeCoat.Name = "CheckBoxRandomizeFakeCoat"
+        Me.CheckBoxRandomizeFakeCoat.Size = New System.Drawing.Size(258, 17)
+        Me.CheckBoxRandomizeFakeCoat.TabIndex = 10
+        Me.CheckBoxRandomizeFakeCoat.Text = "Randomize Fake Color When Game Randomized"
+        Me.ToolTip1.SetToolTip(Me.CheckBoxRandomizeFakeCoat, "This Randomizes the color of TraceCoat file for each time the game is randomized." &
+        "")
+        Me.CheckBoxRandomizeFakeCoat.UseVisualStyleBackColor = True
+        '
+        'CheckBoxSeperateCoat
+        '
+        Me.CheckBoxSeperateCoat.AutoSize = True
+        Me.CheckBoxSeperateCoat.Location = New System.Drawing.Point(9, 154)
+        Me.CheckBoxSeperateCoat.Name = "CheckBoxSeperateCoat"
+        Me.CheckBoxSeperateCoat.Size = New System.Drawing.Size(176, 17)
+        Me.CheckBoxSeperateCoat.TabIndex = 9
+        Me.CheckBoxSeperateCoat.Text = "Seperate Fake && Real Lab Coat"
+        Me.ToolTip1.SetToolTip(Me.CheckBoxSeperateCoat, "Creates a second TraceCoat_White File to allow custom fake coats")
+        Me.CheckBoxSeperateCoat.UseVisualStyleBackColor = True
+        '
         'CheckBoxNewSeedGenerator
         '
         Me.CheckBoxNewSeedGenerator.AutoSize = True
@@ -110,20 +147,20 @@ Partial Class OptionsMenu
         " a new seed on every launch.")
         Me.CheckBoxNewSeedGenerator.UseVisualStyleBackColor = True
         '
-        'ButtonClearAppData
+        'ButtonClearDecompileFolders
         '
-        Me.ButtonClearAppData.Location = New System.Drawing.Point(118, 154)
-        Me.ButtonClearAppData.Name = "ButtonClearAppData"
-        Me.ButtonClearAppData.Size = New System.Drawing.Size(150, 23)
-        Me.ButtonClearAppData.TabIndex = 7
-        Me.ButtonClearAppData.Text = "Clear Decompile Folders"
-        Me.ToolTip1.SetToolTip(Me.ButtonClearAppData, "This will empty your decompile folders." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This is a good option if you wish to " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "r" &
+        Me.ButtonClearDecompileFolders.Location = New System.Drawing.Point(115, 200)
+        Me.ButtonClearDecompileFolders.Name = "ButtonClearDecompileFolders"
+        Me.ButtonClearDecompileFolders.Size = New System.Drawing.Size(150, 23)
+        Me.ButtonClearDecompileFolders.TabIndex = 7
+        Me.ButtonClearDecompileFolders.Text = "Clear Decompile Folders"
+        Me.ToolTip1.SetToolTip(Me.ButtonClearDecompileFolders, "This will empty your decompile folders." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This is a good option if you wish to " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "r" &
         "e-decompile the game with new settings. ")
-        Me.ButtonClearAppData.UseVisualStyleBackColor = True
+        Me.ButtonClearDecompileFolders.UseVisualStyleBackColor = True
         '
         'ButtonResetSettings
         '
-        Me.ButtonResetSettings.Location = New System.Drawing.Point(9, 154)
+        Me.ButtonResetSettings.Location = New System.Drawing.Point(6, 200)
         Me.ButtonResetSettings.Name = "ButtonResetSettings"
         Me.ButtonResetSettings.Size = New System.Drawing.Size(100, 23)
         Me.ButtonResetSettings.TabIndex = 6
@@ -137,9 +174,9 @@ Partial Class OptionsMenu
         Me.CheckBoxDebug.AutoSize = True
         Me.CheckBoxDebug.Location = New System.Drawing.Point(9, 131)
         Me.CheckBoxDebug.Name = "CheckBoxDebug"
-        Me.CheckBoxDebug.Size = New System.Drawing.Size(118, 17)
+        Me.CheckBoxDebug.Size = New System.Drawing.Size(133, 17)
         Me.CheckBoxDebug.TabIndex = 5
-        Me.CheckBoxDebug.Text = "Enable Debug Text"
+        Me.CheckBoxDebug.Text = "Enable Debug Options"
         Me.ToolTip1.SetToolTip(Me.CheckBoxDebug, "This allows a larger printout of the randomizer function." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "THIS WILL SPOIL SEEDS." &
         "")
         Me.CheckBoxDebug.UseVisualStyleBackColor = True
@@ -213,6 +250,9 @@ Partial Class OptionsMenu
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.ButtonXnbcliLocation)
+        Me.TabPage2.Controls.Add(Me.TextBoxXnbcliLocation)
+        Me.TabPage2.Controls.Add(Me.Labelxnbcli)
         Me.TabPage2.Controls.Add(Me.ButtonRandoExeChangeName)
         Me.TabPage2.Controls.Add(Me.TextBoxRandomExeLocation)
         Me.TabPage2.Controls.Add(Me.Label8)
@@ -244,6 +284,35 @@ Partial Class OptionsMenu
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Folder Options"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'ButtonXnbcliLocation
+        '
+        Me.ButtonXnbcliLocation.Location = New System.Drawing.Point(243, 328)
+        Me.ButtonXnbcliLocation.Name = "ButtonXnbcliLocation"
+        Me.ButtonXnbcliLocation.Size = New System.Drawing.Size(25, 23)
+        Me.ButtonXnbcliLocation.TabIndex = 28
+        Me.ButtonXnbcliLocation.Text = "..."
+        Me.ButtonXnbcliLocation.UseVisualStyleBackColor = True
+        Me.ButtonXnbcliLocation.Visible = False
+        '
+        'TextBoxXnbcliLocation
+        '
+        Me.TextBoxXnbcliLocation.Location = New System.Drawing.Point(8, 331)
+        Me.TextBoxXnbcliLocation.Name = "TextBoxXnbcliLocation"
+        Me.TextBoxXnbcliLocation.ReadOnly = True
+        Me.TextBoxXnbcliLocation.Size = New System.Drawing.Size(229, 20)
+        Me.TextBoxXnbcliLocation.TabIndex = 27
+        Me.TextBoxXnbcliLocation.Visible = False
+        '
+        'Labelxnbcli
+        '
+        Me.Labelxnbcli.AutoSize = True
+        Me.Labelxnbcli.Location = New System.Drawing.Point(8, 315)
+        Me.Labelxnbcli.Name = "Labelxnbcli"
+        Me.Labelxnbcli.Size = New System.Drawing.Size(115, 13)
+        Me.Labelxnbcli.TabIndex = 26
+        Me.Labelxnbcli.Text = "xnbcli Saved Location:"
+        Me.Labelxnbcli.Visible = False
         '
         'ButtonRandoExeChangeName
         '
@@ -293,9 +362,9 @@ Partial Class OptionsMenu
         Me.Label7.AutoSize = True
         Me.Label7.Location = New System.Drawing.Point(8, 276)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(126, 13)
+        Me.Label7.Size = New System.Drawing.Size(132, 13)
         Me.Label7.TabIndex = 18
-        Me.Label7.Text = "Ilasm.exe Save Location:"
+        Me.Label7.Text = "Ilasm.exe Saved Location:"
         '
         'ButtonIldasmLocation
         '
@@ -319,9 +388,9 @@ Partial Class OptionsMenu
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(8, 237)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(132, 13)
+        Me.Label6.Size = New System.Drawing.Size(138, 13)
         Me.Label6.TabIndex = 15
-        Me.Label6.Text = "Ildasm.exe Save Location:"
+        Me.Label6.Text = "Ildasm.exe Saved Location:"
         '
         'ButtonXMLLocation
         '
@@ -345,9 +414,9 @@ Partial Class OptionsMenu
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(8, 198)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(104, 13)
+        Me.Label5.Size = New System.Drawing.Size(92, 13)
         Me.Label5.TabIndex = 12
-        Me.Label5.Text = "XML Save Location:"
+        Me.Label5.Text = "XML Save Folder:"
         '
         'ButtonSaveLocation
         '
@@ -371,9 +440,9 @@ Partial Class OptionsMenu
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(8, 159)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(79, 13)
+        Me.Label4.Size = New System.Drawing.Size(110, 13)
         Me.Label4.TabIndex = 9
-        Me.Label4.Text = "Save Location:"
+        Me.Label4.Text = "Game Save Location:"
         '
         'ButtonExeLocation
         '
@@ -453,6 +522,46 @@ Partial Class OptionsMenu
         Me.TextBoxVanillaDecompile.Size = New System.Drawing.Size(229, 20)
         Me.TextBoxVanillaDecompile.TabIndex = 0
         '
+        'TabPageDebugTab
+        '
+        Me.TabPageDebugTab.Controls.Add(Me.ButtonDelWhiteCoatIl)
+        Me.TabPageDebugTab.Controls.Add(Me.Label9)
+        Me.TabPageDebugTab.Controls.Add(Me.ButtonAddWhiteCoatIL)
+        Me.TabPageDebugTab.Location = New System.Drawing.Point(4, 22)
+        Me.TabPageDebugTab.Name = "TabPageDebugTab"
+        Me.TabPageDebugTab.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPageDebugTab.Size = New System.Drawing.Size(276, 435)
+        Me.TabPageDebugTab.TabIndex = 2
+        Me.TabPageDebugTab.Text = "Debug"
+        Me.TabPageDebugTab.UseVisualStyleBackColor = True
+        '
+        'ButtonAddWhiteCoatIL
+        '
+        Me.ButtonAddWhiteCoatIL.Location = New System.Drawing.Point(8, 6)
+        Me.ButtonAddWhiteCoatIL.Name = "ButtonAddWhiteCoatIL"
+        Me.ButtonAddWhiteCoatIL.Size = New System.Drawing.Size(125, 23)
+        Me.ButtonAddWhiteCoatIL.TabIndex = 0
+        Me.ButtonAddWhiteCoatIL.Text = "Add WhiteCoat IL"
+        Me.ButtonAddWhiteCoatIL.UseVisualStyleBackColor = True
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(5, 404)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(155, 26)
+        Me.Label9.TabIndex = 1
+        Me.Label9.Text = "This tab is intended for Testing " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "and implementing odd fixes"
+        '
+        'ButtonDelWhiteCoatIl
+        '
+        Me.ButtonDelWhiteCoatIl.Location = New System.Drawing.Point(143, 6)
+        Me.ButtonDelWhiteCoatIl.Name = "ButtonDelWhiteCoatIl"
+        Me.ButtonDelWhiteCoatIl.Size = New System.Drawing.Size(125, 23)
+        Me.ButtonDelWhiteCoatIl.TabIndex = 2
+        Me.ButtonDelWhiteCoatIl.Text = "Del WhiteCoat IL"
+        Me.ButtonDelWhiteCoatIl.UseVisualStyleBackColor = True
+        '
         'OptionsMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -473,6 +582,8 @@ Partial Class OptionsMenu
         Me.GroupBox1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
+        Me.TabPageDebugTab.ResumeLayout(False)
+        Me.TabPageDebugTab.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -509,11 +620,20 @@ Partial Class OptionsMenu
     Friend WithEvents TextBoxIlasmLocation As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents ButtonClearAppData As Button
+    Friend WithEvents ButtonClearDecompileFolders As Button
     Friend WithEvents ButtonResetSettings As Button
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
     Friend WithEvents ButtonRandoExeChangeName As Button
     Friend WithEvents TextBoxRandomExeLocation As TextBox
     Friend WithEvents CheckBoxNewSeedGenerator As CheckBox
     Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents CheckBoxRandomizeFakeCoat As CheckBox
+    Friend WithEvents CheckBoxSeperateCoat As CheckBox
+    Friend WithEvents Labelxnbcli As Label
+    Friend WithEvents ButtonXnbcliLocation As Button
+    Friend WithEvents TextBoxXnbcliLocation As TextBox
+    Friend WithEvents TabPageDebugTab As TabPage
+    Friend WithEvents ButtonAddWhiteCoatIL As Button
+    Friend WithEvents ButtonDelWhiteCoatIl As Button
+    Friend WithEvents Label9 As Label
 End Class
