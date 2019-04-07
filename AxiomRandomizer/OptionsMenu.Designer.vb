@@ -65,12 +65,12 @@ Partial Class OptionsMenu
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBoxVanillaDecompile = New System.Windows.Forms.TextBox()
+        Me.TabPageDebugTab = New System.Windows.Forms.TabPage()
+        Me.ButtonDelWhiteCoatIl = New System.Windows.Forms.Button()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.ButtonAddWhiteCoatIL = New System.Windows.Forms.Button()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.TabPageDebugTab = New System.Windows.Forms.TabPage()
-        Me.ButtonAddWhiteCoatIL = New System.Windows.Forms.Button()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.ButtonDelWhiteCoatIl = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.TrackBarXML, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -535,14 +535,14 @@ Partial Class OptionsMenu
         Me.TabPageDebugTab.Text = "Debug"
         Me.TabPageDebugTab.UseVisualStyleBackColor = True
         '
-        'ButtonAddWhiteCoatIL
+        'ButtonDelWhiteCoatIl
         '
-        Me.ButtonAddWhiteCoatIL.Location = New System.Drawing.Point(8, 6)
-        Me.ButtonAddWhiteCoatIL.Name = "ButtonAddWhiteCoatIL"
-        Me.ButtonAddWhiteCoatIL.Size = New System.Drawing.Size(125, 23)
-        Me.ButtonAddWhiteCoatIL.TabIndex = 0
-        Me.ButtonAddWhiteCoatIL.Text = "Add WhiteCoat IL"
-        Me.ButtonAddWhiteCoatIL.UseVisualStyleBackColor = True
+        Me.ButtonDelWhiteCoatIl.Location = New System.Drawing.Point(143, 6)
+        Me.ButtonDelWhiteCoatIl.Name = "ButtonDelWhiteCoatIl"
+        Me.ButtonDelWhiteCoatIl.Size = New System.Drawing.Size(125, 23)
+        Me.ButtonDelWhiteCoatIl.TabIndex = 2
+        Me.ButtonDelWhiteCoatIl.Text = "Del WhiteCoat IL"
+        Me.ButtonDelWhiteCoatIl.UseVisualStyleBackColor = True
         '
         'Label9
         '
@@ -553,14 +553,14 @@ Partial Class OptionsMenu
         Me.Label9.TabIndex = 1
         Me.Label9.Text = "This tab is intended for Testing " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "and implementing odd fixes"
         '
-        'ButtonDelWhiteCoatIl
+        'ButtonAddWhiteCoatIL
         '
-        Me.ButtonDelWhiteCoatIl.Location = New System.Drawing.Point(143, 6)
-        Me.ButtonDelWhiteCoatIl.Name = "ButtonDelWhiteCoatIl"
-        Me.ButtonDelWhiteCoatIl.Size = New System.Drawing.Size(125, 23)
-        Me.ButtonDelWhiteCoatIl.TabIndex = 2
-        Me.ButtonDelWhiteCoatIl.Text = "Del WhiteCoat IL"
-        Me.ButtonDelWhiteCoatIl.UseVisualStyleBackColor = True
+        Me.ButtonAddWhiteCoatIL.Location = New System.Drawing.Point(8, 6)
+        Me.ButtonAddWhiteCoatIL.Name = "ButtonAddWhiteCoatIL"
+        Me.ButtonAddWhiteCoatIL.Size = New System.Drawing.Size(125, 23)
+        Me.ButtonAddWhiteCoatIL.TabIndex = 0
+        Me.ButtonAddWhiteCoatIL.Text = "Add WhiteCoat IL"
+        Me.ButtonAddWhiteCoatIL.UseVisualStyleBackColor = True
         '
         'OptionsMenu
         '

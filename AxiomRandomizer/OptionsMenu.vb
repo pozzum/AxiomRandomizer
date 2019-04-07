@@ -359,8 +359,20 @@ Public Class OptionsMenu
         End If
         LoadFolderOptionsTab()
     End Sub
-
-
+    Private Sub ButtonXnbcliLocation_Click(sender As Object, e As EventArgs) Handles ButtonXnbcliLocation.Click
+        Dim TempOpenFileDialog As OpenFileDialog = New OpenFileDialog With {
+            .InitialDirectory = Path.GetDirectoryName(My.Settings.xnbcliSavedPath),
+            .FileName = Path.GetFileName(My.Settings.xnbcliSavedPath),
+            .Filter = "xnbcli.exe|*.exe"
+        }
+        If TempOpenFileDialog.ShowDialog = DialogResult.OK Then
+            'Exe First
+            If File.Exists(TempOpenFileDialog.FileName) Then
+                My.Settings.xnbcliSavedPath = TempOpenFileDialog.FileName
+            End If
+        End If
+        LoadFolderOptionsTab()
+    End Sub
 #End Region
 #Region "Debug Options"
     Sub LoadDebugOptionsTab()
