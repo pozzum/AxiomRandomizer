@@ -44,7 +44,9 @@ Public Class FileSelect
            My.Settings.IlasmSavedPath = "" Then
             CheckPackUnpackFiles()
         End If
-
+        'Setting Default Coat Colors
+        If My.Settings.CurrentLightColor.ToArgb = 0 Then My.Settings.CurrentLightColor = Color.FromArgb(223, 215, 201)
+        If My.Settings.CurrentDarkColor.ToArgb = 0 Then My.Settings.CurrentDarkColor = Color.FromArgb(127, 115, 105)
         If My.Settings.ExeFilePath <> "" Then
             'Making Sure Save File is located
             If My.Settings.SaveFilePath = "" Then
@@ -185,26 +187,20 @@ Public Class FileSelect
             My.Settings.RandoExePath = Path.GetDirectoryName(EXEFilePath) & Path.DirectorySeparatorChar & "RandomAV.exe"
             GetSaveFile()
             My.Settings.ExpressExtractUsed = RadioExpress.Checked
-            If RadioExpress.Checked Then
-                If PackUnpack.UnpacktoAppdata(EXEFilePath,
-                                              CheckBoxSave.Checked,
-                                              CheckBoxLabcoat.Checked,
-                                              CheckBoxAnimations.Checked,
-                                              CheckBoxBackground.Checked,
-                                              CheckBoxWakeUp.Checked,
-                                              CheckBoxDisruptorTrace.Checked) = True Then
-                    RandomMenu.Show()
+            If PackUnpack.UnpacktoAppdata(EXEFilePath,
+                                CheckBoxSave.Checked,
+                                CheckBoxLabcoat.Checked,
+                                CheckBoxAnimations.Checked,
+                                CheckBoxBackground.Checked,
+                                CheckBoxWakeUp.Checked,
+                                CheckBoxDisruptorTrace.Checked) = True Then
+                If My.Settings.SeperateLabCoats Then
+                    If Not PackUnpack.Graphics.CreateWhiteCoat() Then
+                        My.Settings.SeperateLabCoats = False
+                        My.Settings.RandomizeFakeCoat = False
+                    End If
                 End If
-            Else
-                If PackUnpack.UnpacktoAppdata(EXEFilePath,
-                                              CheckBoxSave.Checked,
-                                              CheckBoxLabcoat.Checked,
-                                              CheckBoxAnimations.Checked,
-                                              CheckBoxBackground.Checked,
-                                              CheckBoxWakeUp.Checked,
-                                              CheckBoxDisruptorTrace.Checked) = True Then
-                    RandomMenu.Show()
-                End If
+                RandomMenu.Show()
             End If
         End If
     End Sub

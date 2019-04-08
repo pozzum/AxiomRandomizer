@@ -40,7 +40,8 @@ Public Class OnlineVersion
                                                             " version " & CurrentVersion &
                                                             vbNewLine & "Would you like to update?",
                                                             "Version Update",
-                                                            MessageBoxButtons.YesNo)
+                                                            MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly)
+                    'DefaultDesktop puts it in front of other windows
                     If result = DialogResult.Yes Then
                         Help.ShowHelp(Nothing, PageAddress)
                     Else

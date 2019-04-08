@@ -35,6 +35,17 @@ Public Class OptionsMenu
         LabelXML.Enabled = CheckBoxXMLLimit.Checked
         CheckBoxSeperateCoat.Checked = My.Settings.SeperateLabCoats
         CheckBoxRandomizeFakeCoat.Checked = My.Settings.RandomizeFakeCoat
+        ButtonLightColor.BackColor = My.Settings.CurrentLightColor
+        ButtonDarkColor.BackColor = My.Settings.CurrentDarkColor
+        If CheckBoxSeperateCoat.Checked Then
+            LabelCoatColor.Enabled = True
+            ButtonLightColor.Enabled = True
+            ButtonDarkColor.Enabled = True
+        Else
+            LabelCoatColor.Enabled = False
+            ButtonLightColor.Enabled = False
+            ButtonDarkColor.Enabled = False
+        End If
     End Sub
     Private Sub RadioButtonSaveMenuSettings_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonSaveMenuSettings.CheckedChanged
         My.Settings.SaveMenuSettings = RadioButtonSaveMenuSettings.Checked
@@ -43,7 +54,6 @@ Public Class OptionsMenu
         My.Settings.RandomSeedOnLaunch = CheckBoxNewSeedGenerator.Checked
     End Sub
     Private Sub CheckBoxXMLLimit_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxXMLLimit.CheckedChanged
-        My.Settings.XMLLimited = CheckBoxXMLLimit.Checked
         If CheckBoxXMLLimit.Checked Then
             TrackBarXML.Enabled = True
             LabelXML.Enabled = True
@@ -51,9 +61,13 @@ Public Class OptionsMenu
                 CurrentXMLCount = XMLTools.GetXMLCount(My.Settings.XMLSaveLocation)
             End If
             If CurrentXMLCount > TrackBarXML.Value Then
-                If MessageBox.Show("Your XML folder currently has " & CurrentXMLCount & " XML files." & vbNewLine & "Would you like to set the limit to this value?",
-                                 "Change XML Limit?", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-                    TrackBarXML.Value = CurrentXMLCount
+                If Not My.Settings.XMLLimited Then
+                    If MessageBox.Show("Your XML folder currently has " & CurrentXMLCount & " XML files." & vbNewLine & "Would you like to set the limit to this value?",
+                                     "Change XML Limit?", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                        TrackBarXML.Value = CurrentXMLCount
+                    Else
+                        XMLTrimPending = True
+                    End If
                 Else
                     XMLTrimPending = True
                 End If
@@ -62,6 +76,7 @@ Public Class OptionsMenu
             TrackBarXML.Enabled = False
             LabelXML.Enabled = False
         End If
+        My.Settings.XMLLimited = CheckBoxXMLLimit.Checked
     End Sub
     Private Sub TrackBarXML_ValueChanged(sender As Object, e As EventArgs) Handles TrackBarXML.ValueChanged
         LabelXML.Text = TrackBarXML.Value.ToString
@@ -92,7 +107,8 @@ Public Class OptionsMenu
                         '1.0.4 Latest release at time of writing
                         Process.Start("https://github.com/LeonBlade/xnbcli/releases")
                     End If
-                    Dim TempDialog As New OpenFileDialog() With {.FileName = "xnbcli.exe"}
+                    Dim TempDialog As New OpenFileDialog() With {.FileName = "xnbcli.exe",
+                    .Filter = "exe file (*.exe)|*.exe"}
                     If TempDialog.ShowDialog = DialogResult.OK Then
                         If File.Exists(TempDialog.FileName) Then
                             My.Settings.xnbcliSavedPath = TempDialog.FileName
@@ -129,9 +145,30 @@ Public Class OptionsMenu
         My.Settings.SeperateLabCoats = CheckBoxSeperateCoat.Checked
         CheckBoxRandomizeFakeCoat.Enabled = CheckBoxSeperateCoat.Checked
     End Sub
-
     Private Sub CheckBoxRandomizeFakeCoat_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxRandomizeFakeCoat.CheckedChanged
         My.Settings.RandomizeFakeCoat = CheckBoxRandomizeFakeCoat.Checked
+    End Sub
+    Private Sub ButtonLightColor_Click(sender As Object, e As EventArgs) Handles ButtonLightColor.Click
+        ColorDialog1.Color = My.Settings.CurrentLightColor
+        If ColorDialog1.ShowDialog = DialogResult.OK Then
+            My.Settings.CurrentLightColor = ColorDialog1.Color
+            If MessageBox.Show("Would you like to generate the dark color?", "Get dark color?", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                My.Settings.CurrentDarkColor = ControlPaint.Dark(My.Settings.CurrentLightColor, 0.25)
+            End If
+            PackUnpack.Graphics.PaintFakeCoat()
+            LoadBasicOptionsTab()
+        End If
+    End Sub
+    Private Sub ButtonDarkColor_Click(sender As Object, e As EventArgs) Handles ButtonDarkColor.Click
+        ColorDialog1.Color = My.Settings.CurrentDarkColor
+        If ColorDialog1.ShowDialog = DialogResult.OK Then
+            My.Settings.CurrentDarkColor = ColorDialog1.Color
+            If MessageBox.Show("Would you like to generate the light color?", "Get light color?", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                My.Settings.CurrentLightColor = ControlPaint.Light(My.Settings.CurrentDarkColor, 0.25)
+            End If
+            PackUnpack.Graphics.PaintFakeCoat()
+            LoadBasicOptionsTab()
+        End If
     End Sub
     Private Sub ButtonResetSettings_Click(sender As Object, e As EventArgs) Handles ButtonResetSettings.Click
         My.Settings.Reset()
@@ -141,6 +178,9 @@ Public Class OptionsMenu
     Private Sub ButtonClearDecompileFolders_Click(sender As Object, e As EventArgs) Handles ButtonClearDecompileFolders.Click
         GeneralTools.DeleteAllItems(My.Settings.VanillaDecompileLocation)
         GeneralTools.DeleteAllItems(My.Settings.WorkingDecompileLocation)
+    End Sub
+    Private Sub ButtonCheckUpdate_Click(sender As Object, e As EventArgs) Handles ButtonCheckUpdate.Click
+        FileSelect.CheckUpdate()
     End Sub
 #End Region
 #Region "Folder Options"

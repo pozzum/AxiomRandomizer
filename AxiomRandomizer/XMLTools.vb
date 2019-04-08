@@ -152,7 +152,11 @@ Public Class XMLEditor
                     lines(LineCount) = lines(LineCount).Replace("DataDisruptorPickup", "ExitDrone")
                 End If
                 If lines(LineCount).Contains("<mIconAnimation>") Then
-                    If Not lines(LineCount - 1).Contains("<mPickupAnimation>") Then
+                    If lines(LineCount).Contains("GlitchBombDrop") OrElse
+                       lines(LineCount).Contains("HealthDrop0") OrElse
+                       lines(LineCount).Contains("HealthDrop1") OrElse
+                       lines(LineCount - 1).Contains("<mPickupAnimation>") Then
+                    Else
                         lines.Insert(LineCount, "    <mPickupAnimation>ExitDrone</mPickupAnimation> ")
                     End If
                 End If

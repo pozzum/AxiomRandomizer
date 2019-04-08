@@ -362,5 +362,26 @@ DirectCast([Enum].Parse(GetType(Randomizer.DifficultySetting),
     Private Sub ReportAnIssueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReportAnIssueToolStripMenuItem.Click
         Process.Start("https://github.com/pozzum/AxiomRandomizer/issues")
     End Sub
+    Private Sub SeeSourceCodeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SeeSourceCodeToolStripMenuItem.Click
+        Process.Start("https://github.com/pozzum/AxiomRandomizer/")
+    End Sub
+    Private Sub SeeLatestReleaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SeeLatestReleaseToolStripMenuItem.Click
+        Process.Start("https://github.com/pozzum/AxiomRandomizer/releases/latest")
+    End Sub
+#End Region
+#Region "Debug Context Strip"
+    Private Sub TextBoxDebug_MouseClick(sender As Object, e As MouseEventArgs) Handles TextBoxDebug.MouseClick
+        If TextBoxDebug.Text.Length > 10 Then
+            ContextMenuStripDebugMenu.Show(TextBoxDebug, New Point(e.X, e.Y))
+        End If
+    End Sub
+
+    Private Sub SaveToFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToFileToolStripMenuItem.Click
+        Dim TempSaveFileDialog As SaveFileDialog = New SaveFileDialog With {.FileName = TextBoxSeed.Text & ".log",
+            .Filter = "log file (*.log)|*.log"}
+        If TempSaveFileDialog.ShowDialog = DialogResult.OK Then
+            File.WriteAllText(TempSaveFileDialog.FileName, TextBoxDebug.Text)
+        End If
+    End Sub
 #End Region
 End Class

@@ -466,6 +466,23 @@ Public Class PackUnpack
             Return False
         End Function
         Shared Sub RandomizeFakeCoat(Seed As Integer)
+            'Random Color Selection
+            Dim Generator As System.Random = New System.Random(Seed:=Seed)
+            Dim NewColorRGB(2) As Byte ' 3 bytes for rgb
+            Do
+                Generator.NextBytes(NewColorRGB)
+                If Color.FromArgb(NewColorRGB(0), NewColorRGB(1), NewColorRGB(2)).GetBrightness < 0.3 Then
+                    Continue Do
+                End If
+                Exit Do
+            Loop
+            Dim NewLightColor As Color = Color.FromArgb(NewColorRGB(0), NewColorRGB(1), NewColorRGB(2))
+            Dim NewDarkColor As Color = ControlPaint.Dark(NewLightColor, 0.25)
+            My.Settings.CurrentLightColor = NewLightColor
+            My.Settings.CurrentDarkColor = NewDarkColor
+            PaintFakeCoat()
+        End Sub
+        Shared Sub PaintFakeCoat()
             'lets do an inital check for the backup so it exits if there is no backup file
             Dim VanillaCoatPackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture.xnb"
             Dim VanillaCoatJsonFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture.json"
@@ -478,20 +495,6 @@ Public Class PackUnpack
                     If File.Exists(VanillaCoatSpritePNG & "Copy") Then File.Delete(VanillaCoatSpritePNG & "Copy")
                     File.Move(VanillaCoatSpritePNG, VanillaCoatSpritePNG & "Copy")
                     Dim TempImage As Bitmap = New Bitmap(VanillaCoatSpritePNG & "Copy")
-                    'Random Color Selection
-                    Dim Generator As System.Random = New System.Random(Seed:=Seed)
-                    Dim NewColorRGB(2) As Byte ' 3 bytes for rgb
-                    Do
-                        Generator.NextBytes(NewColorRGB)
-                        MessageBox.Show(Color.FromArgb(NewColorRGB(0), NewColorRGB(1), NewColorRGB(2)).GetBrightness)
-                        If Color.FromArgb(NewColorRGB(0), NewColorRGB(1), NewColorRGB(2)).GetBrightness < 0.3 Then
-                            Continue Do
-                        End If
-                        Exit Do
-                    Loop
-                    Dim NewLightColor As Color = Color.FromArgb(NewColorRGB(0), NewColorRGB(1), NewColorRGB(2))
-                    Dim NewDarkColor As Color = System.Windows.Forms.ControlPaint.Dark(NewLightColor, 0.25)
-                    MessageBox.Show(NewDarkColor.GetBrightness)
                     '
                     'Exist Color Calibration
                     '
@@ -512,26 +515,27 @@ Public Class PackUnpack
                             If red = CalibrateRedLight AndAlso
                                green = CalibrateGreenLight AndAlso
                                blue = CalibrateBlueLight Then 'Light Replace
-                                TempImage.SetPixel(x, y, NewLightColor)
+                                TempImage.SetPixel(x, y, My.Settings.CurrentLightColor)
                             ElseIf red = CalibrateRedDark AndAlso
                                green = CalibrateGreenDark AndAlso
                                blue = CalibrateBlueDark Then ' Dark Replace
-                                TempImage.SetPixel(x, y, NewDarkColor)
+                                TempImage.SetPixel(x, y, My.Settings.CurrentDarkColor)
                             End If
                         Next
                     Next
-                        TempImage.Save(VanillaCoatSpritePNG, System.Drawing.Imaging.ImageFormat.Png)
-                        TempImage.Dispose()
-                        Process.Start(My.Settings.xnbcliSavedPath, "pack """ & VanillaCoatJsonFile & """").WaitForExit() 'this should create a xnb in the packed folder
-                        File.Delete(VanillaCoatSpritePNG)
-                        File.Delete(VanillaCoatSpritePNG & "Copy")
-                        File.Delete(VanillaCoatJsonFile)
-                    Else
-                        MessageBox.Show("xnbcli exe not found.  Texture left untouched", "Saftey exit")
+                    TempImage.Save(VanillaCoatSpritePNG, System.Drawing.Imaging.ImageFormat.Png)
+                    TempImage.Dispose()
+                    Process.Start(My.Settings.xnbcliSavedPath, "pack """ & VanillaCoatJsonFile & """").WaitForExit() 'this should create a xnb in the packed folder
+                    File.Delete(VanillaCoatSpritePNG)
+                    File.Delete(VanillaCoatSpritePNG & "Copy")
+                    File.Delete(VanillaCoatJsonFile)
+                Else
+                    MessageBox.Show("xnbcli exe not found.  Texture left untouched", "Saftey exit")
                 End If
             Else
                 MessageBox.Show("Backup texture file not found.  Texture left untouched", "Saftey exit")
             End If
+
         End Sub
     End Class
 #End Region

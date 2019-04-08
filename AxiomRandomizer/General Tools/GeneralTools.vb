@@ -73,11 +73,9 @@ Public Class GeneralTools
             'Console.WriteLine("The {0} file is now ReadOnly.", FilePath)
         End If
     End Sub
-
     Private Shared Function RemoveAttribute(ByVal attributes As FileAttributes, ByVal attributesToRemove As FileAttributes) As FileAttributes
-            Return attributes And Not attributesToRemove
-        End Function
-
+        Return attributes And Not attributesToRemove
+    End Function
 #End Region
 #Region "Moving folder and overwriting"
     Shared Sub MoveAllItems(ByVal fromPath As String, ByVal toPath As String)

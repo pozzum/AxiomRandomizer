@@ -57,9 +57,14 @@ Partial Class RandomMenu
         Me.LabelBatchSize = New System.Windows.Forms.Label()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.CheckBoxHideItemIcons = New System.Windows.Forms.CheckBox()
+        Me.ContextMenuStripDebugMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SaveToFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SeeSourceCodeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SeeLatestReleaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.TrackBarBatchSize, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStripDebugMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'TextBoxSeed
@@ -278,7 +283,7 @@ Partial Class RandomMenu
         '
         'ThankTheDevsToolStripMenuItem
         '
-        Me.ThankTheDevsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReportAnIssueToolStripMenuItem})
+        Me.ThankTheDevsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReportAnIssueToolStripMenuItem, Me.SeeSourceCodeToolStripMenuItem, Me.SeeLatestReleaseToolStripMenuItem})
         Me.ThankTheDevsToolStripMenuItem.Name = "ThankTheDevsToolStripMenuItem"
         Me.ThankTheDevsToolStripMenuItem.Size = New System.Drawing.Size(103, 20)
         Me.ThankTheDevsToolStripMenuItem.Text = "Thank the Devs!"
@@ -361,6 +366,10 @@ Partial Class RandomMenu
         Me.LabelBatchSize.TabIndex = 28
         Me.LabelBatchSize.Text = "Batch Size: 100"
         '
+        'FolderBrowserDialog1
+        '
+        Me.FolderBrowserDialog1.SelectedPath = "0"
+        '
         'CheckBoxHideItemIcons
         '
         Me.CheckBoxHideItemIcons.AutoSize = True
@@ -370,6 +379,30 @@ Partial Class RandomMenu
         Me.CheckBoxHideItemIcons.TabIndex = 29
         Me.CheckBoxHideItemIcons.Text = "Hide Item Icons"
         Me.CheckBoxHideItemIcons.UseVisualStyleBackColor = True
+        '
+        'ContextMenuStripDebugMenu
+        '
+        Me.ContextMenuStripDebugMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SaveToFileToolStripMenuItem})
+        Me.ContextMenuStripDebugMenu.Name = "ContextMenuStripDebugMenu"
+        Me.ContextMenuStripDebugMenu.Size = New System.Drawing.Size(143, 26)
+        '
+        'SaveToFileToolStripMenuItem
+        '
+        Me.SaveToFileToolStripMenuItem.Name = "SaveToFileToolStripMenuItem"
+        Me.SaveToFileToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SaveToFileToolStripMenuItem.Text = "Save to File..."
+        '
+        'SeeSourceCodeToolStripMenuItem
+        '
+        Me.SeeSourceCodeToolStripMenuItem.Name = "SeeSourceCodeToolStripMenuItem"
+        Me.SeeSourceCodeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SeeSourceCodeToolStripMenuItem.Text = "See Source Code"
+        '
+        'SeeLatestReleaseToolStripMenuItem
+        '
+        Me.SeeLatestReleaseToolStripMenuItem.Name = "SeeLatestReleaseToolStripMenuItem"
+        Me.SeeLatestReleaseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SeeLatestReleaseToolStripMenuItem.Text = "See Latest Release"
         '
         'RandomMenu
         '
@@ -410,6 +443,7 @@ Partial Class RandomMenu
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.TrackBarBatchSize, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStripDebugMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -449,4 +483,8 @@ Partial Class RandomMenu
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents ReportAnIssueToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CheckBoxHideItemIcons As CheckBox
+    Friend WithEvents ContextMenuStripDebugMenu As ContextMenuStrip
+    Friend WithEvents SaveToFileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SeeSourceCodeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SeeLatestReleaseToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -473,6 +473,28 @@ Namespace My
                 Me("xnbcliSavedPath") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property CurrentLightColor() As Global.System.Drawing.Color
+            Get
+                Return CType(Me("CurrentLightColor"),Global.System.Drawing.Color)
+            End Get
+            Set
+                Me("CurrentLightColor") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property CurrentDarkColor() As Global.System.Drawing.Color
+            Get
+                Return CType(Me("CurrentDarkColor"),Global.System.Drawing.Color)
+            End Get
+            Set
+                Me("CurrentDarkColor") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

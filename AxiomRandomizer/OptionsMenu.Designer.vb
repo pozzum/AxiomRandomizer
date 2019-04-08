@@ -71,6 +71,11 @@ Partial Class OptionsMenu
         Me.ButtonAddWhiteCoatIL = New System.Windows.Forms.Button()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ButtonCheckUpdate = New System.Windows.Forms.Button()
+        Me.LabelCoatColor = New System.Windows.Forms.Label()
+        Me.ButtonLightColor = New System.Windows.Forms.Button()
+        Me.ButtonDarkColor = New System.Windows.Forms.Button()
+        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.TrackBarXML, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,6 +98,10 @@ Partial Class OptionsMenu
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.ButtonDarkColor)
+        Me.TabPage1.Controls.Add(Me.ButtonLightColor)
+        Me.TabPage1.Controls.Add(Me.LabelCoatColor)
+        Me.TabPage1.Controls.Add(Me.ButtonCheckUpdate)
         Me.TabPage1.Controls.Add(Me.CheckBoxRandomizeFakeCoat)
         Me.TabPage1.Controls.Add(Me.CheckBoxSeperateCoat)
         Me.TabPage1.Controls.Add(Me.CheckBoxNewSeedGenerator)
@@ -149,7 +158,7 @@ Partial Class OptionsMenu
         '
         'ButtonClearDecompileFolders
         '
-        Me.ButtonClearDecompileFolders.Location = New System.Drawing.Point(115, 200)
+        Me.ButtonClearDecompileFolders.Location = New System.Drawing.Point(118, 226)
         Me.ButtonClearDecompileFolders.Name = "ButtonClearDecompileFolders"
         Me.ButtonClearDecompileFolders.Size = New System.Drawing.Size(150, 23)
         Me.ButtonClearDecompileFolders.TabIndex = 7
@@ -160,7 +169,7 @@ Partial Class OptionsMenu
         '
         'ButtonResetSettings
         '
-        Me.ButtonResetSettings.Location = New System.Drawing.Point(6, 200)
+        Me.ButtonResetSettings.Location = New System.Drawing.Point(9, 226)
         Me.ButtonResetSettings.Name = "ButtonResetSettings"
         Me.ButtonResetSettings.Size = New System.Drawing.Size(100, 23)
         Me.ButtonResetSettings.TabIndex = 6
@@ -562,6 +571,46 @@ Partial Class OptionsMenu
         Me.ButtonAddWhiteCoatIL.Text = "Add WhiteCoat IL"
         Me.ButtonAddWhiteCoatIL.UseVisualStyleBackColor = True
         '
+        'ButtonCheckUpdate
+        '
+        Me.ButtonCheckUpdate.Location = New System.Drawing.Point(9, 255)
+        Me.ButtonCheckUpdate.Name = "ButtonCheckUpdate"
+        Me.ButtonCheckUpdate.Size = New System.Drawing.Size(100, 23)
+        Me.ButtonCheckUpdate.TabIndex = 11
+        Me.ButtonCheckUpdate.Text = "Check for Update"
+        Me.ButtonCheckUpdate.UseVisualStyleBackColor = True
+        '
+        'LabelCoatColor
+        '
+        Me.LabelCoatColor.AutoSize = True
+        Me.LabelCoatColor.Location = New System.Drawing.Point(6, 202)
+        Me.LabelCoatColor.Name = "LabelCoatColor"
+        Me.LabelCoatColor.Size = New System.Drawing.Size(64, 13)
+        Me.LabelCoatColor.TabIndex = 12
+        Me.LabelCoatColor.Text = "Coat Colors:"
+        '
+        'ButtonLightColor
+        '
+        Me.ButtonLightColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonLightColor.Location = New System.Drawing.Point(73, 197)
+        Me.ButtonLightColor.Name = "ButtonLightColor"
+        Me.ButtonLightColor.Size = New System.Drawing.Size(100, 23)
+        Me.ButtonLightColor.TabIndex = 13
+        Me.ButtonLightColor.UseVisualStyleBackColor = True
+        '
+        'ButtonDarkColor
+        '
+        Me.ButtonDarkColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonDarkColor.Location = New System.Drawing.Point(173, 197)
+        Me.ButtonDarkColor.Name = "ButtonDarkColor"
+        Me.ButtonDarkColor.Size = New System.Drawing.Size(100, 23)
+        Me.ButtonDarkColor.TabIndex = 14
+        Me.ButtonDarkColor.UseVisualStyleBackColor = True
+        '
+        'ColorDialog1
+        '
+        Me.ColorDialog1.AnyColor = True
+        '
         'OptionsMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -636,4 +685,9 @@ Partial Class OptionsMenu
     Friend WithEvents ButtonAddWhiteCoatIL As Button
     Friend WithEvents ButtonDelWhiteCoatIl As Button
     Friend WithEvents Label9 As Label
+    Friend WithEvents ButtonDarkColor As Button
+    Friend WithEvents ButtonLightColor As Button
+    Friend WithEvents LabelCoatColor As Label
+    Friend WithEvents ButtonCheckUpdate As Button
+    Friend WithEvents ColorDialog1 As ColorDialog
 End Class
