@@ -84,7 +84,7 @@
         Public JumpAdded As Integer = 0
     End Class
 #End Region
-    Public Class NormalItems
+    Public Class VanillaItems
         Public Shared Function ResetItemPool()
             Dim Items As List(Of ItemDrop)
             Items = New List(Of ItemDrop)
@@ -161,7 +161,6 @@
             TempItem.GivenPowers.AddRange({Powers.Grapple})
             TempItem.Weight = 3 'weight 3 for easy.
             TempItem.GID = 62
-            TempItem.Weight = 0 'increases it's natural weight 
             Items.Add(TempItem)
             '______________
             TempItem = New ItemDrop()
@@ -171,7 +170,6 @@
             TempItem.GivenPowers.AddRange({Powers.Drone})
             TempItem.Weight = 3 'weight 3 for coats & drones to maximize variance
             TempItem.GID = 63
-            TempItem.Weight = 0 'increases it's natural weight 
             Items.Add(TempItem)
             '______________
             TempItem = New ItemDrop()
@@ -1729,5 +1727,483 @@
             Return Items
         End Function
 
+    End Class
+    Public Class VariableItems
+        Public Shared Function ResetItemPool(PoolDifficulty As Randomizer.DifficultySetting)
+            Dim Items As List(Of ItemDrop)
+            Items = New List(Of ItemDrop)
+            Dim TempItem As ItemDrop
+#Region "Upgrades"
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Drill
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Drill})
+            TempItem.Weight = 5 '5 places drill early
+            TempItem.GID = 33
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.AddressDisruptor1
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Glitch1})
+            TempItem.Weight = 2 'weight 2 for non-essential upgrades
+            TempItem.GID = 37
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.HighJump
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.HighJump})
+            TempItem.Weight = 2 'weight 2 for non-essential upgrades
+            TempItem.JumpAdded = 2
+            TempItem.GID = 37
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.TendrilsTop
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 2 'weight 2 for non-essential upgrades
+            TempItem.GID = 41
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.TendrilsBottom
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 2 'weight 2 for non-essential upgrades
+            TempItem.GID = 42
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.AddressDisruptor2
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Glitch2})
+            TempItem.Weight = 2 'weight 2 for non-essential upgrades
+            TempItem.GID = 60
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.GlitchTeleport
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.LabCoat})
+            TempItem.Weight = 3 'weight 3 for coats & drones to maximize variance
+            TempItem.GID = 61
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Grapple
+            TempItem.JumpAdded = 2
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Grapple})
+            TempItem.Weight = 3 'weight 3 for easy.
+            TempItem.GID = 62
+            TempItem.Weight = 0 'increases it's natural weight 
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.DroneGun
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Drone})
+            TempItem.Weight = 3 'weight 3 for coats & drones to maximize variance
+            TempItem.GID = 63
+            TempItem.Weight = 0 'increases it's natural weight 
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.EnhancedLaunch
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.EnhancedLaunch})
+            TempItem.Weight = 2 'weight 2 for non-essential upgrades
+            TempItem.GID = 64
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.RedCoat
+            TempItem.JumpAdded = 4
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.RedCoat})
+            TempItem.Weight = 4 'weight 4 for red coat so it can be in almost every location
+            TempItem.GID = 68
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.PasswordTool
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Passwords})
+            TempItem.Weight = 2 'weight 2 for non-essential upgrades
+            TempItem.GID = 69
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.GlitchBomb
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Glitch3})
+            TempItem.Weight = 2 'weight 2 for non-essential upgrades
+            TempItem.GID = 70
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.DroneTeleport
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.DroneTeleport})
+            TempItem.Weight = 3 'weight 3 for coats & drones to maximize variance
+            TempItem.GID = 71
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.BlackCoat
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.JumpAdded = 3 'Red Coat placed first however we want to place redcoat in places reachable by trench so this still has a relevant jump height.
+            TempItem.GivenPowers.AddRange({Powers.TrenchCoat})
+            TempItem.Weight = 3 'weight 3 for coats & drones to maximize variance
+            TempItem.GID = 72
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.BreachSuppressor
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Key})
+            TempItem.Weight = 2 'weight 2 for non-essential upgrades
+            TempItem.GID = 73
+            Items.Add(TempItem)
+#End Region
+#Region "Weapons"
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.DataDisruptor
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GID = 2
+            TempItem.Weight = 5
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Nova
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Nova})
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GID = 3
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.MultiDisruptor
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GID = 35
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Kilver
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Kilver})
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GID = 36
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.FlameThrower
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Nova, Powers.Kilver, Powers.LongBeam})
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GID = 40
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.VerticalSpread
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Nova})
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GID = 43
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.IonBeam
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GID = 44
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.TriCone
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GID = 45
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Reflect
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Nova})
+            TempItem.GID = 46
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.WallTrace
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Nova})
+            TempItem.GID = 47
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.InertialPulse
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 48
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.FireWall
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 49
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.TetheredCharge
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Nova})
+            TempItem.GID = 50
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Scythe
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Kilver})
+            TempItem.GID = 51
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Shards
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 52
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.DistortionField
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Kilver})
+            TempItem.GID = 53
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Voranj
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 54
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.DataGrenade
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 55
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.LightningGun
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 56
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "FatBeam"
+            TempItem.DropType = ItemType.FatBeam
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Nova, Powers.Kilver, Powers.FatBeam})
+            TempItem.GID = 57
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Swim
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 58
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "WebSlicer"
+            TempItem.DropType = ItemType.WebSlicer
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Nova, Powers.Kilver, Powers.LongBeam})
+            TempItem.GID = 59
+            Items.Add(TempItem)
+            '______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "HeatSeeker"
+            'TempItem.DropType = ItemType.HeatSeeker
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GivenPowers.AddRange({Powers.Damage})
+            'TempItem.GID = 57 'Guess IDK if it'll work
+            'Items.Add(TempItem)
+#End Region
+#Region "Variable Nodes"
+
+#End Region
+            Return Items
+        End Function
+        Public Shared Function GetVarianceNum(Min As Integer, Variance As Integer)
+            Dim ReturnAsDouble As Double = 0
+            For i As Integer = 0 To Variance - 1
+                ReturnAsDouble += Randomizer.Generator.NextDouble 'rand
+            Next
+            Dim ReturnAsInteger As Integer = Math.Floor(ReturnAsDouble) + Min
+            Return ReturnAsInteger
+        End Function
+        Public Shared Function GenerateHealthNodes(PoolDifficulty As Randomizer.DifficultySetting, Optional MinNodes As Integer = -1, Optional VarianceNodes As Integer = -1)
+            If MinNodes = -1 AndAlso VarianceNodes = -1 Then
+                Select Case PoolDifficulty
+                    Case Randomizer.DifficultySetting.Easy
+                        MinNodes = 4
+                        VarianceNodes = 10
+                    Case Randomizer.DifficultySetting.Normal
+                        MinNodes = 1
+                        VarianceNodes = 10
+                        'Case Randomizer.DifficultySetting.Hard
+                        ' MinNodes = 0
+                        ' VarianceNodes = 5
+                End Select
+            End If
+            Return GetVarianceNum(MinNodes, VarianceNodes)
+        End Function
+        Public Shared Function GenerateHealthFragments(PoolDifficulty As Randomizer.DifficultySetting, Optional MinNodes As Integer = -1, Optional VarianceNodes As Integer = -1)
+            If MinNodes = -1 AndAlso VarianceNodes = -1 Then
+                Select Case PoolDifficulty
+                    'Note +1 from Slug Fragment
+                    Case Randomizer.DifficultySetting.Easy
+                        MinNodes = 4
+                        VarianceNodes = 16
+                    Case Randomizer.DifficultySetting.Normal
+                        MinNodes = 4
+                        VarianceNodes = 28
+                        'Case Randomizer.DifficultySetting.Hard
+                        ' MinNodes = 4
+                        ' VarianceNodes = 16
+                End Select
+            End If
+            Return GetVarianceNum(MinNodes, VarianceNodes)
+        End Function
+        Public Shared Function GeneratePowerNodes(PoolDifficulty As Randomizer.DifficultySetting, Optional MinNodes As Integer = -1, Optional VarianceNodes As Integer = -1)
+            If MinNodes = -1 AndAlso VarianceNodes = -1 Then
+                Select Case PoolDifficulty
+                    Case Randomizer.DifficultySetting.Easy
+                        MinNodes = 4
+                        VarianceNodes = 7
+                    Case Randomizer.DifficultySetting.Normal
+                        MinNodes = 2
+                        VarianceNodes = 9
+                        'Case Randomizer.DifficultySetting.Hard
+                        ' MinNodes = 0
+                        ' VarianceNodes = 9
+                End Select
+            End If
+            Return GetVarianceNum(MinNodes, VarianceNodes)
+        End Function
+        Public Shared Function GeneratePowerFragments(PoolDifficulty As Randomizer.DifficultySetting, Optional MinNodes As Integer = -1, Optional VarianceNodes As Integer = -1)
+            If MinNodes = -1 AndAlso VarianceNodes = -1 Then
+                Select Case PoolDifficulty
+                    Case Randomizer.DifficultySetting.Easy
+                        MinNodes = 6
+                        VarianceNodes = 13
+                    Case Randomizer.DifficultySetting.Normal
+                        MinNodes = 6
+                        VarianceNodes = 19
+                        'Case Randomizer.DifficultySetting.Hard
+                        ' MinNodes = 0
+                        ' VarianceNodes = 19
+                End Select
+            End If
+            Return GetVarianceNum(MinNodes, VarianceNodes)
+        End Function
+        Public Shared Function GenerateSizeNodes(PoolDifficulty As Randomizer.DifficultySetting, Optional MinNodes As Integer = -1, Optional VarianceNodes As Integer = -1)
+            If MinNodes = -1 AndAlso VarianceNodes = -1 Then
+                Select Case PoolDifficulty
+                    Case Randomizer.DifficultySetting.Easy
+                        MinNodes = 2
+                        VarianceNodes = 5
+                    Case Randomizer.DifficultySetting.Normal
+                        MinNodes = 2
+                        VarianceNodes = 9
+                        'Case Randomizer.DifficultySetting.Hard
+                        ' MinNodes = 0
+                        ' VarianceNodes = 6
+                End Select
+            End If
+            Return GetVarianceNum(MinNodes, VarianceNodes)
+        End Function
+        Public Shared Function GenerateRangeNodes(PoolDifficulty As Randomizer.DifficultySetting, Optional MinNodes As Integer = -1, Optional VarianceNodes As Integer = -1)
+            If MinNodes = -1 AndAlso VarianceNodes = -1 Then
+                Select Case PoolDifficulty
+                    Case Randomizer.DifficultySetting.Easy
+                        MinNodes = 2
+                        VarianceNodes = 5
+                    Case Randomizer.DifficultySetting.Normal
+                        MinNodes = 2
+                        VarianceNodes = 9
+                        'Case Randomizer.DifficultySetting.Hard
+                        ' MinNodes = 0
+                        ' VarianceNodes = 6
+                End Select
+            End If
+            Return GetVarianceNum(MinNodes, VarianceNodes)
+        End Function
+        Public Shared Function OnGenerateRemaningNoteCount(ItemCount As Integer)
+            Return 124 - ItemCount
+        End Function
     End Class
 End Namespace

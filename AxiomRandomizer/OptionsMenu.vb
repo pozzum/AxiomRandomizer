@@ -46,6 +46,7 @@ Public Class OptionsMenu
             ButtonLightColor.Enabled = False
             ButtonDarkColor.Enabled = False
         End If
+        CheckBoxRemoveMetallicPing.Checked = My.Settings.RemoveMetallicPing
     End Sub
     Private Sub RadioButtonSaveMenuSettings_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonSaveMenuSettings.CheckedChanged
         My.Settings.SaveMenuSettings = RadioButtonSaveMenuSettings.Checked
@@ -169,6 +170,19 @@ Public Class OptionsMenu
             PackUnpack.Graphics.PaintFakeCoat()
             LoadBasicOptionsTab()
         End If
+    End Sub
+    Private Sub CheckBoxRemoveMetallicPing_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxRemoveMetallicPing.CheckedChanged
+        If CheckBoxRemoveMetallicPing.Checked Then
+            If Not My.Settings.RemoveMetallicPing Then
+                PackUnpack.ModifyCodeMetallicPing(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", True)
+            End If
+        Else 'Unchecked
+            If My.Settings.RemoveMetallicPing Then
+                'Revert Change
+                PackUnpack.ModifyCodeMetallicPing(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", False)
+            End If
+        End If
+        My.Settings.RemoveMetallicPing = CheckBoxRemoveMetallicPing.Checked
     End Sub
     Private Sub ButtonResetSettings_Click(sender As Object, e As EventArgs) Handles ButtonResetSettings.Click
         My.Settings.Reset()
@@ -434,5 +448,7 @@ Public Class OptionsMenu
     Private Sub ButtonDelWhiteCoatIl_Click(sender As Object, e As EventArgs) Handles ButtonDelWhiteCoatIl.Click
         PackUnpack.ModifyCodeLabCoat(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", False)
     End Sub
+
+
 #End Region
 End Class

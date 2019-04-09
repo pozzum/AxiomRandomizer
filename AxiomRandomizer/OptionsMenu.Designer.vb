@@ -25,6 +25,11 @@ Partial Class OptionsMenu
         Me.components = New System.ComponentModel.Container()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.CheckBoxRemoveMetallicPing = New System.Windows.Forms.CheckBox()
+        Me.ButtonDarkColor = New System.Windows.Forms.Button()
+        Me.ButtonLightColor = New System.Windows.Forms.Button()
+        Me.LabelCoatColor = New System.Windows.Forms.Label()
+        Me.ButtonCheckUpdate = New System.Windows.Forms.Button()
         Me.CheckBoxRandomizeFakeCoat = New System.Windows.Forms.CheckBox()
         Me.CheckBoxSeperateCoat = New System.Windows.Forms.CheckBox()
         Me.CheckBoxNewSeedGenerator = New System.Windows.Forms.CheckBox()
@@ -71,10 +76,6 @@ Partial Class OptionsMenu
         Me.ButtonAddWhiteCoatIL = New System.Windows.Forms.Button()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ButtonCheckUpdate = New System.Windows.Forms.Button()
-        Me.LabelCoatColor = New System.Windows.Forms.Label()
-        Me.ButtonLightColor = New System.Windows.Forms.Button()
-        Me.ButtonDarkColor = New System.Windows.Forms.Button()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -98,6 +99,7 @@ Partial Class OptionsMenu
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.CheckBoxRemoveMetallicPing)
         Me.TabPage1.Controls.Add(Me.ButtonDarkColor)
         Me.TabPage1.Controls.Add(Me.ButtonLightColor)
         Me.TabPage1.Controls.Add(Me.LabelCoatColor)
@@ -119,6 +121,53 @@ Partial Class OptionsMenu
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Basic Options"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'CheckBoxRemoveMetallicPing
+        '
+        Me.CheckBoxRemoveMetallicPing.AutoSize = True
+        Me.CheckBoxRemoveMetallicPing.Location = New System.Drawing.Point(9, 226)
+        Me.CheckBoxRemoveMetallicPing.Name = "CheckBoxRemoveMetallicPing"
+        Me.CheckBoxRemoveMetallicPing.Size = New System.Drawing.Size(139, 17)
+        Me.CheckBoxRemoveMetallicPing.TabIndex = 15
+        Me.CheckBoxRemoveMetallicPing.Text = "Remove ""Metallic Ping"""
+        Me.ToolTip1.SetToolTip(Me.CheckBoxRemoveMetallicPing, "This removes the annoying Metallic" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ping that occurs when enemies resist damage.")
+        Me.CheckBoxRemoveMetallicPing.UseVisualStyleBackColor = True
+        '
+        'ButtonDarkColor
+        '
+        Me.ButtonDarkColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonDarkColor.Location = New System.Drawing.Point(173, 197)
+        Me.ButtonDarkColor.Name = "ButtonDarkColor"
+        Me.ButtonDarkColor.Size = New System.Drawing.Size(100, 23)
+        Me.ButtonDarkColor.TabIndex = 14
+        Me.ButtonDarkColor.UseVisualStyleBackColor = True
+        '
+        'ButtonLightColor
+        '
+        Me.ButtonLightColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonLightColor.Location = New System.Drawing.Point(73, 197)
+        Me.ButtonLightColor.Name = "ButtonLightColor"
+        Me.ButtonLightColor.Size = New System.Drawing.Size(100, 23)
+        Me.ButtonLightColor.TabIndex = 13
+        Me.ButtonLightColor.UseVisualStyleBackColor = True
+        '
+        'LabelCoatColor
+        '
+        Me.LabelCoatColor.AutoSize = True
+        Me.LabelCoatColor.Location = New System.Drawing.Point(6, 202)
+        Me.LabelCoatColor.Name = "LabelCoatColor"
+        Me.LabelCoatColor.Size = New System.Drawing.Size(64, 13)
+        Me.LabelCoatColor.TabIndex = 12
+        Me.LabelCoatColor.Text = "Coat Colors:"
+        '
+        'ButtonCheckUpdate
+        '
+        Me.ButtonCheckUpdate.Location = New System.Drawing.Point(9, 278)
+        Me.ButtonCheckUpdate.Name = "ButtonCheckUpdate"
+        Me.ButtonCheckUpdate.Size = New System.Drawing.Size(100, 23)
+        Me.ButtonCheckUpdate.TabIndex = 11
+        Me.ButtonCheckUpdate.Text = "Check for Update"
+        Me.ButtonCheckUpdate.UseVisualStyleBackColor = True
         '
         'CheckBoxRandomizeFakeCoat
         '
@@ -158,7 +207,7 @@ Partial Class OptionsMenu
         '
         'ButtonClearDecompileFolders
         '
-        Me.ButtonClearDecompileFolders.Location = New System.Drawing.Point(118, 226)
+        Me.ButtonClearDecompileFolders.Location = New System.Drawing.Point(118, 249)
         Me.ButtonClearDecompileFolders.Name = "ButtonClearDecompileFolders"
         Me.ButtonClearDecompileFolders.Size = New System.Drawing.Size(150, 23)
         Me.ButtonClearDecompileFolders.TabIndex = 7
@@ -169,7 +218,7 @@ Partial Class OptionsMenu
         '
         'ButtonResetSettings
         '
-        Me.ButtonResetSettings.Location = New System.Drawing.Point(9, 226)
+        Me.ButtonResetSettings.Location = New System.Drawing.Point(9, 249)
         Me.ButtonResetSettings.Name = "ButtonResetSettings"
         Me.ButtonResetSettings.Size = New System.Drawing.Size(100, 23)
         Me.ButtonResetSettings.TabIndex = 6
@@ -301,6 +350,7 @@ Partial Class OptionsMenu
         Me.ButtonXnbcliLocation.Size = New System.Drawing.Size(25, 23)
         Me.ButtonXnbcliLocation.TabIndex = 28
         Me.ButtonXnbcliLocation.Text = "..."
+        Me.ToolTip1.SetToolTip(Me.ButtonXnbcliLocation, "This is where the tool stores" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "the location of a texture converter." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         Me.ButtonXnbcliLocation.UseVisualStyleBackColor = True
         Me.ButtonXnbcliLocation.Visible = False
         '
@@ -311,6 +361,7 @@ Partial Class OptionsMenu
         Me.TextBoxXnbcliLocation.ReadOnly = True
         Me.TextBoxXnbcliLocation.Size = New System.Drawing.Size(229, 20)
         Me.TextBoxXnbcliLocation.TabIndex = 27
+        Me.ToolTip1.SetToolTip(Me.TextBoxXnbcliLocation, "This is where the tool stores" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "the location of a texture converter." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         Me.TextBoxXnbcliLocation.Visible = False
         '
         'Labelxnbcli
@@ -321,6 +372,7 @@ Partial Class OptionsMenu
         Me.Labelxnbcli.Size = New System.Drawing.Size(115, 13)
         Me.Labelxnbcli.TabIndex = 26
         Me.Labelxnbcli.Text = "xnbcli Saved Location:"
+        Me.ToolTip1.SetToolTip(Me.Labelxnbcli, "This is where the tool stores" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "the location of a texture converter.")
         Me.Labelxnbcli.Visible = False
         '
         'ButtonRandoExeChangeName
@@ -330,6 +382,7 @@ Partial Class OptionsMenu
         Me.ButtonRandoExeChangeName.Size = New System.Drawing.Size(55, 23)
         Me.ButtonRandoExeChangeName.TabIndex = 25
         Me.ButtonRandoExeChangeName.Text = "Change"
+        Me.ToolTip1.SetToolTip(Me.ButtonRandoExeChangeName, "This sets what your randomized" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "game exe will be named.")
         Me.ButtonRandoExeChangeName.UseVisualStyleBackColor = True
         '
         'TextBoxRandomExeLocation
@@ -337,8 +390,10 @@ Partial Class OptionsMenu
         Me.TextBoxRandomExeLocation.Enabled = False
         Me.TextBoxRandomExeLocation.Location = New System.Drawing.Point(8, 136)
         Me.TextBoxRandomExeLocation.Name = "TextBoxRandomExeLocation"
+        Me.TextBoxRandomExeLocation.ReadOnly = True
         Me.TextBoxRandomExeLocation.Size = New System.Drawing.Size(199, 20)
         Me.TextBoxRandomExeLocation.TabIndex = 24
+        Me.ToolTip1.SetToolTip(Me.TextBoxRandomExeLocation, "This sets what your randomized" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "game exe will be named.")
         '
         'Label8
         '
@@ -348,6 +403,7 @@ Partial Class OptionsMenu
         Me.Label8.Size = New System.Drawing.Size(131, 13)
         Me.Label8.TabIndex = 21
         Me.Label8.Text = "Randomized Game Name:"
+        Me.ToolTip1.SetToolTip(Me.Label8, "This sets what your randomized" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "game exe will be named.")
         '
         'ButtonIlasmLocation
         '
@@ -356,6 +412,7 @@ Partial Class OptionsMenu
         Me.ButtonIlasmLocation.Size = New System.Drawing.Size(25, 23)
         Me.ButtonIlasmLocation.TabIndex = 20
         Me.ButtonIlasmLocation.Text = "..."
+        Me.ToolTip1.SetToolTip(Me.ButtonIlasmLocation, "This is where the tool stores" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "the location of the recompiler.")
         Me.ButtonIlasmLocation.UseVisualStyleBackColor = True
         '
         'TextBoxIlasmLocation
@@ -365,6 +422,7 @@ Partial Class OptionsMenu
         Me.TextBoxIlasmLocation.ReadOnly = True
         Me.TextBoxIlasmLocation.Size = New System.Drawing.Size(229, 20)
         Me.TextBoxIlasmLocation.TabIndex = 19
+        Me.ToolTip1.SetToolTip(Me.TextBoxIlasmLocation, "This is where the tool stores" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "the location of the recompiler.")
         '
         'Label7
         '
@@ -374,6 +432,7 @@ Partial Class OptionsMenu
         Me.Label7.Size = New System.Drawing.Size(132, 13)
         Me.Label7.TabIndex = 18
         Me.Label7.Text = "Ilasm.exe Saved Location:"
+        Me.ToolTip1.SetToolTip(Me.Label7, "This is where the tool stores" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "the location of the recompiler.")
         '
         'ButtonIldasmLocation
         '
@@ -382,6 +441,7 @@ Partial Class OptionsMenu
         Me.ButtonIldasmLocation.Size = New System.Drawing.Size(25, 23)
         Me.ButtonIldasmLocation.TabIndex = 17
         Me.ButtonIldasmLocation.Text = "..."
+        Me.ToolTip1.SetToolTip(Me.ButtonIldasmLocation, "This is where the tool stores" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "the location of the decompiler.")
         Me.ButtonIldasmLocation.UseVisualStyleBackColor = True
         '
         'TextBoxIldasmLocation
@@ -391,6 +451,7 @@ Partial Class OptionsMenu
         Me.TextBoxIldasmLocation.ReadOnly = True
         Me.TextBoxIldasmLocation.Size = New System.Drawing.Size(229, 20)
         Me.TextBoxIldasmLocation.TabIndex = 16
+        Me.ToolTip1.SetToolTip(Me.TextBoxIldasmLocation, "This is where the tool stores" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "the location of the decompiler.")
         '
         'Label6
         '
@@ -400,6 +461,7 @@ Partial Class OptionsMenu
         Me.Label6.Size = New System.Drawing.Size(138, 13)
         Me.Label6.TabIndex = 15
         Me.Label6.Text = "Ildasm.exe Saved Location:"
+        Me.ToolTip1.SetToolTip(Me.Label6, "This is where the tool stores" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "the location of the decompiler.")
         '
         'ButtonXMLLocation
         '
@@ -408,6 +470,7 @@ Partial Class OptionsMenu
         Me.ButtonXMLLocation.Size = New System.Drawing.Size(25, 23)
         Me.ButtonXMLLocation.TabIndex = 14
         Me.ButtonXMLLocation.Text = "..."
+        Me.ToolTip1.SetToolTip(Me.ButtonXMLLocation, "This is where the tool stores the" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "spoiler xml files generated on randomization.")
         Me.ButtonXMLLocation.UseVisualStyleBackColor = True
         '
         'TextBoxXMLSaveLocation
@@ -417,6 +480,7 @@ Partial Class OptionsMenu
         Me.TextBoxXMLSaveLocation.ReadOnly = True
         Me.TextBoxXMLSaveLocation.Size = New System.Drawing.Size(229, 20)
         Me.TextBoxXMLSaveLocation.TabIndex = 13
+        Me.ToolTip1.SetToolTip(Me.TextBoxXMLSaveLocation, "This is where the tool stores the" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "spoiler xml files generated on randomization.")
         '
         'Label5
         '
@@ -426,6 +490,7 @@ Partial Class OptionsMenu
         Me.Label5.Size = New System.Drawing.Size(92, 13)
         Me.Label5.TabIndex = 12
         Me.Label5.Text = "XML Save Folder:"
+        Me.ToolTip1.SetToolTip(Me.Label5, "This is where the tool stores the" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "spoiler xml files generated on randomization.")
         '
         'ButtonSaveLocation
         '
@@ -434,6 +499,7 @@ Partial Class OptionsMenu
         Me.ButtonSaveLocation.Size = New System.Drawing.Size(25, 23)
         Me.ButtonSaveLocation.TabIndex = 11
         Me.ButtonSaveLocation.Text = "..."
+        Me.ToolTip1.SetToolTip(Me.ButtonSaveLocation, "This is where the tool stores" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "where Axiom Verge saves.")
         Me.ButtonSaveLocation.UseVisualStyleBackColor = True
         '
         'TextBoxSaveFileLocation
@@ -443,6 +509,7 @@ Partial Class OptionsMenu
         Me.TextBoxSaveFileLocation.ReadOnly = True
         Me.TextBoxSaveFileLocation.Size = New System.Drawing.Size(229, 20)
         Me.TextBoxSaveFileLocation.TabIndex = 10
+        Me.ToolTip1.SetToolTip(Me.TextBoxSaveFileLocation, "This is where the tool stores" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "where Axiom Verge saves.")
         '
         'Label4
         '
@@ -452,6 +519,7 @@ Partial Class OptionsMenu
         Me.Label4.Size = New System.Drawing.Size(110, 13)
         Me.Label4.TabIndex = 9
         Me.Label4.Text = "Game Save Location:"
+        Me.ToolTip1.SetToolTip(Me.Label4, "This is where the tool stores" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "where Axiom Verge saves.")
         '
         'ButtonExeLocation
         '
@@ -460,6 +528,7 @@ Partial Class OptionsMenu
         Me.ButtonExeLocation.Size = New System.Drawing.Size(25, 23)
         Me.ButtonExeLocation.TabIndex = 8
         Me.ButtonExeLocation.Text = "..."
+        Me.ToolTip1.SetToolTip(Me.ButtonExeLocation, "This is where the tool stores your" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "actual game directory.")
         Me.ButtonExeLocation.UseVisualStyleBackColor = True
         '
         'TextBoxGameLocation
@@ -469,6 +538,7 @@ Partial Class OptionsMenu
         Me.TextBoxGameLocation.ReadOnly = True
         Me.TextBoxGameLocation.Size = New System.Drawing.Size(229, 20)
         Me.TextBoxGameLocation.TabIndex = 7
+        Me.ToolTip1.SetToolTip(Me.TextBoxGameLocation, "This is where the tool stores your" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "actual game directory.")
         '
         'Label3
         '
@@ -478,6 +548,7 @@ Partial Class OptionsMenu
         Me.Label3.Size = New System.Drawing.Size(82, 13)
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Game Location:"
+        Me.ToolTip1.SetToolTip(Me.Label3, "This is where the tool stores your" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "actual game directory.")
         '
         'ButtonWorkingFolder
         '
@@ -486,6 +557,7 @@ Partial Class OptionsMenu
         Me.ButtonWorkingFolder.Size = New System.Drawing.Size(25, 23)
         Me.ButtonWorkingFolder.TabIndex = 5
         Me.ButtonWorkingFolder.Text = "..."
+        Me.ToolTip1.SetToolTip(Me.ButtonWorkingFolder, "This is where the tool stores the game " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "code that has been randomized.")
         Me.ButtonWorkingFolder.UseVisualStyleBackColor = True
         '
         'ButtonVanillaFolder
@@ -495,6 +567,7 @@ Partial Class OptionsMenu
         Me.ButtonVanillaFolder.Size = New System.Drawing.Size(25, 23)
         Me.ButtonVanillaFolder.TabIndex = 4
         Me.ButtonVanillaFolder.Text = "..."
+        Me.ToolTip1.SetToolTip(Me.ButtonVanillaFolder, "This is where the tool stores the base " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "game code for randomizing.")
         Me.ButtonVanillaFolder.UseVisualStyleBackColor = True
         '
         'TextBoxWorkingDecompile
@@ -504,6 +577,7 @@ Partial Class OptionsMenu
         Me.TextBoxWorkingDecompile.ReadOnly = True
         Me.TextBoxWorkingDecompile.Size = New System.Drawing.Size(229, 20)
         Me.TextBoxWorkingDecompile.TabIndex = 3
+        Me.ToolTip1.SetToolTip(Me.TextBoxWorkingDecompile, "This is where the tool stores the game " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "code that has been randomized.")
         '
         'Label2
         '
@@ -513,6 +587,7 @@ Partial Class OptionsMenu
         Me.Label2.Size = New System.Drawing.Size(141, 13)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Working Decompiled Folder:"
+        Me.ToolTip1.SetToolTip(Me.Label2, "This is where the tool stores the game " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "code that has been randomized." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
         '
         'Label1
         '
@@ -522,6 +597,7 @@ Partial Class OptionsMenu
         Me.Label1.Size = New System.Drawing.Size(132, 13)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Vanilla Decompiled Folder:"
+        Me.ToolTip1.SetToolTip(Me.Label1, "This is where the tool stores the Base " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Game Code for Randomizing")
         '
         'TextBoxVanillaDecompile
         '
@@ -530,6 +606,7 @@ Partial Class OptionsMenu
         Me.TextBoxVanillaDecompile.ReadOnly = True
         Me.TextBoxVanillaDecompile.Size = New System.Drawing.Size(229, 20)
         Me.TextBoxVanillaDecompile.TabIndex = 0
+        Me.ToolTip1.SetToolTip(Me.TextBoxVanillaDecompile, "This is where the tool stores the Base " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Game Code for Randomizing")
         '
         'TabPageDebugTab
         '
@@ -570,42 +647,6 @@ Partial Class OptionsMenu
         Me.ButtonAddWhiteCoatIL.TabIndex = 0
         Me.ButtonAddWhiteCoatIL.Text = "Add WhiteCoat IL"
         Me.ButtonAddWhiteCoatIL.UseVisualStyleBackColor = True
-        '
-        'ButtonCheckUpdate
-        '
-        Me.ButtonCheckUpdate.Location = New System.Drawing.Point(9, 255)
-        Me.ButtonCheckUpdate.Name = "ButtonCheckUpdate"
-        Me.ButtonCheckUpdate.Size = New System.Drawing.Size(100, 23)
-        Me.ButtonCheckUpdate.TabIndex = 11
-        Me.ButtonCheckUpdate.Text = "Check for Update"
-        Me.ButtonCheckUpdate.UseVisualStyleBackColor = True
-        '
-        'LabelCoatColor
-        '
-        Me.LabelCoatColor.AutoSize = True
-        Me.LabelCoatColor.Location = New System.Drawing.Point(6, 202)
-        Me.LabelCoatColor.Name = "LabelCoatColor"
-        Me.LabelCoatColor.Size = New System.Drawing.Size(64, 13)
-        Me.LabelCoatColor.TabIndex = 12
-        Me.LabelCoatColor.Text = "Coat Colors:"
-        '
-        'ButtonLightColor
-        '
-        Me.ButtonLightColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonLightColor.Location = New System.Drawing.Point(73, 197)
-        Me.ButtonLightColor.Name = "ButtonLightColor"
-        Me.ButtonLightColor.Size = New System.Drawing.Size(100, 23)
-        Me.ButtonLightColor.TabIndex = 13
-        Me.ButtonLightColor.UseVisualStyleBackColor = True
-        '
-        'ButtonDarkColor
-        '
-        Me.ButtonDarkColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonDarkColor.Location = New System.Drawing.Point(173, 197)
-        Me.ButtonDarkColor.Name = "ButtonDarkColor"
-        Me.ButtonDarkColor.Size = New System.Drawing.Size(100, 23)
-        Me.ButtonDarkColor.TabIndex = 14
-        Me.ButtonDarkColor.UseVisualStyleBackColor = True
         '
         'ColorDialog1
         '
@@ -690,4 +731,5 @@ Partial Class OptionsMenu
     Friend WithEvents LabelCoatColor As Label
     Friend WithEvents ButtonCheckUpdate As Button
     Friend WithEvents ColorDialog1 As ColorDialog
+    Friend WithEvents CheckBoxRemoveMetallicPing As CheckBox
 End Class

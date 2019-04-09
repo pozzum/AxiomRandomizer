@@ -238,7 +238,7 @@ Public Class PackUnpack
                         Return True
                     End If
                 ElseIf lines(i) = "    IL_0094:  ldstr      ""White""" Then
-                        Return True
+                    Return True
                 End If
             Else
                 If lines(i) = "    IL_0094:  ldstr      ""White""" Then
@@ -249,6 +249,31 @@ Public Class PackUnpack
                     If lines(i - 1).Contains("TraceCoat") Then
                         Return True
                     End If
+                End If
+            End If
+        Next
+        MessageBox.Show("File Not Edited!")
+        Return False
+    End Function
+    Shared Function ModifyCodeMetallicPing(IlFile As String, RemoveMetallicPing As Boolean)
+        Dim lines() As String = IO.File.ReadAllLines(IlFile)
+        For i As Integer = 0 To lines.Length - 1
+            'Makes "Glitch Tele" give white coat rather than default coat
+            If RemoveMetallicPing Then
+                If lines(i) = "    IL_00a5:  ldstr      ""MetallicPing""" Then
+                    lines(i) = "    IL_00a5:  ldstr      ""Invalid"""
+                    IO.File.WriteAllLines(IlFile, lines)
+                    Return True
+                ElseIf lines(i) = "    IL_00a5:  ldstr      ""Invalid""" Then
+                    Return True
+                End If
+            Else
+                If lines(i) = "    IL_00a5:  ldstr      ""Invalid""" Then
+                    lines(i) = "    IL_00a5:  ldstr      ""MetallicPing"""
+                    IO.File.WriteAllLines(IlFile, lines)
+                    Return True
+                ElseIf lines(i) = "    IL_00a5:  ldstr      ""MetallicPing""" Then
+                    Return True
                 End If
             End If
         Next

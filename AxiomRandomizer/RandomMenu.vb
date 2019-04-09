@@ -180,11 +180,13 @@ Public Class RandomMenu
         If InStrRev(SentTextBox.Text, "-") > 1 Then
             SentTextBox.Text = Regex.Replace(SentTextBox.Text, "[-]", "")
         End If
-        If SentTextBox.Text.Length > 0 AndAlso
-            SentTextBox.Text <> "-" AndAlso
-         CLng(SentTextBox.Text) > Integer.MaxValue OrElse
-         CLng(SentTextBox.Text) < Integer.MinValue Then
-            SentTextBox.Text = SentTextBox.Text.Substring(0, SentTextBox.Text.Length - 1)
+        If SentTextBox.Text.Length > 0 Then
+            If (SentTextBox.Text <> "-") Then
+                If CLng(SentTextBox.Text) > Integer.MaxValue OrElse
+                    CLng(SentTextBox.Text) < Integer.MinValue Then
+                    SentTextBox.Text = SentTextBox.Text.Substring(0, SentTextBox.Text.Length - 1)
+                End If
+            End If
         End If
         SentTextBox.SelectionStart = CursorPosition
     End Sub

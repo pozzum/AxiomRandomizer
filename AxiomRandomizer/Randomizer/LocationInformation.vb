@@ -23,6 +23,7 @@ Namespace GameInformation
         Public YLocation As Integer
         Public RequiredPowers As List(Of Powers)
         Public RequiredJump As Integer = 4 'Default Jump Height
+        Public AddedJump As Integer = 0 'Allows us to add additional jump
         Public AddedPowers As List(Of Powers)
         Public MapOptionPowers As List(Of Powers)
         Public Weight As Double
@@ -521,7 +522,7 @@ Namespace GameInformation
             '_______________
             TempLocation = New Location()
             TempLocation.Name = "Near Indi Exit"
-            TempLocation.Vanilla = ItemType.PowerNode
+            TempLocation.Vanilla = ItemType.PowerNode 'PowerNode3
             TempLocation.VanillaPlacement = 33
             TempLocation.Region = Area.Kur
             TempLocation.LineNumber1 = 4719
@@ -531,7 +532,6 @@ Namespace GameInformation
             TempLocation.RequiredPowers.AddRange({Powers.Damage, Powers.Nova, Powers.Drill, Powers.Kilver, Powers.Glitch1, Powers.HighJump, Powers.LabCoat})
             TempLocation.AddedPowers = New List(Of Powers)
             TempLocation.MapOptionPowers = New List(Of Powers)
-            TempLocation.MapOptionPowers.AddRange({Powers.Drone, Powers.DroneTeleport})
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()

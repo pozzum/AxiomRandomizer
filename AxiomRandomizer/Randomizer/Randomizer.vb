@@ -19,13 +19,14 @@ Public Class Randomizer
 #Region "Locations"
     Shared Sub BuildLocations(Seed As Integer, Difficulty As DifficultySetting, Optional OpenEribu1 As Boolean = False, Optional OpenElseNova2 As Boolean = False, Optional OpenAbsu3 As Boolean = False)
         PowerList = New List(Of Powers)
+        Generator = New System.Random(Seed:=Seed)
         If Difficulty = DifficultySetting.Normal Then
             'Normal is the only that has logic for opened areas
             LocationInformation = NormalLocations.ResetLocations(OpenEribu1, OpenElseNova2, OpenAbsu3)
-            ItemPool = NormalItems.ResetItemPool()
+            ItemPool = VanillaItems.ResetItemPool()
         ElseIf Difficulty = DifficultySetting.Easy Then
             LocationInformation = EasyLocations.ResetLocations()
-            ItemPool = NormalItems.ResetItemPool()
+            ItemPool = VanillaItems.ResetItemPool()
         ElseIf Difficulty = DifficultySetting.Practice Then
             LocationInformation = PracticeLocations.ResetLocations() 'New List(Of Location) '
             ItemPool = PracticeItems.ResetItemPool() 'New List(Of ItemDrop) '
@@ -56,7 +57,6 @@ Public Class Randomizer
         'PlaceItems()
     End Sub
     Shared Sub ApplyWeights(Seed As Integer)
-        Generator = New System.Random(Seed:=Seed)
         For Each TempLocation As Location In LocationInformation
             'positive numbers will stay on the location but with an added decimal places to break ties
             If TempLocation.Weight > 0 Then
@@ -123,13 +123,16 @@ Public Class Randomizer
                                         RandomMenu.TextBoxDebug.Text += vbNewLine & LocationInformation(j).Name & " Skipped due to given power " & ItemPool(i).GivenPowers(0).ToString
                                         Continue For
                                     Else
-                                        If LocationInformation(j).RequiredJump > GetJumpHeight(ItemPool(i)) Then
+                                        If (LocationInformation(j).RequiredJump + LocationInformation(j).AddedJump) > GetJumpHeight(ItemPool(i)) Then
                                             LocationInformation(j).RerollCount += 1
                                             RandomMenu.TextBoxDebug.Text += vbNewLine & LocationInformation(j).Name & " Skipped due to jump height"
                                             Continue For
                                         Else
                                             IterateRestrictions(ItemPool(i).GivenPowers(0), LocationInformation(j).RequiredPowers)
                                             TotalAddedJump += ItemPool(i).JumpAdded
+                                            If LocationInformation(j).RequiredJump > 4 Then
+                                                IterateJumpRestrictions(ItemPool(i).GivenPowers(0), LocationInformation(j).RequiredJump - 4)
+                                            End If
                                         End If
                                     End If
                                 End If
@@ -173,10 +176,10 @@ Public Class Randomizer
         RandomMenu.TextBoxDebug.Text += vbNewLine & "Item placements complete"
         Return True
     End Function
-    Shared TotalAddedJump As Integer = 0
+    Shared TotalAddedJump As Integer
     Shared Function GetJumpHeight(TestedItem As ItemDrop)
         If TestedItem.JumpAdded > 0 Then
-            Dim TestReturn As Integer = 14 - TestedItem.JumpAdded - TotalAddedJump
+            Dim TestReturn As Integer = 14 - TestedItem.JumpAdded '- TotalAddedJump
             If TestReturn > 4 Then
                 Return TestReturn
             Else
@@ -207,6 +210,19 @@ Public Class Randomizer
                             LocationInformation(j).AddedPowers.Add(ExendedRestrictions(i))
                         End If
                     Next
+                End If
+            End If
+        Next
+    End Sub
+    Shared Sub IterateJumpRestrictions(RestrictedPower As Powers, AddedHeight As Integer)
+        For j As Integer = 0 To LocationInformation.Count - 1
+            If LocationInformation(j).Item = ItemType.Empty Then
+                If LocationInformation(j).RequiredPowers.Contains(RestrictedPower) Then
+                    LocationInformation(j).AddedJump += AddedHeight
+                    Continue For
+                ElseIf LocationInformation(j).AddedPowers.Contains(RestrictedPower) Then
+                    LocationInformation(j).AddedJump += AddedHeight
+                    Continue For
                 End If
             End If
         Next

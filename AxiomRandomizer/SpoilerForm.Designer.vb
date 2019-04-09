@@ -23,6 +23,12 @@ Partial Class SpoilerForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportLocationsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportLocationsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Placed = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ItemType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ItemName = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -35,12 +41,8 @@ Partial Class SpoilerForm
         Me.Rerolls = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ReqPowers = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AcquiredPowers = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExportLocationsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImportLocationsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.VanillaJump = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AddedJump = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -52,97 +54,13 @@ Partial Class SpoilerForm
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Placed, Me.ItemType, Me.ItemName, Me.ItemWeight, Me.LocationName, Me.Area, Me.VanillaItem, Me.VanillaOrder, Me.LocationWeight, Me.Rerolls, Me.ReqPowers, Me.AcquiredPowers})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Placed, Me.ItemType, Me.ItemName, Me.ItemWeight, Me.LocationName, Me.Area, Me.VanillaItem, Me.VanillaOrder, Me.LocationWeight, Me.Rerolls, Me.ReqPowers, Me.AcquiredPowers, Me.VanillaJump, Me.AddedJump})
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(0, 24)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.Size = New System.Drawing.Size(984, 687)
         Me.DataGridView1.TabIndex = 1
-        '
-        'Placed
-        '
-        Me.Placed.HeaderText = "Placed"
-        Me.Placed.Name = "Placed"
-        Me.Placed.ReadOnly = True
-        Me.Placed.Width = 65
-        '
-        'ItemType
-        '
-        Me.ItemType.HeaderText = "Item Type"
-        Me.ItemType.Name = "ItemType"
-        Me.ItemType.ReadOnly = True
-        Me.ItemType.Width = 73
-        '
-        'ItemName
-        '
-        Me.ItemName.HeaderText = "Item Name"
-        Me.ItemName.Name = "ItemName"
-        Me.ItemName.ReadOnly = True
-        Me.ItemName.Width = 77
-        '
-        'ItemWeight
-        '
-        Me.ItemWeight.HeaderText = "Item Weight"
-        Me.ItemWeight.Name = "ItemWeight"
-        Me.ItemWeight.ReadOnly = True
-        Me.ItemWeight.Width = 82
-        '
-        'LocationName
-        '
-        Me.LocationName.HeaderText = "Nick Name"
-        Me.LocationName.Name = "LocationName"
-        Me.LocationName.ReadOnly = True
-        Me.LocationName.Width = 78
-        '
-        'Area
-        '
-        Me.Area.HeaderText = "Area"
-        Me.Area.Name = "Area"
-        Me.Area.ReadOnly = True
-        Me.Area.Width = 54
-        '
-        'VanillaItem
-        '
-        Me.VanillaItem.HeaderText = "Vanilla Item"
-        Me.VanillaItem.Name = "VanillaItem"
-        Me.VanillaItem.ReadOnly = True
-        Me.VanillaItem.Width = 79
-        '
-        'VanillaOrder
-        '
-        Me.VanillaOrder.HeaderText = "Vanilla Order"
-        Me.VanillaOrder.Name = "VanillaOrder"
-        Me.VanillaOrder.ReadOnly = True
-        Me.VanillaOrder.Width = 85
-        '
-        'LocationWeight
-        '
-        Me.LocationWeight.HeaderText = "Location Weight"
-        Me.LocationWeight.Name = "LocationWeight"
-        Me.LocationWeight.ReadOnly = True
-        Me.LocationWeight.Width = 101
-        '
-        'Rerolls
-        '
-        Me.Rerolls.HeaderText = "Rerolls"
-        Me.Rerolls.Name = "Rerolls"
-        Me.Rerolls.ReadOnly = True
-        Me.Rerolls.Width = 64
-        '
-        'ReqPowers
-        '
-        Me.ReqPowers.HeaderText = "Req Powers"
-        Me.ReqPowers.Name = "ReqPowers"
-        Me.ReqPowers.ReadOnly = True
-        Me.ReqPowers.Width = 83
-        '
-        'AcquiredPowers
-        '
-        Me.AcquiredPowers.HeaderText = "Added Powers"
-        Me.AcquiredPowers.Name = "AcquiredPowers"
-        Me.AcquiredPowers.ReadOnly = True
-        Me.AcquiredPowers.Width = 93
         '
         'ToolStripMenuItem1
         '
@@ -176,6 +94,104 @@ Partial Class SpoilerForm
         '
         Me.OpenFileDialog1.FileName = "seed.xml"
         Me.OpenFileDialog1.Filter = "xml file|*.xml|All files|*.*"
+        '
+        'Placed
+        '
+        Me.Placed.HeaderText = "Placed"
+        Me.Placed.Name = "Placed"
+        Me.Placed.ReadOnly = True
+        Me.Placed.Width = 65
+        '
+        'ItemType
+        '
+        Me.ItemType.HeaderText = "Item Type"
+        Me.ItemType.Name = "ItemType"
+        Me.ItemType.ReadOnly = True
+        Me.ItemType.Width = 79
+        '
+        'ItemName
+        '
+        Me.ItemName.HeaderText = "Item Name"
+        Me.ItemName.Name = "ItemName"
+        Me.ItemName.ReadOnly = True
+        Me.ItemName.Width = 83
+        '
+        'ItemWeight
+        '
+        Me.ItemWeight.HeaderText = "Item Weight"
+        Me.ItemWeight.Name = "ItemWeight"
+        Me.ItemWeight.ReadOnly = True
+        Me.ItemWeight.Width = 89
+        '
+        'LocationName
+        '
+        Me.LocationName.HeaderText = "Nick Name"
+        Me.LocationName.Name = "LocationName"
+        Me.LocationName.ReadOnly = True
+        Me.LocationName.Width = 85
+        '
+        'Area
+        '
+        Me.Area.HeaderText = "Area"
+        Me.Area.Name = "Area"
+        Me.Area.ReadOnly = True
+        Me.Area.Width = 54
+        '
+        'VanillaItem
+        '
+        Me.VanillaItem.HeaderText = "Vanilla Item"
+        Me.VanillaItem.Name = "VanillaItem"
+        Me.VanillaItem.ReadOnly = True
+        Me.VanillaItem.Width = 86
+        '
+        'VanillaOrder
+        '
+        Me.VanillaOrder.HeaderText = "Vanilla Order"
+        Me.VanillaOrder.Name = "VanillaOrder"
+        Me.VanillaOrder.ReadOnly = True
+        Me.VanillaOrder.Width = 92
+        '
+        'LocationWeight
+        '
+        Me.LocationWeight.HeaderText = "Location Weight"
+        Me.LocationWeight.Name = "LocationWeight"
+        Me.LocationWeight.ReadOnly = True
+        Me.LocationWeight.Width = 101
+        '
+        'Rerolls
+        '
+        Me.Rerolls.HeaderText = "Rerolls"
+        Me.Rerolls.Name = "Rerolls"
+        Me.Rerolls.ReadOnly = True
+        Me.Rerolls.Width = 64
+        '
+        'ReqPowers
+        '
+        Me.ReqPowers.HeaderText = "Req Powers"
+        Me.ReqPowers.Name = "ReqPowers"
+        Me.ReqPowers.ReadOnly = True
+        Me.ReqPowers.Width = 83
+        '
+        'AcquiredPowers
+        '
+        Me.AcquiredPowers.HeaderText = "Added Powers"
+        Me.AcquiredPowers.Name = "AcquiredPowers"
+        Me.AcquiredPowers.ReadOnly = True
+        Me.AcquiredPowers.Width = 93
+        '
+        'VanillaJump
+        '
+        Me.VanillaJump.HeaderText = "Jump Req."
+        Me.VanillaJump.Name = "VanillaJump"
+        Me.VanillaJump.ReadOnly = True
+        Me.VanillaJump.Width = 77
+        '
+        'AddedJump
+        '
+        Me.AddedJump.HeaderText = "Jump Added"
+        Me.AddedJump.Name = "AddedJump"
+        Me.AddedJump.ReadOnly = True
+        Me.AddedJump.Width = 84
         '
         'SpoilerForm
         '
@@ -216,4 +232,6 @@ Partial Class SpoilerForm
     Friend WithEvents Rerolls As DataGridViewTextBoxColumn
     Friend WithEvents ReqPowers As DataGridViewTextBoxColumn
     Friend WithEvents AcquiredPowers As DataGridViewTextBoxColumn
+    Friend WithEvents VanillaJump As DataGridViewTextBoxColumn
+    Friend WithEvents AddedJump As DataGridViewTextBoxColumn
 End Class

@@ -20,7 +20,9 @@
                                    Randomizer.LocationInformation(i).Weight,
                                    Randomizer.LocationInformation(i).RerollCount,
                                    String.Join(",", Randomizer.LocationInformation(i).RequiredPowers.ToArray()),
-                                   String.Join(",", Randomizer.LocationInformation(i).AddedPowers.ToArray()))
+                                   String.Join(",", Randomizer.LocationInformation(i).AddedPowers.ToArray()),
+                                   Randomizer.LocationInformation(i).RequiredJump,
+                                   Randomizer.LocationInformation(i).AddedJump)
                 'MessageBox.Show(String.Join(",", Randomizer.LocationInformation(i).PowersAttained.ToArray()))
             End If
         Next
