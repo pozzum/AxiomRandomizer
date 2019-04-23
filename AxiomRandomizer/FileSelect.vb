@@ -60,6 +60,8 @@ Public Class FileSelect
             If My.Settings.RandoExePath = "" Then
                 My.Settings.RandoExePath = Path.GetDirectoryName(My.Settings.ExeFilePath) & Path.DirectorySeparatorChar & "RandomAV.exe"
             End If
+            'Adding in a function to Undo the randomized white coat and adding ion the fake coat.
+            PackUnpack.WhiteCoatCheck()
             If CheckChangeLog() = True Then
                 If CheckVanillaFolder() = True Then
                     If Not Application.OpenForms().OfType(Of RandomMenu).Any Then
@@ -195,7 +197,7 @@ Public Class FileSelect
                                 CheckBoxWakeUp.Checked,
                                 CheckBoxDisruptorTrace.Checked) = True Then
                 If My.Settings.SeperateLabCoats Then
-                    If Not PackUnpack.Graphics.CreateWhiteCoat() Then
+                    If Not PackUnpack.Graphics.CreateFakeCoat() Then
                         My.Settings.SeperateLabCoats = False
                         My.Settings.RandomizeFakeCoat = False
                     End If

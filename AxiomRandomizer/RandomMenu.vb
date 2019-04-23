@@ -306,7 +306,7 @@ DirectCast([Enum].Parse(GetType(Randomizer.DifficultySetting),
                 CheckBoxOpenEribu.Checked = True
                 CheckBoxOpenElsenova.Checked = True
                 CheckBoxOpenAbsu.Checked = True
-                CheckBoxHideItemIcons.Checked = True
+                CheckBoxHideItemIcons.Checked = False
             ElseIf SelectedDifficulty = Randomizer.DifficultySetting.Practice Then
                 CheckBoxWalls.Checked = True
                 CheckBoxIllusion.Checked = True

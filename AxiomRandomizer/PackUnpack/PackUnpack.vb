@@ -226,32 +226,53 @@ Public Class PackUnpack
         End If
         IO.File.WriteAllLines(IlFile, lines)
     End Sub
-    Shared Function ModifyCodeLabCoat(IlFile As String, AddWhiteCoat As Boolean)
+
+    Shared Function ModifyCodeForFakeCoat(IlFile As String, AddFakeCoat As Boolean)
         Dim lines() As String = IO.File.ReadAllLines(IlFile)
+        Dim LineCount As Integer = 0
         For i As Integer = 0 To lines.Length - 1
             'Makes "Glitch Tele" give white coat rather than default coat
-            If AddWhiteCoat Then
-                If lines(i) = "    IL_0094:  ldnull" Then
+            If AddFakeCoat Then
+                If lines(i) = "    IL_00c1:  ldnull" Then
                     If lines(i - 1).Contains("TraceCoat") Then
-                        lines(i) = "    IL_0094:  ldstr      ""White"""
-                        IO.File.WriteAllLines(IlFile, lines)
-                        Return True
+                        lines(i) = "    IL_00c1:  ldstr      ""Fake"""
+                        LineCount += 1
                     End If
-                ElseIf lines(i) = "    IL_0094:  ldstr      ""White""" Then
+                ElseIf lines(i) = "    IL_00c1:  ldstr      ""Fake""" Then
+                    LineCount += 1
+                    Return True
+                ElseIf lines(i) = "    IL_00dc:  ldnull" Then
+                    If lines(i - 1).Contains("TraceCoat") Then
+                        lines(i) = "    IL_00dc:  ldstr      ""Fake"""
+                        LineCount += 1
+                    End If
+                ElseIf lines(i) = "    IL_00dc:  ldstr      ""Fake""" Then
+                    LineCount += 1
                     Return True
                 End If
             Else
-                If lines(i) = "    IL_0094:  ldstr      ""White""" Then
-                    lines(i) = "    IL_0094:  ldnull"
+                If lines(i).Contains("ldstr      ""Fake""") Then
+                    lines(i) = lines(i).Replace("ldstr      ""Fake""", "ldnull")
                     IO.File.WriteAllLines(IlFile, lines)
                     Return True
-                ElseIf lines(i) = "    IL_0094:  ldnull" Then
+                ElseIf lines(i) = "    IL_00c1:  ldnull" Then
                     If lines(i - 1).Contains("TraceCoat") Then
-                        Return True
+                        LineCount += 1
+                    End If
+                ElseIf lines(i) = "    IL_00dc:  ldnull" Then
+                    If lines(i - 1).Contains("TraceCoat") Then
+                        LineCount += 1
                     End If
                 End If
             End If
         Next
+        If LineCount = 2 Then
+            IO.File.WriteAllLines(IlFile, lines)
+            Return True
+        Else
+            MessageBox.Show("Replacement Complete, Operation exited")
+            Return False
+        End If
         MessageBox.Show("File Not Edited!")
         Return False
     End Function
@@ -306,6 +327,52 @@ Public Class PackUnpack
         End If
         Return ""
     End Function
+#Region "White Coat Removal / Fix"
+    Shared Sub WhiteCoatCheck()
+        Dim OldWhiteCoat As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_White.xnb"
+        If File.Exists(OldWhiteCoat) Then
+            Dim ILfile As String = My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL"
+            PackUnpack.Graphics.RemoveWhiteCoat()
+            PackUnpack.ModifyCodeLabCoat(ILfile, False)
+            If My.Settings.SeperateLabCoats Then
+                PackUnpack.Graphics.CreateFakeCoat()
+                PackUnpack.ModifyCodeForFakeCoat(ILfile, True)
+            Else
+                PackUnpack.Graphics.RemoveFakeCoat()
+                PackUnpack.ModifyCodeForFakeCoat(ILfile, False)
+            End If
+        End If
+    End Sub
+    Shared Function ModifyCodeLabCoat(IlFile As String, AddWhiteCoat As Boolean)
+        Dim lines() As String = IO.File.ReadAllLines(IlFile)
+        For i As Integer = 0 To lines.Length - 1
+            'Makes "Glitch Tele" give white coat rather than default coat
+            If AddWhiteCoat Then
+                If lines(i) = "    IL_0094:  ldnull" Then
+                    If lines(i - 1).Contains("TraceCoat") Then
+                        lines(i) = "    IL_0094:  ldstr      ""White"""
+                        IO.File.WriteAllLines(IlFile, lines)
+                        Return True
+                    End If
+                ElseIf lines(i) = "    IL_0094:  ldstr      ""White""" Then
+                    Return True
+                End If
+            Else
+                If lines(i) = "    IL_0094:  ldstr      ""White""" Then
+                    lines(i) = "    IL_0094:  ldnull"
+                    IO.File.WriteAllLines(IlFile, lines)
+                    Return True
+                ElseIf lines(i) = "    IL_0094:  ldnull" Then
+                    If lines(i - 1).Contains("TraceCoat") Then
+                        Return True
+                    End If
+                End If
+            End If
+        Next
+        MessageBox.Show("File Not Edited!")
+        Return False
+    End Function
+#End Region
 #End Region
 #Region "Rebuilding"
     Shared Function BuildFromAppdata(ExeFilePath)
@@ -417,21 +484,21 @@ Public Class PackUnpack
     End Function
 #Region "Graphics"
     Public Class Graphics
-        Shared Function CreateWhiteCoat()
+        Shared Function CreateFakeCoat()
             If Not My.Settings.xnbcliSavedPath = "" AndAlso File.Exists(My.Settings.xnbcliSavedPath) Then
                 'exe is located we must find the Base Trace Texture
                 Dim VanillaCoatPackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture.xnb"
-                Dim WhiteCoatPackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_White.xnb"
+                Dim FakeCoatPackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_Fake.xnb"
                 Dim VanillaCoatJsonFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture.json"
-                Dim WhiteCoatJsonFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_White.json"
+                Dim FakeCoatJsonFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_Fake.json"
                 Dim VanillaCoatSpritePNG As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture.png"
-                Dim WhiteCoatSpritePNG As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_White.png"
+                Dim FakeCoatSpritePNG As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_Fake.png"
                 If File.Exists(VanillaCoatPackedFile) Then
                     If Not File.Exists(VanillaCoatPackedFile & ".bak") Then
                         File.Copy(VanillaCoatPackedFile, VanillaCoatPackedFile & ".bak")
                     End If
                     Try
-                        If File.Exists(WhiteCoatPackedFile) Then
+                        If File.Exists(FakeCoatPackedFile) Then
                             If File.Exists(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL") Then
                                 If ModifyCodeLabCoat(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", True) Then
                                     'Message box to spawn from previous function to allow greater error reporting.
@@ -444,22 +511,24 @@ Public Class PackUnpack
                             End If
                         End If
                         Process.Start(My.Settings.xnbcliSavedPath, "unpack """ & VanillaCoatPackedFile & """").WaitForExit() 'this should create a png and json in the packed folder
-                        If File.Exists(WhiteCoatJsonFile) Then File.Delete(WhiteCoatJsonFile)
-                        File.Move(VanillaCoatJsonFile, WhiteCoatJsonFile)
-                        If File.Exists(WhiteCoatSpritePNG) Then File.Delete(WhiteCoatSpritePNG)
-                        File.Move(VanillaCoatSpritePNG, WhiteCoatSpritePNG)
-                        Dim JsonLines As String() = File.ReadAllLines(WhiteCoatJsonFile)
+                        If File.Exists(FakeCoatJsonFile) Then File.Delete(FakeCoatJsonFile)
+                        File.Move(VanillaCoatJsonFile, FakeCoatJsonFile)
+                        If File.Exists(FakeCoatSpritePNG) Then File.Delete(FakeCoatSpritePNG)
+                        File.Move(VanillaCoatSpritePNG, FakeCoatSpritePNG)
+                        Dim JsonLines As String() = File.ReadAllLines(FakeCoatJsonFile)
                         For i As Integer = 0 To JsonLines.Count - 1
                             If JsonLines(i).Contains("TraceCoatTexture.png") Then
-                                JsonLines(i) = JsonLines(i).Replace("TraceCoatTexture.png", "TraceCoatTexture_White.png")
+                                JsonLines(i) = JsonLines(i).Replace("TraceCoatTexture.png", "TraceCoatTexture_Fake.png")
                             End If
                         Next
-                        File.WriteAllLines(WhiteCoatJsonFile, JsonLines)
-                        Process.Start(My.Settings.xnbcliSavedPath, "pack """ & WhiteCoatJsonFile & """").WaitForExit() 'this should create a xnb in the packed folder
-                        File.Delete(WhiteCoatJsonFile)
-                        File.Delete(WhiteCoatSpritePNG)
+                        File.WriteAllLines(FakeCoatJsonFile, JsonLines)
+                        Process.Start(My.Settings.xnbcliSavedPath, "pack """ & FakeCoatJsonFile & """").WaitForExit() 'this should create a xnb in the packed folder
+                        File.Delete(FakeCoatJsonFile)
+                        File.Delete(FakeCoatSpritePNG)
+                        'Adding in a backup for us to randomize from
+                        File.Copy(FakeCoatPackedFile, FakeCoatPackedFile & ".bak")
                         If File.Exists(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL") Then
-                            If ModifyCodeLabCoat(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", True) Then
+                            If ModifyCodeForFakeCoat(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", True) Then
                                 'Message box to spawn from previous function to allow greater error reporting.
                                 MessageBox.Show("Extraction Complete!")
                                 Return True
@@ -490,6 +559,18 @@ Public Class PackUnpack
             End If
             Return False
         End Function
+        Shared Function RemoveFakeCoat()
+            Dim VanillaCoatPackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture.xnb"
+            Dim FakeCoatPackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_Fake.xnb"
+            If File.Exists(VanillaCoatPackedFile & ".bak") Then
+                File.Delete(VanillaCoatPackedFile)
+                File.Delete(FakeCoatPackedFile)
+                File.Copy(VanillaCoatPackedFile & ".bak", VanillaCoatPackedFile)
+            Else
+                MessageBox.Show("Backup texture file not found.  Manually restore/reinstall game files!", "Backup Failure!")
+            End If
+            Return False
+        End Function
         Shared Sub RandomizeFakeCoat(Seed As Integer)
             'Random Color Selection
             Dim Generator As System.Random = New System.Random(Seed:=Seed)
@@ -509,17 +590,19 @@ Public Class PackUnpack
         End Sub
         Shared Sub PaintFakeCoat()
             'lets do an inital check for the backup so it exits if there is no backup file
-            Dim VanillaCoatPackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture.xnb"
-            Dim VanillaCoatJsonFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture.json"
-            Dim VanillaCoatSpritePNG As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture.png"
-            If File.Exists(VanillaCoatPackedFile & ".bak") Then
+            Dim FakeCoatPackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_Fake.xnb"
+            Dim FakeCoatJsonFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_Fake.json"
+            Dim FakeCoatSpritePNG As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_Fake.png"
+            Dim VanillaBackupPackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_Fake.xnb.bak"
+            Dim FakeCoatBackupPackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_Fake.xnb.bak"
+            If File.Exists(VanillaBackupPackedFile) AndAlso File.Exists(FakeCoatBackupPackedFile) Then
                 If Not My.Settings.xnbcliSavedPath = "" AndAlso File.Exists(My.Settings.xnbcliSavedPath) Then
-                    File.Copy(VanillaCoatPackedFile & ".bak", VanillaCoatPackedFile, True)
-                    Process.Start(My.Settings.xnbcliSavedPath, "unpack """ & VanillaCoatPackedFile & """").WaitForExit() 'this should create a png and json in the packed folder
+                    File.Copy(FakeCoatPackedFile & ".bak", FakeCoatPackedFile, True)
+                    Process.Start(My.Settings.xnbcliSavedPath, "unpack """ & FakeCoatPackedFile & """").WaitForExit() 'this should create a png and json in the packed folder
                     'Now we want to edit the png file and save it
-                    If File.Exists(VanillaCoatSpritePNG & "Copy") Then File.Delete(VanillaCoatSpritePNG & "Copy")
-                    File.Move(VanillaCoatSpritePNG, VanillaCoatSpritePNG & "Copy")
-                    Dim TempImage As Bitmap = New Bitmap(VanillaCoatSpritePNG & "Copy")
+                    If File.Exists(FakeCoatSpritePNG & "Copy") Then File.Delete(FakeCoatSpritePNG & "Copy")
+                    File.Move(FakeCoatSpritePNG, FakeCoatSpritePNG & "Copy")
+                    Dim TempImage As Bitmap = New Bitmap(FakeCoatSpritePNG & "Copy")
                     '
                     'Exist Color Calibration
                     '
@@ -548,12 +631,12 @@ Public Class PackUnpack
                             End If
                         Next
                     Next
-                    TempImage.Save(VanillaCoatSpritePNG, System.Drawing.Imaging.ImageFormat.Png)
+                    TempImage.Save(FakeCoatSpritePNG, System.Drawing.Imaging.ImageFormat.Png)
                     TempImage.Dispose()
-                    Process.Start(My.Settings.xnbcliSavedPath, "pack """ & VanillaCoatJsonFile & """").WaitForExit() 'this should create a xnb in the packed folder
-                    File.Delete(VanillaCoatSpritePNG)
-                    File.Delete(VanillaCoatSpritePNG & "Copy")
-                    File.Delete(VanillaCoatJsonFile)
+                    Process.Start(My.Settings.xnbcliSavedPath, "pack """ & FakeCoatJsonFile & """").WaitForExit() 'this should create a xnb in the packed folder
+                    File.Delete(FakeCoatSpritePNG)
+                    File.Delete(FakeCoatSpritePNG & "Copy")
+                    File.Delete(FakeCoatJsonFile)
                 Else
                     MessageBox.Show("xnbcli exe not found.  Texture left untouched", "Saftey exit")
                 End If

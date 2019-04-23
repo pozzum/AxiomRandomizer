@@ -114,7 +114,7 @@ Public Class OptionsMenu
                         If File.Exists(TempDialog.FileName) Then
                             My.Settings.xnbcliSavedPath = TempDialog.FileName
                             LoadFolderOptionsTab()
-                            If Not PackUnpack.Graphics.CreateWhiteCoat() Then
+                            If Not PackUnpack.Graphics.CreateFakeCoat() Then
                                 'Message should be spwaned by Previous Function
                                 CheckBoxSeperateCoat.Checked = False
                                 Exit Sub
@@ -128,7 +128,7 @@ Public Class OptionsMenu
                         Exit Sub
                     End If
                 Else
-                    If Not PackUnpack.Graphics.CreateWhiteCoat() Then
+                    If Not PackUnpack.Graphics.CreateFakeCoat() Then
                         'Message should be spwaned by Previous Function
                         CheckBoxSeperateCoat.Checked = False
                         Exit Sub
@@ -138,8 +138,8 @@ Public Class OptionsMenu
         Else
             If My.Settings.SeperateLabCoats Then
                 'delete White coat /possibly randoed fake coat and return IL file
-                PackUnpack.Graphics.RemoveWhiteCoat()
-                PackUnpack.ModifyCodeLabCoat(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", False)
+                PackUnpack.Graphics.RemoveFakeCoat()
+                PackUnpack.ModifyCodeForFakeCoat(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", False)
             End If
             CheckBoxRandomizeFakeCoat.Checked = False
         End If
@@ -442,11 +442,11 @@ Public Class OptionsMenu
     End Sub
 
     Private Sub ButtonAddWhiteCoatIL_Click(sender As Object, e As EventArgs) Handles ButtonAddWhiteCoatIL.Click
-        PackUnpack.ModifyCodeLabCoat(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", True)
+        PackUnpack.ModifyCodeForFakeCoat(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", True)
     End Sub
 
     Private Sub ButtonDelWhiteCoatIl_Click(sender As Object, e As EventArgs) Handles ButtonDelWhiteCoatIl.Click
-        PackUnpack.ModifyCodeLabCoat(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", False)
+        PackUnpack.ModifyCodeForFakeCoat(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", False)
     End Sub
 
 
