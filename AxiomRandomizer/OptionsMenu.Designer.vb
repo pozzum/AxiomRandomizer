@@ -25,9 +25,14 @@ Partial Class OptionsMenu
         Me.components = New System.ComponentModel.Container()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.CheckBoxRandomizeCustomDrone = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxCustomColorDrone = New System.Windows.Forms.CheckBox()
+        Me.ButtonDroneDarkColor = New System.Windows.Forms.Button()
+        Me.ButtonDroneLightColor = New System.Windows.Forms.Button()
+        Me.LabelDroneColor = New System.Windows.Forms.Label()
         Me.CheckBoxRemoveMetallicPing = New System.Windows.Forms.CheckBox()
-        Me.ButtonDarkColor = New System.Windows.Forms.Button()
-        Me.ButtonLightColor = New System.Windows.Forms.Button()
+        Me.ButtonCoatDarkColor = New System.Windows.Forms.Button()
+        Me.ButtonCoatLightColor = New System.Windows.Forms.Button()
         Me.LabelCoatColor = New System.Windows.Forms.Label()
         Me.ButtonCheckUpdate = New System.Windows.Forms.Button()
         Me.CheckBoxRandomizeFakeCoat = New System.Windows.Forms.CheckBox()
@@ -99,9 +104,14 @@ Partial Class OptionsMenu
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.CheckBoxRandomizeCustomDrone)
+        Me.TabPage1.Controls.Add(Me.CheckBoxCustomColorDrone)
+        Me.TabPage1.Controls.Add(Me.ButtonDroneDarkColor)
+        Me.TabPage1.Controls.Add(Me.ButtonDroneLightColor)
+        Me.TabPage1.Controls.Add(Me.LabelDroneColor)
         Me.TabPage1.Controls.Add(Me.CheckBoxRemoveMetallicPing)
-        Me.TabPage1.Controls.Add(Me.ButtonDarkColor)
-        Me.TabPage1.Controls.Add(Me.ButtonLightColor)
+        Me.TabPage1.Controls.Add(Me.ButtonCoatDarkColor)
+        Me.TabPage1.Controls.Add(Me.ButtonCoatLightColor)
         Me.TabPage1.Controls.Add(Me.LabelCoatColor)
         Me.TabPage1.Controls.Add(Me.ButtonCheckUpdate)
         Me.TabPage1.Controls.Add(Me.CheckBoxRandomizeFakeCoat)
@@ -122,10 +132,61 @@ Partial Class OptionsMenu
         Me.TabPage1.Text = "Basic Options"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'CheckBoxRandomizeCustomDrone
+        '
+        Me.CheckBoxRandomizeCustomDrone.AutoSize = True
+        Me.CheckBoxRandomizeCustomDrone.Enabled = False
+        Me.CheckBoxRandomizeCustomDrone.Location = New System.Drawing.Point(9, 249)
+        Me.CheckBoxRandomizeCustomDrone.Name = "CheckBoxRandomizeCustomDrone"
+        Me.CheckBoxRandomizeCustomDrone.Size = New System.Drawing.Size(263, 17)
+        Me.CheckBoxRandomizeCustomDrone.TabIndex = 20
+        Me.CheckBoxRandomizeCustomDrone.Text = "Randomize Drone Color When Game Randomized"
+        Me.ToolTip1.SetToolTip(Me.CheckBoxRandomizeCustomDrone, "This Randomizes the color of Drone_Custom file for each time the game is randomiz" &
+        "ed.")
+        Me.CheckBoxRandomizeCustomDrone.UseVisualStyleBackColor = True
+        '
+        'CheckBoxCustomColorDrone
+        '
+        Me.CheckBoxCustomColorDrone.AutoSize = True
+        Me.CheckBoxCustomColorDrone.Location = New System.Drawing.Point(9, 226)
+        Me.CheckBoxCustomColorDrone.Name = "CheckBoxCustomColorDrone"
+        Me.CheckBoxCustomColorDrone.Size = New System.Drawing.Size(138, 17)
+        Me.CheckBoxCustomColorDrone.TabIndex = 19
+        Me.CheckBoxCustomColorDrone.Text = "Customize Drone Colors"
+        Me.ToolTip1.SetToolTip(Me.CheckBoxCustomColorDrone, "Creates a second DroneTexture_Custom File to allow custom drones.")
+        Me.CheckBoxCustomColorDrone.UseVisualStyleBackColor = True
+        '
+        'ButtonDroneDarkColor
+        '
+        Me.ButtonDroneDarkColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonDroneDarkColor.Location = New System.Drawing.Point(173, 268)
+        Me.ButtonDroneDarkColor.Name = "ButtonDroneDarkColor"
+        Me.ButtonDroneDarkColor.Size = New System.Drawing.Size(90, 23)
+        Me.ButtonDroneDarkColor.TabIndex = 18
+        Me.ButtonDroneDarkColor.UseVisualStyleBackColor = True
+        '
+        'ButtonDroneLightColor
+        '
+        Me.ButtonDroneLightColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonDroneLightColor.Location = New System.Drawing.Point(83, 268)
+        Me.ButtonDroneLightColor.Name = "ButtonDroneLightColor"
+        Me.ButtonDroneLightColor.Size = New System.Drawing.Size(90, 23)
+        Me.ButtonDroneLightColor.TabIndex = 17
+        Me.ButtonDroneLightColor.UseVisualStyleBackColor = True
+        '
+        'LabelDroneColor
+        '
+        Me.LabelDroneColor.AutoSize = True
+        Me.LabelDroneColor.Location = New System.Drawing.Point(6, 273)
+        Me.LabelDroneColor.Name = "LabelDroneColor"
+        Me.LabelDroneColor.Size = New System.Drawing.Size(71, 13)
+        Me.LabelDroneColor.TabIndex = 16
+        Me.LabelDroneColor.Text = "Drone Colors:"
+        '
         'CheckBoxRemoveMetallicPing
         '
         Me.CheckBoxRemoveMetallicPing.AutoSize = True
-        Me.CheckBoxRemoveMetallicPing.Location = New System.Drawing.Point(9, 226)
+        Me.CheckBoxRemoveMetallicPing.Location = New System.Drawing.Point(9, 297)
         Me.CheckBoxRemoveMetallicPing.Name = "CheckBoxRemoveMetallicPing"
         Me.CheckBoxRemoveMetallicPing.Size = New System.Drawing.Size(139, 17)
         Me.CheckBoxRemoveMetallicPing.TabIndex = 15
@@ -133,23 +194,25 @@ Partial Class OptionsMenu
         Me.ToolTip1.SetToolTip(Me.CheckBoxRemoveMetallicPing, "This removes the annoying Metallic" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ping that occurs when enemies resist damage.")
         Me.CheckBoxRemoveMetallicPing.UseVisualStyleBackColor = True
         '
-        'ButtonDarkColor
+        'ButtonCoatDarkColor
         '
-        Me.ButtonDarkColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonDarkColor.Location = New System.Drawing.Point(173, 197)
-        Me.ButtonDarkColor.Name = "ButtonDarkColor"
-        Me.ButtonDarkColor.Size = New System.Drawing.Size(100, 23)
-        Me.ButtonDarkColor.TabIndex = 14
-        Me.ButtonDarkColor.UseVisualStyleBackColor = True
+        Me.ButtonCoatDarkColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonCoatDarkColor.Location = New System.Drawing.Point(173, 197)
+        Me.ButtonCoatDarkColor.Name = "ButtonCoatDarkColor"
+        Me.ButtonCoatDarkColor.Size = New System.Drawing.Size(90, 23)
+        Me.ButtonCoatDarkColor.TabIndex = 14
+        Me.ToolTip1.SetToolTip(Me.ButtonCoatDarkColor, "This is the current light color of the fake coat." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
+        Me.ButtonCoatDarkColor.UseVisualStyleBackColor = True
         '
-        'ButtonLightColor
+        'ButtonCoatLightColor
         '
-        Me.ButtonLightColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonLightColor.Location = New System.Drawing.Point(73, 197)
-        Me.ButtonLightColor.Name = "ButtonLightColor"
-        Me.ButtonLightColor.Size = New System.Drawing.Size(100, 23)
-        Me.ButtonLightColor.TabIndex = 13
-        Me.ButtonLightColor.UseVisualStyleBackColor = True
+        Me.ButtonCoatLightColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonCoatLightColor.Location = New System.Drawing.Point(83, 197)
+        Me.ButtonCoatLightColor.Name = "ButtonCoatLightColor"
+        Me.ButtonCoatLightColor.Size = New System.Drawing.Size(90, 23)
+        Me.ButtonCoatLightColor.TabIndex = 13
+        Me.ToolTip1.SetToolTip(Me.ButtonCoatLightColor, "This is the current light color of the fake coat." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10))
+        Me.ButtonCoatLightColor.UseVisualStyleBackColor = True
         '
         'LabelCoatColor
         '
@@ -162,7 +225,7 @@ Partial Class OptionsMenu
         '
         'ButtonCheckUpdate
         '
-        Me.ButtonCheckUpdate.Location = New System.Drawing.Point(9, 278)
+        Me.ButtonCheckUpdate.Location = New System.Drawing.Point(9, 349)
         Me.ButtonCheckUpdate.Name = "ButtonCheckUpdate"
         Me.ButtonCheckUpdate.Size = New System.Drawing.Size(100, 23)
         Me.ButtonCheckUpdate.TabIndex = 11
@@ -190,7 +253,7 @@ Partial Class OptionsMenu
         Me.CheckBoxSeperateCoat.Size = New System.Drawing.Size(176, 17)
         Me.CheckBoxSeperateCoat.TabIndex = 9
         Me.CheckBoxSeperateCoat.Text = "Seperate Fake && Real Lab Coat"
-        Me.ToolTip1.SetToolTip(Me.CheckBoxSeperateCoat, "Creates a second TraceCoat_White File to allow custom fake coats")
+        Me.ToolTip1.SetToolTip(Me.CheckBoxSeperateCoat, "Creates a second TraceCoat_Fake File to allow custom fake coats")
         Me.CheckBoxSeperateCoat.UseVisualStyleBackColor = True
         '
         'CheckBoxNewSeedGenerator
@@ -207,7 +270,7 @@ Partial Class OptionsMenu
         '
         'ButtonClearDecompileFolders
         '
-        Me.ButtonClearDecompileFolders.Location = New System.Drawing.Point(118, 249)
+        Me.ButtonClearDecompileFolders.Location = New System.Drawing.Point(118, 320)
         Me.ButtonClearDecompileFolders.Name = "ButtonClearDecompileFolders"
         Me.ButtonClearDecompileFolders.Size = New System.Drawing.Size(150, 23)
         Me.ButtonClearDecompileFolders.TabIndex = 7
@@ -218,7 +281,7 @@ Partial Class OptionsMenu
         '
         'ButtonResetSettings
         '
-        Me.ButtonResetSettings.Location = New System.Drawing.Point(9, 249)
+        Me.ButtonResetSettings.Location = New System.Drawing.Point(9, 320)
         Me.ButtonResetSettings.Name = "ButtonResetSettings"
         Me.ButtonResetSettings.Size = New System.Drawing.Size(100, 23)
         Me.ButtonResetSettings.TabIndex = 6
@@ -726,10 +789,15 @@ Partial Class OptionsMenu
     Friend WithEvents ButtonAddWhiteCoatIL As Button
     Friend WithEvents ButtonDelWhiteCoatIl As Button
     Friend WithEvents Label9 As Label
-    Friend WithEvents ButtonDarkColor As Button
-    Friend WithEvents ButtonLightColor As Button
+    Friend WithEvents ButtonCoatDarkColor As Button
+    Friend WithEvents ButtonCoatLightColor As Button
     Friend WithEvents LabelCoatColor As Label
     Friend WithEvents ButtonCheckUpdate As Button
     Friend WithEvents ColorDialog1 As ColorDialog
     Friend WithEvents CheckBoxRemoveMetallicPing As CheckBox
+    Friend WithEvents CheckBoxRandomizeCustomDrone As CheckBox
+    Friend WithEvents CheckBoxCustomColorDrone As CheckBox
+    Friend WithEvents ButtonDroneDarkColor As Button
+    Friend WithEvents ButtonDroneLightColor As Button
+    Friend WithEvents LabelDroneColor As Label
 End Class

@@ -174,4 +174,34 @@ Public Class XMLEditor
         End If
 
     End Function
+    Shared Function MakeDroneCustom(EnableDrone As Boolean)
+        Dim DroneXML = My.Settings.VanillaDecompileLocation & "OuterBeyond.EmbeddedContent.Content\Art\Sprites\Packed\Drone.xml"
+        If System.IO.File.Exists(DroneXML) Then
+            GeneralTools.MakeWriteable(DroneXML)
+            Dim lines As List(Of String) = IO.File.ReadAllLines(DroneXML).ToList
+            For i As Integer = 0 To lines.Count - 1
+                If EnableDrone Then
+                    If lines(i).Contains("mTextureName=""DroneTexture"">") Then
+                        lines(i) = lines(i).Replace("DroneTexture", "DroneTexture_Custom")
+                        Exit For
+                    ElseIf lines(i).Contains("mTextureName=""DroneTexture_Custom"">") Then
+                        Exit For
+                    End If
+                Else
+                    If lines(i).Contains("mTextureName=""DroneTexture_Custom"">") Then
+                        lines(i) = lines(i).Replace("DroneTexture_Custom", "DroneTexture")
+                        Exit For
+                    ElseIf lines(i).Contains("mTextureName=""DroneTexture"">") Then
+                        Exit For
+                    End If
+                End If
+
+            Next
+            IO.File.WriteAllLines(DroneXML, lines)
+            Return True
+        Else
+            MessageBox.Show("Drone xml file not found, modification failed")
+            Return False
+        End If
+    End Function
 End Class

@@ -45,8 +45,11 @@ Public Class FileSelect
             CheckPackUnpackFiles()
         End If
         'Setting Default Coat Colors
-        If My.Settings.CurrentLightColor.ToArgb = 0 Then My.Settings.CurrentLightColor = Color.FromArgb(223, 215, 201)
-        If My.Settings.CurrentDarkColor.ToArgb = 0 Then My.Settings.CurrentDarkColor = Color.FromArgb(127, 115, 105)
+        If My.Settings.CurrentCoatLightColor.ToArgb = 0 Then My.Settings.CurrentCoatLightColor = Color.FromArgb(223, 215, 201)
+        If My.Settings.CurrentCoatDarkColor.ToArgb = 0 Then My.Settings.CurrentCoatDarkColor = Color.FromArgb(127, 115, 105)
+        'Setting Default Drone Colors
+        If My.Settings.CurrentDroneLightColor.ToArgb = 0 Then My.Settings.CurrentDroneLightColor = Color.FromArgb(214, 134, 98)
+        If My.Settings.CurrentDroneDarkColor.ToArgb = 0 Then My.Settings.CurrentDroneDarkColor = Color.FromArgb(114, 66, 44)
         If My.Settings.ExeFilePath <> "" Then
             'Making Sure Save File is located
             If My.Settings.SaveFilePath = "" Then

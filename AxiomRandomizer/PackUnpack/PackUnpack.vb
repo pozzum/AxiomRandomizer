@@ -226,7 +226,6 @@ Public Class PackUnpack
         End If
         IO.File.WriteAllLines(IlFile, lines)
     End Sub
-
     Shared Function ModifyCodeForFakeCoat(IlFile As String, AddFakeCoat As Boolean)
         Dim lines() As String = IO.File.ReadAllLines(IlFile)
         Dim LineCount As Integer = 0
@@ -484,6 +483,7 @@ Public Class PackUnpack
     End Function
 #Region "Graphics"
     Public Class Graphics
+#Region "Fake Coat Functions"
         Shared Function CreateFakeCoat()
             If Not My.Settings.xnbcliSavedPath = "" AndAlso File.Exists(My.Settings.xnbcliSavedPath) Then
                 'exe is located we must find the Base Trace Texture
@@ -500,7 +500,7 @@ Public Class PackUnpack
                     Try
                         If File.Exists(FakeCoatPackedFile) Then
                             If File.Exists(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL") Then
-                                If ModifyCodeLabCoat(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", True) Then
+                                If ModifyCodeForFakeCoat(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", True) Then
                                     'Message box to spawn from previous function to allow greater error reporting.
                                     MessageBox.Show("Extraction Complete!")
                                     Return True
@@ -526,7 +526,7 @@ Public Class PackUnpack
                         File.Delete(FakeCoatJsonFile)
                         File.Delete(FakeCoatSpritePNG)
                         'Adding in a backup for us to randomize from
-                        File.Copy(FakeCoatPackedFile, FakeCoatPackedFile & ".bak")
+                        File.Copy(FakeCoatPackedFile, FakeCoatPackedFile & ".bak", True)
                         If File.Exists(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL") Then
                             If ModifyCodeForFakeCoat(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", True) Then
                                 'Message box to spawn from previous function to allow greater error reporting.
@@ -584,8 +584,8 @@ Public Class PackUnpack
             Loop
             Dim NewLightColor As Color = Color.FromArgb(NewColorRGB(0), NewColorRGB(1), NewColorRGB(2))
             Dim NewDarkColor As Color = ControlPaint.Dark(NewLightColor, 0.25)
-            My.Settings.CurrentLightColor = NewLightColor
-            My.Settings.CurrentDarkColor = NewDarkColor
+            My.Settings.CurrentCoatLightColor = NewLightColor
+            My.Settings.CurrentCoatDarkColor = NewDarkColor
             PaintFakeCoat()
         End Sub
         Shared Sub PaintFakeCoat()
@@ -593,11 +593,11 @@ Public Class PackUnpack
             Dim FakeCoatPackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_Fake.xnb"
             Dim FakeCoatJsonFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_Fake.json"
             Dim FakeCoatSpritePNG As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_Fake.png"
-            Dim VanillaBackupPackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_Fake.xnb.bak"
+            Dim VanillaBackupCoatPackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture.xnb.bak"
             Dim FakeCoatBackupPackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\TraceCoatTexture_Fake.xnb.bak"
-            If File.Exists(VanillaBackupPackedFile) AndAlso File.Exists(FakeCoatBackupPackedFile) Then
+            If File.Exists(VanillaBackupCoatPackedFile) AndAlso File.Exists(FakeCoatBackupPackedFile) Then
                 If Not My.Settings.xnbcliSavedPath = "" AndAlso File.Exists(My.Settings.xnbcliSavedPath) Then
-                    File.Copy(FakeCoatPackedFile & ".bak", FakeCoatPackedFile, True)
+                    File.Copy(FakeCoatBackupPackedFile, FakeCoatPackedFile, True)
                     Process.Start(My.Settings.xnbcliSavedPath, "unpack """ & FakeCoatPackedFile & """").WaitForExit() 'this should create a png and json in the packed folder
                     'Now we want to edit the png file and save it
                     If File.Exists(FakeCoatSpritePNG & "Copy") Then File.Delete(FakeCoatSpritePNG & "Copy")
@@ -623,11 +623,11 @@ Public Class PackUnpack
                             If red = CalibrateRedLight AndAlso
                                green = CalibrateGreenLight AndAlso
                                blue = CalibrateBlueLight Then 'Light Replace
-                                TempImage.SetPixel(x, y, My.Settings.CurrentLightColor)
+                                TempImage.SetPixel(x, y, My.Settings.CurrentCoatLightColor)
                             ElseIf red = CalibrateRedDark AndAlso
                                green = CalibrateGreenDark AndAlso
                                blue = CalibrateBlueDark Then ' Dark Replace
-                                TempImage.SetPixel(x, y, My.Settings.CurrentDarkColor)
+                                TempImage.SetPixel(x, y, My.Settings.CurrentCoatDarkColor)
                             End If
                         Next
                     Next
@@ -645,6 +645,159 @@ Public Class PackUnpack
             End If
 
         End Sub
+#End Region
+#Region "Colored Drone"
+        Shared Function CreateCustomDrone()
+            If Not My.Settings.xnbcliSavedPath = "" AndAlso File.Exists(My.Settings.xnbcliSavedPath) Then
+                'exe is located we must find the Base Trace Texture
+                Dim VanillaDronePackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\DroneTexture.xnb"
+                Dim CustomDronePackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\DroneTexture_Custom.xnb"
+                Dim VanillaDroneJsonFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\DroneTexture.json"
+                Dim CustomDroneJsonFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\DroneTexture_Custom.json"
+                Dim VanillaDroneSpritePNG As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\DroneTexture.png"
+                Dim CustomDroneSpritePNG As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\DroneTexture_Custom.png"
+                If File.Exists(VanillaDronePackedFile) Then
+                    If Not File.Exists(VanillaDronePackedFile & ".bak") Then
+                        File.Copy(VanillaDronePackedFile, VanillaDronePackedFile & ".bak")
+                    End If
+                    Try
+                        If File.Exists(CustomDronePackedFile) Then
+                            If File.Exists(My.Settings.VanillaDecompileLocation & "OuterBeyond.EmbeddedContent.Content\Art\Sprites\Packed\Drone.xml") Then
+                                If XMLEditor.MakeDroneCustom(True) Then
+                                    'Message box to spawn from previous function to allow greater error reporting.
+                                    MessageBox.Show("Extraction Complete!")
+                                    Return True
+                                End If
+                            Else
+                                MessageBox.Show("xml File not Found!", "Extract Fialed")
+                                Return False
+                            End If
+                        End If
+                        Process.Start(My.Settings.xnbcliSavedPath, "unpack """ & VanillaDronePackedFile & """").WaitForExit() 'this should create a png and json in the packed folder
+                        If File.Exists(CustomDroneJsonFile) Then File.Delete(CustomDroneJsonFile)
+                        File.Move(VanillaDroneJsonFile, CustomDroneJsonFile)
+                        If File.Exists(CustomDroneSpritePNG) Then File.Delete(CustomDroneSpritePNG)
+                        File.Move(VanillaDroneSpritePNG, CustomDroneSpritePNG)
+                        Dim JsonLines As String() = File.ReadAllLines(CustomDroneJsonFile)
+                        For i As Integer = 0 To JsonLines.Count - 1
+                            If JsonLines(i).Contains("DroneTexture.png") Then
+                                JsonLines(i) = JsonLines(i).Replace("DroneTexture.png", "DroneTexture_Custom.png")
+                            End If
+                        Next
+                        File.WriteAllLines(CustomDroneJsonFile, JsonLines)
+                        Process.Start(My.Settings.xnbcliSavedPath, "pack """ & CustomDroneJsonFile & """").WaitForExit() 'this should create a xnb in the packed folder
+                        File.Delete(CustomDroneJsonFile)
+                        File.Delete(CustomDroneSpritePNG)
+                        'Adding in a backup for us to randomize from
+                        File.Copy(CustomDronePackedFile, CustomDronePackedFile & ".bak", True)
+                        If File.Exists(My.Settings.VanillaDecompileLocation & "OuterBeyond.EmbeddedContent.Content\Art\Sprites\Packed\Drone.xml") Then
+                            If XMLEditor.MakeDroneCustom(True) Then
+                                'Message box to spawn from previous function to allow greater error reporting.
+                                MessageBox.Show("Extraction Complete!")
+                                Return True
+                            End If
+                        Else
+                            MessageBox.Show("xml File not Found!", "Extract Fialed")
+                        End If
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message)
+                    End Try
+                Else
+                    MessageBox.Show("Base Texture File ""DroneTexture.xnb"" not Found!", "Extract Fialed")
+                End If
+            Else
+                MessageBox.Show("""xnbcli.exe"" not found!", "Extract Fialed")
+            End If
+            Return False
+        End Function
+        Shared Function RemoveCustomDrone()
+            Dim VanillaDronePackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\DroneTexture.xnb"
+            Dim CustomDronePackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\DroneTexture_Custom.xnb"
+            If File.Exists(VanillaDronePackedFile & ".bak") Then
+                File.Delete(VanillaDronePackedFile)
+                File.Delete(CustomDronePackedFile)
+                File.Copy(VanillaDronePackedFile & ".bak", VanillaDronePackedFile)
+            Else
+                MessageBox.Show("Backup texture file not found.  Manually restore/reinstall game files!", "Backup Failure!")
+            End If
+            Return False
+        End Function
+        Shared Sub RandomizeCustomDrone(Seed As Integer)
+            'Random Color Selection
+            Dim Generator As System.Random = New System.Random(Seed:=Seed)
+            Generator.Next() 'advances the rng once past the coat rng
+            Dim NewColorRGB(2) As Byte ' 3 bytes for rgb
+            Do
+                Generator.NextBytes(NewColorRGB)
+                If Color.FromArgb(NewColorRGB(0), NewColorRGB(1), NewColorRGB(2)).GetBrightness < 0.6 Then
+                    Continue Do
+                End If
+                Exit Do
+            Loop
+            Dim NewLightColor As Color = Color.FromArgb(NewColorRGB(0), NewColorRGB(1), NewColorRGB(2))
+            Dim NewDarkColor As Color = ControlPaint.Dark(NewLightColor, 0.5)
+            My.Settings.CurrentDroneLightColor = NewLightColor
+            My.Settings.CurrentDroneDarkColor = NewDarkColor
+            PaintCustomDrone()
+        End Sub
+        Shared Sub PaintCustomDrone()
+            'lets do an inital check for the backup so it exits if there is no backup file
+            Dim CustomDronePackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\DroneTexture_Custom.xnb"
+            Dim CustomDroneJsonFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\DroneTexture_Custom.json"
+            Dim CustomDroneSpritePNG As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\DroneTexture_Custom.png"
+            Dim VanillaBackupDronePackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\DroneTexture.xnb.bak"
+            Dim CustomDroneBackupPackedFile As String = Path.GetDirectoryName(My.Settings.ExeFilePath) & "\Content\Art\Sprites\Packed\DroneTexture_Custom.xnb.bak"
+            If File.Exists(VanillaBackupDronePackedFile) AndAlso File.Exists(CustomDroneBackupPackedFile) Then
+                If Not My.Settings.xnbcliSavedPath = "" AndAlso File.Exists(My.Settings.xnbcliSavedPath) Then
+                    File.Copy(CustomDroneBackupPackedFile, CustomDronePackedFile, True)
+                    Process.Start(My.Settings.xnbcliSavedPath, "unpack """ & CustomDronePackedFile & """").WaitForExit() 'this should create a png and json in the packed folder
+                    'Now we want to edit the png file and save it
+                    If File.Exists(CustomDroneSpritePNG & "Copy") Then File.Delete(CustomDroneSpritePNG & "Copy")
+                    File.Move(CustomDroneSpritePNG, CustomDroneSpritePNG & "Copy")
+                    Dim TempImage As Bitmap = New Bitmap(CustomDroneSpritePNG & "Copy")
+                    '
+                    'Exist Color Calibration
+                    '
+                    'Light Color First
+                    Dim CalibrateRedLight As Byte = 214
+                    Dim CalibrateGreenLight As Byte = 134
+                    Dim CalibrateBlueLight As Byte = 98
+                    'Darker Color Next
+                    Dim CalibrateRedDark As Byte = 114
+                    Dim CalibrateGreenDark As Byte = 66
+                    Dim CalibrateBlueDark As Byte = 44
+                    'Color Replacement Method ----
+                    For x As Integer = 0 To TempImage.Width - 1
+                        For y As Integer = 0 To TempImage.Height - 1
+                            Dim red As Byte = TempImage.GetPixel(x, y).R
+                            Dim green As Byte = TempImage.GetPixel(x, y).G
+                            Dim blue As Byte = TempImage.GetPixel(x, y).B
+                            If red = CalibrateRedLight AndAlso
+                               green = CalibrateGreenLight AndAlso
+                               blue = CalibrateBlueLight Then 'Light Replace
+                                TempImage.SetPixel(x, y, My.Settings.CurrentDroneLightColor)
+                            ElseIf red = CalibrateRedDark AndAlso
+                               green = CalibrateGreenDark AndAlso
+                               blue = CalibrateBlueDark Then ' Dark Replace
+                                TempImage.SetPixel(x, y, My.Settings.CurrentDroneDarkColor)
+                            End If
+                        Next
+                    Next
+                    TempImage.Save(CustomDroneSpritePNG, System.Drawing.Imaging.ImageFormat.Png)
+                    TempImage.Dispose()
+                    Process.Start(My.Settings.xnbcliSavedPath, "pack """ & CustomDroneJsonFile & """").WaitForExit() 'this should create a xnb in the packed folder
+                    File.Delete(CustomDroneSpritePNG)
+                    File.Delete(CustomDroneSpritePNG & "Copy")
+                    File.Delete(CustomDroneJsonFile)
+                Else
+                    MessageBox.Show("xnbcli exe not found.  Texture left untouched", "Saftey exit")
+                End If
+            Else
+                MessageBox.Show("Backup texture file not found.  Texture left untouched", "Saftey exit")
+            End If
+
+        End Sub
+#End Region
     End Class
 #End Region
 End Class

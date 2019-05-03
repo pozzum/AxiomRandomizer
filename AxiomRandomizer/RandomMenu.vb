@@ -155,6 +155,7 @@ Public Class RandomMenu
                                         CheckBoxIllusion.Checked,
                                         CheckBoxHideItemIcons.Checked)
                 If My.Settings.RandomizeFakeCoat Then PackUnpack.Graphics.RandomizeFakeCoat(CInt(TextBoxSeed.Text))
+                If My.Settings.RandomizeCustomDroneColor Then PackUnpack.Graphics.RandomizeCustomDrone(CInt(TextBoxSeed.Text))
             Else
                 MessageBox.Show("Error With Tile Map")
             End If

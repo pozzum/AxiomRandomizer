@@ -35,16 +35,33 @@ Public Class OptionsMenu
         LabelXML.Enabled = CheckBoxXMLLimit.Checked
         CheckBoxSeperateCoat.Checked = My.Settings.SeperateLabCoats
         CheckBoxRandomizeFakeCoat.Checked = My.Settings.RandomizeFakeCoat
-        ButtonLightColor.BackColor = My.Settings.CurrentLightColor
-        ButtonDarkColor.BackColor = My.Settings.CurrentDarkColor
+        ButtonCoatLightColor.BackColor = My.Settings.CurrentCoatLightColor
+        ButtonCoatDarkColor.BackColor = My.Settings.CurrentCoatDarkColor
         If CheckBoxSeperateCoat.Checked Then
+            CheckBoxRandomizeFakeCoat.Enabled = True
             LabelCoatColor.Enabled = True
-            ButtonLightColor.Enabled = True
-            ButtonDarkColor.Enabled = True
+            ButtonCoatLightColor.Enabled = True
+            ButtonCoatDarkColor.Enabled = True
         Else
+            CheckBoxRandomizeFakeCoat.Enabled = False
             LabelCoatColor.Enabled = False
-            ButtonLightColor.Enabled = False
-            ButtonDarkColor.Enabled = False
+            ButtonCoatLightColor.Enabled = False
+            ButtonCoatDarkColor.Enabled = False
+        End If
+        CheckBoxCustomColorDrone.Checked = My.Settings.CustomDroneColor
+        CheckBoxRandomizeCustomDrone.Checked = My.Settings.RandomizeCustomDroneColor
+        ButtonDroneLightColor.BackColor = My.Settings.CurrentDroneLightColor
+        ButtonDroneDarkColor.BackColor = My.Settings.CurrentDroneDarkColor
+        If CheckBoxCustomColorDrone.Checked Then
+            CheckBoxRandomizeCustomDrone.Enabled = True
+            LabelDroneColor.Enabled = True
+            ButtonDroneLightColor.Enabled = True
+            ButtonDroneDarkColor.Enabled = True
+        Else
+            CheckBoxRandomizeCustomDrone.Enabled = False
+            LabelDroneColor.Enabled = False
+            ButtonDroneLightColor.Enabled = False
+            ButtonDroneDarkColor.Enabled = False
         End If
         CheckBoxRemoveMetallicPing.Checked = My.Settings.RemoveMetallicPing
     End Sub
@@ -94,6 +111,7 @@ Public Class OptionsMenu
         RandomMenu.MenuHeight()
         LoadDebugOptionsTab()
     End Sub
+#Region "Coat Options"
     Private Sub CheckBoxSeperateCoat_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxSeperateCoat.CheckedChanged
         If CheckBoxSeperateCoat.Checked Then
             If Not My.Settings.SeperateLabCoats Then
@@ -144,33 +162,115 @@ Public Class OptionsMenu
             CheckBoxRandomizeFakeCoat.Checked = False
         End If
         My.Settings.SeperateLabCoats = CheckBoxSeperateCoat.Checked
-        CheckBoxRandomizeFakeCoat.Enabled = CheckBoxSeperateCoat.Checked
+        LoadBasicOptionsTab()
     End Sub
     Private Sub CheckBoxRandomizeFakeCoat_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxRandomizeFakeCoat.CheckedChanged
         My.Settings.RandomizeFakeCoat = CheckBoxRandomizeFakeCoat.Checked
     End Sub
-    Private Sub ButtonLightColor_Click(sender As Object, e As EventArgs) Handles ButtonLightColor.Click
-        ColorDialog1.Color = My.Settings.CurrentLightColor
+    Private Sub ButtonCoatLightColor_Click(sender As Object, e As EventArgs) Handles ButtonCoatLightColor.Click
+        ColorDialog1.Color = My.Settings.CurrentCoatLightColor
         If ColorDialog1.ShowDialog = DialogResult.OK Then
-            My.Settings.CurrentLightColor = ColorDialog1.Color
+            My.Settings.CurrentCoatLightColor = ColorDialog1.Color
             If MessageBox.Show("Would you like to generate the dark color?", "Get dark color?", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-                My.Settings.CurrentDarkColor = ControlPaint.Dark(My.Settings.CurrentLightColor, 0.25)
+                My.Settings.CurrentCoatDarkColor = ControlPaint.Dark(My.Settings.CurrentCoatLightColor, 0.25)
             End If
             PackUnpack.Graphics.PaintFakeCoat()
             LoadBasicOptionsTab()
         End If
     End Sub
-    Private Sub ButtonDarkColor_Click(sender As Object, e As EventArgs) Handles ButtonDarkColor.Click
-        ColorDialog1.Color = My.Settings.CurrentDarkColor
+    Private Sub ButtonCoatDarkColor_Click(sender As Object, e As EventArgs) Handles ButtonCoatDarkColor.Click
+        ColorDialog1.Color = My.Settings.CurrentCoatDarkColor
         If ColorDialog1.ShowDialog = DialogResult.OK Then
-            My.Settings.CurrentDarkColor = ColorDialog1.Color
+            My.Settings.CurrentCoatDarkColor = ColorDialog1.Color
             If MessageBox.Show("Would you like to generate the light color?", "Get light color?", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-                My.Settings.CurrentLightColor = ControlPaint.Light(My.Settings.CurrentDarkColor, 0.25)
+                My.Settings.CurrentCoatLightColor = ControlPaint.Light(My.Settings.CurrentCoatDarkColor, 0.25)
             End If
             PackUnpack.Graphics.PaintFakeCoat()
             LoadBasicOptionsTab()
         End If
     End Sub
+#End Region
+#Region "Drone Options"
+    'Recode this one
+    Private Sub CheckBoxCustomColorDrone_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxCustomColorDrone.CheckedChanged
+        If CheckBoxCustomColorDrone.Checked Then
+            If Not My.Settings.CustomDroneColor Then
+                If My.Settings.xnbcliSavedPath = "" Then
+                    Dim Result = MessageBox.Show("This option requires the xnbcli program" & vbNewLine &
+                                "Do you need to download this program?", "xnbcli.exe check", MessageBoxButtons.YesNoCancel)
+                    If Result = DialogResult.Cancel Then
+                        CheckBoxCustomColorDrone.Checked = False
+                        Exit Sub
+                    ElseIf Result = DialogResult.Yes Then
+                        'https://github.com/LeonBlade/xnbcli/releases
+                        '1.0.4 Latest release at time of writing
+                        Process.Start("https://github.com/LeonBlade/xnbcli/releases")
+                    End If
+                    Dim TempDialog As New OpenFileDialog() With {.FileName = "xnbcli.exe",
+                    .Filter = "exe file (*.exe)|*.exe"}
+                    If TempDialog.ShowDialog = DialogResult.OK Then
+                        If File.Exists(TempDialog.FileName) Then
+                            My.Settings.xnbcliSavedPath = TempDialog.FileName
+                            LoadFolderOptionsTab()
+                            If Not PackUnpack.Graphics.CreateCustomDrone() Then
+                                'Message should be spwaned by Previous Function
+                                CheckBoxCustomColorDrone.Checked = False
+                                Exit Sub
+                            End If
+                        Else
+                            CheckBoxCustomColorDrone.Checked = False
+                            Exit Sub
+                        End If
+                    Else
+                        CheckBoxCustomColorDrone.Checked = False
+                        Exit Sub
+                    End If
+                Else
+                    If Not PackUnpack.Graphics.CreateCustomDrone() Then
+                        'Message should be spwaned by Previous Function
+                        CheckBoxCustomColorDrone.Checked = False
+                        Exit Sub
+                    End If
+                End If
+            End If
+        Else
+            If My.Settings.CustomDroneColor Then
+                'delete Custom Drone and reset drone xml
+                PackUnpack.Graphics.RemoveCustomDrone()
+                XMLEditor.MakeDroneCustom(False)
+            End If
+            CheckBoxRandomizeCustomDrone.Checked = False
+        End If
+        My.Settings.CustomDroneColor = CheckBoxCustomColorDrone.Checked
+        LoadBasicOptionsTab()
+    End Sub
+    Private Sub CheckBoxRandomizeCustomDrone_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxRandomizeCustomDrone.CheckedChanged
+        My.Settings.RandomizeCustomDroneColor = CheckBoxRandomizeCustomDrone.Checked
+    End Sub
+    Private Sub ButtonDroneLightColor_Click(sender As Object, e As EventArgs) Handles ButtonDroneLightColor.Click
+        ColorDialog1.Color = My.Settings.CurrentDroneLightColor
+        If ColorDialog1.ShowDialog = DialogResult.OK Then
+            My.Settings.CurrentDroneLightColor = ColorDialog1.Color
+            If MessageBox.Show("Would you like to generate the dark color?", "Get dark color?", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                My.Settings.CurrentDroneDarkColor = ControlPaint.Dark(My.Settings.CurrentDroneLightColor, 0.5)
+            End If
+            PackUnpack.Graphics.PaintCustomDrone()
+            LoadBasicOptionsTab()
+        End If
+    End Sub
+    Private Sub ButtonDroneDarkColor_Click(sender As Object, e As EventArgs) Handles ButtonDroneDarkColor.Click
+        ColorDialog1.Color = My.Settings.CurrentDroneDarkColor
+        If ColorDialog1.ShowDialog = DialogResult.OK Then
+            My.Settings.CurrentDroneDarkColor = ColorDialog1.Color
+            If MessageBox.Show("Would you like to generate the light color?", "Get light color?", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                My.Settings.CurrentDroneLightColor = ControlPaint.Light(My.Settings.CurrentDroneDarkColor, 0.5)
+            End If
+            PackUnpack.Graphics.PaintCustomDrone()
+            LoadBasicOptionsTab()
+        End If
+    End Sub
+
+#End Region
     Private Sub CheckBoxRemoveMetallicPing_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxRemoveMetallicPing.CheckedChanged
         If CheckBoxRemoveMetallicPing.Checked Then
             If Not My.Settings.RemoveMetallicPing Then

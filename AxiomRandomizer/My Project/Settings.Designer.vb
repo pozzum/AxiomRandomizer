@@ -476,23 +476,23 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property CurrentLightColor() As Global.System.Drawing.Color
+        Public Property CurrentCoatLightColor() As Global.System.Drawing.Color
             Get
-                Return CType(Me("CurrentLightColor"),Global.System.Drawing.Color)
+                Return CType(Me("CurrentCoatLightColor"),Global.System.Drawing.Color)
             End Get
             Set
-                Me("CurrentLightColor") = value
+                Me("CurrentCoatLightColor") = value
             End Set
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public Property CurrentDarkColor() As Global.System.Drawing.Color
+        Public Property CurrentCoatDarkColor() As Global.System.Drawing.Color
             Get
-                Return CType(Me("CurrentDarkColor"),Global.System.Drawing.Color)
+                Return CType(Me("CurrentCoatDarkColor"),Global.System.Drawing.Color)
             End Get
             Set
-                Me("CurrentDarkColor") = value
+                Me("CurrentCoatDarkColor") = value
             End Set
         End Property
         
@@ -505,6 +505,52 @@ Namespace My
             End Get
             Set
                 Me("RemoveMetallicPing") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property CustomDroneColor() As Boolean
+            Get
+                Return CType(Me("CustomDroneColor"),Boolean)
+            End Get
+            Set
+                Me("CustomDroneColor") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property CurrentDroneLightColor() As Global.System.Drawing.Color
+            Get
+                Return CType(Me("CurrentDroneLightColor"),Global.System.Drawing.Color)
+            End Get
+            Set
+                Me("CurrentDroneLightColor") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property CurrentDroneDarkColor() As Global.System.Drawing.Color
+            Get
+                Return CType(Me("CurrentDroneDarkColor"),Global.System.Drawing.Color)
+            End Get
+            Set
+                Me("CurrentDroneDarkColor") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property RandomizeCustomDroneColor() As Boolean
+            Get
+                Return CType(Me("RandomizeCustomDroneColor"),Boolean)
+            End Get
+            Set
+                Me("RandomizeCustomDroneColor") = value
             End Set
         End Property
     End Class
