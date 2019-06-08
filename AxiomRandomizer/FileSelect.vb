@@ -21,10 +21,6 @@ Public Class FileSelect
     End Sub
 #End Region
 #Region "EXE Updater"
-    Public Shared WithEvents BackgroundApplicationUpdate As BackgroundWorker = New BackgroundWorker
-    Public Shared Sub BackgroundApplicationUpdate_DoWork(sender As Object, e As ComponentModel.DoWorkEventArgs) Handles BackgroundApplicationUpdate.DoWork
-        OnlineVersion.CheckUpdate()
-    End Sub
     Sub CheckUpdate()
         'Dim Temp As ThreadStart = New ThreadStart With (OnlineVersion.CheckUpdate)
         Dim checkUpdateThread = New Thread(AddressOf OnlineVersion.CheckUpdate)

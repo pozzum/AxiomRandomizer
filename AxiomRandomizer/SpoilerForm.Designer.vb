@@ -23,12 +23,6 @@ Partial Class SpoilerForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExportLocationsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImportLocationsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Placed = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ItemType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ItemName = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -43,6 +37,12 @@ Partial Class SpoilerForm
         Me.AcquiredPowers = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.VanillaJump = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AddedJump = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportLocationsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportLocationsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -62,39 +62,6 @@ Partial Class SpoilerForm
         Me.DataGridView1.Size = New System.Drawing.Size(984, 687)
         Me.DataGridView1.TabIndex = 1
         '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportLocationsToolStripMenuItem, Me.ImportLocationsToolStripMenuItem})
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(50, 20)
-        Me.ToolStripMenuItem1.Text = "Seed: "
-        '
-        'ExportLocationsToolStripMenuItem
-        '
-        Me.ExportLocationsToolStripMenuItem.Name = "ExportLocationsToolStripMenuItem"
-        Me.ExportLocationsToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
-        Me.ExportLocationsToolStripMenuItem.Text = "Export Locations"
-        '
-        'ImportLocationsToolStripMenuItem
-        '
-        Me.ImportLocationsToolStripMenuItem.Name = "ImportLocationsToolStripMenuItem"
-        Me.ImportLocationsToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
-        Me.ImportLocationsToolStripMenuItem.Text = "Import Locations"
-        '
-        'MenuStrip1
-        '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(984, 24)
-        Me.MenuStrip1.TabIndex = 0
-        Me.MenuStrip1.Text = "MenuStrip1"
-        '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.FileName = "seed.xml"
-        Me.OpenFileDialog1.Filter = "xml file|*.xml|All files|*.*"
-        '
         'Placed
         '
         Me.Placed.HeaderText = "Placed"
@@ -107,28 +74,28 @@ Partial Class SpoilerForm
         Me.ItemType.HeaderText = "Item Type"
         Me.ItemType.Name = "ItemType"
         Me.ItemType.ReadOnly = True
-        Me.ItemType.Width = 79
+        Me.ItemType.Width = 73
         '
         'ItemName
         '
         Me.ItemName.HeaderText = "Item Name"
         Me.ItemName.Name = "ItemName"
         Me.ItemName.ReadOnly = True
-        Me.ItemName.Width = 83
+        Me.ItemName.Width = 77
         '
         'ItemWeight
         '
         Me.ItemWeight.HeaderText = "Item Weight"
         Me.ItemWeight.Name = "ItemWeight"
         Me.ItemWeight.ReadOnly = True
-        Me.ItemWeight.Width = 89
+        Me.ItemWeight.Width = 82
         '
         'LocationName
         '
         Me.LocationName.HeaderText = "Nick Name"
         Me.LocationName.Name = "LocationName"
         Me.LocationName.ReadOnly = True
-        Me.LocationName.Width = 85
+        Me.LocationName.Width = 78
         '
         'Area
         '
@@ -142,14 +109,14 @@ Partial Class SpoilerForm
         Me.VanillaItem.HeaderText = "Vanilla Item"
         Me.VanillaItem.Name = "VanillaItem"
         Me.VanillaItem.ReadOnly = True
-        Me.VanillaItem.Width = 86
+        Me.VanillaItem.Width = 79
         '
         'VanillaOrder
         '
         Me.VanillaOrder.HeaderText = "Vanilla Order"
         Me.VanillaOrder.Name = "VanillaOrder"
         Me.VanillaOrder.ReadOnly = True
-        Me.VanillaOrder.Width = 92
+        Me.VanillaOrder.Width = 85
         '
         'LocationWeight
         '
@@ -192,6 +159,39 @@ Partial Class SpoilerForm
         Me.AddedJump.Name = "AddedJump"
         Me.AddedJump.ReadOnly = True
         Me.AddedJump.Width = 84
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportLocationsToolStripMenuItem, Me.ImportLocationsToolStripMenuItem})
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(50, 20)
+        Me.ToolStripMenuItem1.Text = "Seed: "
+        '
+        'ExportLocationsToolStripMenuItem
+        '
+        Me.ExportLocationsToolStripMenuItem.Name = "ExportLocationsToolStripMenuItem"
+        Me.ExportLocationsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ExportLocationsToolStripMenuItem.Text = "Export Locations"
+        '
+        'ImportLocationsToolStripMenuItem
+        '
+        Me.ImportLocationsToolStripMenuItem.Name = "ImportLocationsToolStripMenuItem"
+        Me.ImportLocationsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ImportLocationsToolStripMenuItem.Text = "Import Locations"
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(984, 24)
+        Me.MenuStrip1.TabIndex = 0
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "seed.xml"
+        Me.OpenFileDialog1.Filter = "xml file|*.xml|All files|*.*"
         '
         'SpoilerForm
         '

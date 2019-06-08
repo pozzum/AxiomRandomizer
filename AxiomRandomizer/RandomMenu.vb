@@ -109,7 +109,6 @@ Public Class RandomMenu
         Else
             Return CInt(-(Rnd() * Integer.MaxValue))
         End If
-
     End Function
     Private Sub CheckBoxWalls_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxWalls.CheckedChanged
         If CheckBoxWalls.Checked = False AndAlso RadioButtonCustomMap.Checked Then
@@ -122,6 +121,10 @@ Public Class RandomMenu
         End If
     End Sub
     Private Sub ButtonBuild_Click(sender As Object, e As EventArgs) Handles ButtonBuild.Click
+        If TextBoxSeed.Text = "" OrElse TextBoxSeed.Text = "-" Then
+            MessageBox.Show("Seed Number Required")
+            Exit Sub
+        End If
         Dim SelectedDifficulty As Randomizer.DifficultySetting =
         DirectCast([Enum].Parse(GetType(Randomizer.DifficultySetting),
                                 ComboBoxDifficulties.SelectedItem.ToString),
@@ -165,6 +168,10 @@ Public Class RandomMenu
         MessageBox.Show("Build complete.")
     End Sub
     Private Sub ButtonSpoiler_Click(sender As Object, e As EventArgs) Handles ButtonSpoiler.Click
+        If TextBoxSeed.Text = "" OrElse TextBoxSeed.Text = "-" Then
+            MessageBox.Show("Seed Number Required")
+            Exit Sub
+        End If
         My.Settings.PreviousSeed = TextBoxSeed.Text
         Dim SelectedDifficulty As Randomizer.DifficultySetting =
             DirectCast([Enum].Parse(GetType(Randomizer.DifficultySetting),
@@ -174,7 +181,6 @@ Public Class RandomMenu
         SpoilerForm.Show()
     End Sub
     Private Sub TextBoxSeed_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSeed.TextChanged
-        'THis can have bad data pasted in still TO FIX
         Dim SentTextBox As TextBox = CType(sender, TextBox)
         Dim CursorPosition As Integer = SentTextBox.SelectionStart
         SentTextBox.Text = Regex.Replace(SentTextBox.Text, "[^\d-]", "")

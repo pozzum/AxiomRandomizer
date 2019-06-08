@@ -275,6 +275,39 @@ Public Class PackUnpack
         MessageBox.Show("File Not Edited!")
         Return False
     End Function
+    Shared Function ModifyCodeForCustomDrone(IlFile As String, AddCustomDrone As Boolean)
+        Dim lines() As String = IO.File.ReadAllLines(IlFile)
+        For i As Integer = 0 To lines.Length - 1
+            'Makes "Glitch Tele" give white coat rather than default coat
+            If AddCustomDrone Then
+                If lines(i).Contains("IL_014c:  ldnull") Then
+                    If lines(i - 1).Contains("Drone") Then
+                        lines(i) = lines(i).Replace("ldnull", "ldstr      ""Custom""")
+                        IO.File.WriteAllLines(IlFile, lines)
+                        Return True
+                    End If
+                ElseIf lines(i).Contains("ldstr      ""Custom""") Then
+                    If lines(i - 1).Contains("Drone") Then
+                        Return True
+                    End If
+                End If
+            Else
+                If lines(i).Contains("IL_014c:  ldstr      ""Custom""") Then
+                    If lines(i - 1).Contains("Drone") Then
+                        lines(i) = lines(i).Replace("ldstr      ""Custom""", "ldnull")
+                        IO.File.WriteAllLines(IlFile, lines)
+                        Return True
+                    End If
+                ElseIf lines(i) = "    IL_014c:  ldnull" Then
+                    If lines(i - 1).Contains("Drone") Then
+                        Return True
+                    End If
+                End If
+            End If
+        Next
+        MessageBox.Show("File Not Edited!")
+        Return False
+    End Function
     Shared Function ModifyCodeMetallicPing(IlFile As String, RemoveMetallicPing As Boolean)
         Dim lines() As String = IO.File.ReadAllLines(IlFile)
         For i As Integer = 0 To lines.Length - 1

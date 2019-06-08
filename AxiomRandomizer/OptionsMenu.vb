@@ -238,9 +238,11 @@ Public Class OptionsMenu
                 'delete Custom Drone and reset drone xml
                 PackUnpack.Graphics.RemoveCustomDrone()
                 XMLEditor.MakeDroneCustom(False)
+                PackUnpack.ModifyCodeForCustomDrone(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", False)
             End If
             CheckBoxRandomizeCustomDrone.Checked = False
         End If
+        PackUnpack.ModifyCodeForCustomDrone(My.Settings.VanillaDecompileLocation & Path.GetFileNameWithoutExtension(My.Settings.RandoExePath) & ".iL", True)
         My.Settings.CustomDroneColor = CheckBoxCustomColorDrone.Checked
         LoadBasicOptionsTab()
     End Sub
