@@ -438,13 +438,13 @@
             TempItem.GID = 59
             Items.Add(TempItem)
             '______________
-            'TempItem = New ItemDrop()
-            'TempItem.Name = "HeatSeeker"
-            'TempItem.DropType = ItemType.HeatSeeker
-            'TempItem.GivenPowers = New List(Of Powers)
-            'TempItem.GivenPowers.AddRange({Powers.Damage})
-            'TempItem.GID = 57 'Guess IDK if it'll work
-            'Items.Add(TempItem)
+            TempItem = New ItemDrop()
+            TempItem.Name = "HeatSeeker"
+            TempItem.DropType = ItemType.HeatSeeker
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 57 'Guess IDK if it'll work
+            Items.Add(TempItem)
 #End Region
 #Region "Health Nodes"
             '______________
@@ -519,6 +519,14 @@
             TempItem.GID = 34
             TempItem.Weight = -1
             Items.Add(TempItem)
+            '______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "HealthNode10"
+            'TempItem.DropType = ItemType.HealthNode
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 34
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
             '
             '______________HEALTH NODE FRAGMENTS
             '
@@ -682,6 +690,46 @@
             TempItem.GID = 38
             TempItem.Weight = -1
             Items.Add(TempItem)
+            ''______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "HealthNodeFragment21"
+            'TempItem.DropType = ItemType.HealthNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 38
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            ''______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "HealthNodeFragment22"
+            'TempItem.DropType = ItemType.HealthNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 38
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            ''______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "HealthNodeFragment23"
+            'TempItem.DropType = ItemType.HealthNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 38
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            ''______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "HealthNodeFragment24"
+            'TempItem.DropType = ItemType.HealthNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 38
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            ''______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "HealthNodeFragment25"
+            'TempItem.DropType = ItemType.HealthNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 38
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
 #End Region
 #Region "Power Nodes"
             '______________
@@ -732,6 +780,14 @@
             TempItem.GID = 32
             TempItem.Weight = -1
             Items.Add(TempItem)
+            '______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "PowerNode7"
+            'TempItem.DropType = ItemType.PowerNode
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 32
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
             '
             '______________POWER NODES FRAGMENTS
             '
@@ -878,6 +934,102 @@
             TempItem.GID = 74
             TempItem.Weight = -1
             Items.Add(TempItem)
+            '______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "PowerNodeFragment19"
+            'TempItem.DropType = ItemType.PowerNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 74
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            ''______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "PowerNodeFragment20"
+            'TempItem.DropType = ItemType.PowerNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 74
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            ''______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "PowerNodeFragment21"
+            'TempItem.DropType = ItemType.PowerNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 74
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            ''______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "PowerNodeFragment22"
+            'TempItem.DropType = ItemType.PowerNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 74
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            ''______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "PowerNodeFragment23"
+            'TempItem.DropType = ItemType.PowerNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 74
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            ''______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "PowerNodeFragment24"
+            'TempItem.DropType = ItemType.PowerNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 74
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            ''______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "PowerNodeFragment25"
+            'TempItem.DropType = ItemType.PowerNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 74
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            ''______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "PowerNodeFragment26"
+            'TempItem.DropType = ItemType.PowerNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 74
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            ''______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "PowerNodeFragment27"
+            'TempItem.DropType = ItemType.PowerNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 74
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            ''______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "PowerNodeFragment28"
+            'TempItem.DropType = ItemType.PowerNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 74
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            ''______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "PowerNodeFragment29"
+            'TempItem.DropType = ItemType.PowerNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 74
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            ''______________
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "PowerNodeFragment30"
+            'TempItem.DropType = ItemType.PowerNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 74
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
 #End Region
 #Region "Size Nodes"
             '______________
@@ -1151,21 +1303,21 @@
             TempItem.Weight = -1
             Items.Add(TempItem)
             '______________...Next 3 removed for hidden weapons
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note26"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________ Added I think
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "Note26"
+            'TempItem.DropType = ItemType.Lore
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 75
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            ''______________ Added I think
             'TempItem = New ItemDrop()
             'TempItem.Name = "Note27"
             'TempItem.DropType = ItemType.Lore
             'TempItem.GivenPowers = New List(Of Powers)
             'TempItem.GID = 75
             'Items.Add(TempItem)
-            '______________
+            ''______________
             'TempItem = New ItemDrop()
             'TempItem.Name = "Note28"
             'TempItem.DropType = ItemType.Lore
@@ -2109,8 +2261,8 @@
             If MinNodes = -1 AndAlso VarianceNodes = -1 Then
                 Select Case PoolDifficulty
                     Case Randomizer.DifficultySetting.Easy
-                        MinNodes = 4
-                        VarianceNodes = 10
+                        MinNodes = 1
+                        VarianceNodes = 9
                     Case Randomizer.DifficultySetting.Normal
                         MinNodes = 1
                         VarianceNodes = 10
@@ -2126,11 +2278,11 @@
                 Select Case PoolDifficulty
                     'Note +1 from Slug Fragment
                     Case Randomizer.DifficultySetting.Easy
-                        MinNodes = 4
-                        VarianceNodes = 16
+                        MinNodes = 1
+                        VarianceNodes = 19
                     Case Randomizer.DifficultySetting.Normal
                         MinNodes = 4
-                        VarianceNodes = 28
+                        VarianceNodes = 20
                         'Case Randomizer.DifficultySetting.Hard
                         ' MinNodes = 4
                         ' VarianceNodes = 16
@@ -2142,8 +2294,8 @@
             If MinNodes = -1 AndAlso VarianceNodes = -1 Then
                 Select Case PoolDifficulty
                     Case Randomizer.DifficultySetting.Easy
-                        MinNodes = 4
-                        VarianceNodes = 7
+                        MinNodes = 1
+                        VarianceNodes = 6
                     Case Randomizer.DifficultySetting.Normal
                         MinNodes = 2
                         VarianceNodes = 9
@@ -2158,11 +2310,11 @@
             If MinNodes = -1 AndAlso VarianceNodes = -1 Then
                 Select Case PoolDifficulty
                     Case Randomizer.DifficultySetting.Easy
-                        MinNodes = 6
-                        VarianceNodes = 13
+                        MinNodes = 1
+                        VarianceNodes = 20
                     Case Randomizer.DifficultySetting.Normal
                         MinNodes = 6
-                        VarianceNodes = 19
+                        VarianceNodes = 18
                         'Case Randomizer.DifficultySetting.Hard
                         ' MinNodes = 0
                         ' VarianceNodes = 19

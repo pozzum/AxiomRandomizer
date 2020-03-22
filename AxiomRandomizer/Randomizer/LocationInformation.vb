@@ -1599,20 +1599,6 @@ Namespace GameInformation
             Locations.Add(TempLocation)
             '_______________
             TempLocation = New Location()
-            TempLocation.Name = "Basement Shaft"
-            TempLocation.Vanilla = ItemType.Lore
-            TempLocation.VanillaPlacement = 107
-            TempLocation.Region = Area.EKurMah
-            TempLocation.LineNumber1 = 3688
-            TempLocation.XLocation = 3520
-            TempLocation.YLocation = 2288
-            TempLocation.RequiredPowers = New List(Of Powers)
-            TempLocation.RequiredPowers.AddRange({Powers.Damage, Powers.Nova, Powers.Drill, Powers.Kilver, Powers.Glitch3, Powers.HighJump, Powers.TrenchCoat, Powers.Drone, Powers.Grapple, Powers.EnhancedLaunch, Powers.DroneTeleport, Powers.Key})
-            TempLocation.AddedPowers = New List(Of Powers)
-            TempLocation.MapOptionPowers = New List(Of Powers)
-            Locations.Add(TempLocation)
-            '_______________
-            TempLocation = New Location()
             TempLocation.Name = "Verdan Cavern"
             TempLocation.Vanilla = ItemType.HealthNodeFragment
             TempLocation.VanillaPlacement = 107
@@ -1681,6 +1667,20 @@ Namespace GameInformation
             TempLocation.LineNumber1 = 3705
             TempLocation.XLocation = 1984
             TempLocation.YLocation = 5936
+            TempLocation.RequiredPowers = New List(Of Powers)
+            TempLocation.RequiredPowers.AddRange({Powers.Damage, Powers.Nova, Powers.Drill, Powers.Kilver, Powers.Glitch3, Powers.HighJump, Powers.RedCoat, Powers.Drone, Powers.Grapple, Powers.EnhancedLaunch, Powers.DroneTeleport, Powers.Key})
+            TempLocation.AddedPowers = New List(Of Powers)
+            TempLocation.MapOptionPowers = New List(Of Powers)
+            Locations.Add(TempLocation)
+            '_______________
+            TempLocation = New Location()
+            TempLocation.Name = "Basement Shaft"
+            TempLocation.Vanilla = ItemType.Lore
+            TempLocation.VanillaPlacement = 107
+            TempLocation.Region = Area.EKurMah
+            TempLocation.LineNumber1 = 3688
+            TempLocation.XLocation = 3520
+            TempLocation.YLocation = 2288
             TempLocation.RequiredPowers = New List(Of Powers)
             TempLocation.RequiredPowers.AddRange({Powers.Damage, Powers.Nova, Powers.Drill, Powers.Kilver, Powers.Glitch3, Powers.HighJump, Powers.RedCoat, Powers.Drone, Powers.Grapple, Powers.EnhancedLaunch, Powers.DroneTeleport, Powers.Key})
             TempLocation.AddedPowers = New List(Of Powers)
