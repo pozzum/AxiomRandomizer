@@ -57,25 +57,34 @@ Public Class ExeVersions
         Return HexValue.ToUpper
     End Function
 #End Region
+
+    Public Enum Version As Integer
+        Steam
+        Epic
+        Source
+    End Enum
+
     Shared Function CheckExe(EXEFilePath)
         Dim EXEhash As String = Md5Hash(EXEFilePath)
         My.Settings.ExeHashString = EXEhash
         'MessageBox.Show(EXEhash)
         If EXEhash = "B5AD0D15712898CED08A78084FEEB6D1" Then
             My.Settings.VersionString = "Version 1.43, 8/1/2018"
-            My.Settings.SteamVersion = True
+            My.Settings.SteamVersion = Version.Steam
             'Version 1.43, 8/1/2018
             'Randomizer origionally developed for this version (Steam)
             Return True
         ElseIf EXEhash = "E99C059B3F743465AAAAB366DE1F536E" Then
             My.Settings.VersionString = "Version 1.47, 2/7/2019"
-            My.Settings.SteamVersion = False
+            My.Settings.SteamVersion = Version.Epic
             'Version 1.47, 2/8/2019
             'Epic Games Version
             Return True
         ElseIf MessageBox.Show("Game version is unknown randomizer may not work." & vbNewLine &
                                     "File Hash: " & EXEhash & vbNewLine &
                                     "Continue?", "Unknown EXE!", MessageBoxButtons.YesNo) = DialogResult.Yes Then
+            My.Settings.VersionString = "Version 1.50, 2020"
+            My.Settings.SteamVersion = Version.Source
             Return True
         Else
             Return False
