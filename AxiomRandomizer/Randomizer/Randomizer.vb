@@ -87,7 +87,7 @@ Public Class Randomizer
         Dim PlacementCount As Integer = 1
         'this has to be built to allow a resort of the item pool so it needs to be in a do while loop and start from 1 each loop..
         'this might be slightly more process intensive which is unfortunate but I want to place a random weapon first
-        Do While PlacementCount <= ItemPool.Count - 1 'might need a -1 so not infinite ?????
+        Do While PlacementCount <= ItemPool.Count '- 1 'might need a -1 so not infinite ?????
             For i As Integer = 0 To ItemPool.Count - 1 'will go from the highest item to the lowest item.
                 If ItemPool(i).Placed = False Then
                     If ItemPool(i).Name = "" Then

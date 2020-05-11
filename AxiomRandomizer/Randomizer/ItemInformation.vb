@@ -950,6 +950,7 @@
             '
             '______________LORE
             '
+            '______________Anonymous Quote
             TempItem = New ItemDrop()
             TempItem.Name = "Note1"
             TempItem.DropType = ItemType.Lore
@@ -957,39 +958,7 @@
             TempItem.GID = 75
             TempItem.Weight = -1
             Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note2"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note3"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note4"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note5"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
+            '______________Proverbs
             TempItem = New ItemDrop()
             TempItem.Name = "Note6"
             TempItem.DropType = ItemType.Lore
@@ -997,8 +966,71 @@
             TempItem.GID = 75
             TempItem.Weight = -1
             Items.Add(TempItem)
+            '______________Sudran Translation
+            TempItem = New ItemDrop()
+            TempItem.Name = "Note19"
+            TempItem.DropType = ItemType.Lore
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 75
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________English
+            TempItem = New ItemDrop()
+            TempItem.Name = "Note20"
+            TempItem.DropType = ItemType.Lore
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 75
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________The Breach
+            TempItem = New ItemDrop()
+            TempItem.Name = "Note22"
+            TempItem.DropType = ItemType.Lore
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 75
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________Vykhya Translation
+            TempItem = New ItemDrop()
+            TempItem.Name = "Note27"
+            TempItem.DropType = ItemType.Lore
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 75
+            Items.Add(TempItem)
             If (My.Settings.SteamVersion = 0 Or My.Settings.SteamVersion = 1) Then
-                '______________
+                '______________Faded Note
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note2"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________The Land of Civilized Kings
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note3"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________The Kuliltu
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note4"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Oracca
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note5"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________The Storm
                 TempItem = New ItemDrop()
                 TempItem.Name = "Note7"
                 TempItem.DropType = ItemType.Lore
@@ -1006,7 +1038,7 @@
                 TempItem.GID = 75
                 TempItem.Weight = -1
                 Items.Add(TempItem)
-                '______________
+                '______________My Lovely
                 TempItem = New ItemDrop()
                 TempItem.Name = "Note8"
                 TempItem.DropType = ItemType.Lore
@@ -1014,7 +1046,7 @@
                 TempItem.GID = 75
                 TempItem.Weight = -1
                 Items.Add(TempItem)
-                '______________
+                '______________Athetos
                 TempItem = New ItemDrop()
                 TempItem.Name = "Note9"
                 TempItem.DropType = ItemType.Lore
@@ -1022,7 +1054,7 @@
                 TempItem.GID = 75
                 TempItem.Weight = -1
                 Items.Add(TempItem)
-                '______________
+                '______________Security Notice
                 TempItem = New ItemDrop()
                 TempItem.Name = "Note10"
                 TempItem.DropType = ItemType.Lore
@@ -1030,7 +1062,7 @@
                 TempItem.GID = 75
                 TempItem.Weight = -1
                 Items.Add(TempItem)
-                '______________
+                '______________Official Letter
                 TempItem = New ItemDrop()
                 TempItem.Name = "Note11"
                 TempItem.DropType = ItemType.Lore
@@ -1038,7 +1070,7 @@
                 TempItem.GID = 75
                 TempItem.Weight = -1
                 Items.Add(TempItem)
-                '______________
+                '______________From the High Priestess
                 TempItem = New ItemDrop()
                 TempItem.Name = "Note12"
                 TempItem.DropType = ItemType.Lore
@@ -1046,7 +1078,7 @@
                 TempItem.GID = 75
                 TempItem.Weight = -1
                 Items.Add(TempItem)
-                '______________
+                '______________Public Notice
                 TempItem = New ItemDrop()
                 TempItem.Name = "Note13"
                 TempItem.DropType = ItemType.Lore
@@ -1054,7 +1086,7 @@
                 TempItem.GID = 75
                 TempItem.Weight = -1
                 Items.Add(TempItem)
-                '______________
+                '______________Plan B
                 TempItem = New ItemDrop()
                 TempItem.Name = "Note14"
                 TempItem.DropType = ItemType.Lore
@@ -1062,7 +1094,7 @@
                 TempItem.GID = 75
                 TempItem.Weight = -1
                 Items.Add(TempItem)
-                '______________
+                '______________Journal Page
                 TempItem = New ItemDrop()
                 TempItem.Name = "Note15"
                 TempItem.DropType = ItemType.Lore
@@ -1070,7 +1102,7 @@
                 TempItem.GID = 75
                 TempItem.Weight = -1
                 Items.Add(TempItem)
-                '______________
+                '______________Transcription
                 TempItem = New ItemDrop()
                 TempItem.Name = "Note16"
                 TempItem.DropType = ItemType.Lore
@@ -1078,7 +1110,7 @@
                 TempItem.GID = 75
                 TempItem.Weight = -1
                 Items.Add(TempItem)
-                '______________
+                '______________Journal Page
                 TempItem = New ItemDrop()
                 TempItem.Name = "Note17"
                 TempItem.DropType = ItemType.Lore
@@ -1086,7 +1118,7 @@
                 TempItem.GID = 75
                 TempItem.Weight = -1
                 Items.Add(TempItem)
-                '______________
+                '______________Axiom 1
                 TempItem = New ItemDrop()
                 TempItem.Name = "Note18"
                 TempItem.DropType = ItemType.Lore
@@ -1094,23 +1126,7 @@
                 TempItem.GID = 75
                 TempItem.Weight = -1
                 Items.Add(TempItem)
-                '______________
-                TempItem = New ItemDrop()
-                TempItem.Name = "Note19"
-                TempItem.DropType = ItemType.Lore
-                TempItem.GivenPowers = New List(Of Powers)
-                TempItem.GID = 75
-                TempItem.Weight = -1
-                Items.Add(TempItem)
-                '______________
-                TempItem = New ItemDrop()
-                TempItem.Name = "Note20"
-                TempItem.DropType = ItemType.Lore
-                TempItem.GivenPowers = New List(Of Powers)
-                TempItem.GID = 75
-                TempItem.Weight = -1
-                Items.Add(TempItem)
-                '______________
+                '______________Letter
                 TempItem = New ItemDrop()
                 TempItem.Name = "Note21"
                 TempItem.DropType = ItemType.Lore
@@ -1118,15 +1134,7 @@
                 TempItem.GID = 75
                 TempItem.Weight = -1
                 Items.Add(TempItem)
-                '______________
-                TempItem = New ItemDrop()
-                TempItem.Name = "Note22"
-                TempItem.DropType = ItemType.Lore
-                TempItem.GivenPowers = New List(Of Powers)
-                TempItem.GID = 75
-                TempItem.Weight = -1
-                Items.Add(TempItem)
-                '______________
+                '______________The Outsider
                 TempItem = New ItemDrop()
                 TempItem.Name = "Note23"
                 TempItem.DropType = ItemType.Lore
@@ -1134,7 +1142,7 @@
                 TempItem.GID = 75
                 TempItem.Weight = -1
                 Items.Add(TempItem)
-                '______________
+                '______________Reply:  The Outsider
                 TempItem = New ItemDrop()
                 TempItem.Name = "Note24"
                 TempItem.DropType = ItemType.Lore
@@ -1142,15 +1150,16 @@
                 TempItem.GID = 75
                 TempItem.Weight = -1
                 Items.Add(TempItem)
-                '______________
-                TempItem = New ItemDrop()
-                TempItem.Name = "Note25"
-                TempItem.DropType = ItemType.Lore
-                TempItem.GivenPowers = New List(Of Powers)
-                TempItem.GID = 75
-                TempItem.Weight = -1
-                Items.Add(TempItem)
-                '______________...Next 3 removed for hidden weapons
+                'Next 3 removed for hidden secret world weapons
+                '______________Journal Page
+                'TempItem = New ItemDrop()
+                'TempItem.Name = "Note25"
+                'TempItem.DropType = ItemType.Lore
+                'TempItem.GivenPowers = New List(Of Powers)
+                'TempItem.GID = 75
+                'TempItem.Weight = -1
+                'Items.Add(TempItem)
+                '______________Trace
                 'TempItem = New ItemDrop()
                 'TempItem.Name = "Note26"
                 'TempItem.DropType = ItemType.Lore
@@ -1158,14 +1167,7 @@
                 'TempItem.GID = 75
                 'TempItem.Weight = -1
                 'Items.Add(TempItem)
-                ''______________ Added I think
-                'TempItem = New ItemDrop()
-                'TempItem.Name = "Note27"
-                'TempItem.DropType = ItemType.Lore
-                'TempItem.GivenPowers = New List(Of Powers)
-                'TempItem.GID = 75
-                'Items.Add(TempItem)
-                ''______________
+                ''______________Drones
                 'TempItem = New ItemDrop()
                 'TempItem.Name = "Note28"
                 'TempItem.DropType = ItemType.Lore
