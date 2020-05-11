@@ -1455,7 +1455,7 @@ Namespace GameInformation
             '_______________
             TempLocation = New Location()
             TempLocation.Name = "High Above Pop Talk"
-            TempLocation.Vanilla = ItemType.HealthNodeFragment
+            TempLocation.Vanilla = ItemType.TriCone
             TempLocation.VanillaPlacement = 97
             TempLocation.Region = Area.UkkinNa
             TempLocation.LineNumber1 = 6165
