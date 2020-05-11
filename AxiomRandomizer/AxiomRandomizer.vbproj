@@ -79,6 +79,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="General Tools\ApplicationEvents.vb" />
     <Compile Include="BatchMenu.Designer.vb">
       <DependentUpon>BatchMenu.vb</DependentUpon>
