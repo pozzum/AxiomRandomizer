@@ -298,7 +298,15 @@ Public Class RandomMenu
 DirectCast([Enum].Parse(GetType(Randomizer.DifficultySetting),
                         ComboBoxDifficulties.SelectedItem.ToString),
                         Randomizer.DifficultySetting)
-            If SelectedDifficulty = Randomizer.DifficultySetting.Easy Then
+            If SelectedDifficulty = Randomizer.DifficultySetting.VeryEasy Then
+                CheckBoxWalls.Checked = True
+                CheckBoxIllusion.Checked = True
+                CheckBoxDropDown.Checked = True
+                CheckBoxOpenEribu.Checked = False
+                CheckBoxOpenElsenova.Checked = False
+                CheckBoxOpenAbsu.Checked = False
+                CheckBoxHideItemIcons.Checked = False
+            ElseIf SelectedDifficulty = Randomizer.DifficultySetting.Easy Then
                 CheckBoxWalls.Checked = True
                 CheckBoxIllusion.Checked = True
                 CheckBoxDropDown.Checked = True

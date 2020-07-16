@@ -5,6 +5,7 @@ Public Class Randomizer
     'https://github.com/Dessyreqt/smrandomizer
 
     Public Enum DifficultySetting
+        VeryEasy
         Easy
         Normal
         Practice
@@ -27,6 +28,9 @@ Public Class Randomizer
         ElseIf Difficulty = DifficultySetting.Easy Then
             LocationInformation = EasyLocations.ResetLocations()
             ItemPool = VanillaItems.ResetItemPool()
+        ElseIf Difficulty = DifficultySetting.VeryEasy Then
+            LocationInformation = VeryEasyLocations.ResetLocations()
+            ItemPool = VEItems.ResetItemPool()
         ElseIf Difficulty = DifficultySetting.Practice Then
             LocationInformation = PracticeLocations.ResetLocations() 'New List(Of Location) '
             ItemPool = PracticeItems.ResetItemPool() 'New List(Of ItemDrop) '
@@ -53,7 +57,7 @@ Public Class Randomizer
         RandomMenu.TextBoxDebug.Text += vbNewLine & "Locations: " & LocationInformation.Count &
                                     vbNewLine & "Items: " & ItemPool.Count
         ApplyWeights(Seed)
-        PlaceAssumedItems()
+        PlaceAssumedItems(Difficulty)
         'PlaceItems()
     End Sub
     Shared Sub ApplyWeights(Seed As Integer)
@@ -83,8 +87,9 @@ Public Class Randomizer
         ItemPool.Reverse()
         'MessageBox.Show("Weights Applied")
     End Sub
-    Shared Function PlaceAssumedItems()
+    Shared Function PlaceAssumedItems(Difficulty As DifficultySetting)
         Dim PlacementCount As Integer = 1
+        'If (Difficulty = DifficultySetting.VeryEasy) Then PlacementCount = 4
         'this has to be built to allow a resort of the item pool so it needs to be in a do while loop and start from 1 each loop..
         'this might be slightly more process intensive which is unfortunate but I want to place a random weapon first
         Do While PlacementCount <= ItemPool.Count '- 1 'might need a -1 so not infinite ?????
