@@ -95,8 +95,9 @@ Public Class PackUnpack
                                  Optional BackgroundChange As Boolean = True,
                                  Optional AxiomDisruptChange As Boolean = True,
                                  Optional AxiomTranceChange As Boolean = True)
+        Dim FILE_NAME As String = "E:\asmdisassembly.txt"
         Dim lines() As String = IO.File.ReadAllLines(IlFile)
-        If My.Settings.SteamVersion Then
+        If (My.Settings.SteamVersion = 0) Then
             For i As Integer = 0 To lines.Length - 1
                 Dim LeaderboardRemoved As Boolean = False
                 'This removes Leaderboard Uploads
@@ -164,7 +165,66 @@ Public Class PackUnpack
                     End If
                 End If
             Next
-        Else 'Epic Version
+        ElseIf (My.Settings.SteamVersion = 1) Then 'Epic Version
+            For i As Integer = 0 To lines.Length - 1
+                Dim LeaderboardRemoved As Boolean = False
+
+                'changes save files from .sav to .save
+                If lines(i).Contains(""".sav""") Then
+                    If SaveChange Then
+                        lines(i) = lines(i).Replace(""".sav""", """.save""")
+                    End If
+
+                    'Changes Initial Sprite to Labcoat
+                ElseIf lines(i) = "    IL_00bc:  ldstr      ""Trace""" Then
+                    If LabCoatChange Then
+                        lines(i) = "    IL_00bc:  ldstr      ""TraceCoat"""
+                    End If
+                ElseIf lines(i) = "    IL_00d7:  ldstr      ""TraceUnarmed""" Then
+                    If LabCoatChange Then
+                        lines(i) = "    IL_00d7:  ldstr      ""TraceCoat"""
+                    End If
+                ElseIf lines(i) = "    IL_01a9:  ldstr      ""TraceUnarmedLeotard""" Then
+                    If LabCoatChange Then
+                        lines(i) = "    IL_01a9:  ldstr      ""TraceLeotard"""
+                    End If
+
+                    'Waking Up Tiles by default
+                ElseIf lines(i) = "    IL_0337:  ldstr      ""DataDisruptor""" Then
+                    If TileWakeChange Then
+                        lines(i) = "    IL_0337:  ldstr      ""DummDisruptor"""
+                    End If
+                ElseIf lines(i) = "    IL_0341:  brfalse.s  IL_035b" Then
+                    If TileWakeChange Then
+                        lines(i) = "    IL_0341:  brtrue.s  IL_035b"
+                    End If
+
+                    'Waking Up Background by default
+                ElseIf lines(i) = "    IL_00dd:  ldstr      ""DataDisruptor""" Then
+                    If BackgroundChange Then
+                        lines(i) = "    IL_00dd:  ldstr      ""DummDisruptor"""
+                    End If
+                ElseIf lines(i) = "    IL_00e7:  brfalse.s  IL_012e" Then
+                    If BackgroundChange Then
+                        lines(i) = "    IL_00e7:  brtrue.s  IL_012e"
+                    End If
+
+                    'Waking Up Glitches by default - To Be Found
+
+                    'Remove World Wakeup from Picking up axiom disruptor
+                ElseIf lines(i) = "    IL_0015:  ldstr      ""DataDisruptor""" Then
+                    If AxiomDisruptChange Then
+                        lines(i) = "    IL_0015:  ldstr      ""DummDisruptor"""
+                    End If
+
+                    'Remove Temp Trace Sprite when picking up the Axiom Disruptor.
+                ElseIf lines(i) = "    IL_01c7:  ldstr      ""DataDisruptor""" Then
+                    If AxiomTranceChange Then
+                        lines(i) = "    IL_01c7:  ldstr      ""DummDisruptor"""
+                    End If
+                End If
+            Next
+        Else
             For i As Integer = 0 To lines.Length - 1
                 Dim LeaderboardRemoved As Boolean = False
                 '
@@ -189,23 +249,23 @@ Public Class PackUnpack
                     End If
                     '
                     'Waking Up Tiles by default
-                ElseIf lines(i) = "    IL_0337:  ldstr      ""DataDisruptor""" Then
+                ElseIf lines(i) = "    IL_033c:  ldstr      ""DataDisruptor""" Then
                     If TileWakeChange Then
-                        lines(i) = "    IL_0337:  ldstr      ""DummDisruptor"""
+                        lines(i) = "    IL_033c:  ldstr      ""DummDisruptor"""
                     End If
-                ElseIf lines(i) = "    IL_0341:  brfalse.s  IL_035b" Then
+                ElseIf lines(i) = "    IL_0346:  brfalse.s  IL_0360" Then
                     If TileWakeChange Then
-                        lines(i) = "    IL_0341:  brtrue.s  IL_035b"
+                        lines(i) = "    IL_0346:  brtrue.s  IL_0360"
                     End If
                     '
                     'Waking Up Background by default
-                ElseIf lines(i) = "    IL_00dd:  ldstr      ""DataDisruptor""" Then
+                ElseIf lines(i) = "    IL_00e0:  ldstr      ""DataDisruptor""" Then
                     If BackgroundChange Then
-                        lines(i) = "    IL_00dd:  ldstr      ""DummDisruptor"""
+                        lines(i) = "    IL_00e0:  ldstr      ""DummDisruptor"""
                     End If
-                ElseIf lines(i) = "    IL_00e7:  brfalse.s  IL_012e" Then
+                ElseIf lines(i) = "    IL_00ea:  brfalse.s  IL_0131" Then
                     If BackgroundChange Then
-                        lines(i) = "    IL_00e7:  brtrue.s  IL_012e"
+                        lines(i) = "    IL_00ea:  brtrue.s  IL_0131"
                     End If
                     '
                     'Waking Up Glitches by default - To Be Found

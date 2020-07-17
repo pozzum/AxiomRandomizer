@@ -32,8 +32,8 @@
     <Setting Name="ExeHashString" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="SteamVersion" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+    <Setting Name="SteamVersion" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="ExpressExtractUsed" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

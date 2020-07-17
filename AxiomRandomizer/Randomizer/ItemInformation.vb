@@ -84,6 +84,1110 @@
         Public JumpAdded As Integer = 0
     End Class
 #End Region
+
+    Public Class VEItems
+        Public Shared Function ResetItemPool()
+            Dim Items As List(Of ItemDrop)
+            Items = New List(Of ItemDrop)
+            Dim TempItem As ItemDrop
+#Region "Weapons"
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.DataDisruptor
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GID = 2
+            TempItem.Weight = 5
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Nova
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Nova})
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GID = 3
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.MultiDisruptor
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GID = 35
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Kilver
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Kilver})
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GID = 36
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.FlameThrower
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Nova, Powers.Kilver, Powers.LongBeam})
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GID = 40
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.VerticalSpread
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Nova})
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GID = 43
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.IonBeam
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GID = 44
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.TriCone
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GID = 45
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Reflect
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Nova})
+            TempItem.GID = 46
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.WallTrace
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Nova})
+            TempItem.GID = 47
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.InertialPulse
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 48
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.FireWall
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 49
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.TetheredCharge
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Nova})
+            TempItem.GID = 50
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Scythe
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Kilver})
+            TempItem.GID = 51
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Shards
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 52
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.DistortionField
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Kilver})
+            TempItem.GID = 53
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Voranj
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 54
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.DataGrenade
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 55
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.LightningGun
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 56
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "FatBeam"
+            TempItem.DropType = ItemType.FatBeam
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Nova, Powers.Kilver, Powers.FatBeam})
+            TempItem.GID = 57
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = ""
+            TempItem.DropType = ItemType.Swim
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 58
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "WebSlicer"
+            TempItem.DropType = ItemType.WebSlicer
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage, Powers.Nova, Powers.Kilver, Powers.LongBeam})
+            TempItem.GID = 59
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HeatSeeker"
+            TempItem.DropType = ItemType.HeatSeeker
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 57 'Guess IDK if it'll work
+            Items.Add(TempItem)
+#End Region
+#Region "Health Nodes"
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNode1"
+            TempItem.DropType = ItemType.HealthNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 34
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNode2"
+            TempItem.DropType = ItemType.HealthNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 34
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNode3"
+            TempItem.DropType = ItemType.HealthNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 34
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNode4"
+            TempItem.DropType = ItemType.HealthNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 34
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNode5"
+            TempItem.DropType = ItemType.HealthNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 34
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNode6"
+            TempItem.DropType = ItemType.HealthNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 34
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNode7"
+            TempItem.DropType = ItemType.HealthNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 34
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNode8"
+            TempItem.DropType = ItemType.HealthNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 34
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNode9"
+            TempItem.DropType = ItemType.HealthNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 34
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________HEALTH NODE FRAGMENTS
+            '
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment1"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment2"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment3"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment4"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment5"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment6"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment7"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment8"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment9"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment10"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment11"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment12"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment13"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment14"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________....Item is in a Slug
+            'TempItem = New ItemDrop()
+            'TempItem.Name = "HealthNodeFragment15"
+            'TempItem.DropType = ItemType.HealthNodeFragment
+            'TempItem.GivenPowers = New List(Of Powers)
+            'TempItem.GID = 38
+            'TempItem.Weight = -1
+            'Items.Add(TempItem)
+            'Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment16"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment17"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment18"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment19"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "HealthNodeFragment20"
+            TempItem.DropType = ItemType.HealthNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 38
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+#End Region
+#Region "Power Nodes"
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNode1"
+            TempItem.DropType = ItemType.PowerNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 32
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNode2"
+            TempItem.DropType = ItemType.PowerNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 32
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNode3"
+            TempItem.DropType = ItemType.PowerNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 32
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNode4"
+            TempItem.DropType = ItemType.PowerNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 32
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNode5"
+            TempItem.DropType = ItemType.PowerNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 32
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNode6"
+            TempItem.DropType = ItemType.PowerNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 32
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________POWER NODES FRAGMENTS
+            '
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment1"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment2"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment3"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment4"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment5"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment6"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment7"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment8"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment9"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment10"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment11"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment12"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment13"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment14"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment15"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment16"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment17"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "PowerNodeFragment18"
+            TempItem.DropType = ItemType.PowerNodeFragment
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 74
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+#End Region
+#Region "Size Nodes"
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "SizeNode1"
+            TempItem.DropType = ItemType.SizeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 65
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "SizeNode2"
+            TempItem.DropType = ItemType.SizeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 65
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "SizeNode3"
+            TempItem.DropType = ItemType.SizeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 65
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "SizeNode4"
+            TempItem.DropType = ItemType.SizeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 65
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+#End Region
+#Region "Range Nodes"
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "RangeNode1"
+            TempItem.DropType = ItemType.RangeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 66
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "RangeNode2"
+            TempItem.DropType = ItemType.RangeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 66
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "RangeNode3"
+            TempItem.DropType = ItemType.RangeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 66
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________
+            TempItem = New ItemDrop()
+            TempItem.Name = "RangeNode4"
+            TempItem.DropType = ItemType.RangeNode
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 66
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+#End Region
+#Region "Lore"
+            '
+            '______________LORE
+            '
+            '______________Anonymous Quote
+            TempItem = New ItemDrop()
+            TempItem.Name = "Note1"
+            TempItem.DropType = ItemType.Lore
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 75
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________Proverbs
+            TempItem = New ItemDrop()
+            TempItem.Name = "Note6"
+            TempItem.DropType = ItemType.Lore
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 75
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________Sudran Translation
+            TempItem = New ItemDrop()
+            TempItem.Name = "Note19"
+            TempItem.DropType = ItemType.Lore
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 75
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________English
+            TempItem = New ItemDrop()
+            TempItem.Name = "Note20"
+            TempItem.DropType = ItemType.Lore
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 75
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________The Breach
+            TempItem = New ItemDrop()
+            TempItem.Name = "Note22"
+            TempItem.DropType = ItemType.Lore
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 75
+            TempItem.Weight = -1
+            Items.Add(TempItem)
+            '______________Vykhya Translation
+            TempItem = New ItemDrop()
+            TempItem.Name = "Note27"
+            TempItem.DropType = ItemType.Lore
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.GID = 75
+            Items.Add(TempItem)
+            If (My.Settings.SteamVersion = 0 Or My.Settings.SteamVersion = 1) Then
+                '______________Faded Note
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note2"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________The Land of Civilized Kings
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note3"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________The Kuliltu
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note4"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Oracca
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note5"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________The Storm
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note7"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________My Lovely
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note8"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Athetos
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note9"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Security Notice
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note10"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Official Letter
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note11"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________From the High Priestess
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note12"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Public Notice
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note13"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Plan B
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note14"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Journal Page
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note15"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Transcription
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note16"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Journal Page
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note17"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Axiom 1
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note18"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Letter
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note21"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________The Outsider
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note23"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Reply:  The Outsider
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note24"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                'Next 3 removed for hidden secret world weapons
+                '______________Journal Page
+                'TempItem = New ItemDrop()
+                'TempItem.Name = "Note25"
+                'TempItem.DropType = ItemType.Lore
+                'TempItem.GivenPowers = New List(Of Powers)
+                'TempItem.GID = 75
+                'TempItem.Weight = -1
+                'Items.Add(TempItem)
+                '______________Trace
+                'TempItem = New ItemDrop()
+                'TempItem.Name = "Note26"
+                'TempItem.DropType = ItemType.Lore
+                'TempItem.GivenPowers = New List(Of Powers)
+                'TempItem.GID = 75
+                'TempItem.Weight = -1
+                'Items.Add(TempItem)
+                ''______________Drones
+                'TempItem = New ItemDrop()
+                'TempItem.Name = "Note28"
+                'TempItem.DropType = ItemType.Lore
+                'TempItem.GivenPowers = New List(Of Powers)
+                'TempItem.GID = 75
+                'Items.Add(TempItem)
+            End If
+#End Region
+#Region "Source Items"
+            If (My.Settings.SteamVersion = 2) Then
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "HealthNode10"
+                TempItem.DropType = ItemType.HealthNode
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 34
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "HealthNodeFragment21"
+                TempItem.DropType = ItemType.HealthNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 38
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "HealthNodeFragment22"
+                TempItem.DropType = ItemType.HealthNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 38
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "HealthNodeFragment23"
+                TempItem.DropType = ItemType.HealthNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 38
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "HealthNodeFragment24"
+                TempItem.DropType = ItemType.HealthNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 38
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "HealthNodeFragment25"
+                TempItem.DropType = ItemType.HealthNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 38
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNode7"
+                TempItem.DropType = ItemType.PowerNode
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 32
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment19"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment20"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment21"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment22"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment23"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment24"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment25"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment26"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment27"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment28"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment29"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment30"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+            End If
+#End Region
+            Return Items
+        End Function
+    End Class
     Public Class VanillaItems
         Public Shared Function ResetItemPool()
             Dim Items As List(Of ItemDrop)
@@ -167,7 +1271,7 @@
             TempItem.Name = ""
             TempItem.DropType = ItemType.DroneGun
             TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GivenPowers.AddRange({Powers.Drone})
+            TempItem.GivenPowers.AddRange({Powers.Drone, Powers.Drill})
             TempItem.Weight = 3 'weight 3 for coats & drones to maximize variance
             TempItem.GID = 63
             Items.Add(TempItem)
@@ -438,13 +1542,14 @@
             TempItem.GID = 59
             Items.Add(TempItem)
             '______________
-            'TempItem = New ItemDrop()
-            'TempItem.Name = "HeatSeeker"
-            'TempItem.DropType = ItemType.HeatSeeker
-            'TempItem.GivenPowers = New List(Of Powers)
-            'TempItem.GivenPowers.AddRange({Powers.Damage})
-            'TempItem.GID = 57 'Guess IDK if it'll work
-            'Items.Add(TempItem)
+            TempItem = New ItemDrop()
+            TempItem.Name = "HeatSeeker"
+            TempItem.DropType = ItemType.HeatSeeker
+            TempItem.GivenPowers = New List(Of Powers)
+            TempItem.Weight = 10 'weight 10 for weapons
+            TempItem.GivenPowers.AddRange({Powers.Damage})
+            TempItem.GID = 57 'Guess IDK if it'll work
+            Items.Add(TempItem)
 #End Region
 #Region "Health Nodes"
             '______________
@@ -519,7 +1624,6 @@
             TempItem.GID = 34
             TempItem.Weight = -1
             Items.Add(TempItem)
-            '
             '______________HEALTH NODE FRAGMENTS
             '
             TempItem = New ItemDrop()
@@ -732,7 +1836,6 @@
             TempItem.GID = 32
             TempItem.Weight = -1
             Items.Add(TempItem)
-            '
             '______________POWER NODES FRAGMENTS
             '
             TempItem = New ItemDrop()
@@ -951,6 +2054,7 @@
             '
             '______________LORE
             '
+            '______________Anonymous Quote
             TempItem = New ItemDrop()
             TempItem.Name = "Note1"
             TempItem.DropType = ItemType.Lore
@@ -958,39 +2062,7 @@
             TempItem.GID = 75
             TempItem.Weight = -1
             Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note2"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note3"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note4"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note5"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
+            '______________Proverbs
             TempItem = New ItemDrop()
             TempItem.Name = "Note6"
             TempItem.DropType = ItemType.Lore
@@ -998,103 +2070,7 @@
             TempItem.GID = 75
             TempItem.Weight = -1
             Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note7"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note8"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note9"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note10"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note11"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note12"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note13"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note14"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note15"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note16"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note17"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note18"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
+            '______________Sudran Translation
             TempItem = New ItemDrop()
             TempItem.Name = "Note19"
             TempItem.DropType = ItemType.Lore
@@ -1102,7 +2078,7 @@
             TempItem.GID = 75
             TempItem.Weight = -1
             Items.Add(TempItem)
-            '______________
+            '______________English
             TempItem = New ItemDrop()
             TempItem.Name = "Note20"
             TempItem.DropType = ItemType.Lore
@@ -1110,15 +2086,7 @@
             TempItem.GID = 75
             TempItem.Weight = -1
             Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note21"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
+            '______________The Breach
             TempItem = New ItemDrop()
             TempItem.Name = "Note22"
             TempItem.DropType = ItemType.Lore
@@ -1126,52 +2094,347 @@
             TempItem.GID = 75
             TempItem.Weight = -1
             Items.Add(TempItem)
-            '______________
+            '______________Vykhya Translation
             TempItem = New ItemDrop()
-            TempItem.Name = "Note23"
+            TempItem.Name = "Note27"
             TempItem.DropType = ItemType.Lore
             TempItem.GivenPowers = New List(Of Powers)
             TempItem.GID = 75
-            TempItem.Weight = -1
             Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note24"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note25"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________...Next 3 removed for hidden weapons
-            TempItem = New ItemDrop()
-            TempItem.Name = "Note26"
-            TempItem.DropType = ItemType.Lore
-            TempItem.GivenPowers = New List(Of Powers)
-            TempItem.GID = 75
-            TempItem.Weight = -1
-            Items.Add(TempItem)
-            '______________ Added I think
-            'TempItem = New ItemDrop()
-            'TempItem.Name = "Note27"
-            'TempItem.DropType = ItemType.Lore
-            'TempItem.GivenPowers = New List(Of Powers)
-            'TempItem.GID = 75
-            'Items.Add(TempItem)
-            '______________
-            'TempItem = New ItemDrop()
-            'TempItem.Name = "Note28"
-            'TempItem.DropType = ItemType.Lore
-            'TempItem.GivenPowers = New List(Of Powers)
-            'TempItem.GID = 75
-            'Items.Add(TempItem)
+            If (My.Settings.SteamVersion = 0 Or My.Settings.SteamVersion = 1) Then
+                '______________Faded Note
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note2"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________The Land of Civilized Kings
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note3"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________The Kuliltu
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note4"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Oracca
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note5"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________The Storm
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note7"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________My Lovely
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note8"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Athetos
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note9"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Security Notice
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note10"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Official Letter
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note11"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________From the High Priestess
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note12"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Public Notice
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note13"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Plan B
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note14"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Journal Page
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note15"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Transcription
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note16"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Journal Page
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note17"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Axiom 1
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note18"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Letter
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note21"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________The Outsider
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note23"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________Reply:  The Outsider
+                TempItem = New ItemDrop()
+                TempItem.Name = "Note24"
+                TempItem.DropType = ItemType.Lore
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 75
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                'Next 3 removed for hidden secret world weapons
+                '______________Journal Page
+                'TempItem = New ItemDrop()
+                'TempItem.Name = "Note25"
+                'TempItem.DropType = ItemType.Lore
+                'TempItem.GivenPowers = New List(Of Powers)
+                'TempItem.GID = 75
+                'TempItem.Weight = -1
+                'Items.Add(TempItem)
+                '______________Trace
+                'TempItem = New ItemDrop()
+                'TempItem.Name = "Note26"
+                'TempItem.DropType = ItemType.Lore
+                'TempItem.GivenPowers = New List(Of Powers)
+                'TempItem.GID = 75
+                'TempItem.Weight = -1
+                'Items.Add(TempItem)
+                ''______________Drones
+                'TempItem = New ItemDrop()
+                'TempItem.Name = "Note28"
+                'TempItem.DropType = ItemType.Lore
+                'TempItem.GivenPowers = New List(Of Powers)
+                'TempItem.GID = 75
+                'Items.Add(TempItem)
+            End If
+#End Region
+#Region "Source Items"
+            If (My.Settings.SteamVersion = 2) Then
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "HealthNode10"
+                TempItem.DropType = ItemType.HealthNode
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 34
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "HealthNodeFragment21"
+                TempItem.DropType = ItemType.HealthNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 38
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "HealthNodeFragment22"
+                TempItem.DropType = ItemType.HealthNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 38
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "HealthNodeFragment23"
+                TempItem.DropType = ItemType.HealthNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 38
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "HealthNodeFragment24"
+                TempItem.DropType = ItemType.HealthNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 38
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "HealthNodeFragment25"
+                TempItem.DropType = ItemType.HealthNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 38
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNode7"
+                TempItem.DropType = ItemType.PowerNode
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 32
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment19"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment20"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment21"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment22"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment23"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment24"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment25"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment26"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment27"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment28"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment29"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+                '______________
+                TempItem = New ItemDrop()
+                TempItem.Name = "PowerNodeFragment30"
+                TempItem.DropType = ItemType.PowerNodeFragment
+                TempItem.GivenPowers = New List(Of Powers)
+                TempItem.GID = 74
+                TempItem.Weight = -1
+                Items.Add(TempItem)
+            End If
 #End Region
             Return Items
         End Function
@@ -2109,8 +3372,8 @@
             If MinNodes = -1 AndAlso VarianceNodes = -1 Then
                 Select Case PoolDifficulty
                     Case Randomizer.DifficultySetting.Easy
-                        MinNodes = 4
-                        VarianceNodes = 10
+                        MinNodes = 1
+                        VarianceNodes = 9
                     Case Randomizer.DifficultySetting.Normal
                         MinNodes = 1
                         VarianceNodes = 10
@@ -2126,11 +3389,11 @@
                 Select Case PoolDifficulty
                     'Note +1 from Slug Fragment
                     Case Randomizer.DifficultySetting.Easy
-                        MinNodes = 4
-                        VarianceNodes = 16
+                        MinNodes = 1
+                        VarianceNodes = 19
                     Case Randomizer.DifficultySetting.Normal
                         MinNodes = 4
-                        VarianceNodes = 28
+                        VarianceNodes = 20
                         'Case Randomizer.DifficultySetting.Hard
                         ' MinNodes = 4
                         ' VarianceNodes = 16
@@ -2142,8 +3405,8 @@
             If MinNodes = -1 AndAlso VarianceNodes = -1 Then
                 Select Case PoolDifficulty
                     Case Randomizer.DifficultySetting.Easy
-                        MinNodes = 4
-                        VarianceNodes = 7
+                        MinNodes = 1
+                        VarianceNodes = 6
                     Case Randomizer.DifficultySetting.Normal
                         MinNodes = 2
                         VarianceNodes = 9
@@ -2158,11 +3421,11 @@
             If MinNodes = -1 AndAlso VarianceNodes = -1 Then
                 Select Case PoolDifficulty
                     Case Randomizer.DifficultySetting.Easy
-                        MinNodes = 6
-                        VarianceNodes = 13
+                        MinNodes = 1
+                        VarianceNodes = 20
                     Case Randomizer.DifficultySetting.Normal
                         MinNodes = 6
-                        VarianceNodes = 19
+                        VarianceNodes = 18
                         'Case Randomizer.DifficultySetting.Hard
                         ' MinNodes = 0
                         ' VarianceNodes = 19
